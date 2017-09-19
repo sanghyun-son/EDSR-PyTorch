@@ -92,8 +92,11 @@ class trainer():
                     evalLog = self.evaluate(
                         self.args, input, output, target, locals())
 
-                best = self.checkpoint.testLog.squeeze(0).max(0)
-                #best = self.checkpoint.testLog.max(0)
+                if len(self.scale) > 1:
+                    best = self.checkpoint.testLog.squeeze(0).max(0)
+                else:
+                    best = self.checkpoint.testLog.max(0)
+
                 for taskIdx, task in enumerate(self.args.task):
                     performance = '{}: {:.3f}'.format(
                         evalLog[taskIdx],
