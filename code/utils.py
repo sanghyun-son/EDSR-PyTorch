@@ -184,44 +184,40 @@ class checkpoint():
             plt.savefig('{}/loss_{}.pdf'.format(dir, loss['type']))
             plt.close(fig)
 
-        for setIdx, testSet in enumerate(trainer.testLoader):
-            setName = testSet.dataset.name
-            for taskIdx, task in enumerate(self.args.task):
-                fig = plt.figure()
-                label = '{} on {}'.format(task, setName)
-                plt.title(label)
-                plt.xlabel('Epochs')
-                plt.grid(True)
-                for scaleIdx, scale in enumerate(self.args.scale):
-                    legend = 'Scale {}'.format(scale)
-                    plt.plot(
-                        axis,
-                        test[:, taskIdx, setIdx, scaleIdx].numpy(),
-                        label=legend)
-                    plt.legend()
+        setName = trainer.testLoader.dataset.name
+        fig = plt.figure()
+        label = 'SR on {}'.format(setName)
+        plt.title(label)
+        plt.xlabel('Epochs')
+        plt.grid(True)
+        for scaleIdx, scale in enumerate(self.args.scale):
+            legend = 'Scale {}'.format(scale)
+            plt.plot(
+                axis,
+                test[:, scaleIdx].numpy(),
+                label=legend)
+            plt.legend()
 
-                plt.savefig(
-                    '{}/test_{}_{}.pdf'.format(dir, task, setName))
-                plt.close(fig)
+        plt.savefig(
+            '{}/test_SR_{}.pdf'.format(dir, setName))
+        plt.close(fig)
 
     def getEpoch(self):
         return len(self.testLog) + 1
 
-    def saveResults(self, setIdx, idx, input, output, target, task, scale):
-        setIdx += 1
+    def saveResults(self, idx, input, output, target, scale):
         idx += 1
         if self.args.saveResults:
-            if task == 'SR':
-                fileName = '{}/results/{}-{}x{}_'.format(
-                    self.dir, setIdx, idx, scale)
+            fileName = '{}/results/{}x{}_'.format(
+                self.dir, idx, scale)
+            tUtils.save_image(
+                input.data[0] / self.args.rgbRange, fileName + 'LR.png')
+            tUtils.save_image(
+                output.data[0] / self.args.rgbRange, fileName + 'SR.png')
+            if target is not None:
                 tUtils.save_image(
-                    input.data[0] / self.args.rgbRange, fileName + 'LR.png')
-                tUtils.save_image(
-                    output.data[0] / self.args.rgbRange, fileName + 'SR.png')
-                if target is not None:
-                    tUtils.save_image(
-                        target.data[0] / self.args.rgbRange,
-                        fileName + 'GT.png')
+                    target.data[0] / self.args.rgbRange,
+                    fileName + 'GT.png')
             
 def x8Forward(img, model, precision='single'):
     inputList = []

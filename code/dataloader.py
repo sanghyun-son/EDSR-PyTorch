@@ -29,10 +29,10 @@ def _ms_loop(dataset, index_queue, data_queue, collate_fn, scale):
             if len(scale) > 1 and dataset.train:
                 scaleIdx = random.randrange(0, len(scale))
                 dataset.setScale(scaleIdx)
-
+            
             samples = collate_fn([dataset[i] for i in batch_indices])
             samples.append(scaleIdx)
-
+            
         except Exception:
             data_queue.put((idx, ExceptionWrapper(sys.exc_info())))
         else:

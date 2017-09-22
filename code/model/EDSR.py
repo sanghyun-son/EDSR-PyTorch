@@ -11,13 +11,10 @@ class EDSR(nn.Module):
 
         self.args = args
 
-        subMul, addMul = -1 * args.subMean, 1 * args.subMean
-
         # Submean layer
         self.subMean = common.meanShift(
             args.rgbRange,
-            (0.4488, 0.4371, 0.4040),
-            subMul)
+            (0.4488, 0.4371, 0.4040), -1 * args.subMean)
 
         # Head convolution for feature extracting
         self.headConv = common.conv3x3(args.nChannel, nFeat)
@@ -36,8 +33,7 @@ class EDSR(nn.Module):
         # Addmean layer
         self.addMean = common.meanShift(
             args.rgbRange,
-            (0.4488, 0.4371, 0.4040),
-            addMul)
+            (0.4488, 0.4371, 0.4040), 1 * args.subMean)
 
     def forward(self, x):
         x = self.subMean(x)

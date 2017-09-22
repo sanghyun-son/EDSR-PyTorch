@@ -76,6 +76,19 @@ class ResBlock(nn.Module):
 
         return res
 
+class ResBlock_scale(ResBlock):
+    def __init__(
+        self, nFeat, kernel_size=3, bn=False, act=nn.ReLU(True), scale=1):
+        super(ResBlock_scale, self).__init__(nFeat, kernel_size, bn, act)
+        self.scale = scale
+
+    def forward(self, x):
+        res = self.body(x)
+        res *= 0.1
+        res += x
+
+        return res
+
 class upsampler(nn.Module):
     def __init__(self, scale, nFeat, act=False):
         super(upsampler, self).__init__()

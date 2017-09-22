@@ -14,13 +14,21 @@ If you find our work useful in your research or publication, please cite our wor
   year = {2017}
 }
 ```
-For some reason, we only provide demo script here.
+This repository provides some demo codes for reproducing all the results from the paper. (Include training scripts.)
 
-However, you can train our model with this code if you make the script and prepare the dataset on your own.
+Also, pre-trained model will be uploaded soon.
+
+**Differences with Torch version**
+* Codes are much more compact. (Removed all unnecessary parts.)
+* Model sizes are smaller. (About half!)
+* Training requires less memory. (So that we can further increase the model size.)
+* Test is faster.
+* Python-based. (Unfortunately, this code do not follow python coding convention. Sorry for that.)
 
 ## Dependencies
 * Python (Tested with 3.6)
-* PyTorch (**Supports 0.20 ONLY**)
+* PyTorch (**Supports 0.2.0 ONLY**)
+
 ## Code
 
 Clone this repository into any place you want.
@@ -29,7 +37,7 @@ git clone https://github.com/thstkdgus35/EDSR-PyTorch
 cd EDSR-PyTorch
 ```
 
-## Quick Start (Demo)
+## Quick start (Demo)
 You can test our super-resolution algorithm with your own images.
 
 Place your images in ```test``` folder. (like ```test/puppy.jpeg```)
@@ -38,7 +46,7 @@ Then, run the provided script in ```code``` folder.
 
 Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
 ```bash
-cd code
+cd code       # You are now in */EDSR-PyTorch/code
 sh demo.sh
 ```
 
@@ -50,6 +58,21 @@ We provide 3 pre-trained models (baseline ONLY, not full version.) till now. You
 |  ---  |  ---  | ---       | ---         |---        |---           |
 | **EDSR**| 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 
 | **MDSR**| 2 + 3 + 4 | MDSR_baseline.pt | 16 | 64 | 3.2M |
-| **MDSR (JPEG)**| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M |
+| **MDSR (JPEG)***| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M |
 
 *MDSR (JPEG) even reduces the JPEG artifact in output images. However, its DIV2K validation performance is slightly lower than the original MDSR.
+
+## How to train EDSR and MDSR
+You have to prepare DIV2K dataset for the training.
+
+**Detailed steps for preparing data will be updated in next time.**
+
+Training scripts are also included in ``demo.sh``. By uncomment the appropriate line and execute the script, you can train EDSR and MDSR by yourself.
+
+```bash
+cd code       # You are now in */EDSR-PyTorch/code
+sh demo.sh
+```
+**EDSR requires huge amount of memory, even with PyTorch. Therefore, it is impossible to test EDSR (not baseline) in 12GB GPU for now. This problem will be fixed in next update.**
+
+**Detailed guide about arguments will be updated in next time.**

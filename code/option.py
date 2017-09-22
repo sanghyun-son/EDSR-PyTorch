@@ -63,6 +63,10 @@ parser.add_argument('--subMean', default=False, metavar='TF',
                     help='subtract pixel mean from the input')
 parser.add_argument('--precision', default='single', metavar='FP',
                     help='model and data precision')
+parser.add_argument('--multiOutput', default=False, metavar='FP',
+                    help='model generates multiple outputs')
+parser.add_argument('--multiTarget', default=False, metavar='FP',
+                    help='model requires multiple targets')
 
 # Training specifications
 parser.add_argument('--reset', default=False, metavar='TF',

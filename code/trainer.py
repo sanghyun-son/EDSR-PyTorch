@@ -22,7 +22,11 @@ class trainer():
 
     def scaleChange(self, scaleIdx, testSet=None):
         if len(self.scale) > 1:
-            self.model.setScale(scaleIdx)
+            if self.args.nGPUs == 1:
+                self.model.setScale(scaleIdx)
+            else:
+                self.model.module.setScale(scaleIdx)
+
             if testSet is not None:
                 testSet.dataset.setScale(scaleIdx)
 
@@ -67,49 +71,40 @@ class trainer():
 
         testTimer = utils.timer()
         self.checkpoint.addLog(
-            torch.zeros(
-                1,
-                len(self.args.task),
-                len(self.testLoader),
-                len(self.scale)), False)
+            torch.zeros(1, len(self.scale)), False)
 
-        for setIdx, testSet in enumerate(self.testLoader):
-            setName = testSet.dataset.name if testSet.dataset.name else 'Test set'
-            testTimer.tic()
-            for scaleIdx in range(len(self.scale)):
-                scale = self.scale[scaleIdx]
-                self.scaleChange(scaleIdx, testSet)
-                for imgIdx, (input, target, _) in enumerate(testSet):
-                    input, target = self.prepareData(input, target, volatile=True)
+        testTimer.tic()
+        for scaleIdx in range(len(self.scale)):
+            scale = self.scale[scaleIdx]
+            self.scaleChange(scaleIdx, self.testLoader)
+            for imgIdx, (input, target, _) in enumerate(self.testLoader):
+                input, target = self.prepareData(input, target, volatile=True)
 
-                    # Self ensemble!
-                    if self.args.selfEnsemble:
-                        output = utils.x8Forward(
-                            input, self.model, self.args.precision)
-                    else:
-                        output = self.model(input)
-
-                    evalLog = self.evaluate(
-                        self.args, input, output, target, locals())
-
-                if len(self.scale) > 1:
-                    best = self.checkpoint.testLog.squeeze(0).max(0)
+                # Self ensemble!
+                if self.args.selfEnsemble:
+                    output = utils.x8Forward(
+                        input, self.model, self.args.precision)
                 else:
-                    best = self.checkpoint.testLog.max(0)
+                    output = self.model(input)
 
-                for taskIdx, task in enumerate(self.args.task):
-                    performance = '{}: {:.3f}'.format(
-                        evalLog[taskIdx],
-                        self.checkpoint.testLog[-1, taskIdx, setIdx, scaleIdx])
-                    self.checkpoint.saveLog(
-                        '[{} on {} x{}]\t{} (Best: {:.3f} from epoch {})'.format(
-                            task, setName, scale,
-                            performance,
-                            best[0][taskIdx, setIdx, scaleIdx],
-                            best[1][taskIdx, setIdx, scaleIdx] + 1))
-            self.checkpoint.saveLog('Time: {:.2f}s'.format(testTimer.toc()))
+                evalValue = utils.calcPSNR(
+                    output, target,
+                    self.testLoader.dataset.name, self.args.rgbRange, scale)
+                self.checkpoint.testLog[-1, scaleIdx] \
+                    += evalValue / len(self.testLoader)
+                self.checkpoint.saveResults(imgIdx, input, output, target, scale)
 
-        self.checkpoint.saveLog('', refresh=True)
+            bestValue, bestEpoch = self.checkpoint.testLog.max(0)
+            performance = 'PSNR: {:.3f}'.format(
+                self.checkpoint.testLog[-1, scaleIdx])
+            self.checkpoint.saveLog(
+                '[SR on {} x{}]\t{} (Best: {:.3f} from epoch {})'.format(
+                    self.testLoader.dataset.name, scale, performance,
+                    bestValue.squeeze(0)[scaleIdx],
+                    bestEpoch.squeeze(0)[scaleIdx] + 1))
+
+        self.checkpoint.saveLog(
+            'Time: {:.2f}s\n'.format(testTimer.toc()), refresh=True)
         self.checkpoint.save(self, epoch)
 
     def setLr(self):
@@ -136,9 +131,6 @@ class trainer():
         if self.args.cuda:
             input = Variable(input.cuda(), volatile=volatile)
             target = Variable(target.cuda())
-
-        if self.args.model == 'S2R':
-            self.model.setMask(mask)
 
         if self.args.precision == 'half':
             input = input.half()
@@ -177,39 +169,6 @@ class trainer():
 
         return lossLog
 
-    def evaluate(self, args, input, output, target, etc):
-        def _doEval(output, target, task):
-            setName = etc['setName']
-            if task == 'SR':
-                return utils.calcPSNR(
-                    output, target, setName,
-                    self.args.rgbRange,
-                    etc['scale']), 'PSNR'
-            else:
-                return 0, 'None'
-
-        evalLog = [None] * len(args.task)
-        for taskIdx, task in enumerate(self.args.task):
-            outputN = output
-            if etc['setName'] == 'myImage':
-                targetN = None
-            else:
-                targetN = target
-
-            evalValue, evalLog[taskIdx] = _doEval(outputN, targetN, task)
-
-            setIdx = etc['setIdx']
-            scaleIdx = etc['scaleIdx']
-            imgIdx = etc['imgIdx']
-
-            self.checkpoint.testLog[-1, taskIdx, setIdx, scaleIdx] \
-                += evalValue / len(etc['testSet'])
-            self.checkpoint.saveResults(
-                setIdx, imgIdx,
-                input, outputN, targetN, task, self.scale[scaleIdx])
-
-        return evalLog
-
     def terminate(self):
         if self.args.testOnly:
             self.test()
@@ -220,3 +179,4 @@ class trainer():
                 return True
             else:
                 return False
+
