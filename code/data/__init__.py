@@ -9,22 +9,20 @@ class data:
         self.args = args
 
     def getLoader(self):
-        trainSet = getattr(self.trainModule, self.args.trainData)(self.args)
-        trainLoader = dataloader.MSDataLoader(
-            self.args, trainSet, batch_size=self.args.batchSize,
-            shuffle=True, pin_memory=True)
+        if not self.args.testOnly:
+            trainSet = getattr(self.trainModule, self.args.trainData)(self.args)
+            trainLoader = dataloader.MSDataLoader(
+                self.args, trainSet, batch_size=self.args.batchSize,
+                shuffle=True, pin_memory=True)
+        else:
+            trainLoader = None
 
         testSet = []
         for m in self.testModule:
-            if m[1] == 'benchmark':
-                benchmarkList = ['Set5', 'Set14', 'B100', 'Urban100']
-                for b in benchmarkList:
-                    testSet.append(getattr(m[0], m[1])(self.args, b))
-            else:
-                testSet.append(getattr(m[0], m[1])(self.args, train=False))
+            testSet = getattr(m[0], m[1])(self.args, train=False)
 
-        testLoader = [dataloader.MSDataLoader(
-            self.args, s, batch_size=1,
-            shuffle=False, pin_memory=True) for s in testSet]
+        testLoader = dataloader.MSDataLoader(
+            self.args, testSet, batch_size=1,
+            shuffle=False, pin_memory=True)
 
         return (trainLoader, testLoader)
