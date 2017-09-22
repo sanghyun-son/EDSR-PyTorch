@@ -138,6 +138,9 @@ class trainer():
         elif self.args.precision == 'double':
             input = input.double()
             target = target.double()
+
+        if self.args.testOnly:
+            target = None
             
         return input, target
 
