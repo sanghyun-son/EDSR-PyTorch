@@ -1,59 +1,62 @@
-from collections import OrderedDict
 from model import common
 
 import torch.nn as nn
 
+def make_model(args, parent=False):
+    return MDSR(args)
+
 class MDSR(nn.Module):
-    def __init__(self, args):
+    def __init__(self, args, conv=common.default_conv):
         super(MDSR, self).__init__()
-        nResBlock = args.nResBlock
-        nFeat = args.nFeat
-        self.args = args
+        n_resblocks = args.n_resblocks
+        n_feats = args.n_feats
+        kernel_size = 3
+        self.scale_idx = 0
 
-        # Submean layer
-        self.subMean = common.meanShift(
-            args.rgbRange,
-            (0.4488, 0.4371, 0.4040), -1 * args.subMean)
+        act = nn.ReLU(True)
 
-        # Head convolution for feature extracting
-        self.headConv = common.conv3x3(args.nChannel, nFeat)
+        rgb_mean = (0.4488, 0.4371, 0.4040)
+        self.sub_mean = common.MeanShift(args.rgb_range, rgb_mean, -1)
 
-        # Scale-dependent pre-processing module
-        self.preProcess = nn.ModuleList([
+        modules_head = [conv(args.n_colors, n_feats, kernel_size)]
+
+        self.pre_process = nn.ModuleList([
             nn.Sequential(
-                common.ResBlock(nFeat, kernel_size=5),
-                common.ResBlock(nFeat, kernel_size=5)) for _ in args.scale])
+                common.ResBlock(conv, n_feats, 5, act=act),
+                common.ResBlock(conv, n_feats, 5, act=act)) \
+            for _ in args.scale])
 
-        # Main branch
-        modules = [common.ResBlock(nFeat) for _ in range(nResBlock)]
-        modules.append(common.conv3x3(nFeat, nFeat))
-        self.body = nn.Sequential(*modules)
+        modules_body = [
+            common.ResBlock(conv, n_feats, kernel_size, act=act) \
+            for _ in range(n_resblocks)]
+        modules_body.append(conv(n_feats, n_feats, kernel_size))
 
-        # Scale-dependent upsampler
         self.upsample = nn.ModuleList([
-            common.upsampler(s, nFeat) for s in args.scale])
+            common.Upsampler(conv, s, n_feats, act=False) \
+            for s in args.scale])
 
-        # Tail convolution for reconstruction
-        self.tailConv = common.conv3x3(nFeat, args.nChannel)
+        modules_tail = [conv(n_feats, args.n_colors, kernel_size)]
 
-        # Addmean layer
-        self.addMean = common.meanShift(
-            args.rgbRange,
-            (0.4488, 0.4371, 0.4040), 1 * args.subMean)
+        self.add_mean = common.MeanShift(args.rgb_range, rgb_mean, 1)
 
-        self.scaleIdx = 0
+        self.head = nn.Sequential(*modules_head)
+        self.body = nn.Sequential(*modules_body)
+        self.tail = nn.Sequential(*modules_tail)
 
     def forward(self, x):
-        x = self.subMean(x)
-        x = self.headConv(x)
-        x = self.preProcess[self.scaleIdx](x)
+        x = self.sub_mean(x)
+        x = self.head(x)
+        x = self.pre_process[self.scale_idx](x)
+
         res = self.body(x)
         res += x
-        us = self.upsample[self.scaleIdx](res)
-        output = self.tailConv(us)
-        output = self.addMean(output)
 
-        return output
+        x = self.upsample[self.scale_idx](res)
+        x = self.tail(x)
+        x = self.add_mean(x)
 
-    def setScale(self, scaleIdx):
-        self.scaleIdx = scaleIdx
+        return x
+
+    def set_scale(self, scale_idx):
+        self.scale_idx = scale_idx
+

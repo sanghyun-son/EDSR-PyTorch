@@ -6,22 +6,28 @@ import skimage.io as sio
 
 import torch
 
-parser = argparse.ArgumentParser(description='Pre-processing DIV2K .png images')
+parser = argparse.ArgumentParser(description='Pre-processing DIV2K .jpeg images')
 
-parser.add_argument('--pathFrom', default='../../../../dataset/DIV2K', metavar='DIR',
+parser.add_argument('--pathFrom', default='../../../../dataset/DIV2K',
                     help='directory of images to convert')
-parser.add_argument('--pathTo', default='../../../../dataset/DIV2K_decoded', metavar='DIR',
+parser.add_argument('--pathTo', default='../../../../dataset/DIV2K_decoded',
                     help='directory of images to save')
-parser.add_argument('--split', default=False, metavar='TF',
+parser.add_argument('--split', default=False,
                     help='save individual images')
+parser.add_argument('--select', default='',
+                    help='select certain path')
 
 args = parser.parse_args()
 
 for (path, dirs, files) in os.walk(args.pathFrom):
     print(path)
-    targetDir = os.path.join(args.pathTo, path[len(args.pathFrom) + 1:])
+    targetDir = path.replace(args.pathFrom, args.pathTo)
+    if len(args.select) > 0 and path.find(args.select) == -1:
+        continue
+
     if not os.path.exists(targetDir):
         os.mkdir(targetDir)
+
     if len(dirs) == 0:
         pack = {}
         n = 0

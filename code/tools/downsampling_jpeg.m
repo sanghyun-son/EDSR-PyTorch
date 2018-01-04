@@ -1,7 +1,7 @@
 scale = [2, 3, 4];
 dataset = 'DIV2K';
 apath = '../../../../dataset';
-quality = 100; 
+quality = 87; 
 hrDir = fullfile(apath, dataset, 'DIV2K_train_HR');
 lrDir = fullfile(apath, dataset, ['DIV2K_train_LR_bicubic', num2str(quality)]);
 

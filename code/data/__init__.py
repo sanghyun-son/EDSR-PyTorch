@@ -1,28 +1,34 @@
 from importlib import import_module
+
 import dataloader
 
 class data:
     def __init__(self, args):
-        self.trainModule = import_module('data.' + args.trainData)
-        self.testModule = [(
-            import_module('data.' + d), d) for d in args.testData]
         self.args = args
 
-    def getLoader(self):
-        if not self.args.testOnly:
-            trainSet = getattr(self.trainModule, self.args.trainData)(self.args)
-            trainLoader = dataloader.MSDataLoader(
-                self.args, trainSet, batch_size=self.args.batchSize,
-                shuffle=True, pin_memory=True)
-        else:
-            trainLoader = None
+    def get_loader(self):
+        self.module_train = import_module('data.' + self.args.data_train)
+        self.module_test = import_module('data.' +  self.args.data_test)
 
-        testSet = []
-        for m in self.testModule:
-            testSet = getattr(m[0], m[1])(self.args, train=False)
+        loader_train = None
+        if not self.args.test_only:
+            trainset = getattr(
+                self.module_train, self.args.data_train)(self.args)
+            loader_train = dataloader.MSDataLoader(
+                self.args,
+                trainset,
+                batch_size=self.args.batch_size,
+                shuffle=True,
+                pin_memory=True)
 
-        testLoader = dataloader.MSDataLoader(
-            self.args, testSet, batch_size=1,
-            shuffle=False, pin_memory=True)
+        testset = getattr(self.module_test, self.args.data_test)(
+            self.args, train=False)
+        loader_test = dataloader.MSDataLoader(
+            self.args,
+            testset,
+            batch_size=1,
+            shuffle=False,
+            pin_memory=True)
 
-        return (trainLoader, testLoader)
+        return loader_train, loader_test
+

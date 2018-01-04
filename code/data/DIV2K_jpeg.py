@@ -5,120 +5,89 @@ import math
 import errno
 
 from data import common
+from data import DIV2K
 
 import numpy as np
-import skimage
-import skimage.io as sio
-import skimage.color as sc
+import scipy.misc as misc
 
 import torch
 import torch.utils.data as data
 from torchvision import transforms
 
-class DIV2K_jpeg(data.Dataset):
+class DIV2K_jpeg(DIV2K.DIV2K):
     def __init__(self, args, train=True):
-        self.args = args
-        self.name = 'DIV2K'
-        self.train = train
-        self.scale = args.scale
-        self.scaleIdx = 0
-
-        self.repeat = args.testEvery // (args.nTrain // args.batchSize)
-
-        if args.ext == 'png':
-            apath = args.dataDir + '/DIV2K'
-            self.ext = '.png'
-        else:
-            apath = args.dataDir + '/DIV2K_decoded'
-            self.ext = '.pt'
+        self._init_basic(args, train)
 
         split = 'train'
-        dirHR = 'DIV2K_{}_HR'.format(split)
-        dirLR = [
+        dir_HR = 'DIV2K_{}_HR'.format(split)
+        dir_LR = [
             'DIV2K_{}_LR_bicubic{}'.format(split, q) for q in args.quality]
-        xScale = ['X{}'.format(s) for s in args.scale]
+        x_scale = ['X{}'.format(s) for s in args.scale]
 
-        if self.args.ext != 'ptpack':
-            self.dirIn = [[
-                os.path.join(apath, dq, xs) for dq in dirLR] for xs in xScale]
-            self.dirTar = os.path.join(apath, dirHR)
+        if self.args.ext != 'pack':
+            self.dir_in = [[
+                os.path.join(self.apath, dq, xs) \
+                for dq in dir_LR] \
+                for xs in x_scale]
+            self.dir_tar = os.path.join(self.apath, dir_HR)
         else:
             print('Preparing binary packages...')
-            packName = 'pack.pt' if self.train else 'packv.pt'
-            nameTar = os.path.join(apath, dirHR, packName)
-            print('\tLoading ' + nameTar)
-            self.packIn = []
-            self.packTar = torch.load(nameTar)
+            packname = 'pack.pt' if self.train else 'packv.pt'
+            name_tar = os.path.join(self.apath, dir_HR, packname)
+            print('\tLoading ' + name_tar)
+            self.pack_in = []
+            self.pack_tar = torch.load(name_tar)
             if self.train:
-                self.savePartition(
-                    self.packTar,
-                    os.path.join(apath, dirHR, 'packv.pt'))
-            for i, xs in enumerate(xScale):
-                dqPack = []
-                for j, dq in enumerate(dirLR):
-                    nameIn = os.path.join(apath, dq, xs, packName)
-                    print('\tLoading ' + nameIn)
-                    dqPack.append(torch.load(nameIn))
+                self._save_partition(
+                    self.pack_tar,
+                    os.path.join(self.apath, dir_HR, 'packv.pt'))
+
+            for i, xs in enumerate(x_scale):
+                pack_dq = []
+                for j, dq in enumerate(dir_LR):
+                    name_in = os.path.join(self.apath, dq, xs, packname)
+                    print('\tLoading ' + name_in)
+                    pack_dq.append(torch.load(name_in))
                     if self.train:
-                        self.savePartition(
-                            dqPack[-1],
-                            os.path.join(apath, dq, xs, 'packv.pt'))
-                self.packIn.append(dqPack)
+                        self._save_partition(
+                            pack_dq[-1],
+                            os.path.join(self.apath, dq, xs, 'packv.pt'))
+                self.pack_in.append(pack_dq)
 
-    def __getitem__(self, idx):
-        scale = self.scale[self.scaleIdx]
-        if self.train:
-            idx = (idx % self.args.nTrain) + 1
-        else:
-            idx = (idx + self.args.valOffset) + 1
-
+    def _load_file(self, idx):
         quality = random.randrange(
             len(self.args.quality)) if self.train else -1
+
+        def _get_filename():
+            if self.args.ext == 'png':
+                if quality == len(self.args.quality) - 1 or quality == -1:
+                    ext = '.png'
+                else:
+                    ext = '.jpeg'
+            elif self.args.ext == 'pt':
+                ext = '.pt'
+
+            filename = '{:0>4}'.format(idx)
+            name_in = '{}/{}x{}{}'.format(
+                self.dir_in[self.idx_scale][quality],
+                filename,
+                self.scale[self.idx_scale],
+                ext)
+            name_tar = os.path.join(self.dir_tar, filename + '.png')
+
+            return name_in, name_tar
+
         if self.args.ext == 'png':
-            nameIn, nameTar = self.getFileName(idx, quality)
-            imgIn = sio.imread(nameIn)
-            imgTar = sio.imread(nameTar)
+            name_in, name_tar = _get_filename()
+            img_in = misc.imread(name_in)
+            img_tar = misc.imread(name_tar)
         elif self.args.ext == 'pt':
-            nameIn, nameTar = self.getFileName(idx, quality)
-            imgIn = torch.load(nameIn).numpy()
-            imgTar = torch.load(nameTar).numpy()
-        elif self.args.ext == 'ptpack':
-            imgIn = self.packIn[self.scaleIdx][quality][idx].numpy()
-            imgTar = self.packTar[idx].numpy()
+            name_in, name_tar = _get_filename()
+            img_in = torch.load(name_in).numpy()
+            img_tar = torch.load(name_tar).numpy()
+        elif self.args.ext == 'pack':
+            img_in = self.pack_in[self.idx_scale][quality][idx].numpy()
+            img_tar = self.pack_tar[idx].numpy()
 
-        if self.train:
-            imgIn, imgTar, pi = common.getPatch(imgIn, imgTar, self.args, scale)
-            imgIn, imgTar, ai = common.augment(imgIn, imgTar)
-        else:
-            (ih, iw, c) = imgIn.shape
-            imgTar = imgTar[0:ih * scale, 0:iw * scale, :]
+        return img_in, img_tar
 
-        imgIn, imgTar = common.setChannel(imgIn, imgTar, self.args.nChannel)
-
-        return common.np2Tensor(
-            imgIn, imgTar, self.args.rgbRange, self.args.precision)
-
-    def __len__(self):
-        if self.train:
-            return self.args.nTrain * self.repeat
-        else:
-            return self.args.nVal
-
-    def setScale(self, scaleIdx):
-        self.scaleIdx = scaleIdx
-
-    def getFileName(self, idx, quality):
-        fileName = '{:0>4}{}'.format(idx)
-        nameIn = '{}x{}{}'.format(
-            fileName, self.scale[self.scaleIdx], self.ext)
-        nameIn = os.path.join(self.dirIn[self.scaleIdx][quality], nameIn)
-        nameTar = fileName + self.ext
-        nameTar = os.path.join(self.dirTar, nameTar)
-
-        return nameIn, nameTar
-
-    def savePartition(self, dict, name):
-        valDict = {}
-        for i in range(self.args.nTrain, self.args.nTrain + self.args.nVal):
-            valDict[i + 1] = dict[i + 1]
-        torch.save(valDict, name)

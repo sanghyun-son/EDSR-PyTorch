@@ -2,6 +2,7 @@ import os
 import math
 import time
 import datetime
+from functools import reduce
 
 import matplotlib
 matplotlib.use('Agg')
@@ -16,7 +17,8 @@ from loss import loss
 
 import torch
 import torch.optim as optim
-import torchvision.utils as tUtils
+import torch.optim.lr_scheduler as lrs
+import torchvision.utils as tu
 from torch.autograd import Variable
 
 class timer():
@@ -44,92 +46,109 @@ class timer():
 
 class checkpoint():
     def __init__(self, args):
+        self.args = args
         self.ok = True
-        now = datetime.datetime.now()
+        now = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
 
         if args.load == '.':
-            if args.save == '.':
-                args.save = now.strftime('%Y-%m-%d-%H:%M:%S')
+            if args.save == '.': args.save = now
             self.dir = '../experiment/' + args.save
         else:
             self.dir = '../experiment/' + args.load
-            if not os.path.exists(self.dir):
-                args.load = '.'
-
-        if args.saveModel > -1:
-            self.saveModel(args.saveModel)
-            self.ok = False
+            if not os.path.exists(self.dir): args.load = '.'
 
         if args.reset:
             os.system('rm -rf ' + self.dir)
             args.load = '.'
 
-        def _makeDirs(path):
-            if not os.path.exists(path):
-                os.makedirs(path)
+        def _make_dir(path):
+            if not os.path.exists(path): os.makedirs(path)
 
-        _makeDirs(self.dir)
-        _makeDirs(self.dir + '/model')
-        _makeDirs(self.dir + '/results')
+        _make_dir(self.dir)
+        _make_dir(self.dir + '/model')
+        _make_dir(self.dir + '/results')
 
-        if os.path.exists(self.dir + '/log.txt'):
-            self.logFile = open(self.dir + '/log.txt', 'a')
-        else:
-            self.logFile = open(self.dir + '/log.txt', 'w')
-
-        self.args = args
+        open_type = 'a' if os.path.exists(self.dir + '/log.txt') else 'w'
+        self.log_file = open(self.dir + '/log.txt', open_type)
+        with open(self.dir + '/config.txt', open_type) as f:
+            f.write(now + '\n\n')
+            for arg in vars(args):
+                f.write('{}: {}\n'.format(arg, getattr(args, arg)))
+            f.write('\n')
 
     def load(self):
-        myModel = model(self.args).getModel()
-        trainable = filter(lambda x: x.requires_grad, myModel.parameters())
+        my_model = model(self.args).get_model()
+        trainable = filter(lambda x: x.requires_grad, my_model.parameters())
 
         if self.args.optimizer == 'SGD':
-            myOptimizer = optim.SGD(
-                trainable,
-                lr=self.args.lr,
-                momentum=self.args.momentum)
+            optimizer_function = optim.SGD
+            kwargs = {'momentum': self.args.momentum}
         elif self.args.optimizer == 'ADAM':
-            myOptimizer = optim.Adam(
-                trainable,
-                lr=self.args.lr,
-                betas=(self.args.beta1, self.args.beta2),
-                eps=self.args.epsilon)
+            optimizer_function = optim.Adam
+            kwargs = {
+                'betas': (self.args.beta1, self.args.beta2),
+                'eps': self.args.epsilon}
         elif self.args.optimizer == 'RMSprop':
-            myOptimizer = optim.RMSprop(
-                trainable,
-                lr=self.args.lr,
-                eps=self.args.epsilon)
+            optimizer_function = optim.RMSprop
+            kwargs = {'eps': self.args.epsilon}
+
+        kwargs['lr'] = self.args.lr
+        kwargs['weight_decay'] = 0
+        my_optimizer = optimizer_function(trainable, **kwargs)
+
+        if self.args.decay_type == 'step':
+            my_scheduler = lrs.StepLR(
+                my_optimizer,
+                step_size=self.args.lr_decay,
+                gamma=self.args.gamma)
+
+        elif self.args.decay_type.find('step') >= 0:
+            milestones = self.args.decay_type.split('_')
+            milestones.pop(0)
+            milestones = list(map(lambda x: int(x), milestones))
+            my_scheduler = lrs.MultiStepLR(
+                my_optimizer,
+                milestones=milestones,
+                gamma=self.args.gamma)
+
+        self.log_training = torch.Tensor()
+        self.log_test = torch.Tensor()
         if self.args.load == '.':
-            myLoss = loss(self.args).getLoss()
-            self.trainingLog = torch.Tensor()
-            self.testLog = torch.Tensor()
+            my_loss = loss(self.args).get_loss()
         else:
-            myModel.load_state_dict(
-                torch.load(self.dir + '/model/model_lastest.pt'))
-            myLoss = torch.load(self.dir + '/loss.pt')
-            myOptimizer.load_state_dict(
+            if not self.args.test_only:
+                self.log_training = torch.load(self.dir + '/log_training.pt')
+                self.log_test = torch.load(self.dir + '/log_test.pt')
+
+            resume = self.args.resume
+            if resume == -1:
+                my_model.load_state_dict(
+                    torch.load(self.dir + '/model/model_lastest.pt'))
+                resume = len(self.log_test)
+            else:
+                my_model.load_state_dict(
+                    torch.load(self.dir + '/model/model_{}.pt'.format(resume)))
+
+            my_loss = torch.load(self.dir + '/loss.pt')
+            my_optimizer.load_state_dict(
                 torch.load(self.dir + '/optimizer.pt'))
-            self.trainingLog = torch.load(self.dir + '/trainingLog.pt')
-            self.testLog = torch.load(self.dir + '/testLog.pt')
+
             print('Load loss function from checkpoint...')
-            print('Continue from epoch {}...'.format(len(self.testLog)))
+            print('Continue from epoch {}...'.format(resume))
 
-        return myModel, myLoss, myOptimizer
+        return my_model, my_loss, my_optimizer, my_scheduler
 
-    def addLog(self, log, train=True):
+    def add_log(self, log, train=True):
         if train:
-            self.trainingLog = torch.cat([self.trainingLog, log])
+            self.log_training = torch.cat([self.log_training, log])
         else:
-            self.testLog = torch.cat([self.testLog, log])
+            self.log_test = torch.cat([self.log_test, log])
 
     def save(self, trainer, epoch):
         torch.save(
             trainer.model.state_dict(),
             self.dir + '/model/model_lastest.pt')
-        torch.save(
-            trainer.model,
-            self.dir + '/model/model_obj.pt')
-        if not self.args.testOnly:
+        if not self.args.test_only:
             torch.save(
                 trainer.model.state_dict(),
                 '{}/model/model_{}.pt'.format(self.dir, epoch))
@@ -140,93 +159,115 @@ class checkpoint():
                 trainer.optimizer.state_dict(),
                 self.dir + '/optimizer.pt')
             torch.save(
-                self.trainingLog,
-                self.dir + '/trainingLog.pt')
+                self.log_training,
+                self.dir + '/log_training.pt')
             torch.save(
-                self.testLog,
-                self.dir + '/testLog.pt')
-            self.plot(trainer, epoch, self.trainingLog, self.testLog, self.dir)
+                self.log_test,
+                self.dir + '/log_test.pt')
+            self.plot(trainer, epoch, self.log_training, self.log_test)
 
-    def saveLog(self, log, refresh=False):
+    def write_log(self, log, refresh=False):
         print(log)
-        self.logFile.write(log + '\n')
+        self.log_file.write(log + '\n')
         if refresh:
-            self.logFile.close()
-            self.logFile = open(self.dir + '/log.txt', 'a')
-
-    def saveModel(self, epoch):
-        if not self.args.testOnly:
-            print('Save the model for evaluation...')
-            if epoch > 0:
-                modelPath = '{}/model/model_{}.pt'.format(self.dir, epoch)
-            else:
-                modelPath = '{}/model/model_lastest.pt'.format(self.dir)
-
-            modelHolder = model(self.args).getModel()
-            modelHolder.load_state_dict(torch.load(modelPath))
-            torch.save(modelHolder, '../demo/model/{}.pt'.format(self.args.save))
+            self.log_file.close()
+            self.log_file = open(self.dir + '/log.txt', 'a')
 
     def done(self):
-        self.logFile.close()
-        self.saveModel(0)
+        self.log_file.close()
 
-    def plot(self, trainer, epoch, training, test, dir):
+    def plot(self, trainer, epoch, training, test):
         axis = np.linspace(1, epoch, epoch)
 
-        for i, loss in enumerate(trainer.loss):
+        def _init_figure(label):
             fig = plt.figure()
-            label = '{} Loss'.format(loss['type'])
             plt.title(label)
             plt.xlabel('Epochs')
             plt.grid(True)
-            plt.plot(axis, training[:, i].numpy(), label=label)
-            plt.legend()
-            plt.savefig('{}/loss_{}.pdf'.format(dir, loss['type']))
+
+            return fig
+           
+        def _close_figure(fig, filename):
+            plt.savefig(filename)
             plt.close(fig)
 
-        setName = trainer.testLoader.dataset.name
-        fig = plt.figure()
-        label = 'SR on {}'.format(setName)
-        plt.title(label)
-        plt.xlabel('Epochs')
-        plt.grid(True)
-        for scaleIdx, scale in enumerate(self.args.scale):
+        for i, loss in enumerate(trainer.loss):
+            label = '{} Loss'.format(loss['type'])
+            fig = _init_figure(label)
+            plt.plot(axis, training[:, i].numpy(), label=label)
+            plt.legend()
+            _close_figure(fig, '{}/loss_{}.pdf'.format(self.dir, loss['type']))
+
+        set_name = type(trainer.loader_test.dataset).__name__
+        fig = _init_figure('SR on {}'.format(set_name))
+        for idx_scale, scale in enumerate(self.args.scale):
             legend = 'Scale {}'.format(scale)
-            plt.plot(
-                axis,
-                test[:, scaleIdx].numpy(),
-                label=legend)
+            plt.plot(axis, test[:, idx_scale].numpy(), label=legend)
             plt.legend()
 
-        plt.savefig(
-            '{}/test_SR_{}.pdf'.format(dir, setName))
-        plt.close(fig)
+        _close_figure(
+            fig,
+            '{}/test_{}.pdf'.format(self.dir, set_name))
 
-    def getEpoch(self):
-        return len(self.testLog) + 1
+    def save_results(self, idx, input, output, target, scale):
+        if self.args.save_results:
+            filename = '{}/results/{}x{}_'.format(self.dir, idx + 1, scale)
+            for v, n in (input, 'LR'), (output, 'SR'), (target, 'GT'):
+                tu.save_image(
+                    v.data[0] / self.args.rgb_range,
+                    '{}{}.png'.format(filename, n))
 
-    def saveResults(self, idx, input, output, target, scale):
-        idx += 1
-        if self.args.saveResults:
-            fileName = '{}/results/{}x{}_'.format(
-                self.dir, idx, scale)
-            tUtils.save_image(
-                input.data[0] / self.args.rgbRange, fileName + 'LR.png')
-            tUtils.save_image(
-                output.data[0] / self.args.rgbRange, fileName + 'SR.png')
-            if target is not None:
-                tUtils.save_image(
-                    target.data[0] / self.args.rgbRange,
-                    fileName + 'GT.png')
-            
-def x8Forward(img, model, precision='single'):
-    inputList = []
-    outputList = []
-    n = 8
+def chop_forward(x, model, scale, shave=10, min_size=160000, nGPUs=1):
+    b, c, h, w = x.size()
+    h_half, w_half = h // 2, w // 2
+    h_size, w_size = h_half + shave, w_half + shave
+    bnd_y1 = [0, h_size]
+    bnd_y2 = [h - h_size, h]
+    bnd_x1 = [0, w_size]
+    bnd_x2 = [w - w_size, w]
+    inputlist = [
+        x[:, :, bnd_y1, bnd_x1],
+        x[:, :, bnd_y1, bnd_x2],
+        x[:, :, bnd_y2, bnd_x1],
+        x[:, :, bnd_y2, bnd_x2]]
 
+    if w_size * h_size < min_size:
+        outputlist = []
+        for i in range(0, 4, nGPUs):
+            input_batch = torch.cat(inputlist[i:(i + nGPUs)], dim=0)
+            output_batch = model(input_batch)
+            outputlist.extend(output_batch.chunk(nGPUs, dim=0))
+    else:
+        outputlist = [
+            chop_forward(patch, model, scale, shave, min_size, nGPUs) \
+            for patch in inputlist]
+
+    h, w = scale * h, scale * w
+    h_half, w_half = scale * h_half, scale * w_half
+    h_size, w_size = scale * h_size, scale * w_size
+    shave *= scale
+
+    output = Variable(
+        x.data.new(b, c, scale * h, scale * w),
+        volatile=x.volatile)
+
+    bf_y2 = [h_size - h + h_half, h_size]
+    bf_x2 = [w_size - w + w_half, w_size]
+    bt_y1 = [0, h_half]
+    bt_y2 = [h_half, h]
+    bt_x1 = [0, w_half]
+    bt_x2 = [w_half, w]
+
+    output[:, :, bt_y1, bt_x1] = outputlist[0][:, :, bt_y1, bt_x1]
+    output[:, :, bt_y1, bt_x2] = outputlist[1][:, :, bt_y1, bf_x2]
+    output[:, :, bt_y2, bt_x1] = outputlist[2][:, :, bf_y2, bt_x1]
+    output[:, :, bt_y2, bt_x2] = outputlist[3][:, :, bf_y2, bf_x2]
+
+    return output
+
+def x8_forward(img, model, precision='single'):
     def _transform(v, op):
-        if precision == 'half':
-            v = v.float()
+        if precision != 'single': v = v.float()
 
         v2np = v.data.cpu().numpy()
         if op == 'vflip':
@@ -243,37 +284,27 @@ def x8Forward(img, model, precision='single'):
         elif precision == 'double':
             ret = ret.double()
 
-        return Variable(ret, volatile=True)
+        return Variable(ret, volatile=v.volatile)
 
-    for i in range(n):
-        if i == 0:
-            inputList.append(img)
-        elif i == 1:
-            inputList.append(_transform(img, 'vflip'))
-        elif i > 1 and i <= 3:
-            inputList.append(_transform(inputList[i - 2], 'hflip'))
-        elif i > 3:
-            inputList.append(_transform(inputList[i - 4], 'transpose'))
+    inputlist = [img]
+    for tf in 'vflip', 'hflip', 'transpose':
+        inputlist.extend([_transform(t, tf) for t in inputlist])
 
-        outputList.append(model(inputList[-1]))
-
-    for i in range(n - 1, -1, -1):
+    outputlist = [model(aug) for aug in inputlist]
+    for i in range(len(outputlist)):
         if i > 3:
-            outputList[i] = _transform(outputList[i], 'transpose')
+            outputlist[i] = _transform(outputlist[i], 'transpose')
         if i % 4 > 1:
-            outputList[i] = _transform(outputList[i], 'hflip')
+            outputlist[i] = _transform(outputlist[i], 'hflip')
         if (i % 4) % 2 == 1:
-            outputList[i] = _transform(outputList[i], 'vflip')
+            outputlist[i] = _transform(outputlist[i], 'vflip')
+    
+    output = reduce((lambda x, y: x + y), outputlist) / len(outputlist)
 
-        if i != 0:
-            outputList[0] += outputList[i]
+    return output
 
-    outputList[0] /= n
-
-    return outputList[0]
-
-def quantize(img, rgbRange):
-    return img.mul(255 / rgbRange).clamp(0, 255).add(0.5).floor().div(255)
+def quantize(img, rgb_range):
+    return img.mul(255 / rgb_range).clamp(0, 255).add(0.5).floor().div(255)
 
 def rgb2ycbcrT(rgb):
     rgb = rgb.numpy().transpose(1, 2, 0)
@@ -281,29 +312,25 @@ def rgb2ycbcrT(rgb):
 
     return torch.Tensor(yCbCr[:, :, 0])
 
-def calcPSNR(input, target, setName, rgbRange, scale):
-    # Do not calculate PSNR for user input
-    if target is None:
-        return 0
-
+def calc_PSNR(input, target, set_name, rgb_range, scale):
     # We will evaluate these datasets in y channel only
-    yList = ['Set5', 'Set14', 'B100', 'Urban100']
+    test_Y = ['Set5', 'Set14', 'B100', 'Urban100']
 
     (_, c, h, w) = input.size()
-    input = quantize(input.data[0], rgbRange)
-    target = quantize(target[:, :, 0:h, 0:w].data[0], rgbRange)
+    input = quantize(input.data[0], rgb_range)
+    target = quantize(target[:, :, 0:h, 0:w].data[0], rgb_range)
     diff = input - target
-    if setName in yList:
+    if set_name in test_Y:
         shave = scale
         if c > 1:
-            inputY = rgb2ycbcrT(input.cpu())
-            targetY = rgb2ycbcrT(target.cpu())
-            diff = (inputY - targetY).view(1, h, w)
+            input_Y = rgb2ycbcrT(input.cpu())
+            target_Y = rgb2ycbcrT(target.cpu())
+            diff = (input_Y - target_Y).view(1, h, w)
     else:
         shave = scale + 6
 
-    diffShave = diff[:, shave:(h - shave), shave:(w - shave)]
-    mse = diffShave.pow(2).mean()
+    diff = diff[:, shave:(h - shave), shave:(w - shave)]
+    mse = diff.pow(2).mean()
     psnr = -10 * np.log10(mse)
 
     return psnr

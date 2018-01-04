@@ -8,18 +8,19 @@ import torch
 
 parser = argparse.ArgumentParser(description='Pre-processing DIV2K .png images')
 
-parser.add_argument('--pathFrom', default='../../../../dataset/DIV2K', metavar='DIR',
+parser.add_argument('--pathFrom', default='../../../../dataset/DIV2K',
                     help='directory of images to convert')
-parser.add_argument('--pathTo', default='../../../../dataset/DIV2K_decoded', metavar='DIR',
-                    help='directory of images to save')
-parser.add_argument('--split', default=False, metavar='TF',
+parser.add_argument('--split', default=False,
                     help='save individual images')
 
 args = parser.parse_args()
+pathTo = args.pathFrom + '_decoded'
+if not os.path.exists(pathTo):
+    os.mkdir(pathTo)
 
 for (path, dirs, files) in os.walk(args.pathFrom):
     print(path)
-    targetDir = os.path.join(args.pathTo, path[len(args.pathFrom) + 1:])
+    targetDir = os.path.join(pathTo, path[len(args.pathFrom) + 1:])
     if not os.path.exists(targetDir):
         os.mkdir(targetDir)
     if len(dirs) == 0:
@@ -30,6 +31,7 @@ for (path, dirs, files) in os.walk(args.pathFrom):
             if ext == '.png':
                 png = sio.imread(os.path.join(path, fileName))
                 tensor = torch.Tensor(png.astype(float)).byte()
+                del png
                 if args.split:
                     torch.save(tensor, os.path.join(targetDir, idx + '.pt'))
                 else:

@@ -1,38 +1,29 @@
-# Demo code for training
+# EDSR baseline model (x2)
+#python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset
 
-# Training EDSR_baseline_x2
-#python main.py --template EDSR --model EDSR --scale 2 --nFeat 64 --nResBlock 16 --patchSize 96 --load EDSR_baseline_x2 --reset True
+# EDSR baseline model (x3) - requires pre-trained EDSR baseline x2 model
+python main.py --model EDSR --scale 3 --save EDSR_baseline_x3 --reset --pre_train ../experiment/model/EDSR_baseline_x4.pt
 
-# Training EDSR_baseline_x3
-#python main.py --template EDSR --model EDSR --scale 3 --nFeat 64 --nResBlock 16 --patchSize 144 --load EDSR_baseline_x3
+# EDSR baseline model (x4) - requires pre-trained EDSR baseline x2 model
+#python main.py --model EDSR --scale 4 --save EDSR_baseline_x4 --reset --pre_train ../experiment/model/EDSR_baseline_x4.pt
 
-# Training EDSR_baseline_x4
-#python main.py --template EDSR --model EDSR --scale 4 --nFeat 64 --nResBlock 16 --patchSize 192 --load EDSR_baseline_x4
+# EDSR in the paper (x2)
+#python main.py --model EDSR --scale 2 --save EDSR_x2 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --reset
 
-# Training MDSR_baseline
-#python main.py --template MDSR --model MDSR --scale 2+3+4 --patchSize 48 --nFeat 64 --nResBlock 16 --load MDSR_baseline --reset True
+# EDSR in the paper (x3) - requires pre-trained EDSR baseline x2 model
+#python main.py --model EDSR --scale 3 --save EDSR_x3 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --reset --pre_train ../experiment/EDSR_x2/model/model_lastest.pt
 
-# Training EDSR_x2
-#python main.py --template EDSR --model EDSR_scale --scale 2 --nFeat 256 --nResBlock 32 --patchSize 96 --load EDSR_x2 --reset True
+# EDSR in the paper (x4) - requires pre-trained EDSR baseline x2 model
+#python main.py --model EDSR --scale 4 --save EDSR_x4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --reset --pre_train ../experiment/EDSR_x2/model/model_lastest.pt
 
-# Training EDSR_x3
-#python main.py --template EDSR --model EDSR_scale --scale 3 --nFeat 256 --nResBlock 32 --patchSize 144 --load EDSR_x3 --reset True
+# MDSR baseline model
+#python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR_baseline --reset
 
-# Training EDSR_x4
-#python main.py --template EDSR --model EDSR_scale --scale 4 --nFeat 256 --nResBlock 32 --patchSize 192 --load EDSR_x4 --reset True
+# MDSR in the paper
+#python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR --n_resblocks 80 --reset
 
-# Training MDSR
-#python main.py --template MDSR --model MDSR --scale 2+3+4 --patchSize 48 --nFeat 64 --nResBlock 80 --load MDSR --reset True
+# Test your own images
+#python main.py --scale 4 --data_test MyImage --test_only --save_results --pre_train ../experiment/model/EDSR_baseline_sd.pt
 
-
-
-# Demo code for test (Examples)
-
-# Test with MDSR_baseline
-#python main.py  --testData myImage --scale 2+3+4 --preTrained ../experiment/model/MDSR_baseline.pt --testOnly True --saveResults True --save test_MDSR_baseline --reset True
-
-# Test with MDSR_baseline_jpeg
-#python main.py  --testData myImage --scale 2+3+4 --preTrained ../experiment/model/MDSR_baseline_jpeg.pt --testOnly True --saveResults True --save test_MDSR_baseline_jpeg --reset True
-
-# Test with EDSR_x4
-#python main.py  --testData myImage --scale 4 --preTrained ../experiment/model/EDSR_baseline_x4.pt --testOnly True --saveResults True --save test_EDSR_x4 --reset True
+#Advanced - JPEG artifact removal
+#python main.py --template MDSR_jpeg --model MDSR --scale 2+3+4 --save MDSR_jpeg --quality 75+ --reset

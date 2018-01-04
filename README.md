@@ -20,14 +20,20 @@ Also, pre-trained model will be uploaded soon.
 
 **Differences with Torch version**
 * Codes are much more compact. (Removed all unnecessary parts.)
-* Model sizes are smaller. (About half!)
-* Training requires less memory. (So that we can further increase the model size.)
+* Model sizes are smaller. (About half.)
+* Training requires less memory.
 * Test is faster.
-* Python-based. (Unfortunately, this code do not follow python coding convention. Sorry for that.)
+* Python-based.
+
+**Update log**
+* Jan 04, 2018
+  * Many parts are re-written. You cannot use previous scripts and models directly.
+  * Pre-trained MDSR is temporarily disabled.
+  * Training details are included.
 
 ## Dependencies
 * Python (Tested with 3.6)
-* PyTorch (**Supports 0.2.0 ONLY**)
+* PyTorch >= 0.2.0
 
 ## Code
 
@@ -57,22 +63,23 @@ We provide 3 pre-trained models (baseline ONLY, not full version.) till now. You
 | Model | Scale | File Name | # ResBlocks | # Filters | # Parameters |
 |  ---  |  ---  | ---       | ---         |---        |---           |
 | **EDSR**| 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 
-| **MDSR**| 2 + 3 + 4 | MDSR_baseline.pt | 16 | 64 | 3.2M |
-| **MDSR (JPEG)***| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M |
+| ~~**MDSR**~~| 2 + 3 + 4 | MDSR_baseline.pt | 16 | 64 | 3.2M |
+| ~~**MDSR (JPEG)**~~*| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M |
 
 *MDSR (JPEG) even reduces the JPEG artifact in output images. However, its DIV2K validation performance is slightly lower than the original MDSR.
 
 ## How to train EDSR and MDSR
-You have to prepare DIV2K dataset for the training.
+We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset for training. Please download it from [here](http://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
 
-**Detailed steps for preparing data will be updated in next time.**
+Unpack the tar file to any place you want. Then, change the ```dir_data``` argument in ```code/option.py``` to the place where you unpack DIV2K images.
 
-Training scripts are also included in ``demo.sh``. By uncomment the appropriate line and execute the script, you can train EDSR and MDSR by yourself.
+We recommend you to pre-process the images before training. This step will decode and collect all png files into one huge binary file. Use ```code/tools/png2binary.pt``` for this process.
+
+If you do not have enough RAM (>= 16GB), change the ```ext``` argument in ```code/option.py``` to ```png```. However, each image in DIV2K is so large that disk access and decoding png files can be a bottleneck.
+
+Training scripts are also included in ``demo.sh``. By uncommenting the appropriate line and executing the script, you can train EDSR and MDSR by yourself. Note that EDSR (x3, x4) requires pre-trained EDSR (x2). By removing ```--pre_train``` argument in the provided script, you can ignore this constraint.
 
 ```bash
 cd code       # You are now in */EDSR-PyTorch/code
 sh demo.sh
 ```
-**EDSR requires huge amount of memory, even with PyTorch. Therefore, it is impossible to test EDSR (not baseline) in 12GB GPU for now. This problem will be fixed in next update.**
-
-**Detailed guide about arguments will be updated in next time.**

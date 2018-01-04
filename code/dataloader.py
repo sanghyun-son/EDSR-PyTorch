@@ -25,14 +25,14 @@ def _ms_loop(dataset, index_queue, data_queue, collate_fn, scale):
             break
         idx, batch_indices = r
         try:
-            scaleIdx = 0
+            idx_scale = 0
             if len(scale) > 1 and dataset.train:
-                scaleIdx = random.randrange(0, len(scale))
-                dataset.setScale(scaleIdx)
-            
+                idx_scale = random.randrange(0, len(scale))
+                dataset.set_scale(idx_scale)
+
             samples = collate_fn([dataset[i] for i in batch_indices])
-            samples.append(scaleIdx)
-            
+            samples.append(idx_scale)
+
         except Exception:
             data_queue.put((idx, ExceptionWrapper(sys.exc_info())))
         else:
@@ -94,7 +94,7 @@ class MSDataLoader(DataLoader):
         super(MSDataLoader, self).__init__(
             dataset, batch_size=batch_size, shuffle=shuffle,
             sampler=sampler, batch_sampler=batch_sampler,
-            num_workers=args.nThreads, collate_fn=default_collate,
+            num_workers=args.n_threads, collate_fn=default_collate,
             pin_memory=pin_memory, drop_last=drop_last)
 
         self.scale = args.scale

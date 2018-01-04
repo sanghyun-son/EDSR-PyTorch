@@ -8,59 +8,62 @@ import skimage.transform as st
 import torch
 from torchvision import transforms
 
-def getPatch(imgIn, imgTar, args, scale):
-    (ih, iw, c) = imgIn.shape
+def get_patch(img_in, img_tar, args, scale, ix=-1, iy=-1):
+    (ih, iw, c) = img_in.shape
     (th, tw) = (scale * ih, scale * iw)
 
-    patchMult = scale if len(args.scale) > 1 else 1
-    tp = patchMult * args.patchSize
+    patch_mult = scale if len(args.scale) > 1 else 1
+    tp = patch_mult * args.patch_size
     ip = tp // scale
 
-    ix = random.randrange(0, iw - ip + 1)
-    iy = random.randrange(0, ih - ip + 1)
+    if ix == -1:
+        ix = random.randrange(0, iw - ip + 1)
+    if iy == -1:
+        iy = random.randrange(0, ih - ip + 1)
+
     (tx, ty) = (scale * ix, scale * iy)
-    imgIn = imgIn[iy:iy + ip, ix:ix + ip, :]
-    imgTar = imgTar[ty:ty + tp, tx:tx + tp, :]
-    patchInfo = {
+    img_in = img_in[iy:iy + ip, ix:ix + ip, :]
+    img_tar = img_tar[ty:ty + tp, tx:tx + tp, :]
+    info_patch = {
         'ix': ix, 'iy': iy, 'ip': ip, 'tx': tx, 'ty': ty, 'tp': tp}
 
-    return imgIn, imgTar, patchInfo
+    return img_in, img_tar, info_patch
 
-def setChannel(imgIn, imgTar, nChannel):
-    (h, w, c) = imgTar.shape
-    if nChannel == 1 and c == 3:
-        imgIn = np.expand_dims(sc.rgb2ycbcr(imgIn)[:, :, 0], 2)
-        imgTar = np.expand_dims(sc.rgb2ycbcr(imgTar)[:, :, 0], 2)
-    elif nChannel == 3 and c == 1:
-        imgIn = np.concatenate([imgIn] * nChannel, 2)
-        imgTar = np.concatenate([imgTar] * nChannel, 2)
+def set_channel(img_in, img_tar, n_channel):
+    (h, w, c) = img_tar.shape
+    if n_channel == 1 and c == 3:
+        img_in = np.expand_dims(sc.rgb2ycbcr(img_in)[:, :, 0], 2)
+        img_tar = np.expand_dims(sc.rgb2ycbcr(img_tar)[:, :, 0], 2)
+    elif n_channel == 3 and c == 1:
+        img_in = np.concatenate([img_in] * n_channel, 2)
+        img_tar = np.concatenate([img_tar] * n_channel, 2)
 
-    return imgIn, imgTar
+    return img_in, img_tar
 
-def np2Tensor(imgIn, imgTar, rgbRange, precision='single'):
+def np2Tensor(img_in, img_tar, rgb_range):
     ts = (2, 0, 1)
-    mulImg = rgbRange / 255
-    imgIn = torch.Tensor(imgIn.transpose(ts).astype(float)).mul_(mulImg)
-    imgTar = torch.Tensor(imgTar.transpose(ts).astype(float)).mul_(mulImg)
+    img_mul = rgb_range / 255
+    img_in = torch.Tensor(img_in.transpose(ts).astype(float)).mul_(img_mul)
+    img_tar = torch.Tensor(img_tar.transpose(ts).astype(float)).mul_(img_mul)
 
-    return imgIn, imgTar
+    return img_in, img_tar
 
-def augment(imgIn, imgTar, flip=True, rotation=True):
-    augInfo = {'hFlip': False, 'vFlip': False, 'trans': False}
+def augment(img_in, img_tar, flip_h=True, rot=True):
+    info_aug = {'flip_h': False, 'flip_v': False, 'trans': False}
 
-    if random.random() < 0.5 and flip:
-        imgIn = imgIn[:, ::-1, :]
-        imgTar = imgTar[:, ::-1, :]
-        augInfo['hFlip'] = True
+    if random.random() < 0.5 and flip_h:
+        img_in = img_in[:, ::-1, :]
+        img_tar = img_tar[:, ::-1, :]
+        info_aug['flip_h'] = True
 
-    if rotation:
+    if rot:
         if random.random() < 0.5:
-            imgIn = imgIn[::-1, :, :]
-            imgTar = imgTar[::-1, :, :]
-            augInfo['vFlip'] = True
+            img_in = img_in[::-1, :, :]
+            img_tar = img_tar[::-1, :, :]
+            info_aug['flip_v'] = True
         if random.random() < 0.5:
-            imgIn = imgIn.transpose(1, 0, 2)
-            imgTar = imgTar.transpose(1, 0, 2)
-            augInfo['trans'] = True
+            img_in = img_in.transpose(1, 0, 2)
+            img_tar = img_tar.transpose(1, 0, 2)
+            info_aug['trans'] = True
 
-    return imgIn, imgTar, augInfo
+    return img_in, img_tar, info_aug

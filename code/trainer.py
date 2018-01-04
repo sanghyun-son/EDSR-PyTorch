@@ -1,185 +1,161 @@
 import math
 import random
 from decimal import Decimal
+from functools import reduce
 
 import utils
 
 import torch
-import torch.optim as optim
+import torch.nn as nn
+import torch.nn.functional as F
+
 from torch.autograd import Variable
+import torchvision.utils as tu
 
-class trainer():
-    def __init__(self, loader, checkpoint, args):
-        self.trainLoader, self.testLoader = loader
-        self.model, self.loss, self.optimizer = checkpoint.load()
-        self.checkpoint = checkpoint
+class Trainer():
+    def __init__(self, loader, ckp, args):
         self.args = args
-
-        self.trainingLog = 0
-        self.testLog = 0
-
         self.scale = args.scale
 
-    def scaleChange(self, scaleIdx, testSet=None):
-        if len(self.scale) > 1:
-            if self.args.nGPUs == 1:
-                self.model.setScale(scaleIdx)
-            else:
-                self.model.module.setScale(scaleIdx)
+        self.loader_train, self.loader_test = loader
+        self.model, self.loss, self.optimizer, self.scheduler = ckp.load()
+        self.ckp = ckp
 
-            if testSet is not None:
-                testSet.dataset.setScale(scaleIdx)
+        self.log_training = 0
+        self.log_test = 0
+
+    def _scale_change(self, idx_scale, testset=None):
+        if len(self.scale) > 1:
+            if self.args.n_GPUs == 1:
+                self.model.set_scale(idx_scale)
+            else:
+                self.model.module.set_scale(idx_scale)
+
+            if testset is not None:
+                testset.dataset.set_scale(idx_scale)
 
     def train(self):
-        self.model.train()
-        lr = self.setLr()
-        epoch = self.checkpoint.getEpoch()
-        self.checkpoint.saveLog(
+        self.scheduler.step()
+        epoch = self.scheduler.last_epoch + 1
+        lr = self.scheduler.get_lr()[0]
+
+        self.ckp.write_log(
             '[Epoch {}]\tLearning rate: {:.2e}'.format(epoch, Decimal(lr)))
+        self.ckp.add_log(torch.zeros(1, len(self.loss)))
+        self.model.train()
 
-        dataTimer, modelTimer = utils.timer(), utils.timer()
+        timer_data, timer_model = utils.timer(), utils.timer()
+        for batch, (input, target, idx_scale) in enumerate(self.loader_train):
+            input, target = self._prepare(input, target)
+            self._scale_change(idx_scale)
 
-        self.checkpoint.addLog(torch.zeros(1, len(self.loss)))
+            timer_data.hold()
+            timer_model.tic()
 
-        for batch, (input, target, scaleIdx) in enumerate(self.trainLoader):
-            input, target = self.prepareData(input, target)
-            self.scaleChange(scaleIdx)
-
-            dataTimer.hold()
-            modelTimer.tic()
             self.optimizer.zero_grad()
-            self.calcLoss(self.model(input), target).backward()
+            output = self.model(input)
+            loss = self._calc_loss(output, target)
+            loss.backward()
             self.optimizer.step()
-            modelTimer.hold()
 
-            if (batch + 1) % self.args.printEvery == 0:
-                self.checkpoint.saveLog('[{}/{}]\t{}\t{:.1f}+{:.1f}s'.format(
-                    (batch + 1) * self.args.batchSize,
-                    len(self.trainLoader.dataset),
-                    self.showLoss(batch),
-                    modelTimer.release(), dataTimer.release()))
+            timer_model.hold()
 
-            dataTimer.tic()
+            if (batch + 1) % self.args.print_every == 0:
+                self.ckp.write_log('[{}/{}]\t{}\t{:.1f}+{:.1f}s'.format(
+                    (batch + 1) * self.args.batch_size,
+                    len(self.loader_train.dataset),
+                    self._display_loss(batch),
+                    timer_model.release(),
+                    timer_data.release()))
 
-        self.checkpoint.trainingLog[-1, :] /= len(self.trainLoader)
+            timer_data.tic()
+
+        self.ckp.log_training[-1, :] /= len(self.loader_train)
 
     def test(self):
+        epoch = self.scheduler.last_epoch + 1
+        self.ckp.write_log('\nEvaluation:')
+        self.ckp.add_log(torch.zeros(1, len(self.scale)), False)
         self.model.eval()
-        self.checkpoint.saveLog('\nEvaluation:')
-        epoch = self.checkpoint.getEpoch()
-        scale = self.scale[0]
 
-        testTimer = utils.timer()
-        self.checkpoint.addLog(
-            torch.zeros(1, len(self.scale)), False)
+        # We can use custom forward function 
+        def _test_forward(x):
+            if self.args.self_ensemble:
+                return utils.x8_forward(x, self.model, self.args.precision)
+            else:
+                return self.model(x)
 
-        testTimer.tic()
-        for scaleIdx in range(len(self.scale)):
-            scale = self.scale[scaleIdx]
-            self.scaleChange(scaleIdx, self.testLoader)
-            for imgIdx, (input, target, _) in enumerate(self.testLoader):
-                input, target = self.prepareData(input, target, volatile=True)
+        timer_test = utils.timer()
+        set_name = type(self.loader_test.dataset).__name__
+        for idx_scale, scale in enumerate(self.scale):
+            eval_acc = 0
+            self._scale_change(idx_scale, self.loader_test)
+            for idx_img, (input, target, _) in enumerate(self.loader_test):
+                input, target = self._prepare(input, target, volatile=True)
+                output = _test_forward(input)
+                eval_acc += utils.calc_PSNR(
+                    output, target, set_name, self.args.rgb_range, scale)
+                self.ckp.save_results(idx_img, input, output, target, scale)
 
-                # Self ensemble!
-                if self.args.selfEnsemble:
-                    output = utils.x8Forward(
-                        input, self.model, self.args.precision)
-                else:
-                    output = self.model(input)
-
-                evalValue = utils.calcPSNR(
-                    output, target,
-                    self.testLoader.dataset.name, self.args.rgbRange, scale)
-                self.checkpoint.testLog[-1, scaleIdx] \
-                    += evalValue / len(self.testLoader)
-                self.checkpoint.saveResults(imgIdx, input, output, target, scale)
-
-            bestValue, bestEpoch = self.checkpoint.testLog.max(0)
+            self.ckp.log_test[-1, idx_scale] = eval_acc / len(self.loader_test)
+            best = self.ckp.log_test.max(0)
             performance = 'PSNR: {:.3f}'.format(
-                self.checkpoint.testLog[-1, scaleIdx])
-            self.checkpoint.saveLog(
-                '[SR on {} x{}]\t{} (Best: {:.3f} from epoch {})'.format(
-                    self.testLoader.dataset.name, scale, performance,
-                    bestValue.squeeze(0)[scaleIdx],
-                    bestEpoch.squeeze(0)[scaleIdx] + 1))
+                self.ckp.log_test[-1, idx_scale])
+            self.ckp.write_log(
+                '[{} x{}]\t{} (Best: {:.3f} from epoch {})'.format(
+                    set_name,
+                    scale,
+                    performance,
+                    best[0][idx_scale],
+                    best[1][idx_scale] + 1))
 
-        self.checkpoint.saveLog(
-            'Time: {:.2f}s\n'.format(testTimer.toc()), refresh=True)
-        self.checkpoint.save(self, epoch)
+        self.ckp.write_log(
+            'Time: {:.2f}s\n'.format(timer_test.toc()), refresh=True)
+        self.ckp.save(self, epoch)
 
-    def setLr(self):
-        epoch = self.checkpoint.getEpoch()
-        lrDecay = self.args.lrDecay
-        decayType = self.args.decayType
+    def _prepare(self, input, target, volatile=False):
+        if not self.args.no_cuda:
+            input = input.cuda()
+            target = target.cuda()
 
-        if decayType == 'step':
-            epochs = (epoch - 1) // lrDecay
-            lr = self.args.lr / self.args.decayFactor**epochs
-        elif decayType == 'exp':
-            k = math.log(2) / lrDecay
-            lr = self.args.lr * math.exp(-k * epoch)
-        elif decayType == 'inv':
-            k = 1 / lrDecay
-            lr = self.args.lr / (1 + k * epoch)
-
-        for param_group in self.optimizer.param_groups:
-            param_group['lr'] = lr
-
-        return lr
-
-    def prepareData(self, input, target, volatile=False):
-        if self.args.cuda:
-            input = Variable(input.cuda(), volatile=volatile)
-            target = Variable(target.cuda())
-
-        if self.args.precision == 'half':
-            input = input.half()
-            target = target.half()
-        elif self.args.precision == 'double':
-            input = input.double()
-            target = target.double()
-
-        if self.args.testOnly:
-            target = None
-            
+        input = Variable(input, volatile=volatile)
+        target = Variable(target)
+           
         return input, target
 
-    def calcLoss(self, output, target):
-        check = self.checkpoint
-        totalLoss = 0 
-
+    def _calc_loss(self, output, target):
+        loss_list = [] 
+        
         for i, l in enumerate(self.loss):
-            if l['function'] is not None:
-                if self.args.multiOutput:
-                    if self.args.multiTarget:
-                        loss = l['function'](output[i], target[i])
-                    else:
-                        loss = l['function'](output[i], target)
+            if isinstance(output, list):
+                if isinstance(target, list):
+                    loss = l['function'](output[i], target[i])
                 else:
-                    loss = l['function'](output, target)
-                totalLoss += l['weight'] * loss
-                check.trainingLog[-1, i] += loss.data[0]
+                    loss = l['function'](output[i], target)
+            else:
+                loss = l['function'](output, target)
+
+            loss_list.append(l['weight'] * loss)
+            self.ckp.log_training[-1, i] += loss.data[0]
+
+        loss_total = reduce((lambda x, y: x + y), loss_list)
         if len(self.loss) > 1:
-            check.trainingLog[-1, -1] += totalLoss.data[0]
+            self.ckp.log_training[-1, -1] += loss_total.data[0]
 
-        return totalLoss
+        return loss_total
 
-    def showLoss(self, batch):
-        lossLog = ''
-        for i, lossType in enumerate(self.loss):
-            lossLog += '[{}: {:.4f}] '.format(
-                lossType['type'], self.checkpoint.trainingLog[-1, i] / batch)
+    def _display_loss(self, batch):
+        log = [
+            '[{}: {:.4f}] '.format(t['type'], l / (batch + 1)) \
+            for l, t in zip(self.ckp.log_training[-1], self.loss)]
 
-        return lossLog
+        return ''.join(log)
 
     def terminate(self):
-        if self.args.testOnly:
+        if self.args.test_only:
             self.test()
             return True
         else:
-            epoch = self.checkpoint.getEpoch()
-            if epoch > self.args.epochs:
-                return True
-            else:
-                return False
+            epoch = self.scheduler.last_epoch
+            return epoch >= self.args.epochs
 
