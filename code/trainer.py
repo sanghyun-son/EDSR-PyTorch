@@ -79,9 +79,11 @@ class Trainer():
         self.model.eval()
 
         # We can use custom forward function 
-        def _test_forward(x):
+        def _test_forward(x, scale):
             if self.args.self_ensemble:
                 return utils.x8_forward(x, self.model, self.args.precision)
+            elif self.args.chop_forward:
+                return utils.chop_forward(x, self.model, scale)
             else:
                 return self.model(x)
 
@@ -92,7 +94,7 @@ class Trainer():
             self._scale_change(idx_scale, self.loader_test)
             for idx_img, (input, target, _) in enumerate(self.loader_test):
                 input, target = self._prepare(input, target, volatile=True)
-                output = _test_forward(input)
+                output = _test_forward(input, scale)
                 eval_acc += utils.calc_PSNR(
                     output, target, set_name, self.args.rgb_range, scale)
                 self.ckp.save_results(idx_img, input, output, target, scale)

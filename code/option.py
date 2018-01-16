@@ -43,6 +43,8 @@ parser.add_argument('--n_colors', type=int, default=3,
                     help='number of color channels to use')
 parser.add_argument('--quality', type=str, default='',
                     help='jpeg compression quality')
+parser.add_argument('--chop_forward', action='store_true',
+                    help='enable memory-efficient forward')
 
 # Model specifications
 parser.add_argument('--model', default='EDSR',

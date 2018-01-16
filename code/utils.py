@@ -217,19 +217,15 @@ class checkpoint():
                     v.data[0] / self.args.rgb_range,
                     '{}{}.png'.format(filename, n))
 
-def chop_forward(x, model, scale, shave=10, min_size=160000, nGPUs=1):
+def chop_forward(x, model, scale, shave=10, min_size=80000, nGPUs=1):
     b, c, h, w = x.size()
     h_half, w_half = h // 2, w // 2
     h_size, w_size = h_half + shave, w_half + shave
-    bnd_y1 = [0, h_size]
-    bnd_y2 = [h - h_size, h]
-    bnd_x1 = [0, w_size]
-    bnd_x2 = [w - w_size, w]
     inputlist = [
-        x[:, :, bnd_y1, bnd_x1],
-        x[:, :, bnd_y1, bnd_x2],
-        x[:, :, bnd_y2, bnd_x1],
-        x[:, :, bnd_y2, bnd_x2]]
+        x[:, :, 0:h_size, 0:w_size],
+        x[:, :, 0:h_size, (w - w_size):w],
+        x[:, :, (h - h_size):h, 0:w_size],
+        x[:, :, (h - h_size):h, (w - w_size):w]]
 
     if w_size * h_size < min_size:
         outputlist = []
@@ -247,21 +243,15 @@ def chop_forward(x, model, scale, shave=10, min_size=160000, nGPUs=1):
     h_size, w_size = scale * h_size, scale * w_size
     shave *= scale
 
-    output = Variable(
-        x.data.new(b, c, scale * h, scale * w),
-        volatile=x.volatile)
-
-    bf_y2 = [h_size - h + h_half, h_size]
-    bf_x2 = [w_size - w + w_half, w_size]
-    bt_y1 = [0, h_half]
-    bt_y2 = [h_half, h]
-    bt_x1 = [0, w_half]
-    bt_x2 = [w_half, w]
-
-    output[:, :, bt_y1, bt_x1] = outputlist[0][:, :, bt_y1, bt_x1]
-    output[:, :, bt_y1, bt_x2] = outputlist[1][:, :, bt_y1, bf_x2]
-    output[:, :, bt_y2, bt_x1] = outputlist[2][:, :, bf_y2, bt_x1]
-    output[:, :, bt_y2, bt_x2] = outputlist[3][:, :, bf_y2, bf_x2]
+    output = Variable(x.data.new(b, c, h, w), volatile=True)
+    output[:, :, 0:h_half, 0:w_half] \
+        = outputlist[0][:, :, 0:h_half, 0:w_half]
+    output[:, :, 0:h_half, w_half:w] \
+        = outputlist[1][:, :, 0:h_half, (w_size - w + w_half):w_size]
+    output[:, :, h_half:h, 0:w_half] \
+        = outputlist[2][:, :, (h_size - h + h_half):h_size, 0:w_half]
+    output[:, :, h_half:h, w_half:w] \
+        = outputlist[3][:, :, (h_size - h + h_half):h_size, (w_size - w + w_half):w_size]
 
     return output
 

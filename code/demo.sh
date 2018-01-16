@@ -2,7 +2,7 @@
 #python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset
 
 # EDSR baseline model (x3) - requires pre-trained EDSR baseline x2 model
-python main.py --model EDSR --scale 3 --save EDSR_baseline_x3 --reset --pre_train ../experiment/model/EDSR_baseline_x4.pt
+#python main.py --model EDSR --scale 3 --save EDSR_baseline_x3 --reset --pre_train ../experiment/model/EDSR_baseline_x4.pt
 
 # EDSR baseline model (x4) - requires pre-trained EDSR baseline x2 model
 #python main.py --model EDSR --scale 4 --save EDSR_baseline_x4 --reset --pre_train ../experiment/model/EDSR_baseline_x4.pt
@@ -23,7 +23,7 @@ python main.py --model EDSR --scale 3 --save EDSR_baseline_x3 --reset --pre_trai
 #python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR --n_resblocks 80 --reset
 
 # Test your own images
-#python main.py --scale 4 --data_test MyImage --test_only --save_results --pre_train ../experiment/model/EDSR_baseline_sd.pt
+python main.py --scale 4 --data_test MyImage --test_only --save_results --pre_train ../experiment/model/EDSR_baseline_x4.pt --chop_forward
 
 #Advanced - JPEG artifact removal
 #python main.py --template MDSR_jpeg --model MDSR --scale 2+3+4 --save MDSR_jpeg --quality 75+ --reset
