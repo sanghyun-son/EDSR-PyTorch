@@ -35,6 +35,11 @@ Also, pre-trained model will be uploaded soon.
   * Missing files are included (```code/data/MyImage.py```).
   * Some links are fixed.
 
+* Jan 16, 2018
+  * Memory efficient forward function is implemented.
+  * Add --chop_forward argument to your script to enable it.
+  * Basically, this function first split a large image to small patches. Those images are merged after super-resolution. I checked that this function works well with 12GB memory, 4000 x 2000 input image in scale 4. (Therefore, the output will be 16000 x 8000.)
+
 ## Dependencies
 * Python (Tested with 3.6)
 * PyTorch >= 0.2.0
