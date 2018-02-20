@@ -111,9 +111,14 @@ class Trainer():
                     best[0][idx_scale],
                     best[1][idx_scale] + 1))
 
+        if best[1][0] + 1 == epoch:
+            is_best = True
+        else:
+            is_best = False
+
         self.ckp.write_log(
             'Time: {:.2f}s\n'.format(timer_test.toc()), refresh=True)
-        self.ckp.save(self, epoch)
+        self.ckp.save(self, epoch, is_best=is_best)
 
     def _prepare(self, input, target, volatile=False):
         if not self.args.no_cuda:

@@ -60,9 +60,7 @@ class EDSR(nn.Module):
                 try:
                     own_state[name].copy_(param)
                 except Exception:
-                    if name.find('tail') >= 0:
-                        print('Replace pre-trained upsampler to new one...')
-                    else:
+                    if name.find('tail') == -1:
                         raise RuntimeError('While copying the parameter named {}, '
                                            'whose dimensions in the model are {} and '
                                            'whose dimensions in the checkpoint are {}.'

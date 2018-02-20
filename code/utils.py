@@ -144,17 +144,21 @@ class checkpoint():
         else:
             self.log_test = torch.cat([self.log_test, log])
 
-    def save(self, trainer, epoch):
-        torch.save(
-            trainer.model.state_dict(),
-            self.dir + '/model/model_lastest.pt')
+    def save(self, trainer, epoch, is_best=False):
+        if self.args.n_GPUs > 1:
+            state = trainer.model.module.state_dict()
+        else:
+            state = trainer.model.state_dict()
+
+        torch.save(state, self.dir + '/model/model_lastest.pt')
         if not self.args.test_only:
-            torch.save(
-                trainer.model.state_dict(),
-                '{}/model/model_{}.pt'.format(self.dir, epoch))
-            torch.save(
-                trainer.loss,
-                self.dir + '/loss.pt')
+            if is_best:
+                torch.save(state, self.dir + '/model/model_best.pt')
+            if self.args.save_models:
+                torch.save(
+                    state,
+                    '{}/model/model_{}.pt'.format(self.dir, epoch))
+            torch.save(trainer.loss, self.dir + '/loss.pt')
             torch.save(
                 trainer.optimizer.state_dict(),
                 self.dir + '/optimizer.pt')

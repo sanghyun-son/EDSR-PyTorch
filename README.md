@@ -38,7 +38,13 @@ Also, pre-trained model will be uploaded soon.
 * Jan 16, 2018
   * Memory efficient forward function is implemented.
   * Add --chop_forward argument to your script to enable it.
-  * Basically, this function first split a large image to small patches. Those images are merged after super-resolution. I checked that this function works well with 12GB memory, 4000 x 2000 input image in scale 4. (Therefore, the output will be 16000 x 8000.)
+  * Basically, this function first split a large image to small patches. Those images are merged after super-resolution. I checked this function with 12GB memory, 4000 x 2000 input image in scale 4. (Therefore, the output will be 16000 x 8000.)
+
+* Feb 21, 2018
+  * Fixed the problem when loading pre-trained multi-gpu model.
+  * Added pre-trained scale 2 baseline model.
+  * This code now only saves the best-performing model by default. For MDSR, 'the best' can be ambiguous. Use --save_models argument to save all the intermediate models.
+  * PyTorch 0.3.1 changed their implementation of DataLoader function. Therefore, I also changed my implementation of MSDataLoader. You can find it on feature/dataloader branch.
 
 ## Dependencies
 * Python (Tested with 3.6)
@@ -71,6 +77,7 @@ We provide 3 pre-trained models (baseline ONLY, not full version.) till now. You
 
 | Model | Scale | File Name | # ResBlocks | # Filters | # Parameters |
 |  ---  |  ---  | ---       | ---         |---        |---           |
+| **EDSR**| 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 
 | **EDSR**| 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 
 | ~~**MDSR**~~| 2 + 3 + 4 | MDSR_baseline.pt | 16 | 64 | 3.2M |
 | ~~**MDSR (JPEG)**~~*| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M |
