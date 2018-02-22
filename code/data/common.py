@@ -8,62 +8,57 @@ import skimage.transform as st
 import torch
 from torchvision import transforms
 
-def get_patch(img_in, img_tar, args, scale, ix=-1, iy=-1):
-    (ih, iw, c) = img_in.shape
-    (th, tw) = (scale * ih, scale * iw)
+def get_patch(img_in, img_tar, patch_size, scale, multi_scale=False):
+    ih, iw, c = img_in.shape
+    th, tw = scale * ih, scale * iw
 
-    patch_mult = scale if len(args.scale) > 1 else 1
-    tp = patch_mult * args.patch_size
+    p = scale if multi_scale else 1
+    tp = p * patch_size
     ip = tp // scale
 
-    if ix == -1:
-        ix = random.randrange(0, iw - ip + 1)
-    if iy == -1:
-        iy = random.randrange(0, ih - ip + 1)
+    ix = random.randrange(0, iw - ip + 1)
+    iy = random.randrange(0, ih - ip + 1)
+    tx, ty = scale * ix, scale * iy
 
-    (tx, ty) = (scale * ix, scale * iy)
     img_in = img_in[iy:iy + ip, ix:ix + ip, :]
     img_tar = img_tar[ty:ty + tp, tx:tx + tp, :]
-    info_patch = {
-        'ix': ix, 'iy': iy, 'ip': ip, 'tx': tx, 'ty': ty, 'tp': tp}
 
-    return img_in, img_tar, info_patch
+    return img_in, img_tar
 
 def set_channel(img_in, img_tar, n_channel):
-    (h, w, c) = img_tar.shape
-    if n_channel == 1 and c == 3:
-        img_in = np.expand_dims(sc.rgb2ycbcr(img_in)[:, :, 0], 2)
-        img_tar = np.expand_dims(sc.rgb2ycbcr(img_tar)[:, :, 0], 2)
-    elif n_channel == 3 and c == 1:
-        img_in = np.concatenate([img_in] * n_channel, 2)
-        img_tar = np.concatenate([img_tar] * n_channel, 2)
+    h, w, c = img_tar.shape
 
-    return img_in, img_tar
+    def _set_channel(img):
+        if n_channel == 1 and c == 3:
+            img = np.expand_dims(sc.rgb2ycbcr(img)[:, :, 0], 2)
+        elif n_channel == 3 and c == 1:
+            img = np.concatenate([img] * n_channel, 2)
+
+        return img
+
+    return _set_channel(img_in), _set_channel(img_tar)
 
 def np2Tensor(img_in, img_tar, rgb_range):
-    ts = (2, 0, 1)
-    img_mul = rgb_range / 255
-    img_in = torch.Tensor(img_in.transpose(ts).astype(float)).mul_(img_mul)
-    img_tar = torch.Tensor(img_tar.transpose(ts).astype(float)).mul_(img_mul)
+    def _to_tensor(img):
+        np_transpose = np.ascontiguousarray(img.transpose((2, 0, 1)))
+        torch_tensor = torch.from_numpy(np_transpose).float()
+        torch_tensor.mul_(rgb_range / 255)
 
-    return img_in, img_tar
+        return torch_tensor
 
-def augment(img_in, img_tar, flip_h=True, rot=True):
-    info_aug = {'flip_h': False, 'flip_v': False, 'trans': False}
+    return _to_tensor(img_in), _to_tensor(img_tar)
 
-    if random.random() < 0.5 and flip_h:
-        img_in = img_in[:, ::-1, :]
-        img_tar = img_tar[:, ::-1, :]
-        info_aug['flip_h'] = True
+def augment(img_in, img_tar, hflip=True, rot=True):
+    hflip = hflip and random.random() < 0.5
+    vflip = rot and random.random() < 0.5
+    rot90 = rot and random.random() < 0.5
 
-    if rot:
-        if random.random() < 0.5:
-            img_in = img_in[::-1, :, :]
-            img_tar = img_tar[::-1, :, :]
-            info_aug['flip_v'] = True
-        if random.random() < 0.5:
-            img_in = img_in.transpose(1, 0, 2)
-            img_tar = img_tar.transpose(1, 0, 2)
-            info_aug['trans'] = True
+    def _augment(img):
+        if hflip: img = img[:, ::-1, :]
+        if vflip: img = img[::-1, :, :]
+        if rot90: img = img.transpose(1, 0, 2)
+        
+        return img
 
-    return img_in, img_tar, info_aug
+    return _augment(img_in), _augment(img_tar)
+

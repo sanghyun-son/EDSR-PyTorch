@@ -31,7 +31,7 @@ parser.add_argument('--n_val', type=int, default=10,
                     help='number of validation set')
 parser.add_argument('--offset_val', type=int, default=800,
                     help='validation index offest')
-parser.add_argument('--ext', type=str, default='pack',
+parser.add_argument('--ext', type=str, default='bin',
                     help='dataset file extension')
 parser.add_argument('--scale', default='4',
                     help='super resolution scale')
@@ -45,6 +45,8 @@ parser.add_argument('--quality', type=str, default='',
                     help='jpeg compression quality')
 parser.add_argument('--chop_forward', action='store_true',
                     help='enable memory-efficient forward')
+parser.add_argument('--superfetch', type=int, default=1,
+                    help='fetch multiple batches at onece')
 
 # Model specifications
 parser.add_argument('--model', default='EDSR',
@@ -132,6 +134,10 @@ for i, q in enumerate(args.quality):
 
 if args.epochs == 0:
     args.epochs = 1e8
+
+if args.superfetch > 1:
+    args.batch_size *= args.superfetch
+    args.print_every //= args.superfetch
 
 for arg in vars(args):
     if vars(args)[arg] == 'True':

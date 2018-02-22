@@ -47,16 +47,18 @@ class Trainer():
         timer_data, timer_model = utils.timer(), utils.timer()
         for batch, (input, target, idx_scale) in enumerate(self.loader_train):
             input, target = self._prepare(input, target)
+            chunks_input = input.chunk(self.args.superfetch, dim=0)
+            chunks_target = target.chunk(self.args.superfetch, dim=0)
             self._scale_change(idx_scale)
 
             timer_data.hold()
             timer_model.tic()
-
-            self.optimizer.zero_grad()
-            output = self.model(input)
-            loss = self._calc_loss(output, target)
-            loss.backward()
-            self.optimizer.step()
+            for ci, ct in zip(chunks_input, chunks_target): 
+                self.optimizer.zero_grad()
+                output = self.model(ci)
+                loss = self._calc_loss(output, ct)
+                loss.backward()
+                self.optimizer.step()
 
             timer_model.hold()
 
@@ -152,8 +154,9 @@ class Trainer():
         return loss_total
 
     def _display_loss(self, batch):
+        n_samples = self.args.superfetch * (batch + 1)
         log = [
-            '[{}: {:.4f}] '.format(t['type'], l / (batch + 1)) \
+            '[{}: {:.4f}] '.format(t['type'], l / n_samples) \
             for l, t in zip(self.ckp.log_training[-1], self.loss)]
 
         return ''.join(log)
