@@ -214,6 +214,9 @@ class checkpoint():
             '{}/test_{}.pdf'.format(self.dir, set_name))
 
     def save_results(self, idx, input, output, target, scale):
+        rgb_range = self.args.rgb_range
+        output = quantize(output, rgb_range).mul(rgb_range)
+
         if self.args.save_results:
             filename = '{}/results/{}x{}_'.format(self.dir, idx + 1, scale)
             for v, n in (input, 'LR'), (output, 'SR'), (target, 'GT'):
@@ -298,7 +301,7 @@ def x8_forward(img, model, precision='single'):
     return output
 
 def quantize(img, rgb_range):
-    return img.mul(255 / rgb_range).clamp(0, 255).add(0.5).floor().div(255)
+    return img.mul(255 / rgb_range).clamp(0, 255).round().div(255)
 
 def rgb2ycbcrT(rgb):
     rgb = rgb.numpy().transpose(1, 2, 0)
@@ -310,7 +313,7 @@ def calc_PSNR(input, target, set_name, rgb_range, scale):
     # We will evaluate these datasets in y channel only
     test_Y = ['Set5', 'Set14', 'B100', 'Urban100']
 
-    (_, c, h, w) = input.size()
+    _, c, h, w = input.size()
     input = quantize(input.data[0], rgb_range)
     target = quantize(target[:, :, 0:h, 0:w].data[0], rgb_range)
     diff = input - target

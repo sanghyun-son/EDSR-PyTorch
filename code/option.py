@@ -31,7 +31,7 @@ parser.add_argument('--n_val', type=int, default=10,
                     help='number of validation set')
 parser.add_argument('--offset_val', type=int, default=800,
                     help='validation index offest')
-parser.add_argument('--ext', type=str, default='bin',
+parser.add_argument('--ext', type=str, default='img',
                     help='dataset file extension')
 parser.add_argument('--scale', default='4',
                     help='super resolution scale')
