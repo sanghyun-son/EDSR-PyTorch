@@ -1,11 +1,13 @@
 # EDSR baseline model (x2)
-python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset --print_every 1
+#python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset --print_every 1
+#python main.py --model EDSR --scale 2 --pre_train ../experiment/model/EDSR_baseline_x2.pt --reset --test_only --ext img --n_val 100 --save_results
 
 # EDSR baseline model (x3) - requires pre-trained EDSR baseline x2 model
 #python main.py --model EDSR --scale 3 --save EDSR_baseline_x3 --reset --pre_train ../experiment/model/EDSR_baseline_x2.pt
 
 # EDSR baseline model (x4) - requires pre-trained EDSR baseline x2 model
 #python main.py --model EDSR --scale 4 --save EDSR_baseline_x4 --reset --pre_train ../experiment/model/EDSR_baseline_x2.pt
+python main.py --model EDSR --scale 4 --pre_train ../experiment/model/EDSR_baseline_x4.pt --reset --test_only --ext img --n_val 100 --save_results
 
 # EDSR in the paper (x2)
 #python main.py --model EDSR --scale 2 --save EDSR_x2 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --reset

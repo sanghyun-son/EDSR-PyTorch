@@ -85,10 +85,7 @@ class SRData(data.Dataset):
         return common.np2Tensor(img_lr, img_hr, self.args.rgb_range)
 
     def __len__(self):
-        if self.train:
-            return len(self.images_hr)
-        else:
-            return len(self.images_lr)
+        return len(self.images_hr)
 
     def _get_index(self, idx):
         return idx

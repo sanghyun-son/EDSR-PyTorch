@@ -42,7 +42,7 @@ class DIV2K(SRData.SRData):
         if self.train:
             return len(self.images_hr) * self.repeat // self.args.superfetch
         else:
-            return len(self.images_lr)
+            return len(self.images_hr)
 
     def _get_index(self, idx):
         if self.train:

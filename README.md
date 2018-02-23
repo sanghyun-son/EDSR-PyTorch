@@ -21,6 +21,7 @@ Also, pre-trained model will be uploaded soon.
 **Differences with Torch version**
 * Codes are much more compact. (Removed all unnecessary parts.)
 * Model sizes are smaller. (About half.)
+* Slightly better performances.
 * Training requires less memory.
 * Test is faster.
 * Python-based.
@@ -45,6 +46,16 @@ Also, pre-trained model will be uploaded soon.
   * Added pre-trained scale 2 baseline model.
   * This code now only saves the best-performing model by default. For MDSR, 'the best' can be ambiguous. Use --save_models argument to save all the intermediate models.
   * PyTorch 0.3.1 changed their implementation of DataLoader function. Therefore, I also changed my implementation of MSDataLoader. You can find it on feature/dataloader branch.
+
+* Feb 23, 2018
+  * With a new ``code/data/DIV2K.py`` code, one can easily create new data class for super-resolution.
+  * New binary data pack. (Please remove the ``DIV2K_decoded`` folder from your dataset if you have.)
+  * With ``--ext bin``, this code will automatically generates and saves the binary data pack that corresponds to previous ``DIV2K_decoded``. (This requires huge RAM (~45GB, Swap can be used.), so please be careful.)
+  * If you cannot make the binary pack, just use the default setting (``--ext img``).
+
+  * Fixed a bug that PSNR in the log and PSNR calculated from the saved images does not match.
+  * Now saved images have better quality! (PSNR is ~0.1dB higher than the original code.)
+  * Added performance comparison between Torch7 model and PyTorch models.
 
 ## Dependencies
 * Python (Tested with 3.6)
@@ -74,13 +85,14 @@ sh demo.sh
 You can find the result images from ```experiment/test_<modelName>``` folder.
 
 We provide 3 pre-trained models (baseline ONLY, not full version.) till now. You can find the model from the ```experiment/model``` folder.
+Also, this models have better performance than the original Torch7 models.
 
-| Model | Scale | File Name | # ResBlocks | # Filters | # Parameters |
-|  ---  |  ---  | ---       | ---         |---        |---           |
-| **EDSR**| 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 
-| **EDSR**| 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 
-| ~~**MDSR**~~| 2 + 3 + 4 | MDSR_baseline.pt | 16 | 64 | 3.2M |
-| ~~**MDSR (JPEG)**~~*| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M |
+| Model | Scale | File Name | # ResBlocks | # Filters | # Parameters | PSNR | PSNR (Torch7) |
+|  ---  |  ---  | ---       | ---         |---        |---           |---   |---            |
+| **EDSR**| 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 34.61 | 34.55 |
+| **EDSR**| 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 28.94 | 28.94|
+| ~~**MDSR**~~| 2 + 3 + 4 | MDSR_baseline.pt | 16 | 64 | 3.2M | - | - |
+| ~~**MDSR (JPEG)**~~*| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M | - | - |
 
 *MDSR (JPEG) even reduces the JPEG artifact in output images. However, its DIV2K validation performance is slightly lower than the original MDSR.
 
