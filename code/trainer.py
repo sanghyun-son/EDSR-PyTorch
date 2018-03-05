@@ -166,6 +166,6 @@ class Trainer():
             self.test()
             return True
         else:
-            epoch = self.scheduler.last_epoch
+            epoch = self.scheduler.last_epoch + 1
             return epoch >= self.args.epochs
 

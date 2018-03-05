@@ -4,10 +4,11 @@
 
 # EDSR baseline model (x3) - requires pre-trained EDSR baseline x2 model
 #python main.py --model EDSR --scale 3 --save EDSR_baseline_x3 --reset --pre_train ../experiment/model/EDSR_baseline_x2.pt
+#python main.py --model EDSR --scale 3 --pre_train ../experiment/EDSR_baseline_x3/model/model_best.pt --reset --test_only --n_val 100
 
 # EDSR baseline model (x4) - requires pre-trained EDSR baseline x2 model
-#python main.py --model EDSR --scale 4 --save EDSR_baseline_x4 --reset --pre_train ../experiment/model/EDSR_baseline_x2.pt
-python main.py --model EDSR --scale 4 --pre_train ../experiment/model/EDSR_baseline_x4.pt --reset --test_only --ext img --n_val 100 --save_results
+#python main.py --model EDSR --scale 4 --save EDSR_baseline_x4 --reset --pre_train ../experiment/model/EDSR_baseline_x2.pt --ext bin
+#python main.py --model EDSR --scale 4 --pre_train ../experiment/EDSR_baseline_x4/model/model_best.pt --reset --test_only --n_val 100
 
 # EDSR in the paper (x2)
 #python main.py --model EDSR --scale 2 --save EDSR_x2 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --reset
@@ -19,7 +20,8 @@ python main.py --model EDSR --scale 4 --pre_train ../experiment/model/EDSR_basel
 #python main.py --model EDSR --scale 4 --save EDSR_x4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --reset --pre_train ../experiment/EDSR_x2/model/model_best.pt
 
 # MDSR baseline model
-#python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR_baseline --reset
+#python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR_baseline --reset --ext bin --save_models
+python main.py --template MDSR --model MDSR --scale 2+3+4 --reset --ext img --test_only --n_val 100 --pre_train ../experiment/MDSR_baseline/model/model_lastest.pt 
 
 # MDSR in the paper
 #python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR --n_resblocks 80 --reset

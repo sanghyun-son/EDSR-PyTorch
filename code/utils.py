@@ -224,7 +224,8 @@ class checkpoint():
                     v.data[0] / self.args.rgb_range,
                     '{}{}.png'.format(filename, n))
 
-def chop_forward(x, model, scale, shave=10, min_size=80000, nGPUs=1):
+def chop_forward(x, model, scale, shave=10, min_size=80000, n_GPUs=1):
+    n_GPUs = min(n_GPUs, 4)
     b, c, h, w = x.size()
     h_half, w_half = h // 2, w // 2
     h_size, w_size = h_half + shave, w_half + shave
@@ -236,13 +237,13 @@ def chop_forward(x, model, scale, shave=10, min_size=80000, nGPUs=1):
 
     if w_size * h_size < min_size:
         outputlist = []
-        for i in range(0, 4, nGPUs):
-            input_batch = torch.cat(inputlist[i:(i + nGPUs)], dim=0)
+        for i in range(0, 4, n_GPUs):
+            input_batch = torch.cat(inputlist[i:(i + n_GPUs)], dim=0)
             output_batch = model(input_batch)
-            outputlist.extend(output_batch.chunk(nGPUs, dim=0))
+            outputlist.extend(output_batch.chunk(n_GPUs, dim=0))
     else:
         outputlist = [
-            chop_forward(patch, model, scale, shave, min_size, nGPUs) \
+            chop_forward(patch, model, scale, shave, min_size, n_GPUs) \
             for patch in inputlist]
 
     h, w = scale * h, scale * w

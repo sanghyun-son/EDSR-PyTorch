@@ -59,6 +59,9 @@ Also, pre-trained model will be uploaded soon.
   * Now saved images have better quality! (PSNR is ~0.1dB higher than the original code.)
   * Added performance comparison between Torch7 model and PyTorch models.
 
+* Mar 5, 2018
+  * All baseline models are uploaded.
+
 ## Dependencies
 * Python (Tested with 3.6)
 * PyTorch >= 0.3.1
@@ -89,14 +92,16 @@ You can find the result images from ```experiment/test_<modelName>``` folder.
 We provide 3 pre-trained models (baseline ONLY, not full version.) till now. You can find the model from the ```experiment/model``` folder.
 Also, this models have better performance than the original Torch7 models.
 
-| Model | Scale | File name | ResBlocks | Filters | Parameters | PSNR | PSNR (Torch7) |
-|  ---  |  ---  | ---       | ---         |---        |---           |---   |---            |
-| **EDSR**| 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 34.61 | 34.55 |
-| **EDSR**| 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 28.94 | 28.94|
-| ~~**MDSR**~~| 2 + 3 + 4 | MDSR_baseline.pt | 16 | 64 | 3.2M | - | - |
-| ~~**MDSR (JPEG)**~~*| 2 + 3 + 4 | MDSR_baseline_jpeg.pt | 16 | 64 | 3.2M | - | - |
+| Model | Scale | File name | ResBlocks | Filters | Parameters | **PSNR (PyTorch)** | PSNR (Torch7) |
+|  ---  |  ---  | ---       | ---       | ---     | ---        | ---  | ---         |
+| **EDSR** | 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 34.61 | 34.55 |
+| **EDSR** | 3 | EDSR_baseline_x3.pt | 16 | 64 | 1.5M | 30.92 | 30.90 |
+| **EDSR** | 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 28.95 | 28.94 |
+| **MDSR** | 2 | MDSR_baseline.pt | 16 | 64 | 3.2M | 34.63 | 34.60 |
+| | 3 | | | | | 30.94 | 30.91 |
+| | 4 | | | | | 28.97 | 28.95 |
 
-*MDSR (JPEG) even reduces the JPEG artifact in output images. However, its DIV2K validation performance is slightly lower than the original MDSR.
+*We measured PSNR using DIV2K 0801 ~ 0900
 
 ## How to train EDSR and MDSR
 We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset for training. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).

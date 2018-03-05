@@ -20,7 +20,7 @@ class SRData(data.Dataset):
         self._set_filesystem(args.dir_data)
         def _scan():
             list_hr = []
-            list_lr = [[] * len(self.scale)]
+            list_lr = [[] for _ in self.scale]
             idx_begin = 0 if train else args.n_train
             idx_end = args.n_train if train else args.offset_val + args.n_val
             for i in range(idx_begin + 1, idx_end + 1):
