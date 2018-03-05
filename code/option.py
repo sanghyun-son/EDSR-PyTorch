@@ -33,6 +33,8 @@ parser.add_argument('--offset_val', type=int, default=800,
                     help='validation index offest')
 parser.add_argument('--ext', type=str, default='img',
                     help='dataset file extension')
+parser.add_argument('--precision', type=str, default='single',
+                    help='FP precision when test')
 parser.add_argument('--scale', default='4',
                     help='super resolution scale')
 parser.add_argument('--patch_size', type=int, default=192,

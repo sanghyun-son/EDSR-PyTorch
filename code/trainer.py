@@ -127,6 +127,10 @@ class Trainer():
             input = input.cuda()
             target = target.cuda()
 
+        if self.args.precision == 'half':
+            input = input.half()
+            target = target.half()
+
         input = Variable(input, volatile=volatile)
         target = Variable(target)
            

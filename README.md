@@ -61,6 +61,7 @@ Also, pre-trained model will be uploaded soon.
 
 * Mar 5, 2018
   * All baseline models are uploaded.
+  * Now supports half-precision at test time. Use ``--precision half``  to enable it. This does not degrade the output images.
 
 ## Dependencies
 * Python (Tested with 3.6)
@@ -69,7 +70,8 @@ Also, pre-trained model will be uploaded soon.
 ## Code
 
 Clone this repository into any place you want.
-```bash
+```
+bash
 git clone https://github.com/thstkdgus35/EDSR-PyTorch
 cd EDSR-PyTorch
 ```
@@ -82,15 +84,16 @@ Place your images in ```test``` folder. (like ```test/puppy.jpeg```)
 Then, run the provided script in ```code``` folder.
 
 Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
-```bash
+```
+bash
 cd code       # You are now in */EDSR-PyTorch/code
 sh demo.sh
 ```
 
 You can find the result images from ```experiment/test_<modelName>``` folder.
 
-We provide 3 pre-trained models (baseline ONLY, not full version.) till now. You can find the model from the ```experiment/model``` folder.
-Also, this models have better performance than the original Torch7 models.
+We provide some pre-trained models. (Not full version, baseline ONLY.) You can find the model from the ```experiment/model```.
+Also, these models have better performance than the original Torch7 models.
 
 | Model | Scale | File name | ResBlocks | Filters | Parameters | **PSNR (PyTorch)** | PSNR (Torch7) |
 |  ---  |  ---  | ---       | ---       | ---     | ---        | ---  | ---         |
@@ -118,3 +121,4 @@ Training scripts are also included in ``demo.sh``. By uncommenting the appropria
 cd code       # You are now in */EDSR-PyTorch/code
 sh demo.sh
 ```
+

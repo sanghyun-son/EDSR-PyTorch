@@ -21,6 +21,10 @@ class model:
             print('\tCUDA is ready!')
             torch.cuda.manual_seed(self.args.seed)
             my_model.cuda()
+
+            if self.args.precision == 'half':
+                my_model.half()
+
             if self.args.n_GPUs > 1:
                 my_model = nn.DataParallel(my_model, range(0, self.args.n_GPUs))
 
