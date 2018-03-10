@@ -18,13 +18,76 @@ This repository provides some demo codes for reproducing all the results from th
 
 Also, pre-trained model will be uploaded soon.
 
-**Differences with Torch version**
+**Differences between Torch version**
 * Codes are much more compact. (Removed all unnecessary parts.)
-* Model sizes are smaller. (About half.)
+* Models are smaller. (About half in their sizes.)
 * Slightly better performances.
 * Training requires less memory.
 * Test is faster.
 * Python-based.
+
+**Recent updates**
+* Mar 11, 2018
+  * Fixed some typos in the code and script.
+  * Now --ext img is default setting. Although we recommend you to use --ext bin when training, please use --ext img when you use --test_only.
+  * Skip_batch operation is implemented. Use --skip_threshold argument to skip the batch that you want to ignore. Although this function is not exactly same with that of Torch7 version, it will work as you expected.
+
+## Dependencies
+* Python (Tested with 3.6)
+* PyTorch >= 0.3.1
+
+## Code
+
+Clone this repository into any place you want.
+```bash
+git clone https://github.com/thstkdgus35/EDSR-PyTorch
+cd EDSR-PyTorch
+```
+
+## Quick start (Demo)
+You can test our super-resolution algorithm with your own images.
+
+Place your images in ```test``` folder. (like ```test/puppy.jpeg```)
+
+Then, run the provided script in ```code``` folder.
+
+Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
+```bash
+cd code       # You are now in */EDSR-PyTorch/code
+sh demo.sh
+```
+
+You can find the result images from ```experiment/test_<modelName>``` folder.
+
+We provide some pre-trained models. (Not full version, baseline ONLY.) You can find the model from the ```experiment/model```.
+Also, these models have better performance than the original Torch7 models.
+
+| Model | Scale | File name | ResBlocks | Filters | Parameters | **PSNR (PyTorch)** | PSNR (Torch7) |
+|  ---  |  ---  | ---       | ---       | ---     | ---        | ---  | ---         |
+| **EDSR** | 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 34.61 | 34.55 |
+| **EDSR** | 3 | EDSR_baseline_x3.pt | 16 | 64 | 1.5M | 30.92 | 30.90 |
+| **EDSR** | 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 28.95 | 28.94 |
+| **MDSR** | 2 | MDSR_baseline.pt | 16 | 64 | 3.2M | 34.63 | 34.60 |
+| | 3 | | | | | 30.94 | 30.91 |
+| | 4 | | | | | 28.97 | 28.95 |
+
+*We measured PSNR using DIV2K 0801 ~ 0900
+
+## How to train EDSR and MDSR
+We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset for training. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
+
+Unpack the tar file to any place you want. Then, change the ```dir_data``` argument in ```code/option.py``` to the place where you unpack DIV2K images.
+
+We recommend you to pre-process the images before training. This step will decode and collect all png files into one huge binary file. Use ```code/tools/png2binary.py``` for this process.
+
+If you do not have enough RAM (>= 16GB), change the ```ext``` argument in ```code/option.py``` to ```png```. However, each image in DIV2K is so large that disk access and decoding png files can be a bottleneck.
+
+Training scripts are also included in ``demo.sh``. By uncommenting the appropriate line and executing the script, you can train EDSR and MDSR by yourself. Note that EDSR (x3, x4) requires pre-trained EDSR (x2). By removing ```--pre_train``` argument in the provided script, you can ignore this constraint.
+
+```bash
+cd code       # You are now in */EDSR-PyTorch/code
+sh demo.sh
+```
 
 **Update log**
 * Jan 04, 2018
@@ -62,63 +125,4 @@ Also, pre-trained model will be uploaded soon.
 * Mar 5, 2018
   * All baseline models are uploaded.
   * Now supports half-precision at test time. Use ``--precision half``  to enable it. This does not degrade the output images.
-
-## Dependencies
-* Python (Tested with 3.6)
-* PyTorch >= 0.3.1
-
-## Code
-
-Clone this repository into any place you want.
-```
-bash
-git clone https://github.com/thstkdgus35/EDSR-PyTorch
-cd EDSR-PyTorch
-```
-
-## Quick start (Demo)
-You can test our super-resolution algorithm with your own images.
-
-Place your images in ```test``` folder. (like ```test/puppy.jpeg```)
-
-Then, run the provided script in ```code``` folder.
-
-Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
-```
-bash
-cd code       # You are now in */EDSR-PyTorch/code
-sh demo.sh
-```
-
-You can find the result images from ```experiment/test_<modelName>``` folder.
-
-We provide some pre-trained models. (Not full version, baseline ONLY.) You can find the model from the ```experiment/model```.
-Also, these models have better performance than the original Torch7 models.
-
-| Model | Scale | File name | ResBlocks | Filters | Parameters | **PSNR (PyTorch)** | PSNR (Torch7) |
-|  ---  |  ---  | ---       | ---       | ---     | ---        | ---  | ---         |
-| **EDSR** | 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 34.61 | 34.55 |
-| **EDSR** | 3 | EDSR_baseline_x3.pt | 16 | 64 | 1.5M | 30.92 | 30.90 |
-| **EDSR** | 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 28.95 | 28.94 |
-| **MDSR** | 2 | MDSR_baseline.pt | 16 | 64 | 3.2M | 34.63 | 34.60 |
-| | 3 | | | | | 30.94 | 30.91 |
-| | 4 | | | | | 28.97 | 28.95 |
-
-*We measured PSNR using DIV2K 0801 ~ 0900
-
-## How to train EDSR and MDSR
-We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset for training. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
-
-Unpack the tar file to any place you want. Then, change the ```dir_data``` argument in ```code/option.py``` to the place where you unpack DIV2K images.
-
-We recommend you to pre-process the images before training. This step will decode and collect all png files into one huge binary file. Use ```code/tools/png2binary.py``` for this process.
-
-If you do not have enough RAM (>= 16GB), change the ```ext``` argument in ```code/option.py``` to ```png```. However, each image in DIV2K is so large that disk access and decoding png files can be a bottleneck.
-
-Training scripts are also included in ``demo.sh``. By uncommenting the appropriate line and executing the script, you can train EDSR and MDSR by yourself. Note that EDSR (x3, x4) requires pre-trained EDSR (x2). By removing ```--pre_train``` argument in the provided script, you can ignore this constraint.
-
-```bash
-cd code       # You are now in */EDSR-PyTorch/code
-sh demo.sh
-```
 

@@ -47,18 +47,20 @@ class Trainer():
         timer_data, timer_model = utils.timer(), utils.timer()
         for batch, (input, target, idx_scale) in enumerate(self.loader_train):
             input, target = self._prepare(input, target)
-            chunks_input = input.chunk(self.args.superfetch, dim=0)
-            chunks_target = target.chunk(self.args.superfetch, dim=0)
             self._scale_change(idx_scale)
 
             timer_data.hold()
             timer_model.tic()
-            for ci, ct in zip(chunks_input, chunks_target): 
-                self.optimizer.zero_grad()
-                output = self.model(ci)
-                loss = self._calc_loss(output, ct)
+
+            self.optimizer.zero_grad()
+            output = self.model(input)
+            loss = self._calc_loss(output, target)
+            if loss.data[0] < self.args.skip_threshold:
                 loss.backward()
                 self.optimizer.step()
+            else:
+                print('Skipping batch {}! (Loss: {})'.format(
+                    batch + 1, loss.data[0]))
 
             timer_model.hold()
 
@@ -113,11 +115,7 @@ class Trainer():
                     best[0][idx_scale],
                     best[1][idx_scale] + 1))
 
-        if best[1][0] + 1 == epoch:
-            is_best = True
-        else:
-            is_best = False
-
+        is_best = (best[1][0] + 1 == epoch)
         self.ckp.write_log(
             'Time: {:.2f}s\n'.format(timer_test.toc()), refresh=True)
         self.ckp.save(self, epoch, is_best=is_best)
@@ -151,14 +149,14 @@ class Trainer():
             loss_list.append(l['weight'] * loss)
             self.ckp.log_training[-1, i] += loss.data[0]
 
-        loss_total = reduce((lambda x, y: x + y), loss_list)
+        loss_total = sum(loss_list)
         if len(self.loss) > 1:
             self.ckp.log_training[-1, -1] += loss_total.data[0]
 
         return loss_total
 
     def _display_loss(self, batch):
-        n_samples = self.args.superfetch * (batch + 1)
+        n_samples = batch + 1
         log = [
             '[{}: {:.4f}] '.format(t['type'], l / n_samples) \
             for l, t in zip(self.ckp.log_training[-1], self.loss)]

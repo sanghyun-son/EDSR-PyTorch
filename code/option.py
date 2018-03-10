@@ -47,8 +47,6 @@ parser.add_argument('--quality', type=str, default='',
                     help='jpeg compression quality')
 parser.add_argument('--chop_forward', action='store_true',
                     help='enable memory-efficient forward')
-parser.add_argument('--superfetch', type=int, default=1,
-                    help='fetch multiple batches at onece')
 
 # Model specifications
 parser.add_argument('--model', default='EDSR',
@@ -82,6 +80,8 @@ parser.add_argument('--resume', type=int, default=-1,
                     help='load the model from the specified epoch')
 parser.add_argument('--batch_size', type=int, default=16,
                     help='input batch size for training')
+parser.add_argument('--split_batch', type=int, default=1,
+                    help='split the batch into smaller chunks')
 parser.add_argument('--self_ensemble', action='store_true',
                     help='use self-ensemble method for test')
 
@@ -110,6 +110,8 @@ parser.add_argument('--epsilon', type=float, default=1e-8,
 # Loss specifications
 parser.add_argument('--loss', type=str, default='1*L1',
                     help='loss function configuration')
+parser.add_argument('--skip_threshold', type=float, default='1e8',
+                    help='skipping batch that has large error')
 
 # Log specifications
 parser.add_argument('--save', type=str, default='test',
@@ -136,10 +138,6 @@ for i, q in enumerate(args.quality):
 
 if args.epochs == 0:
     args.epochs = 1e8
-
-if args.superfetch > 1:
-    args.batch_size *= args.superfetch
-    args.print_every //= args.superfetch
 
 for arg in vars(args):
     if vars(args)[arg] == 'True':

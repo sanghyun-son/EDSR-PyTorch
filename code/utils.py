@@ -123,7 +123,7 @@ class checkpoint():
             resume = self.args.resume
             if resume == -1:
                 my_model.load_state_dict(
-                    torch.load(self.dir + '/model/model_lastest.pt'))
+                    torch.load(self.dir + '/model/model_latest.pt'))
                 resume = len(self.log_test)
             else:
                 my_model.load_state_dict(
@@ -150,7 +150,7 @@ class checkpoint():
         else:
             state = trainer.model.state_dict()
 
-        torch.save(state, self.dir + '/model/model_lastest.pt')
+        torch.save(state, self.dir + '/model/model_latest.pt')
         if not self.args.test_only:
             if is_best:
                 torch.save(state, self.dir + '/model/model_best.pt')
