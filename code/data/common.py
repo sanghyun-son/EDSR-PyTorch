@@ -26,6 +26,10 @@ def get_patch(img_in, img_tar, patch_size, scale, multi_scale=False):
     return img_in, img_tar
 
 def set_channel(img_in, img_tar, n_channel):
+    if img_tar.ndim == 2:
+        img_in = np.expand_dims(img_in, axis=2)
+        img_tar = np.expand_dims(img_tar, axis=2)
+
     h, w, c = img_tar.shape
 
     def _set_channel(img):
@@ -39,14 +43,14 @@ def set_channel(img_in, img_tar, n_channel):
     return _set_channel(img_in), _set_channel(img_tar)
 
 def np2Tensor(img_in, img_tar, rgb_range):
-    def _to_tensor(img):
+    def _np2Tensor(img):
         np_transpose = np.ascontiguousarray(img.transpose((2, 0, 1)))
         torch_tensor = torch.from_numpy(np_transpose).float()
         torch_tensor.mul_(rgb_range / 255)
 
         return torch_tensor
 
-    return _to_tensor(img_in), _to_tensor(img_tar)
+    return _np2Tensor(img_in), _np2Tensor(img_tar)
 
 def augment(img_in, img_tar, hflip=True, rot=True):
     hflip = hflip and random.random() < 0.5
