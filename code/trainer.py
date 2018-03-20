@@ -23,6 +23,7 @@ class Trainer():
 
         self.log_training = 0
         self.log_test = 0
+        self.error_last = 1e8
 
     def _scale_change(self, idx_scale, testset=None):
         if len(self.scale) > 1:
@@ -55,11 +56,11 @@ class Trainer():
             self.optimizer.zero_grad()
             output = self.model(input)
             loss = self._calc_loss(output, target)
-            if loss.data[0] < self.args.skip_threshold:
+            if loss.data[0] < self.args.skip_threshold * self.error_last:
                 loss.backward()
                 self.optimizer.step()
             else:
-                print('Skipping batch {}! (Loss: {})'.format(
+                print('Skip this batch {}! (Loss: {})'.format(
                     batch + 1, loss.data[0]))
 
             timer_model.hold()
@@ -75,6 +76,7 @@ class Trainer():
             timer_data.tic()
 
         self.ckp.log_training[-1, :] /= len(self.loader_train)
+        self.error_last = self.ckp.log_training[-1, :]
 
     def test(self):
         epoch = self.scheduler.last_epoch + 1

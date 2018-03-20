@@ -110,7 +110,7 @@ parser.add_argument('--epsilon', type=float, default=1e-8,
 # Loss specifications
 parser.add_argument('--loss', type=str, default='1*L1',
                     help='loss function configuration')
-parser.add_argument('--skip_threshold', type=float, default='1e8',
+parser.add_argument('--skip_threshold', type=float, default='100',
                     help='skipping batch that has large error')
 
 # Log specifications

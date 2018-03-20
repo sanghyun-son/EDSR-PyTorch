@@ -1,5 +1,6 @@
 # EDSR baseline model (x2)
-python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset
+python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset --ext sep_reset
+#python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset --ext sep
 #python main.py --model EDSR --scale 2 --pre_train ../experiment/model/EDSR_baseline_x2.pt --reset --test_only --n_val 100 --save_results
 
 # EDSR baseline model (x3) - requires pre-trained EDSR baseline x2 model

@@ -1,4 +1,6 @@
 # EDSR-PyTorch
+![](/figs/main.png)
+
 This repository is a PyTorch version of the paper **"Enhanced Deep Residual Networks for Single Image Super-Resolution"** from **CVPRW 2017**.
 You can find the original code and more information from [here](https://github.com/LimBee/NTIRE2017).
 
@@ -27,10 +29,10 @@ Also, pre-trained model will be uploaded soon.
 * Python-based.
 
 **Recent updates**
-* Mar 11, 2018
-  * Fixed some typos in the code and script.
-  * Now --ext img is default setting. Although we recommend you to use --ext bin when training, please use --ext img when you use --test_only.
-  * Skip_batch operation is implemented. Use --skip_threshold argument to skip the batch that you want to ignore. Although this function is not exactly same with that of Torch7 version, it will work as you expected.
+* Mar 20, 2018
+  * Use ``--ext sep_reset`` to pre-decode large png files. Those decoded files will be saved to the same directory with DIV2K png files. After the first run, you can use ``--ext sep`` to save time.
+  * Now supports various benchmark datasets. For example, try ``--data_test Set5`` to test your model on the Set5 images.
+  * Changed the behavior of skip_batch.
 
 ## Dependencies
 * Python (Tested with 3.6)
@@ -72,6 +74,13 @@ Also, these models have better performance than the original Torch7 models.
 | | 4 | | | | | 28.97 | 28.95 |
 
 *We measured PSNR using DIV2K 0801 ~ 0900
+
+You can evaluate your models with widely-used benchmark:
+[Set5 - Bevilacqua et al. BMVC 2012](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html),
+[Set14 - Zeyde et al. LNCS 2010](https://sites.google.com/site/romanzeyde/research-interests),
+[B100 - Martin et al. ICCV 2001](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/),
+[Urban100 - Huang et al. CVPR 2015](https://sites.google.com/site/jbhuang0604/publications/struct_sr).
+For these datasets, we first convert the results images to YCbCr color space and use Y channel only. Please unpack [this file](https://cv.snu.ac.kr/research/EDSR/benchmark.tar) (250MB) to any place you want. Then, set ``--dir_data <where_benchmark_folder_located>`` to evaluate the models.
 
 ## How to train EDSR and MDSR
 We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset for training. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
@@ -125,4 +134,9 @@ sh demo.sh
 * Mar 5, 2018
   * All baseline models are uploaded.
   * Now supports half-precision at test time. Use ``--precision half``  to enable it. This does not degrade the output images.
+
+* Mar 11, 2018
+  * Fixed some typos in the code and script.
+  * Now --ext img is default setting. Although we recommend you to use --ext bin when training, please use --ext img when you use --test_only.
+  * Skip_batch operation is implemented. Use --skip_threshold argument to skip the batch that you want to ignore. Although this function is not exactly same with that of Torch7 version, it will work as you expected.
 

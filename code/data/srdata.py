@@ -15,38 +15,51 @@ class SRData(data.Dataset):
         self.split = 'train' if train else 'test'
         self.scale = args.scale
         self.idx_scale = 0
-        self.repeat = args.test_every // (args.n_train // args.batch_size)
 
         self._set_filesystem(args.dir_data)
-        def _scan():
-            list_hr = []
-            list_lr = [[] for _ in self.scale]
-            idx_begin = 0 if train else args.n_train
-            idx_end = args.n_train if train else args.offset_val + args.n_val
-            for i in range(idx_begin + 1, idx_end + 1):
-                filename = self._make_filename(i)
-                list_hr.append(self._name_hrfile(filename))
-                for si, s in enumerate(self.scale):
-                    list_lr[si].append(self._name_lrfile(filename, s))
 
-            return list_hr, list_lr
-
-        def _load():
+        def _load_bin():
             self.images_hr = np.load(self._name_hrbin())
             self.images_lr = [
                 np.load(self._name_lrbin(s)) for s in self.scale]
 
         if args.ext == 'img':
-            self.images_hr, self.images_lr = _scan()
+            self.images_hr, self.images_lr = self._scan()
+        elif args.ext.find('sep') >= 0:
+            self.images_hr, self.images_lr = self._scan()
+            if args.ext.find('reset') >= 0:
+                print('Preparing seperated binary files')
+                for v in self.images_hr:
+                    img_hr = misc.imread(v)
+                    name_sep = v.replace(self.ext, '.npy')
+                    np.save(name_sep, img_hr)
+                for si, s in enumerate(self.scale):
+                    for v in self.images_lr[si]:
+                        img_lr = misc.imread(v)
+                        name_sep = v.replace(self.ext, '.npy')
+                        np.save(name_sep, img_lr)
+
+            self.images_hr = [
+                v.replace(self.ext, '.npy') for v in self.images_hr
+            ]
+            self.images_lr = [
+                [v.replace(self.ext, '.npy') for v in self.images_lr[i]]
+                for i in range(len(self.scale))
+            ]
+
         elif args.ext.find('bin') >= 0:
             try:
                 if args.ext.find('reset') >= 0:
                     raise IOError
                 print('Loading a binary file')
-                _load()
+                _load_bin()
             except:
                 print('Preparing a binary file')
-                list_hr, list_lr = _scan()
+                bin_path = os.path.join(self.apath, 'bin')
+                if not os.isdir(bin_path):
+                    os.mkdir(bin_path)
+
+                list_hr, list_lr = self._scan()
                 hr = [misc.imread(f) for f in list_hr]
                 np.save(self._name_hrbin(), hr)
                 del hr
@@ -54,23 +67,17 @@ class SRData(data.Dataset):
                     lr_scale = [misc.imread(f) for f in list_lr[si]]
                     np.save(self._name_lrbin(s), lr_scale)
                     del lr_scale
-                _load()
+                _load_bin()
         else:
             print('Please define data type')
+
+    def _scan(self):
+        raise NotImplementedError
 
     def _set_filesystem(self, dir_data):
         raise NotImplementedError
 
-    def _make_filename(self, idx):
-        raise NotImplementedError
-
-    def _name_hrfile(self, filename):
-        raise NotImplementedError
-
     def _name_hrbin(self):
-        raise NotImplementedError
-
-    def _name_lrfile(self, filename, scale):
         raise NotImplementedError
 
     def _name_lrbin(self, scale):
@@ -97,6 +104,9 @@ class SRData(data.Dataset):
         if self.args.ext == 'img':
             img_lr = misc.imread(img_lr)
             img_hr = misc.imread(img_hr)
+        elif self.args.ext.find('sep') >= 0:
+            img_lr = np.load(img_lr)
+            img_hr = np.load(img_hr)
 
         return img_lr, img_hr
 
@@ -109,8 +119,9 @@ class SRData(data.Dataset):
                 img_lr, img_hr, patch_size, scale, multi_scale=multi_scale)
             img_lr, img_hr = common.augment(img_lr, img_hr)
         else:
-            ih, iw, c = img_lr.shape
-            img_hr = img_hr[0:ih * scale, 0:iw * scale, :]
+            ih = img_lr.shape[0]
+            iw = img_lr.shape[1]
+            img_hr = img_hr[0:ih * scale, 0:iw * scale]
 
         return img_lr, img_hr
 
