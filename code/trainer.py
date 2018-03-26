@@ -76,7 +76,7 @@ class Trainer():
             timer_data.tic()
 
         self.ckp.log_training[-1, :] /= len(self.loader_train)
-        self.error_last = self.ckp.log_training[-1, :]
+        self.error_last = self.ckp.log_training[-1, :][0]
 
     def test(self):
         epoch = self.scheduler.last_epoch + 1

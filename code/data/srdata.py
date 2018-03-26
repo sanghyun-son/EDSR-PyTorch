@@ -56,7 +56,7 @@ class SRData(data.Dataset):
             except:
                 print('Preparing a binary file')
                 bin_path = os.path.join(self.apath, 'bin')
-                if not os.isdir(bin_path):
+                if not os.path.isdir(bin_path):
                     os.mkdir(bin_path)
 
                 list_hr, list_lr = self._scan()
