@@ -11,8 +11,7 @@ class model:
 
     def get_model(self):
         print('Making model...')
-        module = import_module('model.' + self.args.model)
-        my_model = module.make_model(self.args)
+        my_model = self.module.make_model(self.args)
         if self.args.pre_train != '.':
             print('Loading model from {}...'.format(self.args.pre_train))
             my_model.load_state_dict(torch.load(self.args.pre_train))

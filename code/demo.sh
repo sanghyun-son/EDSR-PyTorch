@@ -1,5 +1,5 @@
 # EDSR baseline model (x2)
-python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset --ext sep_reset
+#python main.py --model EDSR --scale 2 --pre_train ../experiment/model/EDSR_baseline_x2.pt --reset --data_test Set5 --test_only
 #python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset --ext sep
 #python main.py --model EDSR --scale 2 --pre_train ../experiment/model/EDSR_baseline_x2.pt --reset --test_only --n_val 100 --save_results
 
@@ -22,7 +22,7 @@ python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset --ext sep_
 
 # MDSR baseline model
 #python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR_baseline --reset --save_models
-#python main.py --template MDSR --model MDSR --scale 2+3+4 --reset --test_only --n_val 100 --pre_train ../experiment/model/MDSR_baseline.pt
+python main.py --template MDSR --model MDSR --scale 2+3+4 --reset --test_only --n_val 10 --pre_train ../experiment/model/MDSR_baseline_jpeg_modified.pt
 
 # MDSR in the paper
 #python main.py --template MDSR --model MDSR --scale 2+3+4 --save MDSR --n_resblocks 80 --reset

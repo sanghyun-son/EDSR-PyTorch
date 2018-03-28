@@ -229,22 +229,22 @@ def chop_forward(x, model, scale, shave=10, min_size=80000, n_GPUs=1):
     b, c, h, w = x.size()
     h_half, w_half = h // 2, w // 2
     h_size, w_size = h_half + shave, w_half + shave
-    inputlist = [
+    input_list = [
         x[:, :, 0:h_size, 0:w_size],
         x[:, :, 0:h_size, (w - w_size):w],
         x[:, :, (h - h_size):h, 0:w_size],
         x[:, :, (h - h_size):h, (w - w_size):w]]
 
     if w_size * h_size < min_size:
-        outputlist = []
+        output_list = []
         for i in range(0, 4, n_GPUs):
-            input_batch = torch.cat(inputlist[i:(i + n_GPUs)], dim=0)
+            input_batch = torch.cat(input_list[i:(i + n_GPUs)], dim=0)
             output_batch = model(input_batch)
-            outputlist.extend(output_batch.chunk(n_GPUs, dim=0))
+            output_list.extend(output_batch.chunk(n_GPUs, dim=0))
     else:
-        outputlist = [
+        output_list = [
             chop_forward(patch, model, scale, shave, min_size, n_GPUs) \
-            for patch in inputlist]
+            for patch in input_list]
 
     h, w = scale * h, scale * w
     h_half, w_half = scale * h_half, scale * w_half
@@ -253,13 +253,13 @@ def chop_forward(x, model, scale, shave=10, min_size=80000, n_GPUs=1):
 
     output = Variable(x.data.new(b, c, h, w), volatile=True)
     output[:, :, 0:h_half, 0:w_half] \
-        = outputlist[0][:, :, 0:h_half, 0:w_half]
+        = output_list[0][:, :, 0:h_half, 0:w_half]
     output[:, :, 0:h_half, w_half:w] \
-        = outputlist[1][:, :, 0:h_half, (w_size - w + w_half):w_size]
+        = output_list[1][:, :, 0:h_half, (w_size - w + w_half):w_size]
     output[:, :, h_half:h, 0:w_half] \
-        = outputlist[2][:, :, (h_size - h + h_half):h_size, 0:w_half]
+        = output_list[2][:, :, (h_size - h + h_half):h_size, 0:w_half]
     output[:, :, h_half:h, w_half:w] \
-        = outputlist[3][:, :, (h_size - h + h_half):h_size, (w_size - w + w_half):w_size]
+        = output_list[3][:, :, (h_size - h + h_half):h_size, (w_size - w + w_half):w_size]
 
     return output
 
@@ -282,22 +282,24 @@ def x8_forward(img, model, precision='single'):
         elif precision == 'double':
             ret = ret.double()
 
-        return Variable(ret, volatile=v.volatile)
+        return Variable(ret, volatile=True)
 
-    inputlist = [img]
+    input_list = [img]
     for tf in 'vflip', 'hflip', 'transpose':
-        inputlist.extend([_transform(t, tf) for t in inputlist])
+        input_list.extend([_transform(t, tf) for t in input_list])
 
-    outputlist = [model(aug) for aug in inputlist]
-    for i in range(len(outputlist)):
+    output_list = [model(aug) for aug in input_list]
+    for i in range(len(output_list)):
         if i > 3:
-            outputlist[i] = _transform(outputlist[i], 'transpose')
+            output_list[i] = _transform(output_list[i], 'transpose')
         if i % 4 > 1:
-            outputlist[i] = _transform(outputlist[i], 'hflip')
+            output_list[i] = _transform(output_list[i], 'hflip')
         if (i % 4) % 2 == 1:
-            outputlist[i] = _transform(outputlist[i], 'vflip')
-    
-    output = reduce((lambda x, y: x + y), outputlist) / len(outputlist)
+            output_list[i] = _transform(output_list[i], 'vflip')
+
+    output_cat = torch.cat(output_list, dim=0)
+    output = output_cat.mean(dim=0, keepdim=True)
+    #output = output_cat.median(dim=0, keepdim=True)[0]
 
     return output
 
