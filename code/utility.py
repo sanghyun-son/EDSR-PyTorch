@@ -87,7 +87,8 @@ class checkpoint():
             optimizer_function = optim.Adam
             kwargs = {
                 'betas': (self.args.beta1, self.args.beta2),
-                'eps': self.args.epsilon}
+                'eps': self.args.epsilon
+            }
         elif self.args.optimizer == 'RMSprop':
             optimizer_function = optim.RMSprop
             kwargs = {'eps': self.args.epsilon}
@@ -150,25 +151,21 @@ class checkpoint():
         else:
             state = trainer.model.state_dict()
 
-        torch.save(state, self.dir + '/model/model_latest.pt')
+        save_list = [(state, 'model/model_latest.pt')]
         if not self.args.test_only:
             if is_best:
-                torch.save(state, self.dir + '/model/model_best.pt')
+                save_list.append((state, 'model/model_best.pt'))
             if self.args.save_models:
-                torch.save(
-                    state,
-                    '{}/model/model_{}.pt'.format(self.dir, epoch))
-            torch.save(trainer.loss, self.dir + '/loss.pt')
-            torch.save(
-                trainer.optimizer.state_dict(),
-                self.dir + '/optimizer.pt')
-            torch.save(
-                self.log_training,
-                self.dir + '/log_training.pt')
-            torch.save(
-                self.log_test,
-                self.dir + '/log_test.pt')
+                save_list.append((state, 'model/model_{}.pt'.format(epoch)))
+
+            save_list.append((trainer.loss, 'loss.pt'))
+            save_list.append((trainer.optimizer.state_dict(), 'optimizer.pt'))
+            save_list.append((self.log_training, 'log_training.pt'))
+            save_list.append((self.log_test, 'log_test.pt'))
             self.plot(trainer, epoch, self.log_training, self.log_test)
+
+        for o, p in save_list:
+            torch.save(o, os.path.join(self.dir, p))
 
     def write_log(self, log, refresh=False):
         print(log)
@@ -213,38 +210,34 @@ class checkpoint():
             fig,
             '{}/test_{}.pdf'.format(self.dir, set_name))
 
-    def save_results(self, idx, input, output, target, scale):
-        rgb_range = self.args.rgb_range
-        output = quantize(output, rgb_range).mul(rgb_range)
-
-        if self.args.save_results:
-            filename = '{}/results/{}x{}_'.format(self.dir, idx + 1, scale)
-            for v, n in (input, 'LR'), (output, 'SR'), (target, 'GT'):
-                tu.save_image(
-                    v.data[0] / self.args.rgb_range,
-                    '{}{}.png'.format(filename, n))
+    def save_results(self, filename, save_list, scale):
+        filename = '{}/results/{}_x{}_'.format(self.dir, filename, scale)
+        postfix = ('SR', 'LR', 'HR')
+        for v, p in zip(save_list, postfix):
+            tu.save_image(v.data[0], '{}{}.png'.format(filename, p), padding=0)
 
 def chop_forward(x, model, scale, shave=10, min_size=80000, n_GPUs=1):
     n_GPUs = min(n_GPUs, 4)
     b, c, h, w = x.size()
     h_half, w_half = h // 2, w // 2
     h_size, w_size = h_half + shave, w_half + shave
-    input_list = [
+    lr_list = [
         x[:, :, 0:h_size, 0:w_size],
         x[:, :, 0:h_size, (w - w_size):w],
         x[:, :, (h - h_size):h, 0:w_size],
         x[:, :, (h - h_size):h, (w - w_size):w]]
 
     if w_size * h_size < min_size:
-        output_list = []
+        sr_list = []
         for i in range(0, 4, n_GPUs):
-            input_batch = torch.cat(input_list[i:(i + n_GPUs)], dim=0)
-            output_batch = model(input_batch)
-            output_list.extend(output_batch.chunk(n_GPUs, dim=0))
+            lr_batch = torch.cat(lr_list[i:(i + n_GPUs)], dim=0)
+            sr_batch = model(lr_batch)
+            sr_list.extend(sr_batch.chunk(n_GPUs, dim=0))
     else:
-        output_list = [
+        sr_list = [
             chop_forward(patch, model, scale, shave, min_size, n_GPUs) \
-            for patch in input_list]
+            for patch in lr_list
+        ]
 
     h, w = scale * h, scale * w
     h_half, w_half = scale * h_half, scale * w_half
@@ -253,13 +246,13 @@ def chop_forward(x, model, scale, shave=10, min_size=80000, n_GPUs=1):
 
     output = Variable(x.data.new(b, c, h, w), volatile=True)
     output[:, :, 0:h_half, 0:w_half] \
-        = output_list[0][:, :, 0:h_half, 0:w_half]
+        = sr_list[0][:, :, 0:h_half, 0:w_half]
     output[:, :, 0:h_half, w_half:w] \
-        = output_list[1][:, :, 0:h_half, (w_size - w + w_half):w_size]
+        = sr_list[1][:, :, 0:h_half, (w_size - w + w_half):w_size]
     output[:, :, h_half:h, 0:w_half] \
-        = output_list[2][:, :, (h_size - h + h_half):h_size, 0:w_half]
+        = sr_list[2][:, :, (h_size - h + h_half):h_size, 0:w_half]
     output[:, :, h_half:h, w_half:w] \
-        = output_list[3][:, :, (h_size - h + h_half):h_size, (w_size - w + w_half):w_size]
+        = sr_list[3][:, :, (h_size - h + h_half):h_size, (w_size - w + w_half):w_size]
 
     return output
 
@@ -284,20 +277,20 @@ def x8_forward(img, model, precision='single'):
 
         return Variable(ret, volatile=True)
 
-    input_list = [img]
+    lr_list = [img]
     for tf in 'vflip', 'hflip', 'transpose':
-        input_list.extend([_transform(t, tf) for t in input_list])
+        lr_list.extend([_transform(t, tf) for t in lr_list])
 
-    output_list = [model(aug) for aug in input_list]
-    for i in range(len(output_list)):
+    sr_list = [model(aug) for aug in lr_list]
+    for i in range(len(sr_list)):
         if i > 3:
-            output_list[i] = _transform(output_list[i], 'transpose')
+            sr_list[i] = _transform(sr_list[i], 'transpose')
         if i % 4 > 1:
-            output_list[i] = _transform(output_list[i], 'hflip')
+            sr_list[i] = _transform(sr_list[i], 'hflip')
         if (i % 4) % 2 == 1:
-            output_list[i] = _transform(output_list[i], 'vflip')
+            sr_list[i] = _transform(sr_list[i], 'vflip')
 
-    output_cat = torch.cat(output_list, dim=0)
+    output_cat = torch.cat(sr_list, dim=0)
     output = output_cat.mean(dim=0, keepdim=True)
     #output = output_cat.median(dim=0, keepdim=True)[0]
 
@@ -306,32 +299,31 @@ def x8_forward(img, model, precision='single'):
 def quantize(img, rgb_range):
     return img.mul(255 / rgb_range).clamp(0, 255).round().div(255)
 
-def rgb2ycbcrT(rgb):
-    rgb = rgb.numpy().transpose(1, 2, 0)
-    yCbCr = sc.rgb2ycbcr(rgb) / 255
+def calc_PSNR(sr, hr, set_name, scale):
+    '''
+        Here we assume normalized(0~1) and quantized arguments.
+        For Set5, Set14, B100, Urban100 dataset,
+        we measure PSNR on luminance channel only
+    '''
+    diff = (sr - hr).data
+    _, c, h, w = diff.size()
 
-    return torch.Tensor(yCbCr[:, :, 0])
-
-def calc_PSNR(input, target, set_name, rgb_range, scale):
     # We will evaluate these datasets in y channel only
-    test_Y = ['Set5', 'Set14', 'B100', 'Urban100']
-
-    _, c, h, w = input.size()
-    input = quantize(input.data[0], rgb_range)
-    target = quantize(target[:, :, 0:h, 0:w].data[0], rgb_range)
-    diff = input - target
-    if set_name in test_Y:
+    luminance_only = ['Set5', 'Set14', 'B100', 'Urban100']
+    if set_name in luminance_only:
         shave = scale
         if c > 1:
-            input_Y = rgb2ycbcrT(input.cpu())
-            target_Y = rgb2ycbcrT(target.cpu())
-            diff = (input_Y - target_Y).view(1, h, w)
+            convert = diff.new(1, 3, 1, 1)
+            convert[0, 0, 0, 0] = 65.738
+            convert[0, 1, 0, 0] = 129.057
+            convert[0, 2, 0, 0] = 25.064
+            diff.mul_(convert).div_(256)
+            diff = diff.sum(dim=1, keepdim=True)
     else:
         shave = scale + 6
 
-    diff = diff[:, shave:(h - shave), shave:(w - shave)]
-    mse = diff.pow(2).mean()
-    psnr = -10 * np.log10(mse)
+    valid = diff[:, :, shave:(h-shave), shave:(w-shave)]
+    mse = valid.pow(2).mean()
 
-    return psnr
+    return -10 * math.log10(mse)
 

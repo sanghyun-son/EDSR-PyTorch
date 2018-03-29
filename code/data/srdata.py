@@ -30,14 +30,14 @@ class SRData(data.Dataset):
             if args.ext.find('reset') >= 0:
                 print('Preparing seperated binary files')
                 for v in self.images_hr:
-                    img_hr = misc.imread(v)
+                    hr = misc.imread(v)
                     name_sep = v.replace(self.ext, '.npy')
-                    np.save(name_sep, img_hr)
+                    np.save(name_sep, hr)
                 for si, s in enumerate(self.scale):
                     for v in self.images_lr[si]:
-                        img_lr = misc.imread(v)
+                        lr = misc.imread(v)
                         name_sep = v.replace(self.ext, '.npy')
-                        np.save(name_sep, img_lr)
+                        np.save(name_sep, lr)
 
             self.images_hr = [
                 v.replace(self.ext, '.npy') for v in self.images_hr
@@ -84,12 +84,11 @@ class SRData(data.Dataset):
         raise NotImplementedError
 
     def __getitem__(self, idx):
-        img_lr, img_hr = self._load_file(idx)
-        img_lr, img_hr = self._get_patch(img_lr, img_hr)
-        img_lr, img_hr = common.set_channel(
-            img_lr, img_hr, self.args.n_colors)
+        lr, hr = self._load_file(idx)
+        lr, hr = self._get_patch(lr, hr)
+        lr, hr = common.set_channel([lr, hr], self.args.n_colors)
 
-        return common.np2Tensor(img_lr, img_hr, self.args.rgb_range)
+        return common.np2Tensor([lr, hr], self.args.rgb_range)
 
     def __len__(self):
         return len(self.images_hr)
@@ -99,32 +98,31 @@ class SRData(data.Dataset):
 
     def _load_file(self, idx):
         idx = self._get_index(idx)
-        img_lr = self.images_lr[self.idx_scale][idx]
-        img_hr = self.images_hr[idx]
+        lr = self.images_lr[self.idx_scale][idx]
+        hr = self.images_hr[idx]
         if self.args.ext == 'img':
-            img_lr = misc.imread(img_lr)
-            img_hr = misc.imread(img_hr)
+            lr = misc.imread(lr)
+            hr = misc.imread(hr)
         elif self.args.ext.find('sep') >= 0:
-            img_lr = np.load(img_lr)
-            img_hr = np.load(img_hr)
+            lr = np.load(lr)
+            hr = np.load(hr)
 
-        return img_lr, img_hr
+        return lr, hr
 
-    def _get_patch(self, img_lr, img_hr):
+    def _get_patch(self, lr, hr):
         patch_size = self.args.patch_size
         scale = self.scale[self.idx_scale]
         multi_scale = len(self.scale) > 1
         if self.train:
-            img_lr, img_hr = common.get_patch(
-                img_lr, img_hr, patch_size, scale, multi_scale=multi_scale)
-            img_lr, img_hr = common.augment(img_lr, img_hr)
+            lr, hr = common.get_patch(
+                lr, hr, patch_size, scale, multi_scale=multi_scale
+            )
+            lr, hr = common.augment([lr, hr])
         else:
-            ih = img_lr.shape[0]
-            iw = img_lr.shape[1]
-            img_hr = img_hr[0:ih * scale, 0:iw * scale]
+            ih, iw = lr.shape[0:2]
+            hr = hr[0:ih * scale, 0:iw * scale]
 
-        return img_lr, img_hr
+        return lr, hr
 
     def set_scale(self, idx_scale):
         self.idx_scale = idx_scale
-

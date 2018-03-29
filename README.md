@@ -1,7 +1,7 @@
 # EDSR-PyTorch
 ![](/figs/main.png)
 
-This repository is a PyTorch version of the paper **"Enhanced Deep Residual Networks for Single Image Super-Resolution"** from **CVPRW 2017**.
+This repository is an official PyTorch implementation of the paper **"Enhanced Deep Residual Networks for Single Image Super-Resolution"** from **CVPRW 2017, 2nd NTIRE**.
 You can find the original code and more information from [here](https://github.com/LimBee/NTIRE2017).
 
 If you find our work useful in your research or publication, please cite our work:
@@ -16,30 +16,27 @@ If you find our work useful in your research or publication, please cite our wor
   year = {2017}
 }
 ```
-This repository provides some demo codes for reproducing all the results from the paper. (Include training scripts.)
-
-Also, pre-trained model will be uploaded soon.
+We provide scripts for reproducing all the results from our paper. You can train your own model from scratch, or use pre-trained model to enlarge your images.
 
 **Differences between Torch version**
 * Codes are much more compact. (Removed all unnecessary parts.)
-* Models are smaller. (About half in their sizes.)
+* Models are smaller. (About half.)
 * Slightly better performances.
-* Training requires less memory.
-* Test is faster.
+* Training and evaluation requires less memory.
 * Python-based.
 
 **Recent updates**
-* Mar 20, 2018
-  * Use ``--ext sep_reset`` to pre-decode large png files. Those decoded files will be saved to the same directory with DIV2K png files. After the first run, you can use ``--ext sep`` to save time.
-  * Now supports various benchmark datasets. For example, try ``--data_test Set5`` to test your model on the Set5 images.
-  * Changed the behavior of skip_batch.
+* Mar 29, 2018
+  * We now provide all models from our paper.
+  * We also provide ``MDSR_baseline_jpeg`` model that suppresses JPEG artifacts in original low-resolution image. Please use it if you have any trouble.
+  * ``MyImage`` dataset is changed to ``Demo`` dataset. Also, it works more efficient than before.
+  * Some codes and script are re-written.
 
 ## Dependencies
 * Python (Tested with 3.6)
 * PyTorch >= 0.3.1
 
 ## Code
-
 Clone this repository into any place you want.
 ```bash
 git clone https://github.com/thstkdgus35/EDSR-PyTorch
@@ -47,51 +44,49 @@ cd EDSR-PyTorch
 ```
 
 ## Quick start (Demo)
-You can test our super-resolution algorithm with your own images.
+You can test our super-resolution algorithm with your own images. Place your images in ``test`` folder. (like ``test/<your_image>``) We support **png** and **jpeg** files.
 
-Place your images in ```test``` folder. (like ```test/puppy.jpeg```)
-
-Then, run the provided script in ```code``` folder.
-
-Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
+Run the script in ``code`` folder. Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
 ```bash
 cd code       # You are now in */EDSR-PyTorch/code
 sh demo.sh
 ```
 
-You can find the result images from ```experiment/test_<modelName>``` folder.
+You can find the result images from ```experiment/test/results``` folder.
 
-We provide some pre-trained models. (Not full version, baseline ONLY.) You can find the model from the ```experiment/model```.
-Also, these models have better performance than the original Torch7 models.
-
-| Model | Scale | File name | ResBlocks | Filters | Parameters | **PSNR (PyTorch)** | PSNR (Torch7) |
-|  ---  |  ---  | ---       | ---       | ---     | ---        | ---  | ---         |
-| **EDSR** | 2 | EDSR_baseline_x2.pt | 16 | 64 | 1.5M | 34.61 | 34.55 |
-| **EDSR** | 3 | EDSR_baseline_x3.pt | 16 | 64 | 1.5M | 30.92 | 30.90 |
-| **EDSR** | 4 | EDSR_baseline_x4.pt | 16 | 64 | 1.5M | 28.95 | 28.94 |
-| **MDSR** | 2 | MDSR_baseline.pt | 16 | 64 | 3.2M | 34.63 | 34.60 |
-| | 3 | | | | | 30.94 | 30.91 |
-| | 4 | | | | | 28.97 | 28.95 |
-
-*We measured PSNR using DIV2K 0801 ~ 0900
+| Model | Scale | File name (.pt) | Parameters | **PSNR (PyTorch)** | PSNR (Torch7) |
+|  ---  |  ---  | ---       | ---        | ---  | ---         |
+| **EDSR** | 2 | EDSR_baseline_x2 | 1.5M | 34.61 | 34.55 |
+| **EDSR** | 3 | EDSR_baseline_x3 | 1.5M | 30.92 | 30.90 |
+| **EDSR** | 4 | EDSR_baseline_x4 | 1.5M | 28.95 | 28.94 |
+| **MDSR** | 2 | MDSR_baseline | 3.2M | 34.63 | 34.60 |
+| | 3 | | | 30.94 | 30.91 |
+| | 4 | | | 28.97 | 28.95 |
+*Baseline models are in ``experiment/model``. Please download our final models from [here](https://cv.snu.ac.kr/research/EDSR/model_pytorch.tar) (486MB)
+**We measured PSNR using DIV2K 0801 ~ 0900, without self-ensemble.
 
 You can evaluate your models with widely-used benchmark:
+
 [Set5 - Bevilacqua et al. BMVC 2012](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html),
+
 [Set14 - Zeyde et al. LNCS 2010](https://sites.google.com/site/romanzeyde/research-interests),
+
 [B100 - Martin et al. ICCV 2001](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/),
+
 [Urban100 - Huang et al. CVPR 2015](https://sites.google.com/site/jbhuang0604/publications/struct_sr).
-For these datasets, we first convert the results images to YCbCr color space and use Y channel only. Please unpack [this file](https://cv.snu.ac.kr/research/EDSR/benchmark.tar) (250MB) to any place you want. Then, set ``--dir_data <where_benchmark_folder_located>`` to evaluate the models.
+
+For these datasets, we first convert the result images to YCbCr color space and evaluate PSNR on the Y channel only. Download [this file](https://cv.snu.ac.kr/research/EDSR/benchmark.tar) (250MB) and untar it to any place you want. Then, set ``--dir_data <where_benchmark_folder_located>`` to evaluate the models.
 
 ## How to train EDSR and MDSR
-We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset for training. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
+We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset to train our model. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
 
-Unpack the tar file to any place you want. Then, change the ```dir_data``` argument in ```code/option.py``` to the place where you unpack DIV2K images.
+Unpack the tar file to any place you want. Then, change the ```dir_data``` argument in ```code/option.py``` to the place where DIV2K images are located.
 
-We recommend you to pre-process the images before training. This step will decode and collect all png files into one huge binary file. Use ```code/tools/png2binary.py``` for this process.
+We recommend you to pre-process the images before training. This step will decode all **png** files and save them as binaries. Use ``--ext sep_reset`` argument on your first run. You can skip the decoding part and use saved binaries with ``--ext sep`` argument.
 
-If you do not have enough RAM (>= 16GB), change the ```ext``` argument in ```code/option.py``` to ```png```. However, each image in DIV2K is so large that disk access and decoding png files can be a bottleneck.
+If you have enough RAM (>= 32GB), you can use ``--ext bin`` argument to pack all DIV2K images in one binary file.
 
-Training scripts are also included in ``demo.sh``. By uncommenting the appropriate line and executing the script, you can train EDSR and MDSR by yourself. Note that EDSR (x3, x4) requires pre-trained EDSR (x2). By removing ```--pre_train``` argument in the provided script, you can ignore this constraint.
+You can train EDSR and MDSR by yourself. All scripts are provided in the ``code/demo.sh``. Note that EDSR (x3, x4) requires pre-trained EDSR (x2). You can ignore this constraint by removing ```--pre_train <x2 model>``` argument.
 
 ```bash
 cd code       # You are now in */EDSR-PyTorch/code
@@ -140,3 +135,7 @@ sh demo.sh
   * Now --ext img is default setting. Although we recommend you to use --ext bin when training, please use --ext img when you use --test_only.
   * Skip_batch operation is implemented. Use --skip_threshold argument to skip the batch that you want to ignore. Although this function is not exactly same with that of Torch7 version, it will work as you expected.
 
+* Mar 20, 2018
+  * Use ``--ext sep_reset`` to pre-decode large png files. Those decoded files will be saved to the same directory with DIV2K png files. After the first run, you can use ``--ext sep`` to save time.
+  * Now supports various benchmark datasets. For example, try ``--data_test Set5`` to test your model on the Set5 images.
+  * Changed the behavior of skip_batch.
