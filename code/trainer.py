@@ -102,19 +102,20 @@ class Trainer():
                     lr, hr = self.prepare([lr, hr], volatile=True)
                     filename = idx_img + 1
 
+                rgb_range = self.args.rgb_range
                 sr = _test_forward(lr, scale)
-                sr = utility.quantize(sr, self.args.rgb_range)
+                sr = utility.quantize(sr, rgb_range)
 
                 if no_eval:
                     save_list = [sr]
                 else:
                     eval_acc += utility.calc_PSNR(
                         sr,
-                        hr.div(self.args.rgb_range),
+                        hr.div(rgb_range),
                         set_name,
                         scale
                     )
-                    save_list = [sr, lr, hr]
+                    save_list = [sr, lr.div(rgb_range), hr.div(rgb_range)]
 
                 if self.args.save_results:
                     self.ckp.save_results(filename, save_list, scale)

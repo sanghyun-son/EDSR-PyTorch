@@ -215,7 +215,7 @@ class checkpoint():
         postfix = ('SR', 'LR', 'HR')
         for v, p in zip(save_list, postfix):
             tu.save_image(
-                v.data[0].div(self.args.rgb_range),
+                v.data[0],
                 '{}{}.png'.format(filename, p),
                 padding=0
             )
