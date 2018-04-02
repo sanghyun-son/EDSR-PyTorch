@@ -89,7 +89,7 @@ class Trainer():
                 return self.model(x)
 
         timer_test = utility.timer()
-        set_name = type(self.loader_test.dataset).__name__
+        set_name = self.args.data_test
         for idx_scale, scale in enumerate(self.scale):
             eval_acc = 0
             self._scale_change(idx_scale, self.loader_test)

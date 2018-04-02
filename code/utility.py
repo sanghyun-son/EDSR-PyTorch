@@ -77,7 +77,7 @@ class checkpoint():
             f.write('\n')
 
     def load(self):
-        my_model = model(self.args).get_model()
+        my_model = model().get_model(self.args)
         trainable = filter(lambda x: x.requires_grad, my_model.parameters())
 
         if self.args.optimizer == 'SGD':
@@ -214,7 +214,11 @@ class checkpoint():
         filename = '{}/results/{}_x{}_'.format(self.dir, filename, scale)
         postfix = ('SR', 'LR', 'HR')
         for v, p in zip(save_list, postfix):
-            tu.save_image(v.data[0], '{}{}.png'.format(filename, p), padding=0)
+            tu.save_image(
+                v.data[0].div(self.args.rgb_range),
+                '{}{}.png'.format(filename, p),
+                padding=0
+            )
 
 def chop_forward(x, model, scale, shave=10, min_size=80000, n_GPUs=1):
     n_GPUs = min(n_GPUs, 4)

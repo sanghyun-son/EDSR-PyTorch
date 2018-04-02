@@ -9,10 +9,10 @@ import scipy.misc as misc
 import torch
 import torch.utils.data as data
 
-class ImgFolder(srdata.SRData):
+class Benchmark(srdata.SRData):
     def __init__(self, args, train=True):
         self.repeat = args.test_every // (args.n_train // args.batch_size)
-        super(ImgFolder, self).__init__(args, train)
+        super(Benchmark, self).__init__(args, train)
 
     def _scan(self):
         list_hr = []
@@ -29,7 +29,10 @@ class ImgFolder(srdata.SRData):
         return list_hr, list_lr
 
     def _set_filesystem(self, dir_data):
-        raise NotImplementedError
+        self.apath = os.path.join(dir_data, 'benchmark', self.args.data_test)
+        self.dir_hr = os.path.join(self.apath, 'HR')
+        self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
+        self.ext = '.png'
 
     def __len__(self):
         return len(self.images_hr)

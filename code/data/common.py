@@ -49,6 +49,19 @@ def np2Tensor(l, rgb_range):
 
     return [_np2Tensor(_l) for _l in l]
 
+def add_noise(x, noise='.'):
+    if noise is not '.':
+        noise_type = noise[0]
+        noise_value = int(noise[1:])
+        if noise_type == 'G':
+            gaussian_noise = np.random.normal(scale=noise_value, size=x.shape)
+            gaussian_noise = gaussian_noise.round()
+            x_noise = x.astype(np.int16) + gaussian_noise.astype(np.int16)
+            x_noise = x_noise.clip(0, 255).astype(np.uint8)
+            return x_noise
+
+    return x
+
 def augment(l, hflip=True, rot=True):
     hflip = hflip and random.random() < 0.5
     vflip = rot and random.random() < 0.5

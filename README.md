@@ -62,7 +62,8 @@ You can find the result images from ```experiment/test/results``` folder.
 | **MDSR** | 2 | MDSR_baseline | 3.2M | 34.63 | 34.60 |
 | | 3 | | | 30.94 | 30.91 |
 | | 4 | | | 28.97 | 28.95 |
-*Baseline models are in ``experiment/model``. Please download our final models from [here](https://cv.snu.ac.kr/research/EDSR/model_pytorch.tar) (486MB)
+
+*Baseline models are in ``experiment/model``. Please download our final models from [here](https://cv.snu.ac.kr/research/EDSR/model_pytorch.tar) (542MB)
 **We measured PSNR using DIV2K 0801 ~ 0900, without self-ensemble.
 
 You can evaluate your models with widely-used benchmark:

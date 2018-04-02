@@ -1,4 +1,4 @@
-def setTemplate(args):
+def set_template(args):
     # Set the templates here
     if args.template.find('jpeg') >= 0:
         args.data_train = 'DIV2K_jpeg'
