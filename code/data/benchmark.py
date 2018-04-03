@@ -11,8 +11,9 @@ import torch.utils.data as data
 
 class Benchmark(srdata.SRData):
     def __init__(self, args, train=True):
-        self.repeat = args.test_every // (args.n_train // args.batch_size)
         super(Benchmark, self).__init__(args, train)
+        self.repeat = args.test_every // (args.n_train // args.batch_size)
+        self.benchmark = True
 
     def _scan(self):
         list_hr = []

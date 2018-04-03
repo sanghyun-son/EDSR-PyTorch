@@ -13,6 +13,7 @@ class SRData(data.Dataset):
         self.args = args
         self.train = train
         self.split = 'train' if train else 'test'
+        self.benchmark = False
         self.scale = args.scale
         self.idx_scale = 0
 
