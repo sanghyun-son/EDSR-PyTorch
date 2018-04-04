@@ -16,32 +16,38 @@ class MDSR(nn.Module):
         act = nn.ReLU(True)
 
         rgb_mean = (0.4488, 0.4371, 0.4040)
-        self.sub_mean = common.MeanShift(args.rgb_range, rgb_mean, -1)
+        rgb_std = (1.0, 1.0, 1.0)
+        self.sub_mean = common.MeanShift(args.rgb_range, rgb_mean, rgb_std)
 
-        modules_head = [conv(args.n_colors, n_feats, kernel_size)]
+        m_head = [conv(args.n_colors, n_feats, kernel_size)]
 
         self.pre_process = nn.ModuleList([
             nn.Sequential(
                 common.ResBlock(conv, n_feats, 5, act=act),
-                common.ResBlock(conv, n_feats, 5, act=act)) \
-            for _ in args.scale])
+                common.ResBlock(conv, n_feats, 5, act=act)
+            ) for _ in args.scale
+        ])
 
-        modules_body = [
-            common.ResBlock(conv, n_feats, kernel_size, act=act) \
-            for _ in range(n_resblocks)]
-        modules_body.append(conv(n_feats, n_feats, kernel_size))
+        m_body = [
+            common.ResBlock(
+                conv, n_feats, kernel_size, act=act
+            ) for _ in range(n_resblocks)
+        ]
+        m_body.append(conv(n_feats, n_feats, kernel_size))
 
         self.upsample = nn.ModuleList([
-            common.Upsampler(conv, s, n_feats, act=False) \
-            for s in args.scale])
+            common.Upsampler(
+                conv, s, n_feats, act=False
+            ) for s in args.scale
+        ])
 
-        modules_tail = [conv(n_feats, args.n_colors, kernel_size)]
+        m_tail = [conv(n_feats, args.n_colors, kernel_size)]
 
-        self.add_mean = common.MeanShift(args.rgb_range, rgb_mean, 1)
+        self.add_mean = common.MeanShift(args.rgb_range, rgb_mean, rgb_std, 1)
 
-        self.head = nn.Sequential(*modules_head)
-        self.body = nn.Sequential(*modules_body)
-        self.tail = nn.Sequential(*modules_tail)
+        self.head = nn.Sequential(*m_head)
+        self.body = nn.Sequential(*m_body)
+        self.tail = nn.Sequential(*m_tail)
 
     def forward(self, x):
         x = self.sub_mean(x)

@@ -11,8 +11,8 @@ import torch.utils.data as data
 
 class DIV2K(srdata.SRData):
     def __init__(self, args, train=True):
-        self.repeat = args.test_every // (args.n_train // args.batch_size)
         super(DIV2K, self).__init__(args, train)
+        self.repeat = args.test_every // (args.n_train // args.batch_size)
 
     def _scan(self):
         list_hr = []

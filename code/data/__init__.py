@@ -17,12 +17,12 @@ class data:
             benchmark = False
 
         kwargs = {}
-        if args.no_cuda:
-            kwargs['collate_fn'] = default_collate
-            kwargs['pin_memory'] = False
-        else:
+        if not args.cpu:
             kwargs['collate_fn'] = default_collate
             kwargs['pin_memory'] = True
+        else:
+            kwargs['collate_fn'] = default_collate
+            kwargs['pin_memory'] = False
 
         loader_train = None
         if not args.test_only:

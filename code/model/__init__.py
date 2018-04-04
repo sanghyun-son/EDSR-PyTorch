@@ -21,7 +21,7 @@ class Model(nn.Module):
             print('Loading model from {}...'.format(args.pre_train))
             self.model.load_state_dict(torch.load(args.pre_train))
 
-        if not args.no_cuda:
+        if not args.cpu:
             print('\tCUDA is ready!')
             torch.cuda.manual_seed(args.seed)
             self.model.cuda()
@@ -47,13 +47,9 @@ class Model(nn.Module):
         else:
             return self.model(x)
 
-    def state_dict(self, destination=None, prefix='', keep_vars=False):
+    def state_dict(self, **kwargs):
         target = self.get_target()
-        return target.state_dict(
-            destination=destination,
-            prefix=prefix,
-            keep_vars=keep_vars
-        )
+        return target.state_dict(**kwargs)
 
     def get_target(self):
         if self.n_GPUs == 1:
@@ -61,7 +57,7 @@ class Model(nn.Module):
         else:
             return self.model.module
 
-    def chop_forward(self, x, scale, shave=10, min_size=80000):
+    def chop_forward(self, x, scale, shave=10, min_size=160000):
         n_GPUs = min(self.n_GPUs, 4)
         b, c, h, w = x.size()
         h_half, w_half = h // 2, w // 2

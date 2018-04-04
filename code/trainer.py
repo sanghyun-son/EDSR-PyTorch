@@ -25,8 +25,9 @@ class Trainer():
         lr = self.scheduler.get_lr()[0]
 
         self.ckp.write_log(
-            '[Epoch {}]\tLearning rate: {:.2e}'.format(epoch, Decimal(lr)))
-        self.ckp.add_log(torch.zeros(1, len(self.loss)))
+            '[Epoch {}]\tLearning rate: {:.2e}'.format(epoch, Decimal(lr))
+        )
+        self.loss.start_log()
         self.model.train()
 
         timer_data, timer_model = utility.timer(), utility.timer()
@@ -39,7 +40,6 @@ class Trainer():
             self.optimizer.zero_grad()
             sr = self.model(lr, self.args.scale[idx_scale])
             loss = self.loss(sr, hr)
-            self.ckp.log_training[-1] += self.loss.log
             if loss.data[0] < self.args.skip_threshold * self.error_last:
                 loss.backward()
                 self.optimizer.step()
@@ -54,14 +54,14 @@ class Trainer():
                 self.ckp.write_log('[{}/{}]\t{}\t{:.1f}+{:.1f}s'.format(
                     (batch + 1) * self.args.batch_size,
                     len(self.loader_train.dataset),
-                    self._display_loss(batch),
+                    self.loss.display_loss(batch),
                     timer_model.release(),
                     timer_data.release()))
 
             timer_data.tic()
 
-        self.ckp.log_training[-1, :] /= len(self.loader_train)
-        self.error_last = self.ckp.log_training[-1, :][0]
+        self.loss.end_log(len(self.loader_train))
+        self.error_last = self.loss.log[-1, -1]
 
     def test(self):
         epoch = self.scheduler.last_epoch + 1
@@ -83,7 +83,7 @@ class Trainer():
                     lr, hr = self.prepare([lr, hr], volatile=True)
                     filename = idx_img + 1
 
-                sr = self.model(lr, scale)
+                sr = self.model(lr, idx_scale)
                 sr = utility.quantize(sr, self.args.rgb_range)
 
                 if no_eval:
@@ -123,7 +123,7 @@ class Trainer():
 
     def prepare(self, l, volatile=False):
         def _prepare(idx, tensor):
-            if not self.args.no_cuda:
+            if not self.args.cpu:
                 tensor = tensor.cuda()
 
             if self.args.precision == 'half':
@@ -135,14 +135,6 @@ class Trainer():
             return var
            
         return [_prepare(i, _l) for i, _l in enumerate(l)]
-
-    def _display_loss(self, batch):
-        n_samples = batch + 1
-        log = []
-        for t, l in zip(self.loss.get_types(), self.ckp.log_training[-1]):
-            log.append('[{}: {:.4f}]'.format(t, l / n_samples))
-
-        return ''.join(log)
 
     def terminate(self):
         if self.args.test_only:

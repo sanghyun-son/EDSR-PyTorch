@@ -4,16 +4,14 @@ import time
 import datetime
 from functools import reduce
 
+import loss
+import model
+
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import numpy as np
-import skimage.io as sio
-import skimage.color as sc
-
-import loss
-import model
 
 import torch
 import torch.optim as optim
@@ -112,12 +110,10 @@ class checkpoint():
                 milestones=milestones,
                 gamma=self.args.gamma)
 
-        self.log_training = torch.Tensor()
         self.log_test = torch.Tensor()
         my_loss = loss.Loss(self.args)
         if self.args.load != '.':
             if not self.args.test_only:
-                self.log_training = torch.load(self.dir + '/log_training.pt')
                 self.log_test = torch.load(self.dir + '/log_test.pt')
 
             resume = self.args.resume
@@ -132,7 +128,6 @@ class checkpoint():
                 )
 
             print('Load loss function from checkpoint...')
-            my_loss.load_state_dict(torch.load(self.dir + '/loss.pt'))
             my_optimizer.load_state_dict(
                 torch.load(self.dir + '/optimizer.pt')
             )
@@ -142,10 +137,7 @@ class checkpoint():
         return my_model, my_loss, my_optimizer, my_scheduler
 
     def add_log(self, log, train=True):
-        if train:
-            self.log_training = torch.cat([self.log_training, log])
-        else:
-            self.log_test = torch.cat([self.log_test, log])
+        self.log_test = torch.cat([self.log_test, log])
 
     def save(self, trainer, epoch, is_best=False):
         state = trainer.model.state_dict()
@@ -157,11 +149,11 @@ class checkpoint():
             if self.args.save_models:
                 save_list.append((state, 'model/model_{}.pt'.format(epoch)))
 
-            save_list.append((trainer.loss.state_dict(), 'loss.pt'))
+            trainer.loss.save(self.dir)
             save_list.append((trainer.optimizer.state_dict(), 'optimizer.pt'))
-            save_list.append((self.log_training, 'log_training.pt'))
             save_list.append((self.log_test, 'log_test.pt'))
-            self.plot(trainer, epoch, self.log_training, self.log_test)
+            trainer.loss.plot_loss(self.dir, epoch)
+            self.plot(trainer, epoch, self.log_test)
 
         for o, p in save_list:
             torch.save(o, os.path.join(self.dir, p))
@@ -176,7 +168,7 @@ class checkpoint():
     def done(self):
         self.log_file.close()
 
-    def plot(self, trainer, epoch, training, test):
+    def plot(self, trainer, epoch, test):
         axis = np.linspace(1, epoch, epoch)
 
         def _init_figure(label):
@@ -190,13 +182,6 @@ class checkpoint():
         def _close_figure(fig, filename):
             plt.savefig(filename)
             plt.close(fig)
-
-        for i, loss in enumerate(trainer.loss):
-            label = '{} Loss'.format(loss['type'])
-            fig = _init_figure(label)
-            plt.plot(axis, training[:, i].numpy(), label=label)
-            plt.legend()
-            _close_figure(fig, '{}/loss_{}.pdf'.format(self.dir, loss['type']))
 
         set_name = type(trainer.loader_test.dataset).__name__
         fig = _init_figure('SR on {}'.format(set_name))
