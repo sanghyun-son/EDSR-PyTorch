@@ -9,11 +9,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import numpy as np
+import scipy.misc as misc
 
 import torch
 import torch.optim as optim
 import torch.optim.lr_scheduler as lrs
-import torchvision.utils as tu
 
 class timer():
     def __init__(self):
@@ -130,11 +130,8 @@ class checkpoint():
         filename = '{}/results/{}_x{}_'.format(self.dir, filename, scale)
         postfix = ('SR', 'LR', 'HR')
         for v, p in zip(save_list, postfix):
-            tu.save_image(
-                v.data[0].div(255),
-                '{}{}.png'.format(filename, p),
-                padding=0
-            )
+            ndarr = v[0].data.byte().permute(1, 2, 0).cpu().numpy()
+            misc.imsave('{}{}.png'.format(filename, p), ndarr)
 
 def quantize(img, rgb_range):
     return img.mul(255 / rgb_range).clamp(0, 255).round()

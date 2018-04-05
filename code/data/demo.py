@@ -21,6 +21,7 @@ class Demo(data.Dataset):
         for f in os.listdir(apath):
             if f.find('.png') >= 0 or f.find('.jp') >= 0:
                 self.filelist.append(os.path.join(apath, f))
+        self.filelist.sort()
 
     def __getitem__(self, idx):
         filename = os.path.split(self.filelist[idx])[-1]
