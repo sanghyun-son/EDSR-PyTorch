@@ -20,7 +20,6 @@ class Model(nn.Module):
 
         module = import_module('model.' + args.model.lower())
         self.model = module.make_model(args)
-        self.load(ckp.dir, pre_train=args.pre_train, resume=args.resume)
 
         if not args.cpu:
             torch.cuda.manual_seed(args.seed)
@@ -32,6 +31,7 @@ class Model(nn.Module):
                 gpu_list = range(0, args.n_GPUs)
                 self.model = nn.DataParallel(self.model, gpu_list)
 
+        self.load(ckp.dir, pre_train=args.pre_train, resume=args.resume)
         if args.print_model:
             print(self.model)
 
@@ -78,17 +78,22 @@ class Model(nn.Module):
     def load(self, apath, pre_train='.', resume=-1):
         if resume == -1:
             self.get_model().load_state_dict(
-                torch.load(os.path.join(apath, 'model', 'model_latest.pt'))
+                torch.load(os.path.join(apath, 'model', 'model_latest.pt')),
+                strict=False
             )
         elif resume == 0:
             if pre_train != '.':
                 print('Loading model from {}'.format(pre_train))
-                self.get_model().load_state_dict(torch.load(pre_train))
+                self.get_model().load_state_dict(
+                    torch.load(pre_train),
+                    strict=False
+                )
         else:
             self.get_model().load_state_dict(
                 torch.load(
                     os.path.join(apath, 'model', 'model_{}.pt'.format(resume))
-                )
+                ),
+                strict=False
             )
 
     def forward_chop(self, x, scale, shave=10, min_size=160000):
