@@ -12,9 +12,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class Loss(nn.modules.loss._Loss):
-    def __init__(self, args):
+    def __init__(self, args, ckp):
         super(Loss, self).__init__()
-        print('Preparing loss function...')
+        print('Preparing loss function:')
 
         self.loss = []
         self.loss_module = nn.ModuleList()
@@ -48,7 +48,6 @@ class Loss(nn.modules.loss._Loss):
         if len(self.loss) > 1:
             self.loss.append({'type': 'Total', 'weight': 0, 'function': None})
 
-        print('Loss:')
         for l in self.loss:
             if l['function'] is not None:
                 print('{:.3f} * {}'.format(l['weight'], l['type']))
@@ -56,9 +55,12 @@ class Loss(nn.modules.loss._Loss):
 
         self.log = torch.Tensor()
 
-        if args.load != '.': self.load(args.dir)
+        if args.load != '.': self.load(ckp.dir)
         if not args.cpu:
             self.loss_module.cuda()
+            if args.precision == 'half':
+                self.loss_module.half()
+
             if args.n_GPUs > 1:
                 gpu_list = range(0, args.n_GPUs)
                 self.loss_module = nn.DataParallel(self.loss_module, gpu_list)
@@ -80,6 +82,11 @@ class Loss(nn.modules.loss._Loss):
 
         return loss_sum
     
+    def step(self):
+        for l in self.loss_module:
+            if hasattr(l, 'scheduler'):
+                l.scheduler.step()
+
     def start_log(self):
         self.log = torch.cat((self.log, torch.zeros(1, len(self.loss))))
 
@@ -106,7 +113,7 @@ class Loss(nn.modules.loss._Loss):
             plt.xlabel('Epochs')
             plt.ylabel('Loss')
             plt.grid(True)
-            plt.savefig('{}/loss_{}.pdf}'.format(apath, l['type']))
+            plt.savefig('{}/loss_{}.pdf'.format(apath, l['type']))
             plt.close(fig)
 
     def save(self, apath):
@@ -116,3 +123,7 @@ class Loss(nn.modules.loss._Loss):
     def load(self, apath):
         self.load_state_dict(torch.load(os.path.join(apath, 'loss.pt')))
         self.log = torch.load(os.path.join(apath, 'loss_log.pt'))
+        for l in self.loss_module:
+            if hasattr(l, 'scheduler'):
+                for _ in range(len(self.log)): l.scheduler.step()
+

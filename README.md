@@ -26,11 +26,9 @@ We provide scripts for reproducing all the results from our paper. You can train
 * Python-based.
 
 **Recent updates**
-* Mar 29, 2018
-  * We now provide all models from our paper.
-  * We also provide ``MDSR_baseline_jpeg`` model that suppresses JPEG artifacts in original low-resolution image. Please use it if you have any trouble.
-  * ``MyImage`` dataset is changed to ``Demo`` dataset. Also, it works more efficient than before.
-  * Some codes and script are re-written.
+* Apr 5, 2018
+  * VGG and Adversarial loss is implemented based on [SRGAN](http://openaccess.thecvf.com/content_cvpr_2017/papers/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.pdf).
+  * Now moving some codes from ``code/utility.py`` to their appropriate location.
 
 ## Dependencies
 * Python (Tested with 3.6)
@@ -140,3 +138,9 @@ sh demo.sh
   * Use ``--ext sep_reset`` to pre-decode large png files. Those decoded files will be saved to the same directory with DIV2K png files. After the first run, you can use ``--ext sep`` to save time.
   * Now supports various benchmark datasets. For example, try ``--data_test Set5`` to test your model on the Set5 images.
   * Changed the behavior of skip_batch.
+
+* Mar 29, 2018
+  * We now provide all models from our paper.
+  * We also provide ``MDSR_baseline_jpeg`` model that suppresses JPEG artifacts in original low-resolution image. Please use it if you have any trouble.
+  * ``MyImage`` dataset is changed to ``Demo`` dataset. Also, it works more efficient than before.
+  * Some codes and script are re-written.

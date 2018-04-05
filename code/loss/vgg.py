@@ -27,9 +27,10 @@ class VGG(nn.Module):
             x = self.vgg(x)
             return x
             
-        hr.volatile = True
-        hr.requires_grad = True
-        vgg_sr, vgg_hr = [_forward(v) for v in (sr, hr)]
+        hr_detach = hr.detach()
+        hr_detach.volatile = True
+        hr_detach.requires_grad = False
+        vgg_sr, vgg_hr = [_forward(v) for v in (sr, hr_detach)]
         loss = F.mse_loss(vgg_sr, vgg_hr)
 
         return loss

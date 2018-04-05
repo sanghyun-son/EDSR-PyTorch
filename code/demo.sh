@@ -40,3 +40,6 @@ python main.py --data_test Demo --scale 4 --pre_train ../experiment/model/EDSR_b
 
 # Advanced - Test with JPEG images 
 #python main.py --model MDSR --data_test Demo --scale 2+3+4 --pre_train ../experiment/model/MDSR_baseline_jpeg.pt --test_only --save_results
+
+# Advanced - Training with adversarial loss
+#python main.py --template GAN --scale 4 --save EDSR_GAN --reset --patch_size 96 --loss 5*VGG54+0.1*GAN --pre_train ../experiment/model/EDSR_baseline_x4.pt

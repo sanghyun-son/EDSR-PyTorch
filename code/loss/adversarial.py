@@ -1,3 +1,4 @@
+import utility
 from model import common
 from loss import discriminator
 
@@ -13,16 +14,12 @@ class Adversarial(nn.Module):
         self.args = args
         self.gan_type = gan_type
         self.discriminator = discriminator.Discriminator(args)
-        self.optimizer = optim.Adam(
-            self.discriminator.parameters(),
-            lr=args.lr,
-            betas=(args.beta1, args.beta2),
-            eps=args.epsilon
-        )
+        self.optimizer = utility.make_optimizer(args, self.discriminator)
+        self.scheduler = utility.make_scheduler(args, self.optimizer)
         self.loss_d = 0
 
     def forward(self, fake, real):
-        self.optimizer.zero_grad()      # Move this line to change the update policy
+        self.optimizer.zero_grad()
 
         d_fake = self.discriminator(fake.detach())
         d_real = self.discriminator(real)
@@ -61,8 +58,12 @@ class Adversarial(nn.Module):
         # Loss for the generator
         return loss_g
     
-    def state_dict(self, **kwargs):
-        state_discriminator = self.discriminator.state_dict(**kwargs)
+    def state_dict(self, destination=None, prefix='', keep_vars=False):
+        state_discriminator = self.discriminator.state_dict(
+            destination=destination,
+            prefix=prefix,
+            keep_vars=keep_vars
+        )
         state_optimizer = self.optimizer.state_dict()
 
         return dict(**state_discriminator, **state_optimizer)

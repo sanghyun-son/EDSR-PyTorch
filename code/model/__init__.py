@@ -1,3 +1,4 @@
+import os
 from importlib import import_module
 
 import torch
@@ -5,59 +6,92 @@ import torch.nn as nn
 from torch.autograd import Variable
 
 class Model(nn.Module):
-    def __init__(self, args):
+    def __init__(self, args, ckp):
         super(Model, self).__init__()
         print('Making model...')
 
         self.scale = args.scale
         self.self_ensemble = args.self_ensemble
-        self.chop = args.chop_forward
+        self.chop = args.chop
         self.precision = args.precision
         self.n_GPUs = args.n_GPUs
 
+        self.save_models = args.save_models
+
         module = import_module('model.' + args.model.lower())
         self.model = module.make_model(args)
-        if args.pre_train != '.':
-            print('Loading model from {}...'.format(args.pre_train))
-            self.model.load_state_dict(torch.load(args.pre_train))
+        self.load(ckp.dir, pre_train=args.pre_train, resume=args.resume)
 
         if not args.cpu:
-            print('\tCUDA is ready!')
             torch.cuda.manual_seed(args.seed)
             self.model.cuda()
-
             if args.precision == 'half':
                 self.model.half()
 
             if args.n_GPUs > 1:
-                self.model = nn.DataParallel(self.model, range(0, args.n_GPUs))
+                gpu_list = range(0, args.n_GPUs)
+                self.model = nn.DataParallel(self.model, gpu_list)
 
         if args.print_model:
             print(self.model)
 
     def forward(self, x, idx_scale):
-        target = self.get_target()
+        target = self.get_model()
         if hasattr(target, 'set_scale'):
             target.set_scale(idx_scale)
 
         if self.self_ensemble and not self.training:
-            return self.x8_forward(x)
-        elif self.chop_forward and not self.training:
-            return self.chop_forward(x, self.scale[idx_scale])
+            return self.forward_x8(x)
+        elif self.forward_chop and not self.training:
+            return self.forward_chop(x, self.scale[idx_scale])
         else:
             return self.model(x)
 
-    def state_dict(self, **kwargs):
-        target = self.get_target()
-        return target.state_dict(**kwargs)
-
-    def get_target(self):
+    def get_model(self):
         if self.n_GPUs == 1:
             return self.model
         else:
             return self.model.module
 
-    def chop_forward(self, x, scale, shave=10, min_size=160000):
+    def state_dict(self, **kwargs):
+        target = self.get_model()
+        return target.state_dict(**kwargs)
+
+    def save(self, apath, epoch, is_best=False):
+        target = self.get_model()
+        torch.save(
+            target.state_dict(), 
+            os.path.join(apath, 'model', 'model_latest.pt')
+        )
+        if is_best:
+            torch.save(
+                target.state_dict(),
+                os.path.join(apath, 'model', 'model_best.pt')
+            )
+        
+        if self.save_models:
+            torch.save(
+                target.state_dict(),
+                os.path.join(apath, 'model', 'model_{}.pt'.format(epoch))
+            )
+
+    def load(self, apath, pre_train='.', resume=-1):
+        if resume == -1:
+            self.get_model().load_state_dict(
+                torch.load(os.path.join(apath, 'model', 'model_latest.pt'))
+            )
+        elif resume == 0:
+            if pre_train != '.':
+                print('Loading model from {}'.format(pre_train))
+                self.get_model().load_state_dict(torch.load(pre_train))
+        else:
+            self.get_model().load_state_dict(
+                torch.load(
+                    os.path.join(apath, 'model', 'model_{}.pt'.format(resume))
+                )
+            )
+
+    def forward_chop(self, x, scale, shave=10, min_size=160000):
         n_GPUs = min(self.n_GPUs, 4)
         b, c, h, w = x.size()
         h_half, w_half = h // 2, w // 2
@@ -76,7 +110,7 @@ class Model(nn.Module):
                 sr_list.extend(sr_batch.chunk(n_GPUs, dim=0))
         else:
             sr_list = [
-                self.chop_forward(patch, scale, shave, min_size) \
+                self.forward_chop(patch, scale, shave, min_size) \
                 for patch in lr_list
             ]
 
@@ -97,7 +131,7 @@ class Model(nn.Module):
 
         return output
 
-    def x8_forward(self, x):
+    def forward_x8(self, x):
         def _transform(v, op):
             if self.precision != 'single':
                 v = v.float()

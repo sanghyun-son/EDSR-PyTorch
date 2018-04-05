@@ -11,9 +11,8 @@ import torch.utils.data as data
 
 class Benchmark(srdata.SRData):
     def __init__(self, args, train=True):
-        super(Benchmark, self).__init__(args, train)
+        super(Benchmark, self).__init__(args, train, benchmark=True)
         self.repeat = args.test_every // (args.n_train // args.batch_size)
-        self.benchmark = True
 
     def _scan(self):
         list_hr = []
@@ -26,6 +25,10 @@ class Benchmark(srdata.SRData):
                     self.dir_lr,
                     'X{}/{}x{}{}'.format(s, filename, s, self.ext)
                 ))
+
+        list_hr.sort()
+        for l in list_lr:
+            l.sort()
 
         return list_hr, list_lr
 

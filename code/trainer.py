@@ -1,3 +1,4 @@
+import os
 import math
 from decimal import Decimal
 
@@ -7,20 +8,29 @@ import torch
 from torch.autograd import Variable
 
 class Trainer():
-    def __init__(self, loader, ckp, args):
+    def __init__(self, args, loader, my_model, my_loss, ckp):
         self.args = args
         self.scale = args.scale
 
-        self.loader_train, self.loader_test = loader
-        self.model, self.loss, self.optimizer, self.scheduler = ckp.load()
         self.ckp = ckp
+        self.loader_train = loader.loader_train
+        self.loader_test = loader.loader_test
+        self.model = my_model
+        self.loss = my_loss
+        self.optimizer = utility.make_optimizer(args, self.model)
+        self.scheduler = utility.make_scheduler(args, self.optimizer)
 
-        self.log_training = 0
-        self.log_test = 0
+        if self.args.load != '.':
+            self.optimizer.load_state_dict(
+                torch.load(os.path.join(ckp.dir, 'optimizer.pt'))
+            )
+            for _ in range(len(ckp.log)): self.scheduler.step()
+
         self.error_last = 1e8
 
     def train(self):
         self.scheduler.step()
+        self.loss.step()
         epoch = self.scheduler.last_epoch + 1
         lr = self.scheduler.get_lr()[0]
 
@@ -66,11 +76,10 @@ class Trainer():
     def test(self):
         epoch = self.scheduler.last_epoch + 1
         self.ckp.write_log('\nEvaluation:')
-        self.ckp.add_log(torch.zeros(1, len(self.scale)), False)
+        self.ckp.add_log(torch.zeros(1, len(self.scale)))
         self.model.eval()
 
         timer_test = utility.timer()
-        set_name = self.args.data_test
         for idx_scale, scale in enumerate(self.scale):
             eval_acc = 0
             self.loader_test.dataset.set_scale(idx_scale)
@@ -86,40 +95,34 @@ class Trainer():
                 sr = self.model(lr, idx_scale)
                 sr = utility.quantize(sr, self.args.rgb_range)
 
-                if no_eval:
-                    save_list = [sr]
-                else:
+                save_list = [sr]
+                if not no_eval:
                     eval_acc += utility.calc_PSNR(
-                        sr,
-                        hr,
-                        scale,
+                        sr, hr, scale,
                         benchmark=self.loader_test.dataset.benchmark
                     )
-                    save_list = [sr, lr, hr]
+                    save_list.extend([lr, hr])
 
                 if self.args.save_results:
                     self.ckp.save_results(filename, save_list, scale)
 
-            self.ckp.log_test[-1, idx_scale] = eval_acc / len(self.loader_test)
-            best = self.ckp.log_test.max(0)
+            self.ckp.log[-1, idx_scale] = eval_acc / len(self.loader_test)
+            best = self.ckp.log.max(0)
             performance = 'PSNR: {:.3f}'.format(
-                self.ckp.log_test[-1, idx_scale]
+                self.ckp.log[-1, idx_scale]
             )
             self.ckp.write_log(
                 '[{} x{}]\t{} (Best: {:.3f} from epoch {})'.format(
-                    set_name,
-                    scale,
-                    performance,
-                    best[0][idx_scale],
-                    best[1][idx_scale] + 1
+                    self.args.data_test, scale, performance,
+                    best[0][idx_scale], best[1][idx_scale] + 1
                 )
             )
 
-        is_best = (best[1][0] + 1 == epoch)
         self.ckp.write_log(
             'Time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
         )
-        self.ckp.save(self, epoch, is_best=is_best)
+        if not self.args.test_only:
+            self.ckp.save(self, epoch, is_best=(best[1][0] + 1 == epoch))
 
     def prepare(self, l, volatile=False):
         def _prepare(idx, tensor):
@@ -143,3 +146,4 @@ class Trainer():
         else:
             epoch = self.scheduler.last_epoch + 1
             return epoch >= self.args.epochs
+

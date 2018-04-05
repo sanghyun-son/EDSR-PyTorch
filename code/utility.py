@@ -4,9 +4,6 @@ import time
 import datetime
 from functools import reduce
 
-import loss
-import model
-
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -17,7 +14,6 @@ import torch
 import torch.optim as optim
 import torch.optim.lr_scheduler as lrs
 import torchvision.utils as tu
-from torch.autograd import Variable
 
 class timer():
     def __init__(self):
@@ -46,6 +42,7 @@ class checkpoint():
     def __init__(self, args):
         self.args = args
         self.ok = True
+        self.log = torch.Tensor()
         now = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
 
         if args.load == '.':
@@ -53,7 +50,11 @@ class checkpoint():
             self.dir = '../experiment/' + args.save
         else:
             self.dir = '../experiment/' + args.load
-            if not os.path.exists(self.dir): args.load = '.'
+            if not os.path.exists(self.dir):
+                args.load = '.'
+            else:
+                self.log = torch.load(self.dir + '/log.pt')
+                print('Continue from epoch {}...'.format(len(self.log)))
 
         if args.reset:
             os.system('rm -rf ' + self.dir)
@@ -74,89 +75,20 @@ class checkpoint():
                 f.write('{}: {}\n'.format(arg, getattr(args, arg)))
             f.write('\n')
 
-    def load(self):
-        my_model = model.Model(self.args)
-        trainable = filter(lambda x: x.requires_grad, my_model.parameters())
-
-        if self.args.optimizer == 'SGD':
-            optimizer_function = optim.SGD
-            kwargs = {'momentum': self.args.momentum}
-        elif self.args.optimizer == 'ADAM':
-            optimizer_function = optim.Adam
-            kwargs = {
-                'betas': (self.args.beta1, self.args.beta2),
-                'eps': self.args.epsilon
-            }
-        elif self.args.optimizer == 'RMSprop':
-            optimizer_function = optim.RMSprop
-            kwargs = {'eps': self.args.epsilon}
-
-        kwargs['lr'] = self.args.lr
-        kwargs['weight_decay'] = 0
-        my_optimizer = optimizer_function(trainable, **kwargs)
-
-        if self.args.decay_type == 'step':
-            my_scheduler = lrs.StepLR(
-                my_optimizer,
-                step_size=self.args.lr_decay,
-                gamma=self.args.gamma)
-
-        elif self.args.decay_type.find('step') >= 0:
-            milestones = self.args.decay_type.split('_')
-            milestones.pop(0)
-            milestones = list(map(lambda x: int(x), milestones))
-            my_scheduler = lrs.MultiStepLR(
-                my_optimizer,
-                milestones=milestones,
-                gamma=self.args.gamma)
-
-        self.log_test = torch.Tensor()
-        my_loss = loss.Loss(self.args)
-        if self.args.load != '.':
-            if not self.args.test_only:
-                self.log_test = torch.load(self.dir + '/log_test.pt')
-
-            resume = self.args.resume
-            if resume == -1:
-                my_model.load_state_dict(
-                    torch.load(self.dir + '/model/model_latest.pt')
-                )
-                resume = len(self.log_test)
-            else:
-                my_model.load_state_dict(
-                    torch.load(self.dir + '/model/model_{}.pt'.format(resume))
-                )
-
-            print('Load loss function from checkpoint...')
-            my_optimizer.load_state_dict(
-                torch.load(self.dir + '/optimizer.pt')
-            )
-
-            print('Continue from epoch {}...'.format(resume))
-
-        return my_model, my_loss, my_optimizer, my_scheduler
-
-    def add_log(self, log, train=True):
-        self.log_test = torch.cat([self.log_test, log])
-
     def save(self, trainer, epoch, is_best=False):
-        state = trainer.model.state_dict()
+        trainer.model.save(self.dir, epoch, is_best=is_best)
+        trainer.loss.save(self.dir)
+        trainer.loss.plot_loss(self.dir, epoch)
+        self.plot(trainer, epoch, self.log)
 
-        save_list = [(state, 'model/model_latest.pt')]
-        if not self.args.test_only:
-            if is_best:
-                save_list.append((state, 'model/model_best.pt'))
-            if self.args.save_models:
-                save_list.append((state, 'model/model_{}.pt'.format(epoch)))
-
-            trainer.loss.save(self.dir)
-            save_list.append((trainer.optimizer.state_dict(), 'optimizer.pt'))
-            save_list.append((self.log_test, 'log_test.pt'))
-            trainer.loss.plot_loss(self.dir, epoch)
-            self.plot(trainer, epoch, self.log_test)
-
+        save_list = []
+        save_list.append((trainer.optimizer.state_dict(), 'optimizer.pt'))
+        save_list.append((self.log, 'log.pt'))
         for o, p in save_list:
             torch.save(o, os.path.join(self.dir, p))
+
+    def add_log(self, log):
+        self.log = torch.cat([self.log, log])
 
     def write_log(self, log, refresh=False):
         print(log)
@@ -199,7 +131,7 @@ class checkpoint():
         postfix = ('SR', 'LR', 'HR')
         for v, p in zip(save_list, postfix):
             tu.save_image(
-                v.data[0],
+                v.data[0].div(255),
                 '{}{}.png'.format(filename, p),
                 padding=0
             )
@@ -233,3 +165,44 @@ def calc_PSNR(sr, hr, scale, benchmark=False):
     mse = valid.pow(2).mean()
 
     return -10 * math.log10(mse)
+
+def make_optimizer(args, my_model):
+    trainable = filter(lambda x: x.requires_grad, my_model.parameters())
+
+    if args.optimizer == 'SGD':
+        optimizer_function = optim.SGD
+        kwargs = {'momentum': args.momentum}
+    elif args.optimizer == 'ADAM':
+        optimizer_function = optim.Adam
+        kwargs = {
+            'betas': (args.beta1, args.beta2),
+            'eps': args.epsilon
+        }
+    elif args.optimizer == 'RMSprop':
+        optimizer_function = optim.RMSprop
+        kwargs = {'eps': args.epsilon}
+
+    kwargs['lr'] = args.lr
+    kwargs['weight_decay'] = 0
+    
+    return optimizer_function(trainable, **kwargs)
+
+def make_scheduler(args, my_optimizer):
+    if args.decay_type == 'step':
+        scheduler = lrs.StepLR(
+            my_optimizer,
+            step_size=args.lr_decay,
+            gamma=args.gamma
+        )
+
+    elif args.decay_type.find('step') >= 0:
+        milestones = args.decay_type.split('_')
+        milestones.pop(0)
+        milestones = list(map(lambda x: int(x), milestones))
+        scheduler = lrs.MultiStepLR(
+            my_optimizer,
+            milestones=milestones,
+            gamma=args.gamma
+        )
+
+    return scheduler

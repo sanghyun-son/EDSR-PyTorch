@@ -9,11 +9,11 @@ import torch
 import torch.utils.data as data
 
 class SRData(data.Dataset):
-    def __init__(self, args, train=True):
+    def __init__(self, args, train=True, benchmark=False):
         self.args = args
         self.train = train
         self.split = 'train' if train else 'test'
-        self.benchmark = False
+        self.benchmark = benchmark
         self.scale = args.scale
         self.idx_scale = 0
 
@@ -24,7 +24,7 @@ class SRData(data.Dataset):
             self.images_lr = [
                 np.load(self._name_lrbin(s)) for s in self.scale]
 
-        if args.ext == 'img':
+        if args.ext == 'img' or benchmark:
             self.images_hr, self.images_lr = self._scan()
         elif args.ext.find('sep') >= 0:
             self.images_hr, self.images_lr = self._scan()
@@ -101,7 +101,7 @@ class SRData(data.Dataset):
         idx = self._get_index(idx)
         lr = self.images_lr[self.idx_scale][idx]
         hr = self.images_hr[idx]
-        if self.args.ext == 'img':
+        if self.args.ext == 'img' or self.benchmark:
             lr = misc.imread(lr)
             hr = misc.imread(hr)
         elif self.args.ext.find('sep') >= 0:
