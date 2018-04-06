@@ -180,7 +180,7 @@ def make_optimizer(args, my_model):
         kwargs = {'eps': args.epsilon}
 
     kwargs['lr'] = args.lr
-    kwargs['weight_decay'] = 0
+    kwargs['weight_decay'] = args.weight_decay
     
     return optimizer_function(trainable, **kwargs)
 
