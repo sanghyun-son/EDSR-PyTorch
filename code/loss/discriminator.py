@@ -3,15 +3,19 @@ from model import common
 import torch.nn as nn
 
 class Discriminator(nn.Module):
-    def __init__(self, args):
+    def __init__(self, args, gan_type='GAN'):
         super(Discriminator, self).__init__()
 
         in_channels = 3
         out_channels = 64
         depth = 7
+        #bn = not gan_type == 'WGAN_GP'
+        bn = True
         act = nn.LeakyReLU(negative_slope=0.2, inplace=True)
 
-        m_features = [common.BasicBlock(args.n_colors, out_channels, 3, act=act)]
+        m_features = [
+            common.BasicBlock(args.n_colors, out_channels, 3, bn=bn, act=act)
+        ]
         for i in range(depth):
             in_channels = out_channels
             if i % 2 == 1:
@@ -20,7 +24,7 @@ class Discriminator(nn.Module):
             else:
                 stride = 2
             m_features.append(common.BasicBlock(
-                in_channels, out_channels, 3, stride=stride, act=act
+                in_channels, out_channels, 3, stride=stride, bn=bn, act=act
             ))
 
         self.features = nn.Sequential(*m_features)
