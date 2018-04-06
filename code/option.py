@@ -25,6 +25,8 @@ parser.add_argument('--data_train', type=str, default='DIV2K',
                     help='train dataset name')
 parser.add_argument('--data_test', type=str, default='DIV2K',
                     help='test dataset name')
+parser.add_argument('--benchmark_noise', action='store_true',
+                    help='use noisy benchmark sets')
 parser.add_argument('--n_train', type=int, default=800,
                     help='number of training set')
 parser.add_argument('--n_val', type=int, default=10,
@@ -106,6 +108,8 @@ parser.add_argument('--beta2', type=float, default=0.999,
                     help='ADAM beta2')
 parser.add_argument('--epsilon', type=float, default=1e-8,
                     help='ADAM epsilon for numerical stability')
+parser.add_argument('--weight_decay', type=float, default=0,
+                    help='weight decay')
 
 # Loss specifications
 parser.add_argument('--loss', type=str, default='1*L1',

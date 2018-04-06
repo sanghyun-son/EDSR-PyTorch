@@ -12,7 +12,6 @@ import torch.utils.data as data
 class Benchmark(srdata.SRData):
     def __init__(self, args, train=True):
         super(Benchmark, self).__init__(args, train, benchmark=True)
-        self.repeat = args.test_every // (args.n_train // args.batch_size)
 
     def _scan(self):
         list_hr = []
@@ -37,10 +36,3 @@ class Benchmark(srdata.SRData):
         self.dir_hr = os.path.join(self.apath, 'HR')
         self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
         self.ext = '.png'
-
-    def __len__(self):
-        return len(self.images_hr)
-
-    def _get_index(self, idx):
-        return idx
-
