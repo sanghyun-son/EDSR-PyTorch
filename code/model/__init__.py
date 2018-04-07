@@ -11,9 +11,11 @@ class Model(nn.Module):
         print('Making model...')
 
         self.scale = args.scale
+        self.idx_scale = 0
         self.self_ensemble = args.self_ensemble
         self.chop = args.chop
         self.precision = args.precision
+        self.cpu = args.cpu
         self.n_GPUs = args.n_GPUs
 
         self.save_models = args.save_models
@@ -41,14 +43,20 @@ class Model(nn.Module):
             print(self.model)
 
     def forward(self, x, idx_scale):
+        self.idx_scale = idx_scale
         target = self.get_model()
         if hasattr(target, 'set_scale'):
             target.set_scale(idx_scale)
 
         if self.self_ensemble and not self.training:
-            return self.forward_x8(x)
-        elif self.forward_chop and not self.training:
-            return self.forward_chop(x, self.scale[idx_scale])
+            if self.chop:
+                forward_function = self.forward_chop
+            else:
+                forward_function = self.model.forward
+
+            return self.forward_x8(x, forward_function)
+        elif self.chop and not self.training:
+            return self.forward_chop(x)
         else:
             return self.model(x)
 
@@ -110,7 +118,8 @@ class Model(nn.Module):
                 strict=False
             )
 
-    def forward_chop(self, x, scale, shave=10, min_size=160000):
+    def forward_chop(self, x, shave=10, min_size=160000):
+        scale = self.scale[self.idx_scale]
         n_GPUs = min(self.n_GPUs, 4)
         b, c, h, w = x.size()
         h_half, w_half = h // 2, w // 2
@@ -150,7 +159,7 @@ class Model(nn.Module):
 
         return output
 
-    def forward_x8(self, x):
+    def forward_x8(self, x, forward_function):
         def _transform(v, op):
             if self.precision != 'single':
                 v = v.float()
@@ -163,7 +172,7 @@ class Model(nn.Module):
             elif op == 't':
                 tfnp = v2np.transpose((0, 1, 3, 2)).copy()
 
-            ret = torch.Tensor(tfnp).cuda()
+            if not self.cpu: ret = torch.Tensor(tfnp).cuda()
             if self.precision == 'half': ret = ret.half()
 
             return Variable(ret, volatile=True)
@@ -172,7 +181,7 @@ class Model(nn.Module):
         for tf in 'v', 'h', 't':
             lr_list.extend([_transform(t, tf) for t in lr_list])
 
-        sr_list = [self.model(aug) for aug in lr_list]
+        sr_list = [forward_function(aug) for aug in lr_list]
         for i in range(len(sr_list)):
             if i > 3:
                 sr_list[i] = _transform(sr_list[i], 't')
@@ -185,3 +194,4 @@ class Model(nn.Module):
         output = output_cat.mean(dim=0, keepdim=True)
 
         return output
+
