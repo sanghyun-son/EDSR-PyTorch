@@ -31,7 +31,12 @@ class Model(nn.Module):
                 gpu_list = range(0, args.n_GPUs)
                 self.model = nn.DataParallel(self.model, gpu_list)
 
-        self.load(ckp.dir, pre_train=args.pre_train, resume=args.resume)
+        self.load(
+            ckp.dir,
+            pre_train=args.pre_train,
+            resume=args.resume,
+            cpu=args.cpu
+        )
         if args.print_model:
             print(self.model)
 
@@ -75,23 +80,32 @@ class Model(nn.Module):
                 os.path.join(apath, 'model', 'model_{}.pt'.format(epoch))
             )
 
-    def load(self, apath, pre_train='.', resume=-1):
+    def load(self, apath, pre_train='.', resume=-1, cpu=False):
+        if cpu:
+            kwargs = {'map_location': lambda storage, loc: storage}
+        else:
+            kwargs = {}
+
         if resume == -1:
             self.get_model().load_state_dict(
-                torch.load(os.path.join(apath, 'model', 'model_latest.pt')),
+                torch.load(
+                    os.path.join(apath, 'model', 'model_latest.pt')
+                    **kwargs,
+                ),
                 strict=False
             )
         elif resume == 0:
             if pre_train != '.':
                 print('Loading model from {}'.format(pre_train))
                 self.get_model().load_state_dict(
-                    torch.load(pre_train),
+                    torch.load(pre_train, **kwargs),
                     strict=False
                 )
         else:
             self.get_model().load_state_dict(
                 torch.load(
-                    os.path.join(apath, 'model', 'model_{}.pt'.format(resume))
+                    os.path.join(apath, 'model', 'model_{}.pt'.format(resume)),
+                    **kwargs
                 ),
                 strict=False
             )
@@ -142,35 +156,32 @@ class Model(nn.Module):
                 v = v.float()
 
             v2np = v.data.cpu().numpy()
-            if op == 'vflip':
+            if op == 'v':
                 tfnp = v2np[:, :, :, ::-1].copy()
-            elif op == 'hflip':
+            elif op == 'h':
                 tfnp = v2np[:, :, ::-1, :].copy()
-            elif op == 'transpose':
+            elif op == 't':
                 tfnp = v2np.transpose((0, 1, 3, 2)).copy()
-            
-            ret = torch.Tensor(tfnp).cuda()
 
-            if self.precision == 'half':
-                ret = ret.half()
+            ret = torch.Tensor(tfnp).cuda()
+            if self.precision == 'half': ret = ret.half()
 
             return Variable(ret, volatile=True)
 
         lr_list = [x]
-        for tf in 'vflip', 'hflip', 'transpose':
+        for tf in 'v', 'h', 't':
             lr_list.extend([_transform(t, tf) for t in lr_list])
 
         sr_list = [self.model(aug) for aug in lr_list]
         for i in range(len(sr_list)):
             if i > 3:
-                sr_list[i] = _transform(sr_list[i], 'transpose')
+                sr_list[i] = _transform(sr_list[i], 't')
             if i % 4 > 1:
-                sr_list[i] = _transform(sr_list[i], 'hflip')
+                sr_list[i] = _transform(sr_list[i], 'h')
             if (i % 4) % 2 == 1:
-                sr_list[i] = _transform(sr_list[i], 'vflip')
+                sr_list[i] = _transform(sr_list[i], 'v')
 
         output_cat = torch.cat(sr_list, dim=0)
         output = output_cat.mean(dim=0, keepdim=True)
-        #output = output_cat.median(dim=0, keepdim=True)[0]
 
         return output

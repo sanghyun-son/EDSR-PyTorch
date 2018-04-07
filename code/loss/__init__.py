@@ -121,7 +121,15 @@ class Loss(nn.modules.loss._Loss):
         torch.save(self.log, os.path.join(apath, 'loss_log.pt'))
 
     def load(self, apath):
-        self.load_state_dict(torch.load(os.path.join(apath, 'loss.pt')))
+        if cpu:
+            kwargs = {'map_location': lambda storage, loc: storage}
+        else:
+            kwargs = {}
+
+        self.load_state_dict(torch.load(
+            os.path.join(apath, 'loss.pt'),
+            **kwargs
+        ))
         self.log = torch.load(os.path.join(apath, 'loss_log.pt'))
         for l in self.loss_module:
             if hasattr(l, 'scheduler'):
