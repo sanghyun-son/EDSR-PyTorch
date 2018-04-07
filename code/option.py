@@ -95,7 +95,7 @@ parser.add_argument('--lr_decay', type=int, default=200,
                     help='learning rate decay per N epochs')
 parser.add_argument('--decay_type', type=str, default='step',
                     help='learning rate decay type')
-parser.add_argument('--gamma', type=int, default=0.5,
+parser.add_argument('--gamma', type=float, default=0.5,
                     help='learning rate decay factor for step decay')
 parser.add_argument('--optimizer', default='ADAM',
                     choices=('SGD', 'ADAM', 'RMSprop'),
