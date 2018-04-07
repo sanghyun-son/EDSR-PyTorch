@@ -6,6 +6,7 @@ import utility
 
 import torch
 from torch.autograd import Variable
+from tqdm import tqdm
 
 class Trainer():
     def __init__(self, args, loader, my_model, my_loss, ckp):
@@ -83,7 +84,8 @@ class Trainer():
         for idx_scale, scale in enumerate(self.scale):
             eval_acc = 0
             self.loader_test.dataset.set_scale(idx_scale)
-            for idx_img, (lr, hr, _) in enumerate(self.loader_test):
+            tqdm_test = tqdm(self.loader_test, ncols=80)
+            for idx_img, (lr, hr, _) in enumerate(tqdm_test):
                 no_eval = isinstance(hr[0], torch._six.string_classes)
                 if no_eval:
                     lr = self.prepare([lr], volatile=True)[0]
@@ -108,34 +110,25 @@ class Trainer():
 
             self.ckp.log[-1, idx_scale] = eval_acc / len(self.loader_test)
             best = self.ckp.log.max(0)
-            performance = 'PSNR: {:.3f}'.format(
-                self.ckp.log[-1, idx_scale]
-            )
             self.ckp.write_log(
-                '[{} x{}]\t{} (Best: {:.3f} from epoch {})'.format(
-                    self.args.data_test, scale, performance,
+                '[{} x{}]\tPSNR: {:.3f} (Best: {:.3f} from epoch {})'.format(
+                    self.args.data_test, scale, self.ckp.log[-1, idx_scale],
                     best[0][idx_scale], best[1][idx_scale] + 1
                 )
             )
 
         self.ckp.write_log(
-            'Time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
+            'Total time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
         )
         if not self.args.test_only:
             self.ckp.save(self, epoch, is_best=(best[1][0] + 1 == epoch))
 
     def prepare(self, l, volatile=False):
         def _prepare(idx, tensor):
-            if not self.args.cpu:
-                tensor = tensor.cuda()
-
-            if self.args.precision == 'half':
-                tensor = tensor.half()
-
+            if not self.args.cpu: tensor = tensor.cuda()
+            if self.args.precision == 'half': tensor = tensor.half()
             # Only test lr can be volatile
-            var = Variable(tensor, volatile=(volatile and idx==0))
-            
-            return var
+            return Variable(tensor, volatile=(volatile and idx==0))
            
         return [_prepare(i, _l) for i, _l in enumerate(l)]
 

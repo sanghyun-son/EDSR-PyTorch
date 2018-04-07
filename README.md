@@ -33,6 +33,10 @@ We provide scripts for reproducing all the results from our paper. You can train
 ## Dependencies
 * Python (Tested with 3.6)
 * PyTorch >= 0.3.1
+* numpy
+* scipy
+* matplotlib
+* tqdm
 
 ## Code
 Clone this repository into any place you want.
