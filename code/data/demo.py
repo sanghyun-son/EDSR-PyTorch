@@ -28,7 +28,7 @@ class Demo(data.Dataset):
         lr = misc.imread(self.filelist[idx])
         lr = common.set_channel([lr], self.args.n_colors)[0]
 
-        return common.np2Tensor([lr], self.args.rgb_range)[0], filename
+        return common.np2Tensor([lr], self.args.rgb_range)[0], -1, filename
 
     def __len__(self):
         return len(self.filelist)

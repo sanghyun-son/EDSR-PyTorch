@@ -42,7 +42,7 @@ class Trainer():
         self.model.train()
 
         timer_data, timer_model = utility.timer(), utility.timer()
-        for batch, (lr, hr, idx_scale) in enumerate(self.loader_train):
+        for batch, (lr, hr, _, idx_scale) in enumerate(self.loader_train):
             lr, hr = self.prepare([lr, hr])
 
             timer_data.hold()
@@ -85,21 +85,20 @@ class Trainer():
             eval_acc = 0
             self.loader_test.dataset.set_scale(idx_scale)
             tqdm_test = tqdm(self.loader_test, ncols=80)
-            for idx_img, (lr, hr, _) in enumerate(tqdm_test):
-                no_eval = isinstance(hr[0], torch._six.string_classes)
+            for idx_img, (lr, hr, filename, _) in enumerate(tqdm_test):
+                filename = filename[0]
+                no_eval = isinstance(hr[0], int)
                 if no_eval:
                     lr = self.prepare([lr], volatile=True)[0]
-                    filename = hr[0]
                 else:
                     lr, hr = self.prepare([lr, hr], volatile=True)
-                    filename = idx_img + 1
 
                 sr = self.model(lr, idx_scale)
                 sr = utility.quantize(sr, self.args.rgb_range)
 
                 save_list = [sr]
                 if not no_eval:
-                    eval_acc += utility.calc_PSNR(
+                    eval_acc += utility.calc_psnr(
                         sr, hr, scale,
                         benchmark=self.loader_test.dataset.benchmark
                     )

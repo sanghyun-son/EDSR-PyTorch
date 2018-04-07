@@ -81,7 +81,7 @@ class Loss(nn.modules.loss._Loss):
             self.log[-1, -1] += loss_sum.data[0]
 
         return loss_sum
-    
+
     def step(self):
         for l in self.loss_module:
             if hasattr(l, 'scheduler'):
@@ -103,7 +103,6 @@ class Loss(nn.modules.loss._Loss):
 
     def plot_loss(self, apath, epoch):
         axis = np.linspace(1, epoch, epoch)
-
         for i, l in enumerate(self.loss):
             label = '{} Loss'.format(l['type'])
             fig = plt.figure()

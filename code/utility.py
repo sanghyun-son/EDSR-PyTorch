@@ -79,13 +79,13 @@ class checkpoint():
         trainer.model.save(self.dir, epoch, is_best=is_best)
         trainer.loss.save(self.dir)
         trainer.loss.plot_loss(self.dir, epoch)
-        self.plot(trainer, epoch, self.log)
 
-        save_list = []
-        save_list.append((trainer.optimizer.state_dict(), 'optimizer.pt'))
-        save_list.append((self.log, 'log.pt'))
-        for o, p in save_list:
-            torch.save(o, os.path.join(self.dir, p))
+        self.plot_psnr(epoch)
+        torch.save(self.log, os.path.join(self.dir, 'psnr_log.pt'))
+        torch.save(
+            trainer.optimizer.state_dict(),
+            os.path.join(self.dir, 'optimizer.pt')
+        )
 
     def add_log(self, log):
         self.log = torch.cat([self.log, log])
@@ -100,31 +100,23 @@ class checkpoint():
     def done(self):
         self.log_file.close()
 
-    def plot(self, trainer, epoch, test):
+    def plot_psnr(self, epoch):
         axis = np.linspace(1, epoch, epoch)
-
-        def _init_figure(label):
-            fig = plt.figure()
-            plt.title(label)
-            plt.xlabel('Epochs')
-            plt.grid(True)
-
-            return fig
-           
-        def _close_figure(fig, filename):
-            plt.savefig(filename)
-            plt.close(fig)
-
-        set_name = type(trainer.loader_test.dataset).__name__
-        fig = _init_figure('SR on {}'.format(set_name))
+        label = 'SR on {}'.format(self.args.data_test)
+        fig = plt.figure()
+        plt.title(label)
         for idx_scale, scale in enumerate(self.args.scale):
-            legend = 'Scale {}'.format(scale)
-            plt.plot(axis, test[:, idx_scale].numpy(), label=legend)
-            plt.legend()
-
-        _close_figure(
-            fig,
-            '{}/test_{}.pdf'.format(self.dir, set_name))
+            plt.plot(
+                axis,
+                self.log[:, idx_scale].numpy(),
+                label='Scale {}'.format(scale)
+            )
+        plt.legend()
+        plt.xlabel('Epochs')
+        plt.ylabel('PSNR')
+        plt.grid(True)
+        plt.savefig('{}/test_{}.pdf'.format(self.dir, self.args.data_test))
+        plt.close(fig)
 
     def save_results(self, filename, save_list, scale):
         filename = '{}/results/{}_x{}_'.format(self.dir, filename, scale)
@@ -136,7 +128,7 @@ class checkpoint():
 def quantize(img, rgb_range):
     return img.mul(255 / rgb_range).clamp(0, 255).round()
 
-def calc_PSNR(sr, hr, scale, benchmark=False):
+def calc_psnr(sr, hr, scale, benchmark=False):
     '''
         Here we assume quantized(0-255) arguments.
         For Set5, Set14, B100, Urban100 dataset,
@@ -145,7 +137,6 @@ def calc_PSNR(sr, hr, scale, benchmark=False):
     diff = (sr - hr).data.div(255)
     _, c, h, w = diff.size()
 
-    # We will evaluate these datasets in y channel only
     if benchmark:
         shave = scale
         if c > 1:
@@ -191,7 +182,6 @@ def make_scheduler(args, my_optimizer):
             step_size=args.lr_decay,
             gamma=args.gamma
         )
-
     elif args.decay_type.find('step') >= 0:
         milestones = args.decay_type.split('_')
         milestones.pop(0)
