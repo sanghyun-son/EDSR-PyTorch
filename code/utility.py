@@ -135,11 +135,9 @@ def calc_psnr(sr, hr, scale, benchmark=False):
         we measure PSNR on luminance channel only
     '''
     diff = (sr - hr).data.div(255)
-    _, c, h, w = diff.size()
-
     if benchmark:
         shave = scale
-        if c > 1:
+        if diff.size(1) > 1:
             convert = diff.new(1, 3, 1, 1)
             convert[0, 0, 0, 0] = 65.738
             convert[0, 1, 0, 0] = 129.057
@@ -149,7 +147,7 @@ def calc_psnr(sr, hr, scale, benchmark=False):
     else:
         shave = scale + 6
 
-    valid = diff[:, :, shave:(h-shave), shave:(w-shave)]
+    valid = diff[:, :, shave:-shave, shave:-shave]
     mse = valid.pow(2).mean()
 
     return -10 * math.log10(mse)
@@ -193,3 +191,4 @@ def make_scheduler(args, my_optimizer):
         )
 
     return scheduler
+

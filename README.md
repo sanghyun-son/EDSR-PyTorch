@@ -26,10 +26,10 @@ We provide scripts for reproducing all the results from our paper. You can train
 * Python-based.
 
 **Recent updates**
-* Apr 5, 2018
-  * VGG and Adversarial loss is implemented based on [SRGAN](http://openaccess.thecvf.com/content_cvpr_2017/papers/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.pdf).
-  * Now moving some codes from ``code/utility.py`` to their appropriate location.
-
+* Apr 9, 2018
+  * VGG and Adversarial loss is implemented based on [SRGAN](http://openaccess.thecvf.com/content_cvpr_2017/papers/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.pdf). [WGAN](https://arxiv.org/abs/1701.07875) and [gradient penalty](https://arxiv.org/abs/1704.00028) are also implemented, but they are not tested yet.
+  * Many codes are refactored. If there exists a bug, please report it.
+  * [D-DBPN](https://arxiv.org/abs/1803.02735) is implemented. Default setting is D-DBPN-L.
 ## Dependencies
 * Python (Tested with 3.6)
 * PyTorch >= 0.3.1
@@ -56,19 +56,25 @@ sh demo.sh
 
 You can find the result images from ```experiment/test/results``` folder.
 
-| Model | Scale | File name (.pt) | Parameters | **PSNR (PyTorch)** | PSNR (Torch7) |
-|  ---  |  ---  | ---       | ---        | ---  | ---         |
-| **EDSR** | 2 | EDSR_baseline_x2 | 1.5M | 34.61 | 34.55 |
-| **EDSR** | 3 | EDSR_baseline_x3 | 1.5M | 30.92 | 30.90 |
-| **EDSR** | 4 | EDSR_baseline_x4 | 1.5M | 28.95 | 28.94 |
-| **MDSR** | 2 | MDSR_baseline | 3.2M | 34.63 | 34.60 |
-| | 3 | | | 30.94 | 30.91 |
-| | 4 | | | 28.97 | 28.95 |
+| Model | Scale | File name (.pt) | Parameters | ****PSNR** |
+|  ---  |  ---  | ---       | ---        | ---  |
+| **EDSR** | 2 | EDSR_baseline_x2 | 1.37 M | 34.61 dB |
+| | | *EDSR_x2 | 40.7 M | 35.03 dB |
+| | 3 | EDSR_baseline_x3 | 1.55 M | 30.92 dB |
+| | | *EDSR_x3 | 43.7 M | 31.26 dB |
+| | 4 | EDSR_baseline_x4 | 1.52 M | 28.95 dB |
+| | | *EDSR_x4 | 43.1 M | 29.25 dB |
+| **MDSR** | 2 | MDSR_baseline | 3.23 M | 34.63 dB |
+| | | *MDSR | 7.95 M| 34.92 dB |
+| | 3 | MDSR_baseline | | 30.94 dB |
+| | | *MDSR | | 31.22 dB |
+| | 4 | MDSR_baseline | | 28.97 dB |
+| | | *MDSR | | 29.24 dB |
 
 *Baseline models are in ``experiment/model``. Please download our final models from [here](https://cv.snu.ac.kr/research/EDSR/model_pytorch.tar) (542MB)
-**We measured PSNR using DIV2K 0801 ~ 0900, without self-ensemble.
+**We measured PSNR using DIV2K 0801 ~ 0900, RGB channels, without self-ensemble. (scale + 2) pixels from the image boundary are ignored.
 
-You can evaluate your models with widely-used benchmark:
+You can evaluate your models with widely-used benchmark datasets:
 
 [Set5 - Bevilacqua et al. BMVC 2012](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html),
 
@@ -78,7 +84,7 @@ You can evaluate your models with widely-used benchmark:
 
 [Urban100 - Huang et al. CVPR 2015](https://sites.google.com/site/jbhuang0604/publications/struct_sr).
 
-For these datasets, we first convert the result images to YCbCr color space and evaluate PSNR on the Y channel only. Download [this file](https://cv.snu.ac.kr/research/EDSR/benchmark.tar) (250MB) and untar it to any place you want. Then, set ``--dir_data <where_benchmark_folder_located>`` to evaluate the models.
+For these datasets, we first convert the result images to YCbCr color space and evaluate PSNR on the Y channel only. You can download [benchmark datasets](https://cv.snu.ac.kr/research/EDSR/benchmark.tar) (250MB). Set ``--dir_data <where_benchmark_folder_located>`` to evaluate the EDSR and MDSR with the benchmarks.
 
 ## How to train EDSR and MDSR
 We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset to train our model. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
