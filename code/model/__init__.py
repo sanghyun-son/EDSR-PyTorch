@@ -36,7 +36,6 @@ class Model(nn.Module):
         self.load(
             ckp.dir,
             pre_train=args.pre_train,
-            resume=args.resume,
             cpu=args.cpu
         )
         if args.print_model:

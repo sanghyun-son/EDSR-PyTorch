@@ -53,7 +53,7 @@ class checkpoint():
             if not os.path.exists(self.dir):
                 args.load = '.'
             else:
-                self.log = torch.load(self.dir + '/log.pt')
+                self.log = torch.load(self.dir + '/psnr_log.pt')
                 print('Continue from epoch {}...'.format(len(self.log)))
 
         if args.reset:

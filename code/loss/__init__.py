@@ -55,7 +55,7 @@ class Loss(nn.modules.loss._Loss):
 
         self.log = torch.Tensor()
 
-        if args.load != '.': self.load(ckp.dir)
+        if args.load != '.': self.load(ckp.dir, args.cpu)
         if not args.cpu:
             self.loss_module.cuda()
             if args.precision == 'half':
@@ -119,7 +119,7 @@ class Loss(nn.modules.loss._Loss):
         torch.save(self.state_dict(), os.path.join(apath, 'loss.pt'))
         torch.save(self.log, os.path.join(apath, 'loss_log.pt'))
 
-    def load(self, apath):
+    def load(self, apath, cpu=False):
         if cpu:
             kwargs = {'map_location': lambda storage, loc: storage}
         else:
