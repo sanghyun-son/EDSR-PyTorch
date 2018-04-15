@@ -122,19 +122,16 @@ class checkpoint():
         filename = '{}/results/{}_x{}_'.format(self.dir, filename, scale)
         postfix = ('SR', 'LR', 'HR')
         for v, p in zip(save_list, postfix):
-            ndarr = v[0].data.byte().permute(1, 2, 0).cpu().numpy()
+            normalized = v[0].data.mul(255 / self.args.rgb_range)
+            ndarr = normalized.byte().permute(1, 2, 0).cpu().numpy()
             misc.imsave('{}{}.png'.format(filename, p), ndarr)
 
 def quantize(img, rgb_range):
-    return img.mul(255 / rgb_range).clamp(0, 255).round()
+    pixel_range = 255 / rgb_range
+    return img.mul(pixel_range).clamp(0, 255).round().div(pixel_range)
 
-def calc_psnr(sr, hr, scale, benchmark=False):
-    '''
-        Here we assume quantized(0-255) arguments.
-        For Set5, Set14, B100, Urban100 dataset,
-        we measure PSNR on luminance channel only
-    '''
-    diff = (sr - hr).data.div(255)
+def calc_psnr(sr, hr, scale, rgb_range, benchmark=False):
+    diff = (sr - hr).data.div(rgb_range)
     if benchmark:
         shave = scale
         if diff.size(1) > 1:

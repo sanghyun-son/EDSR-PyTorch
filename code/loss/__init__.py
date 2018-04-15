@@ -55,7 +55,7 @@ class Loss(nn.modules.loss._Loss):
 
         self.log = torch.Tensor()
 
-        if args.load != '.': self.load(ckp.dir, args.cpu)
+        if args.load != '.': self.load(ckp.dir, cpu=args.cpu)
         if not args.cpu:
             self.loss_module.cuda()
             if args.precision == 'half':
