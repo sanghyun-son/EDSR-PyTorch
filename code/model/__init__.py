@@ -36,6 +36,7 @@ class Model(nn.Module):
         self.load(
             ckp.dir,
             pre_train=args.pre_train,
+            resume=args.resume,
             cpu=args.cpu
         )
         if args.print_model:
@@ -96,8 +97,8 @@ class Model(nn.Module):
         if resume == -1:
             self.get_model().load_state_dict(
                 torch.load(
-                    os.path.join(apath, 'model', 'model_latest.pt')
-                    **kwargs,
+                    os.path.join(apath, 'model', 'model_latest.pt'),
+                    **kwargs
                 ),
                 strict=False
             )
