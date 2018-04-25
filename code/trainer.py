@@ -48,7 +48,7 @@ class Trainer():
             timer_model.tic()
 
             self.optimizer.zero_grad()
-            sr = self.model(lr, self.args.scale[idx_scale])
+            sr = self.model(lr, idx_scale)
             loss = self.loss(sr, hr)
             if loss.item() < self.args.skip_threshold * self.error_last:
                 loss.backward()

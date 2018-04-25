@@ -32,18 +32,15 @@ class Adversarial(nn.Module):
             d_fake = self.discriminator(fake_detach)
             d_real = self.discriminator(real)
             if self.gan_type == 'GAN':
-                label_fake = Variable(d_fake.data.new(d_fake.size()).fill_(0))
-                label_real = Variable(d_real.data.new(d_real.size()).fill_(1))
+                label_fake = torch.zeros_like(d_fake)
+                label_real = torch.ones_like(d_real)
                 loss_d \
                     = F.binary_cross_entropy_with_logits(d_fake, label_fake) \
                     + F.binary_cross_entropy_with_logits(d_real, label_real)
             elif self.gan_type.find('WGAN') >= 0:
                 loss_d = (d_fake - d_real).mean()
                 if self.gan_type.find('GP') >= 0:
-                    epsilon = Variable(
-                        fake_detach.data.new(fake.size(0), 1, 1, 1).uniform_(),
-                        requires_grad=False
-                    )
+                    epsilon = torch.rand_like(fake).view(-1, 1, 1, 1)
                     hat = fake_detach.mul(1 - epsilon) + real.mul(epsilon)
                     hat.requires_grad = True
                     d_hat = self.discriminator(hat)
@@ -57,7 +54,7 @@ class Adversarial(nn.Module):
                     loss_d += gradient_penalty
 
             # Discriminator update
-            self.loss += loss_d.data[0]
+            self.loss += loss_d.item()
             loss_d.backward()
             self.optimizer.step()
 
