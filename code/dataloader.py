@@ -10,7 +10,7 @@ import torch.multiprocessing as multiprocessing
 from torch._C import _set_worker_signal_handlers, _update_worker_pids, \
     _remove_worker_pids, _error_if_any_worker_fails
 from torch.utils.data.dataloader import DataLoader
-from torch.utils.data.dataloader import DataLoaderIter
+from torch.utils.data.dataloader import _DataLoaderIter
 
 from torch.utils.data.dataloader import ExceptionWrapper
 from torch.utils.data.dataloader import _use_shared_memory
@@ -52,7 +52,7 @@ def _ms_loop(dataset, index_queue, data_queue, collate_fn, scale, seed, init_fn,
         else:
             data_queue.put((idx, samples))
 
-class MSDataLoaderIter(DataLoaderIter):
+class _MSDataLoaderIter(_DataLoaderIter):
     def __init__(self, loader):
         self.dataset = loader.dataset
         self.scale = loader.scale
@@ -67,7 +67,10 @@ class MSDataLoaderIter(DataLoaderIter):
 
         if self.num_workers > 0:
             self.worker_init_fn = loader.worker_init_fn
-            self.index_queue = multiprocessing.SimpleQueue()
+            self.index_queues = [
+                multiprocessing.Queue() for _ in range(self.num_workers)
+            ]
+            self.worker_queue_idx = 0
             self.worker_result_queue = multiprocessing.SimpleQueue()
             self.batches_outstanding = 0
             self.worker_pids_set = False
@@ -81,8 +84,16 @@ class MSDataLoaderIter(DataLoaderIter):
                 multiprocessing.Process(
                     target=_ms_loop,
                     args=(
-                        self.dataset, self.index_queue, self.worker_result_queue, self.collate_fn,
-                        self.scale, base_seed + i, self.worker_init_fn, i))
+                        self.dataset,
+                        self.index_queues[i],
+                        self.worker_result_queue,
+                        self.collate_fn,
+                        self.scale,
+                        base_seed + i,
+                        self.worker_init_fn,
+                        i
+                    )
+                )
                 for i in range(self.num_workers)]
 
             if self.pin_memory or self.timeout > 0:
@@ -130,4 +141,4 @@ class MSDataLoader(DataLoader):
         self.scale = args.scale
 
     def __iter__(self):
-        return MSDataLoaderIter(self)
+        return _MSDataLoaderIter(self)

@@ -25,18 +25,20 @@ We provide scripts for reproducing all the results from our paper. You can train
 * Training and evaluation requires less memory.
 * Python-based.
 
-**Recent updates**
-* Apr 9, 2018
-  * VGG and Adversarial loss is implemented based on [SRGAN](http://openaccess.thecvf.com/content_cvpr_2017/papers/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.pdf). [WGAN](https://arxiv.org/abs/1701.07875) and [gradient penalty](https://arxiv.org/abs/1704.00028) are also implemented, but they are not tested yet.
-  * Many codes are refactored. If there exists a bug, please report it.
-  * [D-DBPN](https://arxiv.org/abs/1803.02735) is implemented. Default setting is D-DBPN-L.
 ## Dependencies
 * Python (Tested with 3.6)
-* PyTorch >= 0.3.1
+* PyTorch >= 0.4.0
 * numpy
 * scipy
 * matplotlib
 * tqdm
+
+**Recent updates**
+
+* Apr 26, 2018
+  * Compatible with PyTorch 0.4.0
+  * Please use the legacy/0.3.1 branch if you are using the old version of PyTorch.
+  * Minor bug fixes
 
 ## Code
 Clone this repository into any place you want.
@@ -154,3 +156,9 @@ sh demo.sh
   * We also provide ``MDSR_baseline_jpeg`` model that suppresses JPEG artifacts in original low-resolution image. Please use it if you have any trouble.
   * ``MyImage`` dataset is changed to ``Demo`` dataset. Also, it works more efficient than before.
   * Some codes and script are re-written.
+
+* Apr 9, 2018
+  * VGG and Adversarial loss is implemented based on [SRGAN](http://openaccess.thecvf.com/content_cvpr_2017/papers/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.pdf). [WGAN](https://arxiv.org/abs/1701.07875) and [gradient penalty](https://arxiv.org/abs/1704.00028) are also implemented, but they are not tested yet.
+  * Many codes are refactored. If there exists a bug, please report it.
+  * [D-DBPN](https://arxiv.org/abs/1803.02735) is implemented. Default setting is D-DBPN-L.
+

@@ -55,15 +55,15 @@ class Loss(nn.modules.loss._Loss):
 
         self.log = torch.Tensor()
 
-        if args.load != '.': self.load(ckp.dir, cpu=args.cpu)
-        if not args.cpu:
-            self.loss_module.cuda()
-            if args.precision == 'half':
-                self.loss_module.half()
+        device = torch.device('cpu' if args.cpu else 'cuda')
+        self.loss_module.to(device)
+        if args.precision == 'half': self.loss_module.half()
+        if not args.cpu and args.n_GPUs > 1:
+            self.loss_module = nn.DataParallel(
+                self.loss_module, range(args.n_GPUs)
+            )
 
-            if args.n_GPUs > 1:
-                gpu_list = range(0, args.n_GPUs)
-                self.loss_module = nn.DataParallel(self.loss_module, gpu_list)
+        if args.load != '.': self.load(ckp.dir, cpu=args.cpu)
 
     def forward(self, sr, hr):
         losses = []
@@ -72,13 +72,13 @@ class Loss(nn.modules.loss._Loss):
                 loss = l['function'](sr, hr)
                 effective_loss = l['weight'] * loss
                 losses.append(effective_loss)
-                self.log[-1, i] += effective_loss.data[0]
+                self.log[-1, i] += effective_loss.item()
             elif l['type'] == 'DIS':
                 self.log[-1, i] += self.loss[i - 1]['function'].loss
 
         loss_sum = sum(losses)
         if len(self.loss) > 1:
-            self.log[-1, -1] += loss_sum.data[0]
+            self.log[-1, -1] += loss_sum.item()
 
         return loss_sum
 
