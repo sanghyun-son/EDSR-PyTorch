@@ -140,7 +140,7 @@ class Model(nn.Module):
         h_size, w_size = scale * h_size, scale * w_size
         shave *= scale
 
-        output = Variable(x.data.new(b, c, h, w), volatile=True)
+        output = x.new(b, c, h, w)
         output[:, :, 0:h_half, 0:w_half] \
             = sr_list[0][:, :, 0:h_half, 0:w_half]
         output[:, :, 0:h_half, w_half:w] \

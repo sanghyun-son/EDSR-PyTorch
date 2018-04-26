@@ -16,6 +16,7 @@ class Loss(nn.modules.loss._Loss):
         super(Loss, self).__init__()
         print('Preparing loss function:')
 
+        self.n_GPUs = args.n_GPUs
         self.loss = []
         self.loss_module = nn.ModuleList()
         for loss in args.loss.split('+'):
@@ -83,7 +84,7 @@ class Loss(nn.modules.loss._Loss):
         return loss_sum
 
     def step(self):
-        for l in self.loss_module:
+        for l in self.get_loss_module():
             if hasattr(l, 'scheduler'):
                 l.scheduler.step()
 
@@ -114,6 +115,12 @@ class Loss(nn.modules.loss._Loss):
             plt.grid(True)
             plt.savefig('{}/loss_{}.pdf'.format(apath, l['type']))
             plt.close(fig)
+
+    def get_loss_module(self):
+        if self.n_GPUs == 1:
+            return self.loss_module
+        else:
+            return self.loss_module.module
 
     def save(self, apath):
         torch.save(self.state_dict(), os.path.join(apath, 'loss.pt'))
