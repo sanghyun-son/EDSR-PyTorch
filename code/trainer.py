@@ -87,7 +87,7 @@ class Trainer():
                 tqdm_test = tqdm(self.loader_test, ncols=80)
                 for idx_img, (lr, hr, filename, _) in enumerate(tqdm_test):
                     filename = filename[0]
-                    no_eval = isinstance(hr[0], int)
+                    no_eval = (hr.item() == -1)
                     if not no_eval:
                         lr, hr = self.prepare([lr, hr])
                     else:
