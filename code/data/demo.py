@@ -15,6 +15,7 @@ class Demo(data.Dataset):
         self.scale = args.scale
         self.idx_scale = 0
         self.train = False
+        self.benchmark = False
 
         self.filelist = []
         for f in os.listdir(args.dir_demo):

@@ -16,22 +16,16 @@ class Model(nn.Module):
         self.chop = args.chop
         self.precision = args.precision
         self.cpu = args.cpu
+        self.device = torch.device('cpu' if args.cpu else 'cuda')
         self.n_GPUs = args.n_GPUs
-
         self.save_models = args.save_models
 
         module = import_module('model.' + args.model.lower())
-        self.model = module.make_model(args)
+        self.model = module.make_model(args).to(self.device)
+        if args.precision == 'half': self.model.half()
 
-        if not args.cpu:
-            torch.cuda.manual_seed(args.seed)
-            self.model.cuda()
-            if args.precision == 'half':
-                self.model.half()
-
-            if args.n_GPUs > 1:
-                gpu_list = range(0, args.n_GPUs)
-                self.model = nn.DataParallel(self.model, gpu_list)
+        if not args.cpu and args.n_GPUs > 1:
+            self.model = nn.DataParallel(self.model, range(args.n_GPUs))
 
         self.load(
             ckp.dir,
@@ -39,8 +33,7 @@ class Model(nn.Module):
             resume=args.resume,
             cpu=args.cpu
         )
-        if args.print_model:
-            print(self.model)
+        if args.print_model: print(self.model)
 
     def forward(self, x, idx_scale):
         self.idx_scale = idx_scale
@@ -147,7 +140,7 @@ class Model(nn.Module):
         h_size, w_size = scale * h_size, scale * w_size
         shave *= scale
 
-        output = Variable(x.data.new(b, c, h, w), volatile=True)
+        output = x.new(b, c, h, w)
         output[:, :, 0:h_half, 0:w_half] \
             = sr_list[0][:, :, 0:h_half, 0:w_half]
         output[:, :, 0:h_half, w_half:w] \
@@ -161,8 +154,7 @@ class Model(nn.Module):
 
     def forward_x8(self, x, forward_function):
         def _transform(v, op):
-            if self.precision != 'single':
-                v = v.float()
+            if self.precision != 'single': v = v.float()
 
             v2np = v.data.cpu().numpy()
             if op == 'v':
@@ -172,10 +164,10 @@ class Model(nn.Module):
             elif op == 't':
                 tfnp = v2np.transpose((0, 1, 3, 2)).copy()
 
-            if not self.cpu: ret = torch.Tensor(tfnp).cuda()
+            ret = torch.Tensor(tfnp).to(self.device)
             if self.precision == 'half': ret = ret.half()
 
-            return Variable(ret, volatile=True)
+            return ret
 
         lr_list = [x]
         for tf in 'v', 'h', 't':
