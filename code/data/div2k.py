@@ -21,7 +21,7 @@ class DIV2K(srdata.SRData):
             idx_begin = 0
             idx_end = self.args.n_train
         else:
-            idx_begin = self.args.n_train
+            idx_begin = self.args.offset_val
             idx_end = self.args.offset_val + self.args.n_val
 
         for i in range(idx_begin + 1, idx_end + 1):
