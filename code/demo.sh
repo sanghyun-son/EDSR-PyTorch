@@ -1,3 +1,10 @@
+# RDN BI model (x2)
+#python3.6 main.py --scale 2 --save RDN_D16C8G64_BIx2 --model RDN --epochs 200 --batch_size 16 --n_val 5 --patch_size 64 --reset
+# RDN BI model (x3)
+#python3.6 main.py --scale 3 --save RDN_D16C8G64_BIx3 --model RDN --epochs 200 --batch_size 16 --n_val 5 --patch_size 96 --reset
+# RDN BI model (x4)
+#python3.6 main.py --scale 4 --save RDN_D16C8G64_BIx4 --model RDN --epochs 200 --batch_size 16 --n_val 5 --patch_size 128 --reset
+
 # EDSR baseline model (x2)
 #python main.py --model EDSR --scale 2 --save EDSR_baseline_x2 --reset
 
