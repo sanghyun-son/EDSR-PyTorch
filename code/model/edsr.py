@@ -3,7 +3,11 @@ from model import common
 import torch.nn as nn
 
 def make_model(args, parent=False):
-    return EDSR(args)
+    if args.dilation:
+        from model import dilated
+        return EDSR(args, dilated.dilated_conv)
+    else:
+        return EDSR(args)
 
 class EDSR(nn.Module):
     def __init__(self, args, conv=common.default_conv):
@@ -33,7 +37,10 @@ class EDSR(nn.Module):
         # define tail module
         m_tail = [
             common.Upsampler(conv, scale, n_feats, act=False),
-            conv(n_feats, args.n_colors, kernel_size)
+            nn.Conv2d(
+                n_feats, args.n_colors, kernel_size,
+                padding=(kernel_size//2)
+            )
         ]
 
         self.add_mean = common.MeanShift(args.rgb_range, rgb_mean, rgb_std, 1)

@@ -68,9 +68,19 @@ parser.add_argument('--res_scale', type=float, default=1,
                     help='residual scaling')
 parser.add_argument('--shift_mean', default=True,
                     help='subtract pixel mean from the input')
+parser.add_argument('--dilation', action='store_true',
+                    help='use dilated convolution')
 parser.add_argument('--precision', type=str, default='single',
                     choices=('single', 'half'),
                     help='FP precision for test (single | half)')
+
+# Option for Residual dense network (RDN)
+parser.add_argument('--G0', type=int, default=64,
+                    help='default number of filters. (Use in RDN)')
+parser.add_argument('--RDNkSize', type=int, default=3,
+                    help='default kernel size. (Use in RDN)')
+parser.add_argument('--RDNconfig', type=str, default='B',
+                    help='parameters config of RDN. (Use in RDN)')
 
 # Training specifications
 parser.add_argument('--reset', action='store_true',
@@ -126,8 +136,6 @@ parser.add_argument('--load', type=str, default='.',
                     help='file name to load')
 parser.add_argument('--resume', type=int, default=0,
                     help='resume from specific checkpoint')
-parser.add_argument('--print_model', action='store_true',
-                    help='print model')
 parser.add_argument('--save_models', action='store_true',
                     help='save all intermediate models')
 parser.add_argument('--print_every', type=int, default=100,
