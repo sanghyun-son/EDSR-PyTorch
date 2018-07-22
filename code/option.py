@@ -27,17 +27,11 @@ parser.add_argument('--data_train', type=str, default='DIV2K',
                     help='train dataset name')
 parser.add_argument('--data_test', type=str, default='DIV2K',
                     help='test dataset name')
-parser.add_argument('--benchmark_noise', action='store_true',
-                    help='use noisy benchmark sets')
-parser.add_argument('--n_train', type=int, default=800,
-                    help='number of training set')
-parser.add_argument('--n_val', type=int, default=10,
-                    help='number of validation set')
-parser.add_argument('--offset_val', type=int, default=800,
-                    help='validation index offest')
-parser.add_argument('--ext', type=str, default='img',
+parser.add_argument('--data_range', type=str, default='1-800/801-810',
+                    help='train/test data range')
+parser.add_argument('--ext', type=str, default='sep',
                     help='dataset file extension')
-parser.add_argument('--scale', default='4',
+parser.add_argument('--scale', type=str, default='4',
                     help='super resolution scale')
 parser.add_argument('--patch_size', type=int, default=192,
                     help='output patch size')
@@ -45,10 +39,10 @@ parser.add_argument('--rgb_range', type=int, default=255,
                     help='maximum value of RGB')
 parser.add_argument('--n_colors', type=int, default=3,
                     help='number of color channels to use')
-parser.add_argument('--noise', type=str, default='.',
-                    help='Gaussian noise std.')
 parser.add_argument('--chop', action='store_true',
                     help='enable memory-efficient forward')
+parser.add_argument('--no_augment', action='store_true',
+                    help='do not use data augmentation')
 
 # Model specifications
 parser.add_argument('--model', default='EDSR',

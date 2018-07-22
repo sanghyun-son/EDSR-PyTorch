@@ -3,19 +3,20 @@ import os
 from data import common
 
 import numpy as np
-import scipy.misc as misc
+import imageio
 
 import torch
 import torch.utils.data as data
 
 class Demo(data.Dataset):
-    def __init__(self, args, train=False):
+    def __init__(self, args, name='Demo', train=False, benchmark=False):
         self.args = args
-        self.name = 'Demo'
+        self.name = name
         self.scale = args.scale
         self.idx_scale = 0
         self.train = False
-        self.benchmark = False
+        self.do_eval = False
+        self.benchmark = benchmark
 
         self.filelist = []
         for f in os.listdir(args.dir_demo):
@@ -26,10 +27,11 @@ class Demo(data.Dataset):
     def __getitem__(self, idx):
         filename = os.path.split(self.filelist[idx])[-1]
         filename, _ = os.path.splitext(filename)
-        lr = misc.imread(self.filelist[idx])
-        lr = common.set_channel([lr], self.args.n_colors)[0]
+        lr = imageio.imread(self.filelist[idx])
+        lr, = common.set_channel(lr, n_channels=self.args.n_colors)
+        lr_t, = common.np2Tensor(lr, rgb_range=self.args.rgb_range)
 
-        return common.np2Tensor([lr], self.args.rgb_range)[0], -1, filename
+        return lr_t, -1, filename
 
     def __len__(self):
         return len(self.filelist)
