@@ -6,8 +6,8 @@ import skimage.color as sc
 import torch
 from torchvision import transforms
 
-def get_patch(img_in, img_tar, patch_size, scale, multi_scale=False):
-    ih, iw = img_in.shape[:2]
+def get_patch(*args, patch_size=96, scale=1, multi_scale=False):
+    ih, iw = args[0].shape[:2]
 
     p = scale if multi_scale else 1
     tp = p * patch_size
@@ -17,27 +17,29 @@ def get_patch(img_in, img_tar, patch_size, scale, multi_scale=False):
     iy = random.randrange(0, ih - ip + 1)
     tx, ty = scale * ix, scale * iy
 
-    img_in = img_in[iy:iy + ip, ix:ix + ip, :]
-    img_tar = img_tar[ty:ty + tp, tx:tx + tp, :]
+    ret = [
+        args[0][iy:iy + ip, ix:ix + ip, :],
+        *[a[ty:ty + tp, tx:tx + tp, :] for a in args[1:]]
+    ]
 
-    return img_in, img_tar
+    return ret
 
-def set_channel(l, n_channel):
+def set_channel(*args, n_channels=3):
     def _set_channel(img):
         if img.ndim == 2:
             img = np.expand_dims(img, axis=2)
 
         c = img.shape[2]
-        if n_channel == 1 and c == 3:
+        if n_channels == 1 and c == 3:
             img = np.expand_dims(sc.rgb2ycbcr(img)[:, :, 0], 2)
-        elif n_channel == 3 and c == 1:
-            img = np.concatenate([img] * n_channel, 2)
+        elif n_channels == 3 and c == 1:
+            img = np.concatenate([img] * n_channels, 2)
 
         return img
 
-    return [_set_channel(_l) for _l in l]
+    return [_set_channel(a) for a in args]
 
-def np2Tensor(l, rgb_range):
+def np2Tensor(*args, rgb_range=255):
     def _np2Tensor(img):
         np_transpose = np.ascontiguousarray(img.transpose((2, 0, 1)))
         tensor = torch.from_numpy(np_transpose).float()
@@ -45,26 +47,9 @@ def np2Tensor(l, rgb_range):
 
         return tensor
 
-    return [_np2Tensor(_l) for _l in l]
+    return [_np2Tensor(a) for a in args]
 
-def add_noise(x, noise='.'):
-    if noise is not '.':
-        noise_type = noise[0]
-        noise_value = int(noise[1:])
-        if noise_type == 'G':
-            noises = np.random.normal(scale=noise_value, size=x.shape)
-            noises = noises.round()
-        elif noise_type == 'S':
-            noises = np.random.poisson(x * noise_value) / noise_value
-            noises = noises - noises.mean(axis=0).mean(axis=0)
-
-        x_noise = x.astype(np.int16) + noises.astype(np.int16)
-        x_noise = x_noise.clip(0, 255).astype(np.uint8)
-        return x_noise
-    else:
-        return x
-
-def augment(l, hflip=True, rot=True):
+def augment(*args, hflip=True, rot=True):
     hflip = hflip and random.random() < 0.5
     vflip = rot and random.random() < 0.5
     rot90 = rot and random.random() < 0.5
@@ -76,4 +61,5 @@ def augment(l, hflip=True, rot=True):
         
         return img
 
-    return [_augment(_l) for _l in l]
+    return [_augment(a) for a in args]
+

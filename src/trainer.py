@@ -43,7 +43,7 @@ class Trainer():
 
         timer_data, timer_model = utility.timer(), utility.timer()
         for batch, (lr, hr, _, idx_scale) in enumerate(self.loader_train):
-            lr, hr = self.prepare([lr, hr])
+            lr, hr = self.prepare(lr, hr)
             timer_data.hold()
             timer_model.tic()
 
@@ -89,9 +89,9 @@ class Trainer():
                     filename = filename[0]
                     no_eval = (hr.nelement() == 1)
                     if not no_eval:
-                        lr, hr = self.prepare([lr, hr])
+                        lr, hr = self.prepare(lr, hr)
                     else:
-                        lr = self.prepare([lr])[0]
+                        lr, = self.prepare(lr)
 
                     sr = self.model(lr, idx_scale)
                     sr = utility.quantize(sr, self.args.rgb_range)
@@ -125,13 +125,13 @@ class Trainer():
         if not self.args.test_only:
             self.ckp.save(self, epoch, is_best=(best[1][0] + 1 == epoch))
 
-    def prepare(self, l, volatile=False):
+    def prepare(self, *args):
         device = torch.device('cpu' if self.args.cpu else 'cuda')
         def _prepare(tensor):
             if self.args.precision == 'half': tensor = tensor.half()
             return tensor.to(device)
            
-        return [_prepare(_l) for _l in l]
+        return [_prepare(a) for a in args]
 
     def terminate(self):
         if self.args.test_only:

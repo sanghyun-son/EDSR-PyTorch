@@ -37,3 +37,10 @@ def set_template(args):
         args.lr = 5e-5
         args.lr_decay = 150
 
+    if args.template.find('RCAN') >= 0:
+        args.model = 'RCAN'
+        args.n_resgroups = 10
+        args.n_resblocks = 20
+        args.n_feats = 64
+        args.chop = True
+
