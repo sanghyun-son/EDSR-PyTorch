@@ -1,9 +1,7 @@
 import random
 
 import numpy as np
-import skimage.io as sio
 import skimage.color as sc
-import skimage.transform as st
 
 import torch
 from torchvision import transforms

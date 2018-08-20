@@ -26,10 +26,11 @@ We provide scripts for reproducing all the results from our paper. You can train
 * Python-based.
 
 ## Dependencies
-* Python (Tested with 3.6)
+* Python 3.6
 * PyTorch >= 0.4.0
 * numpy
 * scipy
+* skimage
 * matplotlib
 * tqdm
 
@@ -50,9 +51,9 @@ cd EDSR-PyTorch
 ## Quick start (Demo)
 You can test our super-resolution algorithm with your own images. Place your images in ``test`` folder. (like ``test/<your_image>``) We support **png** and **jpeg** files.
 
-Run the script in ``code`` folder. Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
+Run the script in ``src`` folder. Before you run the demo, please uncomment the appropriate line in ```demo.sh``` that you want to execute.
 ```bash
-cd code       # You are now in */EDSR-PyTorch/code
+cd src       # You are now in */EDSR-PyTorch/src
 sh demo.sh
 ```
 
@@ -91,16 +92,16 @@ For these datasets, we first convert the result images to YCbCr color space and 
 ## How to train EDSR and MDSR
 We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset to train our model. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
 
-Unpack the tar file to any place you want. Then, change the ```dir_data``` argument in ```code/option.py``` to the place where DIV2K images are located.
+Unpack the tar file to any place you want. Then, change the ```dir_data``` argument in ```src/option.py``` to the place where DIV2K images are located.
 
 We recommend you to pre-process the images before training. This step will decode all **png** files and save them as binaries. Use ``--ext sep_reset`` argument on your first run. You can skip the decoding part and use saved binaries with ``--ext sep`` argument.
 
 If you have enough RAM (>= 32GB), you can use ``--ext bin`` argument to pack all DIV2K images in one binary file.
 
-You can train EDSR and MDSR by yourself. All scripts are provided in the ``code/demo.sh``. Note that EDSR (x3, x4) requires pre-trained EDSR (x2). You can ignore this constraint by removing ```--pre_train <x2 model>``` argument.
+You can train EDSR and MDSR by yourself. All scripts are provided in the ``src/demo.sh``. Note that EDSR (x3, x4) requires pre-trained EDSR (x2). You can ignore this constraint by removing ```--pre_train <x2 model>``` argument.
 
 ```bash
-cd code       # You are now in */EDSR-PyTorch/code
+cd src       # You are now in */EDSR-PyTorch/src
 sh demo.sh
 ```
 
@@ -111,7 +112,7 @@ sh demo.sh
   * Training details are included.
 
 * Jan 09, 2018
-  * Missing files are included (```code/data/MyImage.py```).
+  * Missing files are included (```src/data/MyImage.py```).
   * Some links are fixed.
 
 * Jan 16, 2018
@@ -128,7 +129,7 @@ sh demo.sh
 * Feb 23, 2018
   * Now PyTorch 0.3.1 is default. Use legacy/0.3.0 branch if you use the old version.
    
-  * With a new ``code/data/DIV2K.py`` code, one can easily create new data class for super-resolution.
+  * With a new ``src/data/DIV2K.py`` code, one can easily create new data class for super-resolution.
   * New binary data pack. (Please remove the ``DIV2K_decoded`` folder from your dataset if you have.)
   * With ``--ext bin``, this code will automatically generates and saves the binary data pack that corresponds to previous ``DIV2K_decoded``. (This requires huge RAM (~45GB, Swap can be used.), so please be careful.)
   * If you cannot make the binary pack, just use the default setting (``--ext img``).
