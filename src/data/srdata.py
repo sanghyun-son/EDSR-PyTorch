@@ -17,6 +17,7 @@ class SRData(data.Dataset):
         self.split = 'train' if train else 'test'
         self.do_eval = True
         self.benchmark = benchmark
+        self.input_large = (args.model == 'VDSR')
         self.scale = args.scale
         self.idx_scale = 0
         
@@ -105,7 +106,10 @@ class SRData(data.Dataset):
     def _set_filesystem(self, dir_data):
         self.apath = os.path.join(dir_data, self.name)
         self.dir_hr = os.path.join(self.apath, 'HR')
-        self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
+        if self.input_large:
+            self.dir_lr = os.path.join(self.apath, 'LR_bicubicL')
+        else:
+            self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
         self.ext = ('.png', '.png')
 
     def _name_hrbin(self):

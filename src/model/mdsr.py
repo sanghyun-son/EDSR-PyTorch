@@ -2,6 +2,11 @@ from model import common
 
 import torch.nn as nn
 
+url = {
+    'r16f64': 'https://cv.snu.ac.kr/research/EDSR/models/mdsr_baseline-a00cab12.pt',
+    'r80f64': 'https://cv.snu.ac.kr/research/EDSR/models/mdsr-4a78bedf.pt'
+}
+
 def make_model(args, parent=False):
     return MDSR(args)
 
@@ -12,6 +17,7 @@ class MDSR(nn.Module):
         n_feats = args.n_feats
         kernel_size = 3
         self.scale_idx = 0
+        self.url = url['r{}f{}'.format(n_resblocks, n_feats)]
 
         act = nn.ReLU(True)
 
@@ -36,9 +42,7 @@ class MDSR(nn.Module):
         m_body.append(conv(n_feats, n_feats, kernel_size))
 
         self.upsample = nn.ModuleList([
-            common.Upsampler(
-                conv, s, n_feats, act=False
-            ) for s in args.scale
+            common.Upsampler(conv, s, n_feats, act=False) for s in args.scale
         ])
 
         m_tail = [conv(n_feats, args.n_colors, kernel_size)]
