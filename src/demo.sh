@@ -35,9 +35,6 @@
 #python main.py --data_test Urban100 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train ../experiment/model/EDSR_x4.pt --test_only --self_ensemble
 #python main.py --data_test DIV2K --data_range 801-900 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train ../experiment/model/EDSR_x4.pt --test_only --self_ensemble
 
-python main.py --data_test DIV2K --ext img --n_val 10 --scale 2 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train ../experiment/model/EDSR_x2.pt --test_only
-python main.py --data_test DIV2K --ext img --n_val 10 --scale 2 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train ../experiment/model/EDSR_x2.pt --test_only --self_ensemble
-
 # Test your own images
 #python main.py --data_test Demo --scale 4 --pre_train ../experiment/model/EDSR_baseline_x4.pt --test_only --save_results
 
@@ -56,7 +53,7 @@ python main.py --data_test DIV2K --ext img --n_val 10 --scale 2 --n_resblocks 32
 
 # RCAN_BIX2_G10R20P48, input=48x48, output=96x96
 # pretrained model can be downloaded from https://www.dropbox.com/s/mjbcqkd4nwhr6nu/models_ECCV2018RCAN.zip?dl=0
-python main.py --template RCAN --save RCAN_BIX2_G10R20P48 --scale 2 --reset --save_results --patch_size 96
+#python main.py --template RCAN --save RCAN_BIX2_G10R20P48 --scale 2 --reset --save_results --patch_size 96
 # RCAN_BIX3_G10R20P48, input=48x48, output=144x144
 #python main.py --template RCAN --save RCAN_BIX3_G10R20P48 --scale 3 --reset --save_results --patch_size 144 --pre_train ../experiment/model/RCAN_BIX2.pt
 # RCAN_BIX4_G10R20P48, input=48x48, output=192x192
