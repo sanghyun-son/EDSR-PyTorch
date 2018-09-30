@@ -37,7 +37,7 @@ class Loss(nn.modules.loss._Loss):
                     args,
                     loss_type
                 )
-           
+
             self.loss.append({
                 'type': loss_type,
                 'weight': float(weight),
