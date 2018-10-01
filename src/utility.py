@@ -2,14 +2,15 @@ import os
 import math
 import time
 import datetime
-from functools import reduce
+from multiprocessing import Process
+from multiprocessing import Queue
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import numpy as np
-import scipy.misc as misc
+import imageio
 
 import torch
 import torch.optim as optim
@@ -23,8 +24,10 @@ class timer():
     def tic(self):
         self.t0 = time.time()
 
-    def toc(self):
-        return time.time() - self.t0
+    def toc(self, restart=False):
+        diff = time.time() - self.t0
+        if restart: self.t0 = time.time()
+        return diff
 
     def hold(self):
         self.acc += self.toc()
@@ -75,6 +78,8 @@ class checkpoint():
                 f.write('{}: {}\n'.format(arg, getattr(args, arg)))
             f.write('\n')
 
+        self.n_processes = 8
+
     def get_path(self, *subdir):
         return os.path.join(self.dir, *subdir)
 
@@ -121,13 +126,35 @@ class checkpoint():
         plt.savefig(self.get_path('test_{}.pdf'.format(self.args.data_test)))
         plt.close(fig)
 
+    def begin_background(self):
+        self.queue = Queue()
+
+        def bg_target(queue):
+            while True:
+                if not queue.empty():
+                    filename, tensor = queue.get()
+                    if filename is None: break
+                    imageio.imwrite(filename, tensor.numpy())
+        
+        self.process = [
+            Process(target=bg_target, args=(self.queue,)) \
+            for _ in range(self.n_processes)
+        ]
+        
+        for p in self.process: p.start()
+
+    def end_background(self):
+        for _ in range(self.n_processes): self.queue.put((None, None))
+        while not self.queue.empty(): time.sleep(1)
+        for p in self.process: p.join()
+
     def save_results(self, filename, save_list, scale):
         filename = self.get_path('results', '{}_x{}_'.format(filename, scale))
         postfix = ('SR', 'LR', 'HR')
         for v, p in zip(save_list, postfix):
             normalized = v[0].mul(255 / self.args.rgb_range)
-            ndarr = normalized.byte().permute(1, 2, 0).cpu().numpy()
-            misc.imsave('{}{}.png'.format(filename, p), ndarr)
+            tensor_cpu = normalized.byte().permute(1, 2, 0).cpu()
+            self.queue.put(('{}{}.png'.format(filename, p), tensor_cpu))
 
 def quantize(img, rgb_range):
     pixel_range = 255 / rgb_range
