@@ -64,27 +64,30 @@ class checkpoint():
             if not os.path.exists(path): os.makedirs(path)
 
         _make_dir(self.dir)
-        _make_dir(self.dir + '/model')
-        _make_dir(self.dir + '/results')
+        _make_dir(self.get_path('model'))
+        _make_dir(self.get_path('results'))
 
-        open_type = 'a' if os.path.exists(self.dir + '/log.txt') else 'w'
-        self.log_file = open(self.dir + '/log.txt', open_type)
-        with open(self.dir + '/config.txt', open_type) as f:
+        open_type = 'a' if os.path.exists(self.get_path('log.txt'))else 'w'
+        self.log_file = open(self.get_path('log.txt'), open_type)
+        with open(self.get_path('config.txt'), open_type) as f:
             f.write(now + '\n\n')
             for arg in vars(args):
                 f.write('{}: {}\n'.format(arg, getattr(args, arg)))
             f.write('\n')
 
+    def get_path(self, *subdir):
+        return os.path.join(self.dir, *subdir)
+
     def save(self, trainer, epoch, is_best=False):
-        trainer.model.save(self.dir, epoch, is_best=is_best)
+        trainer.model.save(self.get_path('model'), epoch, is_best=is_best)
         trainer.loss.save(self.dir)
         trainer.loss.plot_loss(self.dir, epoch)
 
         self.plot_psnr(epoch)
-        torch.save(self.log, os.path.join(self.dir, 'psnr_log.pt'))
+        torch.save(self.log, self.get_path('psnr_log.pt'))
         torch.save(
             trainer.optimizer.state_dict(),
-            os.path.join(self.dir, 'optimizer.pt')
+            self.get_path('optimizer.pt')
         )
 
     def add_log(self, log):
@@ -95,7 +98,7 @@ class checkpoint():
         self.log_file.write(log + '\n')
         if refresh:
             self.log_file.close()
-            self.log_file = open(self.dir + '/log.txt', 'a')
+            self.log_file = open(self.get_path('log.txt'), 'a')
 
     def done(self):
         self.log_file.close()
@@ -115,14 +118,14 @@ class checkpoint():
         plt.xlabel('Epochs')
         plt.ylabel('PSNR')
         plt.grid(True)
-        plt.savefig('{}/test_{}.pdf'.format(self.dir, self.args.data_test))
+        plt.savefig(self.get_path('test_{}.pdf'.format(self.args.data_test)))
         plt.close(fig)
 
     def save_results(self, filename, save_list, scale):
-        filename = '{}/results/{}_x{}_'.format(self.dir, filename, scale)
+        filename = self.get_path('results', '{}_x{}_'.format(filename, scale))
         postfix = ('SR', 'LR', 'HR')
         for v, p in zip(save_list, postfix):
-            normalized = v[0].data.mul(255 / self.args.rgb_range)
+            normalized = v[0].mul(255 / self.args.rgb_range)
             ndarr = normalized.byte().permute(1, 2, 0).cpu().numpy()
             misc.imsave('{}{}.png'.format(filename, p), ndarr)
 

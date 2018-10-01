@@ -3,6 +3,7 @@ from importlib import import_module
 
 import torch
 import torch.nn as nn
+import torch.utils.model_zoo
 from torch.autograd import Variable
 
 class Model(nn.Module):
@@ -29,7 +30,7 @@ class Model(nn.Module):
             self.model = nn.DataParallel(self.model, range(args.n_GPUs))
 
         self.load(
-            ckp.dir,
+            ckp.get_path('model'),
             pre_train=args.pre_train,
             resume=args.resume,
             cpu=args.cpu
@@ -39,16 +40,14 @@ class Model(nn.Module):
     def forward(self, x, idx_scale):
         self.idx_scale = idx_scale
         target = self.get_model()
-        if hasattr(target, 'set_scale'):
-            target.set_scale(idx_scale)
-
+        if hasattr(target, 'set_scale'): target.set_scale(idx_scale)
         if self.self_ensemble and not self.training:
             if self.chop:
                 forward_function = self.forward_chop
             else:
                 forward_function = self.model.forward
 
-            return self.forward_x8(x, forward_function)
+            return self.forward_x8(x, forward_function=forward_function)
         elif self.chop and not self.training:
             return self.forward_chop(x)
         else:
@@ -66,21 +65,16 @@ class Model(nn.Module):
 
     def save(self, apath, epoch, is_best=False):
         target = self.get_model()
-        torch.save(
-            target.state_dict(), 
-            os.path.join(apath, 'model', 'model_latest.pt')
-        )
+        save_dirs = [os.path.join(apath, 'model_latest.pt')]
+
         if is_best:
-            torch.save(
-                target.state_dict(),
-                os.path.join(apath, 'model', 'model_best.pt')
-            )
-        
+            save_dirs.append(os.path.join(apath, 'model_best.pt'))
         if self.save_models:
-            torch.save(
-                target.state_dict(),
-                os.path.join(apath, 'model', 'model_{}.pt'.format(epoch))
+            save_dirs.append(
+                os.path.join(apath, 'model_{}.pt'.format(epoch))
             )
+
+        for s in save_dirs: torch.save(target.state_dict(), s)
 
     def load(self, apath, pre_train='.', resume=-1, cpu=False):
         if cpu:
@@ -91,31 +85,29 @@ class Model(nn.Module):
         load_from = None
         if resume == -1:
             load_from = torch.load(
-                os.path.join(apath, 'model', 'model_latest.pt'),
+                os.path.join(apath, 'model_latest.pt'),
                 **kwargs
             )
         elif resume == 0:
-            if pre_train != '.':
-                if pre_train == 'download':
-                    print('Download the model')
-                    dir_model = os.path.join('..', 'models')
-                    os.makedirs(dir_model, exist_ok=True)
-                    load_from = torch.utils.model_zoo.load_url(
-                        self.get_model().url,
-                        model_dir=dir_model,
-                        **kwargs
-                    )
-                else:
-                    print('Load the model from {}'.format(pre_train))
-                    load_from = torch.load(pre_train, **kwargs)
+            if pre_train == 'download':
+                print('Download the model')
+                dir_model = os.path.join('..', 'models')
+                os.makedirs(dir_model, exist_ok=True)
+                load_from = torch.utils.model_zoo.load_url(
+                    self.get_model().url,
+                    model_dir=dir_model,
+                    **kwargs
+                )
+            elif pre_train != '':
+                print('Load the model from {}'.format(pre_train))
+                load_from = torch.load(pre_train, **kwargs)
         else:
             load_from = torch.load(
-                os.path.join(apath, 'model', 'model_{}.pt'.format(resume)),
+                os.path.join(apath, 'model_{}.pt'.format(resume)),
                 **kwargs
             )
 
-        if load_from:
-            self.get_model().load_state_dict(load_from, strict=False)
+        if load_from: self.get_model().load_state_dict(load_from, strict=False)
 
     def forward_chop(self, *args, shave=10, min_size=160000):
         if self.input_large:
@@ -152,8 +144,7 @@ class Model(nn.Module):
                 if not list_y:
                     list_y = [[_y] for _y in y]
                 else:
-                    for _list_y, _y in zip(list_y, y):
-                        _list_y.append(_y)
+                    for _list_y, _y in zip(list_y, y): _list_y.append(_y)
 
         h, w = scale * h, scale * w
         h_half, w_half = scale * h_half, scale * w_half
@@ -196,8 +187,7 @@ class Model(nn.Module):
         list_x = []
         for a in args:
             x = [a]
-            for tf in 'v', 'h', 't':
-                x.extend([_transform(_x, tf) for _x in x])
+            for tf in 'v', 'h', 't': x.extend([_transform(_x, tf) for _x in x])
 
             list_x.append(x)
 
@@ -208,8 +198,7 @@ class Model(nn.Module):
             if not list_y:
                 list_y = [[_y] for _y in y]
             else:
-                for _list_y, _y in zip(list_y, y):
-                    _list_y.append(_y)
+                for _list_y, _y in zip(list_y, y): _list_y.append(_y)
 
         for _list_y in list_y:
             for i in range(len(_list_y)):

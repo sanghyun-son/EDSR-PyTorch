@@ -16,14 +16,11 @@ class MDSR(nn.Module):
         n_resblocks = args.n_resblocks
         n_feats = args.n_feats
         kernel_size = 3
+        act = nn.ReLU(True)
         self.scale_idx = 0
         self.url = url['r{}f{}'.format(n_resblocks, n_feats)]
-
-        act = nn.ReLU(True)
-
-        rgb_mean = (0.4488, 0.4371, 0.4040)
-        rgb_std = (1.0, 1.0, 1.0)
-        self.sub_mean = common.MeanShift(args.rgb_range, rgb_mean, rgb_std)
+        self.sub_mean = common.MeanShift(args.rgb_range)
+        self.add_mean = common.MeanShift(args.rgb_range, sign=1)
 
         m_head = [conv(args.n_colors, n_feats, kernel_size)]
 
@@ -46,8 +43,6 @@ class MDSR(nn.Module):
         ])
 
         m_tail = [conv(n_feats, args.n_colors, kernel_size)]
-
-        self.add_mean = common.MeanShift(args.rgb_range, rgb_mean, rgb_std, 1)
 
         self.head = nn.Sequential(*m_head)
         self.body = nn.Sequential(*m_body)
