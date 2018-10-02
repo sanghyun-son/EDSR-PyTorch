@@ -79,6 +79,7 @@ class Trainer():
         self.model.eval()
 
         timer_test = utility.timer()
+        if self.args.save_results: self.ckp.begin_background()
         with torch.no_grad():
             for idx_scale, scale in enumerate(self.scale):
                 eval_acc = 0
@@ -87,11 +88,8 @@ class Trainer():
                 for idx_img, (lr, hr, filename, _) in enumerate(tqdm_test):
                     filename = filename[0]
                     no_eval = (hr.nelement() == 1)
-                    if not no_eval:
-                        lr, hr = self.prepare(lr, hr)
-                    else:
-                        lr, = self.prepare(lr)
 
+                    lr, hr = self.prepare(lr, hr)
                     sr = self.model(lr, idx_scale)
                     sr = utility.quantize(sr, self.args.rgb_range)
 
@@ -119,10 +117,16 @@ class Trainer():
                 )
 
         self.ckp.write_log(
-            'Total time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
+            'Forward time: {:.2f}s\n'.format(timer_test.toc())
         )
+
+        self.ckp.write_log('Saving...')
+        if self.args.save_results: self.ckp.end_background()
         if not self.args.test_only:
             self.ckp.save(self, epoch, is_best=(best[1][0] + 1 == epoch))
+        self.ckp.write_log(
+            'Total time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
+        )
 
     def prepare(self, *args):
         device = torch.device('cpu' if self.args.cpu else 'cuda')
