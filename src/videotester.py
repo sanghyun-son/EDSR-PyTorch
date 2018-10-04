@@ -20,11 +20,12 @@ class VideoTester():
         self.filename, _ = os.path.splitext(os.path.basename(args.dir_demo))
 
     def test(self):
+        torch.set_grad_enabled(False)
+
         self.ckp.write_log('\nEvaluation on video:')
         self.model.eval()
 
         timer_test = utility.timer()
-        torch.set_grad_enabled(False)
         for idx_scale, scale in enumerate(self.scale):
             vidcap = cv2.VideoCapture(self.args.dir_demo)
             total_frames = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -57,8 +58,9 @@ class VideoTester():
             vidwri.release()
 
         self.ckp.write_log(
-            'Total time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
+            'Total: {:.2f}s\n'.format(timer_test.toc()), refresh=True
         )
+        torch.set_grad_enabled(True)
 
     def prepare(self, *args):
         device = torch.device('cpu' if self.args.cpu else 'cuda')

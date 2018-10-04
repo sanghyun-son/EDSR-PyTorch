@@ -74,67 +74,64 @@ class Trainer():
         self.error_last = self.loss.log[-1, -1]
 
     def test(self):
+        torch.set_grad_enabled(False)
+
         epoch = self.scheduler.last_epoch + 1
         self.ckp.write_log('\nEvaluation:')
-        self.ckp.add_log(torch.zeros(1, len(self.scale)))
+        self.ckp.add_log(
+            torch.zeros(1, len(self.loader_test), len(self.scale))
+        )
         self.model.eval()
 
         timer_test = utility.timer()
         if self.args.save_results: self.ckp.begin_background()
-        with torch.no_grad():
+        for idx_data, d in enumerate(self.loader_test):
             for idx_scale, scale in enumerate(self.scale):
-                eval_acc = 0
-                self.loader_test.dataset.set_scale(idx_scale)
-                tqdm_test = tqdm(self.loader_test, ncols=80)
-                for idx_img, (lr, hr, filename, _) in enumerate(tqdm_test):
-                    filename = filename[0]
-                    no_eval = (hr.nelement() == 1)
-
+                d.dataset.set_scale(idx_scale)
+                for lr, hr, filename, _ in tqdm(d, ncols=80):
                     lr, hr = self.prepare(lr, hr)
                     sr = self.model(lr, idx_scale)
                     sr = utility.quantize(sr, self.args.rgb_range)
 
                     save_list = [sr]
-                    if not no_eval:
-                        eval_acc += utility.calc_psnr(
-                            sr, hr, scale, self.args.rgb_range,
-                            benchmark=self.loader_test.dataset.benchmark
-                        )
-                        save_list.extend([lr, hr])
+                    self.ckp.log[-1, idx_data, idx_scale] += utility.calc_psnr(
+                        sr, hr, scale, self.args.rgb_range, dataset=d
+                    )
+                    if self.args.save_gt: save_list.extend([lr, hr])
 
-                    if self.args.save_results:
-                        self.ckp.save_results(filename, save_list, scale)
+                    self.ckp.save_results(d, filename[0], save_list, scale)
 
-                self.ckp.log[-1, idx_scale] = eval_acc / len(self.loader_test)
+                self.ckp.log[-1, idx_data, idx_scale] /= len(d)
                 best = self.ckp.log.max(0)
                 self.ckp.write_log(
                     '[{} x{}]\tPSNR: {:.3f} (Best: {:.3f} @epoch {})'.format(
-                        self.args.data_test,
+                        d.dataset.name,
                         scale,
-                        self.ckp.log[-1, idx_scale],
-                        best[0][idx_scale],
-                        best[1][idx_scale] + 1
+                        self.ckp.log[-1, idx_data, idx_scale],
+                        best[0][idx_data, idx_scale],
+                        best[1][idx_data, idx_scale] + 1
                     )
                 )
 
-        self.ckp.write_log(
-            'Forward time: {:.2f}s\n'.format(timer_test.toc())
-        )
-
+        self.ckp.write_log('Forward: {:.2f}s\n'.format(timer_test.toc()))
         self.ckp.write_log('Saving...')
+
         if self.args.save_results: self.ckp.end_background()
         if not self.args.test_only:
-            self.ckp.save(self, epoch, is_best=(best[1][0] + 1 == epoch))
+            self.ckp.save(self, epoch, is_best=(best[1][0, 0] + 1 == epoch))
+
         self.ckp.write_log(
-            'Total time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
+            'Total: {:.2f}s\n'.format(timer_test.toc()), refresh=True
         )
+
+        torch.set_grad_enabled(True)
 
     def prepare(self, *args):
         device = torch.device('cpu' if self.args.cpu else 'cuda')
         def _prepare(tensor):
             if self.args.precision == 'half': tensor = tensor.half()
             return tensor.to(device)
-           
+
         return [_prepare(a) for a in args]
 
     def terminate(self):

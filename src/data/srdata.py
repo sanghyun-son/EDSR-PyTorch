@@ -22,16 +22,6 @@ class SRData(data.Dataset):
         self.scale = args.scale
         self.idx_scale = 0
         
-        data_range = [r.split('-') for r in args.data_range.split('/')]
-        if train:
-            data_range = data_range[0]
-        else:
-            if args.test_only and len(data_range) == 1:
-                data_range = data_range[0]
-            else:
-                data_range = data_range[1]
-
-        self.begin, self.end = list(map(lambda x: int(x), data_range))
         self._set_filesystem(args.dir_data)
         if args.ext.find('img') < 0:
             path_bin = os.path.join(self.apath, 'bin')
@@ -85,8 +75,9 @@ class SRData(data.Dataset):
                         )
 
         if train:
-            self.repeat \
-                = args.test_every // (len(self.images_hr) // args.batch_size)
+            n_patches = args.batch_size * args.test_every
+            n_images = len(args.data_train) * len(self.images_hr)
+            self.repeat = max(n_patches // n_images, 1)
 
     # Below functions as used to prepare images
     def _scan(self):
@@ -106,10 +97,10 @@ class SRData(data.Dataset):
         return names_hr, names_lr
 
     def _set_filesystem(self, dir_data):
-        bicubic_type = 'LR_bicubic' if not self.input_large else 'LR_bicubicL'
         self.apath = os.path.join(dir_data, self.name)
         self.dir_hr = os.path.join(self.apath, 'HR')
-        self.dir_lr = os.path.join(self.apath, bicubic_type)
+        self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
+        if self.input_large: self.dir_lr += 'L'
         self.ext = ('.png', '.png')
 
     def _name_hrbin(self):

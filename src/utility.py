@@ -50,25 +50,23 @@ class checkpoint():
 
         if args.load == '.':
             if args.save == '.': args.save = now
-            self.dir = '../experiment/' + args.save
+            self.dir = os.path.join('..', 'experiment', args.save)
         else:
-            self.dir = '../experiment/' + args.load
+            self.dir = os.path.join('..', 'experiment', args.load)
             if not os.path.exists(self.dir):
                 args.load = '.'
             else:
-                self.log = torch.load(self.dir + '/psnr_log.pt')
+                self.log = torch.load(self.get_path('psnr_log.pt'))
                 print('Continue from epoch {}...'.format(len(self.log)))
 
         if args.reset:
             os.system('rm -rf ' + self.dir)
             args.load = '.'
 
-        def _make_dir(path):
-            if not os.path.exists(path): os.makedirs(path)
-
-        _make_dir(self.dir)
-        _make_dir(self.get_path('model'))
-        _make_dir(self.get_path('results'))
+        os.makedirs(self.dir, exist_ok=True)
+        os.makedirs(self.get_path('model'), exist_ok=True)
+        for d in args.data_test:
+            os.makedirs(self.get_path('results-{}'.format(d)), exist_ok=True)
 
         open_type = 'a' if os.path.exists(self.get_path('log.txt'))else 'w'
         self.log_file = open(self.get_path('log.txt'), open_type)
@@ -110,21 +108,22 @@ class checkpoint():
 
     def plot_psnr(self, epoch):
         axis = np.linspace(1, epoch, epoch)
-        label = 'SR on {}'.format(self.args.data_test)
-        fig = plt.figure()
-        plt.title(label)
-        for idx_scale, scale in enumerate(self.args.scale):
-            plt.plot(
-                axis,
-                self.log[:, idx_scale].numpy(),
-                label='Scale {}'.format(scale)
-            )
-        plt.legend()
-        plt.xlabel('Epochs')
-        plt.ylabel('PSNR')
-        plt.grid(True)
-        plt.savefig(self.get_path('test_{}.pdf'.format(self.args.data_test)))
-        plt.close(fig)
+        for idx_data, d in enumerate(self.args.data_test):
+            label = 'SR on {}'.format(d)
+            fig = plt.figure()
+            plt.title(label)
+            for idx_scale, scale in enumerate(self.args.scale):
+                plt.plot(
+                    axis,
+                    self.log[:, idx_data, idx_scale].numpy(),
+                    label='Scale {}'.format(scale)
+                )
+            plt.legend()
+            plt.xlabel('Epochs')
+            plt.ylabel('PSNR')
+            plt.grid(True)
+            plt.savefig(self.get_path('test_{}.pdf'.format(d)))
+            plt.close(fig)
 
     def begin_background(self):
         self.queue = Queue()
@@ -148,28 +147,35 @@ class checkpoint():
         while not self.queue.empty(): time.sleep(1)
         for p in self.process: p.join()
 
-    def save_results(self, filename, save_list, scale):
-        filename = self.get_path('results', '{}_x{}_'.format(filename, scale))
-        postfix = ('SR', 'LR', 'HR')
-        for v, p in zip(save_list, postfix):
-            normalized = v[0].mul(255 / self.args.rgb_range)
-            tensor_cpu = normalized.byte().permute(1, 2, 0).cpu()
-            self.queue.put(('{}{}.png'.format(filename, p), tensor_cpu))
+    def save_results(self, dataset, filename, save_list, scale):
+        if self.args.save_results:
+            filename = self.get_path(
+                'results-{}'.format(dataset.dataset.name),
+                '{}_x{}_'.format(filename, scale)
+            )
+
+            postfix = ('SR', 'LR', 'HR')
+            for v, p in zip(save_list, postfix):
+                normalized = v[0].mul(255 / self.args.rgb_range)
+                tensor_cpu = normalized.byte().permute(1, 2, 0).cpu()
+                self.queue.put(('{}{}.png'.format(filename, p), tensor_cpu))
 
 def quantize(img, rgb_range):
     pixel_range = 255 / rgb_range
     return img.mul(pixel_range).clamp(0, 255).round().div(pixel_range)
 
-def calc_psnr(sr, hr, scale, rgb_range, benchmark=False):
-    diff = (sr - hr).data.div(rgb_range)
-    if benchmark:
+def calc_psnr(sr, hr, scale, rgb_range, dataset=None):
+    if hr.nelement() == 1: return 0
+
+    diff = (sr - hr) / rgb_range
+    if dataset and dataset.dataset.benchmark:
         shave = scale
         if diff.size(1) > 1:
             convert = diff.new(1, 3, 1, 1)
             convert[0, 0, 0, 0] = 65.738
             convert[0, 1, 0, 0] = 129.057
             convert[0, 2, 0, 0] = 25.064
-            diff.mul_(convert).div_(256)
+            diff *= (convert / 256)
             diff = diff.sum(dim=1, keepdim=True)
     else:
         shave = scale + 6

@@ -15,7 +15,6 @@ class Demo(data.Dataset):
         self.scale = args.scale
         self.idx_scale = 0
         self.train = False
-        self.do_eval = False
         self.benchmark = benchmark
 
         self.filelist = []
@@ -25,8 +24,7 @@ class Demo(data.Dataset):
         self.filelist.sort()
 
     def __getitem__(self, idx):
-        filename = os.path.split(self.filelist[idx])[-1]
-        filename, _ = os.path.splitext(filename)
+        filename = os.path.splitext(os.path.basename(self.filelist[idx]))[0]
         lr = imageio.imread(self.filelist[idx])
         lr, = common.set_channel(lr, n_channels=self.args.n_colors)
         lr_t, = common.np2Tensor(lr, rgb_range=self.args.rgb_range)

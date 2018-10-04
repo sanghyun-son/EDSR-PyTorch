@@ -144,11 +144,15 @@ parser.add_argument('--print_every', type=int, default=100,
                     help='how many batches to wait before logging training status')
 parser.add_argument('--save_results', action='store_true',
                     help='save output results')
+parser.add_argument('--save_gt', action='store_true',
+                    help='save low-resolution and high-resolution images together')
 
 args = parser.parse_args()
 template.set_template(args)
 
 args.scale = list(map(lambda x: int(x), args.scale.split('+')))
+args.data_train = args.data_train.split('+')
+args.data_test = args.data_test.split('+')
 
 if args.epochs == 0:
     args.epochs = 1e8
