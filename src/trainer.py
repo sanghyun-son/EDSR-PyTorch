@@ -5,6 +5,7 @@ from decimal import Decimal
 import utility
 
 import torch
+import torch.nn.utils as utils
 from tqdm import tqdm
 
 class Trainer():
@@ -49,13 +50,13 @@ class Trainer():
             self.optimizer.zero_grad()
             sr = self.model(lr, idx_scale)
             loss = self.loss(sr, hr)
-            if loss.item() < self.args.skip_threshold * self.error_last:
-                loss.backward()
-                self.optimizer.step()
-            else:
-                print('Skip this batch {}! (Loss: {})'.format(
-                    batch + 1, loss.item()
-                ))
+            loss.backward()
+            if self.args.gclip > 0:
+                utils.clip_grad_value_(
+                    self.model.parameters(),
+                    self.args.gclip
+                )
+            self.optimizer.step()
 
             timer_model.hold()
 

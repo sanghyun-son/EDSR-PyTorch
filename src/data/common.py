@@ -5,16 +5,24 @@ import skimage.color as sc
 
 import torch
 
-def get_patch(*args, patch_size=96, scale=1, multi_scale=False):
+def get_patch(*args, patch_size=96, scale=2, multi=False, input_large=False):
     ih, iw = args[0].shape[:2]
 
-    p = scale if multi_scale else 1
-    tp = p * patch_size
-    ip = tp // scale
+    if not input_large:
+        p = scale if multi else 1
+        tp = p * patch_size
+        ip = tp // scale
+    else:
+        tp = patch_size
+        ip = patch_size
 
     ix = random.randrange(0, iw - ip + 1)
     iy = random.randrange(0, ih - ip + 1)
-    tx, ty = scale * ix, scale * iy
+
+    if not input_large:
+        tx, ty = scale * ix, scale * iy
+    else:
+        tx, ty = ix, iy
 
     ret = [
         args[0][iy:iy + ip, ix:ix + ip, :],

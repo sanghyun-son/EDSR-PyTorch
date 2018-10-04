@@ -23,13 +23,9 @@
 #python main.py --template MDSR --model MDSR --scale 2+3+4 --n_resblocks 80 --save MDSR --reset --save_models
 
 # Standard benchmarks (Ex. EDSR_baseline_x4)
-#python main.py --data_test Set5 --scale 4 --pre_train download --test_only --self_ensemble
-#python main.py --data_test Set14 --scale 4 --pre_train download --test_only --self_ensemble
-#python main.py --data_test B100 --scale 4 --pre_train download --test_only --self_ensemble
-#python main.py --data_test Urban100 --scale 4 --pre_train download --test_only --self_ensemble
-#python main.py --data_test DIV2K --data_range 801-900 --scale 4 --pre_train download --test_only --self_ensemble
+#python main.py --data_test Set5+Set14+B100+Urban100+DIV2K --data_range 801-900 --scale 4 --pre_train download --test_only --self_ensemble
 
-python main.py --data_test Set5 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
+#python main.py --data_test Set5 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
 #python main.py --data_test Set14 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
 #python main.py --data_test B100 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
 #python main.py --data_test Urban100 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
@@ -60,3 +56,4 @@ python main.py --data_test Set5 --scale 4 --n_resblocks 32 --n_feats 256 --res_s
 #python main.py --template RCAN --save RCAN_BIX4_G10R20P48 --scale 4 --reset --save_results --patch_size 192 --pre_train ../experiment/model/RCAN_BIX2.pt
 # RCAN_BIX8_G10R20P48, input=48x48, output=384x384
 #python main.py --template RCAN --save RCAN_BIX8_G10R20P48 --scale 8 --reset --save_results --patch_size 384 --pre_train ../experiment/model/RCAN_BIX2.pt
+

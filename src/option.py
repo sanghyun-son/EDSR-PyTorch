@@ -122,11 +122,13 @@ parser.add_argument('--epsilon', type=float, default=1e-8,
                     help='ADAM epsilon for numerical stability')
 parser.add_argument('--weight_decay', type=float, default=0,
                     help='weight decay')
+parser.add_argument('--gclip', type=float, default=0,
+                    help='gradient clipping threshold (0 = no clipping)')
 
 # Loss specifications
 parser.add_argument('--loss', type=str, default='1*L1',
                     help='loss function configuration')
-parser.add_argument('--skip_threshold', type=float, default='1e6',
+parser.add_argument('--skip_threshold', type=float, default='1e8',
                     help='skipping batch that has large error')
 
 # Log specifications

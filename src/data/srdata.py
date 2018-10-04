@@ -1,11 +1,12 @@
 import os
 import glob
+import random
+import pickle
 
 from data import common
-import pickle
+
 import numpy as np
 import imageio
-
 import torch
 import torch.utils.data as data
 
@@ -29,6 +30,7 @@ class SRData(data.Dataset):
                 data_range = data_range[0]
             else:
                 data_range = data_range[1]
+
         self.begin, self.end = list(map(lambda x: int(x), data_range))
         self._set_filesystem(args.dir_data)
         if args.ext.find('img') < 0:
@@ -104,12 +106,10 @@ class SRData(data.Dataset):
         return names_hr, names_lr
 
     def _set_filesystem(self, dir_data):
+        bicubic_type = 'LR_bicubic' if not self.input_large else 'LR_bicubicL'
         self.apath = os.path.join(dir_data, self.name)
         self.dir_hr = os.path.join(self.apath, 'HR')
-        if self.input_large:
-            self.dir_lr = os.path.join(self.apath, 'LR_bicubicL')
-        else:
-            self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
+        self.dir_lr = os.path.join(self.apath, bicubic_type)
         self.ext = ('.png', '.png')
 
     def _name_hrbin(self):
@@ -145,17 +145,16 @@ class SRData(data.Dataset):
                 'image': imageio.imread(_l)
             } for _l in l]
             with open(f, 'wb') as _f: pickle.dump(b, _f)
+
             return b
 
     def __getitem__(self, idx):
         lr, hr, filename = self._load_file(idx)
-        lr, hr = self.get_patch(lr, hr)
-        lr, hr = common.set_channel(lr, hr, n_channels=self.args.n_colors)
-        lr_tensor, hr_tensor = common.np2Tensor(
-            lr, hr, rgb_range=self.args.rgb_range
-        )
+        pair = self.get_patch(lr, hr)
+        pair = common.set_channel(*pair, n_channels=self.args.n_colors)
+        pair_t = common.np2Tensor(*pair, rgb_range=self.args.rgb_range)
 
-        return lr_tensor, hr_tensor, filename
+        return pair_t[0], pair_t[1], filename
 
     def __len__(self):
         if self.train:
@@ -191,17 +190,15 @@ class SRData(data.Dataset):
 
     def get_patch(self, lr, hr):
         scale = self.scale[self.idx_scale]
-        multi_scale = len(self.scale) > 1
         if self.train:
             lr, hr = common.get_patch(
-                lr,
-                hr,
+                lr, hr,
                 patch_size=self.args.patch_size,
                 scale=scale,
-                multi_scale=multi_scale
+                multi=(len(self.scale) > 1),
+                input_large=self.input_large
             )
-            if not self.args.no_augment:
-                lr, hr = common.augment(lr, hr)
+            if not self.args.no_augment: lr, hr = common.augment(lr, hr)
         else:
             ih, iw = lr.shape[:2]
             hr = hr[0:ih * scale, 0:iw * scale]
@@ -209,5 +206,8 @@ class SRData(data.Dataset):
         return lr, hr
 
     def set_scale(self, idx_scale):
-        self.idx_scale = idx_scale
+        if not self.input_large:
+            self.idx_scale = idx_scale
+        else:
+            self.idx_scale = random.randint(0, len(self.scale) - 1)
 
