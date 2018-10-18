@@ -97,9 +97,11 @@ class Trainer():
                     self.ckp.log[-1, idx_data, idx_scale] += utility.calc_psnr(
                         sr, hr, scale, self.args.rgb_range, dataset=d
                     )
-                    if self.args.save_gt: save_list.extend([lr, hr])
+                    if self.args.save_gt:
+                        save_list.extend([lr, hr])
 
-                    self.ckp.save_results(d, filename[0], save_list, scale)
+                    if self.args.save_results:
+                        self.ckp.save_results(d, filename[0], save_list, scale)
 
                 self.ckp.log[-1, idx_data, idx_scale] /= len(d)
                 best = self.ckp.log.max(0)

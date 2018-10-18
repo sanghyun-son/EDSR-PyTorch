@@ -75,7 +75,7 @@ class Model(nn.Module):
 
         for s in save_dirs: torch.save(target.state_dict(), s)
 
-    def load(self, apath, pre_train='.', resume=-1, cpu=False):
+    def load(self, apath, pre_train='', resume=-1, cpu=False):
         if cpu:
             kwargs = {'map_location': lambda storage, loc: storage}
         else:
@@ -97,7 +97,7 @@ class Model(nn.Module):
                     model_dir=dir_model,
                     **kwargs
                 )
-            elif pre_train != '':
+            elif pre_train:
                 print('Load the model from {}'.format(pre_train))
                 load_from = torch.load(pre_train, **kwargs)
         else:

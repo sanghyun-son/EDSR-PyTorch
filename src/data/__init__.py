@@ -6,6 +6,7 @@ from torch.utils.data import ConcatDataset
 class MyConcatDataset(ConcatDataset):
     def __init__(self, datasets):
         super(MyConcatDataset, self).__init__(datasets)
+        self.train = datasets[0].train
 
     def set_scale(self, idx_scale):
         for d in self.datasets:
