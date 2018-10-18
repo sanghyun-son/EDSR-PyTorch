@@ -4,7 +4,7 @@ def set_template(args):
         args.data_train = 'DIV2K_jpeg'
         args.data_test = 'DIV2K_jpeg'
         args.epochs = 200
-        args.lr_decay = 100
+        args.decay = '100'
 
     if args.template.find('EDSR_paper') >= 0:
         args.model = 'EDSR'
@@ -26,7 +26,7 @@ def set_template(args):
 
         args.batch_size = 20
         args.epochs = 1000
-        args.lr_decay = 500
+        args.decay = '500'
         args.gamma = 0.1
         args.weight_decay = 1e-4
 
@@ -35,7 +35,7 @@ def set_template(args):
     if args.template.find('GAN') >= 0:
         args.epochs = 200
         args.lr = 5e-5
-        args.lr_decay = 150
+        args.decay = '150'
 
     if args.template.find('RCAN') >= 0:
         args.model = 'RCAN'
