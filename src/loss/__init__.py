@@ -64,7 +64,7 @@ class Loss(nn.modules.loss._Loss):
                 self.loss_module, range(args.n_GPUs)
             )
 
-        if args.load != '.': self.load(ckp.dir, cpu=args.cpu)
+        if args.load != '': self.load(ckp.dir, cpu=args.cpu)
 
     def forward(self, sr, hr):
         losses = []

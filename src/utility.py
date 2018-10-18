@@ -48,20 +48,21 @@ class checkpoint():
         self.log = torch.Tensor()
         now = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
 
-        if args.load == '.':
-            if args.save == '.': args.save = now
+        if not args.load:
+            if not args.save:
+                args.save = now
             self.dir = os.path.join('..', 'experiment', args.save)
         else:
             self.dir = os.path.join('..', 'experiment', args.load)
-            if not os.path.exists(self.dir):
-                args.load = '.'
-            else:
+            if os.path.exists(self.dir):
                 self.log = torch.load(self.get_path('psnr_log.pt'))
                 print('Continue from epoch {}...'.format(len(self.log)))
+            else:
+                args.load = ''
 
         if args.reset:
             os.system('rm -rf ' + self.dir)
-            args.load = '.'
+            args.load = ''
 
         os.makedirs(self.dir, exist_ok=True)
         os.makedirs(self.get_path('model'), exist_ok=True)
@@ -171,16 +172,13 @@ def calc_psnr(sr, hr, scale, rgb_range, dataset=None):
     if dataset and dataset.dataset.benchmark:
         shave = scale
         if diff.size(1) > 1:
-            convert = diff.new(1, 3, 1, 1)
-            convert[0, 0, 0, 0] = 65.738
-            convert[0, 1, 0, 0] = 129.057
-            convert[0, 2, 0, 0] = 25.064
-            diff *= (convert / 256)
-            diff = diff.sum(dim=1, keepdim=True)
+            gray_coeffs = [65.738, 129.057, 25.064]
+            convert = diff.new_tensor(gray_coeffs).view(1, 3, 1, 1) / 256
+            diff = diff.mul(convert).sum(dim=1)
     else:
         shave = scale + 6
 
-    valid = diff[:, :, shave:-shave, shave:-shave]
+    valid = diff[..., shave:-shave, shave:-shave]
     mse = valid.pow(2).mean()
 
     return -10 * math.log10(mse)
@@ -194,7 +192,7 @@ def make_optimizer(args, my_model):
     elif args.optimizer == 'ADAM':
         optimizer_function = optim.Adam
         kwargs = {
-            'betas': (args.beta1, args.beta2),
+            'betas': args.beta,
             'eps': args.epsilon
         }
     elif args.optimizer == 'RMSprop':
@@ -208,20 +206,12 @@ def make_optimizer(args, my_model):
 
 def make_scheduler(args, my_optimizer):
     if args.decay_type == 'step':
-        scheduler = lrs.StepLR(
-            my_optimizer,
-            step_size=args.lr_decay,
-            gamma=args.gamma
-        )
+        scheduler_function = lrs.StepLR
+        kwargs = {'step_size': args.lr_decay, 'gamma': args.gamma}
     elif args.decay_type.find('step') >= 0:
-        milestones = args.decay_type.split('_')
-        milestones.pop(0)
-        milestones = list(map(lambda x: int(x), milestones))
-        scheduler = lrs.MultiStepLR(
-            my_optimizer,
-            milestones=milestones,
-            gamma=args.gamma
-        )
+        scheduler_function = lrs.MultiStepLR
+        milestones = list(map(lambda x: int(x), args.decay_type.split('-')[1:]))
+        kwarg = {'milestones': milestones, 'gamma': args.gamma}
 
-    return scheduler
+    return scheduler_function(my_optimizer, **kwargs)
 

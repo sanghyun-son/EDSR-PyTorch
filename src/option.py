@@ -114,10 +114,8 @@ parser.add_argument('--optimizer', default='ADAM',
                     help='optimizer to use (SGD | ADAM | RMSprop)')
 parser.add_argument('--momentum', type=float, default=0.9,
                     help='SGD momentum')
-parser.add_argument('--beta1', type=float, default=0.9,
-                    help='ADAM beta1')
-parser.add_argument('--beta2', type=float, default=0.999,
-                    help='ADAM beta2')
+parser.add_argument('--beta', type=tuple, default=(0.9, 0.999),
+                    help='ADAM beta')
 parser.add_argument('--epsilon', type=float, default=1e-8,
                     help='ADAM epsilon for numerical stability')
 parser.add_argument('--weight_decay', type=float, default=0,
@@ -134,7 +132,7 @@ parser.add_argument('--skip_threshold', type=float, default='1e8',
 # Log specifications
 parser.add_argument('--save', type=str, default='test',
                     help='file name to save')
-parser.add_argument('--load', type=str, default='.',
+parser.add_argument('--load', type=str, default='',
                     help='file name to load')
 parser.add_argument('--resume', type=int, default=0,
                     help='resume from specific checkpoint')

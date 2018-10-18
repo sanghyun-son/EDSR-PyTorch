@@ -4,7 +4,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.models as models
-from torch.autograd import Variable
 
 class VGG(nn.Module):
     def __init__(self, conv_index, rgb_range=1):
