@@ -77,7 +77,10 @@ class SRData(data.Dataset):
         if train:
             n_patches = args.batch_size * args.test_every
             n_images = len(args.data_train) * len(self.images_hr)
-            self.repeat = max(n_patches // n_images, 1)
+            if n_images == 0:
+                self.repeat = 0
+            else:
+                self.repeat = max(n_patches // n_images, 1)
 
     # Below functions as used to prepare images
     def _scan(self):

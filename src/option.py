@@ -114,7 +114,7 @@ parser.add_argument('--optimizer', default='ADAM',
                     help='optimizer to use (SGD | ADAM | RMSprop)')
 parser.add_argument('--momentum', type=float, default=0.9,
                     help='SGD momentum')
-parser.add_argument('--beta', type=tuple, default=(0.9, 0.999),
+parser.add_argument('--betas', type=tuple, default=(0.9, 0.999),
                     help='ADAM beta')
 parser.add_argument('--epsilon', type=float, default=1e-8,
                     help='ADAM epsilon for numerical stability')
