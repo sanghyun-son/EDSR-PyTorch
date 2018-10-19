@@ -6,12 +6,12 @@ import model
 import loss
 from option import args
 from trainer import Trainer
-from videotester import VideoTester
 
 torch.manual_seed(args.seed)
 checkpoint = utility.checkpoint(args)
 
 if args.data_test == 'video':
+    from videotester import VideoTester
     model = model.Model(args, checkpoint)
     t = VideoTester(args, model, checkpoint)
     t.test()

@@ -33,6 +33,7 @@ We provide scripts for reproducing all the results from our paper. You can train
 * **imageio**
 * matplotlib
 * tqdm
+* cv2 >= 3.xx (Only if you use video input/output)
 
 **Recent updates**
 
