@@ -18,7 +18,8 @@ class MeanShift(nn.Conv2d):
         std = torch.Tensor(rgb_std)
         self.weight.data = torch.eye(3).view(3, 3, 1, 1) / std.view(3, 1, 1, 1)
         self.bias.data = sign * rgb_range * torch.Tensor(rgb_mean) / std
-        self.requires_grad = False
+        for p in self.parameters():
+            p.requires_grad = False
 
 class BasicBlock(nn.Sequential):
     def __init__(
@@ -26,8 +27,11 @@ class BasicBlock(nn.Sequential):
         bn=True, act=nn.ReLU(True)):
 
         m = [conv(in_channels, out_channels, kernel_size, bias=bias)]
-        if bn: m.append(nn.BatchNorm2d(out_channels))
-        if act is not None: m.append(act)
+        if bn:
+            m.append(nn.BatchNorm2d(out_channels))
+        if act is not None:
+            m.append(act)
+
         super(BasicBlock, self).__init__(*m)
 
 class ResBlock(nn.Module):
@@ -39,8 +43,10 @@ class ResBlock(nn.Module):
         m = []
         for i in range(2):
             m.append(conv(n_feats, n_feats, kernel_size, bias=bias))
-            if bn: m.append(nn.BatchNorm2d(n_feats))
-            if i == 0: m.append(act)
+            if bn:
+                m.append(nn.BatchNorm2d(n_feats))
+            if i == 0:
+                m.append(act)
 
         self.body = nn.Sequential(*m)
         self.res_scale = res_scale
@@ -59,8 +65,8 @@ class Upsampler(nn.Sequential):
             for _ in range(int(math.log(scale, 2))):
                 m.append(conv(n_feats, 4 * n_feats, 3, bias))
                 m.append(nn.PixelShuffle(2))
-                if bn: m.append(nn.BatchNorm2d(n_feats))
-
+                if bn:
+                    m.append(nn.BatchNorm2d(n_feats))
                 if act == 'relu':
                     m.append(nn.ReLU(True))
                 elif act == 'prelu':
@@ -69,8 +75,8 @@ class Upsampler(nn.Sequential):
         elif scale == 3:
             m.append(conv(n_feats, 9 * n_feats, 3, bias))
             m.append(nn.PixelShuffle(3))
-            if bn: m.append(nn.BatchNorm2d(n_feats))
-
+            if bn:
+                m.append(nn.BatchNorm2d(n_feats))
             if act == 'relu':
                 m.append(nn.ReLU(True))
             elif act == 'prelu':
