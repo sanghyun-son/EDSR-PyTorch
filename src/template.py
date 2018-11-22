@@ -51,3 +51,8 @@ def set_template(args):
         args.patch_size = 41
         args.lr = 1e-1
 
+    if args.template.find('MSRN') >= 0:
+        args.model = 'MSRN'
+        args.n_blocks = 8
+        args.n_feats = 64
+        args.chop = True

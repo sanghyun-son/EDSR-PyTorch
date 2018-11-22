@@ -54,3 +54,13 @@
 # RCAN_BIX8_G10R20P48, input=48x48, output=384x384
 #python main.py --template RCAN --save RCAN_BIX8_G10R20P48 --scale 8 --reset --save_results --patch_size 384 --pre_train ../experiment/model/RCAN_BIX2.pt
 
+
+# MSRN for train
+# More details can be found at https://github.com/MIVRC/MSRN-PyTorch
+# Pre-trained model can be downloaded from https://www.jianguoyun.com/p/DQpSSlQQ19ySBxjH2IYB
+# MSRN x2  LR: 48 * 48  HR: 96 * 96
+# python main.py --template MSRN --save MSRN_X2 --scale 2 --reset --save_results --patch_size 96 --ext sep_reset
+# MSRN x3  LR: 48 * 48  HR: 144 * 144
+# python main.py --template MSRN --save MSRN_X3 --scale 3 --reset --save_results --patch_size 144 --ext sep_reset
+# MSRN x4  LR: 48 * 48  HR: 192 * 192
+# python main.py --template MSRN --save MSRN_X4 --scale 4 --reset --save_results --patch_size 192 --ext sep_reset
