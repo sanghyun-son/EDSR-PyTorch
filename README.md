@@ -89,6 +89,10 @@ You can evaluate your models with widely-used benchmark datasets:
 
 For these datasets, we first convert the result images to YCbCr color space and evaluate PSNR on the Y channel only. You can download [benchmark datasets](https://cv.snu.ac.kr/research/EDSR/benchmark.tar) (250MB). Set ``--dir_data <where_benchmark_folder_located>`` to evaluate the EDSR and MDSR with the benchmarks.
 
+You can download some results from [here](https://cv.snu.ac.kr/research/EDSR/result_image/edsr-results.tar).
+The link contains **EDSR+_baseline_x4** and **EDSR+_x4**.
+Otherwise, you can easily generate result images with ``demo.sh`` scripts.
+
 ## How to train EDSR and MDSR
 We used [DIV2K](http://www.vision.ee.ethz.ch/%7Etimofter/publications/Agustsson-CVPRW-2017.pdf) dataset to train our model. Please download it from [here](https://cv.snu.ac.kr/research/EDSR/DIV2K.tar) (7.1GB).
 
@@ -128,7 +132,6 @@ sh demo.sh
 
 * Feb 23, 2018
   * Now PyTorch 0.3.1 is default. Use legacy/0.3.0 branch if you use the old version.
-   
   * With a new ``src/data/DIV2K.py`` code, one can easily create new data class for super-resolution.
   * New binary data pack. (Please remove the ``DIV2K_decoded`` folder from your dataset if you have.)
   * With ``--ext bin``, this code will automatically generates and saves the binary data pack that corresponds to previous ``DIV2K_decoded``. (This requires huge RAM (~45GB, Swap can be used.), so please be careful.)

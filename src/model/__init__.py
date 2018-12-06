@@ -42,7 +42,7 @@ class Model(nn.Module):
 
         if self.training:
             if self.n_GPUs > 1:
-                return P.data_parallel(self.model, x, range(self.n_GPUs)
+                return P.data_parallel(self.model, x, range(self.n_GPUs))
             else:
                 return self.model(x)
         else:
@@ -139,16 +139,18 @@ class Model(nn.Module):
                 else:
                     for y_chop, _y in zip(y_chops, y): y_chop.append(_y)
 
-        top = slice(0, scale * h//2)
-        bottom = slice(scale * (h - h//2), scale * h)
-        bottom_r = slice(scale* (h//2 - h), None)
-        left = slice(0, scale * w//2)
-        right = slice(scale * (w - w//2), scale * w)
-        right_r = slice(scale * w//2, None)
+        h *= scale
+        w *= scale
+        top = slice(0, h//2)
+        bottom = slice(h - h//2, h)
+        bottom_r = slice(h//2 - h, None)
+        left = slice(0, w//2)
+        right = slice(w - w//2, w)
+        right_r = slice(w//2 - w, None)
 
         # batch size, number of color channels
         b, c = y_chops[0][0].size()[:-2]
-        y = [y_chop[0].new(b, c, scale * h, scale * w) for y_chop in y_chops]
+        y = [y_chop[0].new(b, c, h, w) for y_chop in y_chops]
         for y_chop, _y in zip(y_chops, y):
             _y[..., top, left] = y_chop[0][..., top, left]
             _y[..., top, right] = y_chop[1][..., top, right_r]
