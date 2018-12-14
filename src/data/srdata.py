@@ -28,52 +28,34 @@ class SRData(data.Dataset):
             os.makedirs(path_bin, exist_ok=True)
 
         list_hr, list_lr = self._scan()
-        if args.ext.find('bin') >= 0:
-            # Binary files are stored in 'bin' folder
-            # If the binary file exists, load it. If not, make it.
-            list_hr, list_lr = self._scan()
-            self.images_hr = self._check_and_load(
-                args.ext, list_hr, self._name_hrbin()
+        if args.ext.find('img') >= 0 or benchmark:
+            self.images_hr, self.images_lr = list_hr, list_lr
+        elif args.ext.find('sep') >= 0:
+            os.makedirs(
+                self.dir_hr.replace(self.apath, path_bin),
+                exist_ok=True
             )
-            self.images_lr = [
-                self._check_and_load(args.ext, l, self._name_lrbin(s)) \
-                for s, l in zip(self.scale, list_lr)
-            ]
-        else:
-            if args.ext.find('img') >= 0 or benchmark:
-                self.images_hr, self.images_lr = list_hr, list_lr
-            elif args.ext.find('sep') >= 0:
+            for s in self.scale:
                 os.makedirs(
-                    self.dir_hr.replace(self.apath, path_bin),
+                    os.path.join(
+                        self.dir_lr.replace(self.apath, path_bin),
+                        'X{}'.format(s)
+                    ),
                     exist_ok=True
                 )
-                for s in self.scale:
-                    os.makedirs(
-                        os.path.join(
-                            self.dir_lr.replace(self.apath, path_bin),
-                            'X{}'.format(s)
-                        ),
-                        exist_ok=True
-                    )
-                
-                self.images_hr, self.images_lr = [], [[] for _ in self.scale]
-                for h in list_hr:
-                    b = h.replace(self.apath, path_bin)
-                    b = b.replace(self.ext[0], '.pt')
-                    self.images_hr.append(b)
-                    self._check_and_load(
-                        args.ext, [h], b, verbose=True, load=False
-                    )
-
-                for i, ll in enumerate(list_lr):
-                    for l in ll:
-                        b = l.replace(self.apath, path_bin)
-                        b = b.replace(self.ext[1], '.pt')
-                        self.images_lr[i].append(b)
-                        self._check_and_load(
-                            args.ext, [l], b,  verbose=True, load=False
-                        )
-
+            
+            self.images_hr, self.images_lr = [], [[] for _ in self.scale]
+            for h in list_hr:
+                b = h.replace(self.apath, path_bin)
+                b = b.replace(self.ext[0], '.pt')
+                self.images_hr.append(b)
+                self._check_and_load(args.ext, h, b, verbose=True) 
+            for i, ll in enumerate(list_lr):
+                for l in ll:
+                    b = l.replace(self.apath, path_bin)
+                    b = b.replace(self.ext[1], '.pt')
+                    self.images_lr[i].append(b)
+                    self._check_and_load(args.ext, l, b, verbose=True) 
         if train:
             n_patches = args.batch_size * args.test_every
             n_images = len(args.data_train) * len(self.images_hr)
@@ -106,41 +88,12 @@ class SRData(data.Dataset):
         if self.input_large: self.dir_lr += 'L'
         self.ext = ('.png', '.png')
 
-    def _name_hrbin(self):
-        return os.path.join(
-            self.apath,
-            'bin',
-            '{}_bin_HR.pt'.format(self.split)
-        )
-
-    def _name_lrbin(self, scale):
-        return os.path.join(
-            self.apath,
-            'bin',
-            '{}_bin_LR_X{}.pt'.format(self.split, scale)
-        )
-
-    def _check_and_load(self, ext, l, f, verbose=True, load=True):
-        if os.path.isfile(f) and ext.find('reset') < 0:
-            if load:
-                if verbose: print('Loading {}...'.format(f))
-                with open(f, 'rb') as _f: ret = pickle.load(_f)
-                return ret
-            else:
-                return None
-        else:
+    def _check_and_load(self, ext, img, f, verbose=True):
+        if not os.path.isfile(f) or ext.find('reset') >= 0:
             if verbose:
-                if ext.find('reset') >= 0:
-                    print('Making a new binary: {}'.format(f))
-                else:
-                    print('{} does not exist. Now making binary...'.format(f))
-            b = [{
-                'name': os.path.splitext(os.path.basename(_l))[0],
-                'image': imageio.imread(_l)
-            } for _l in l]
-            with open(f, 'wb') as _f: pickle.dump(b, _f)
-
-            return b
+                print('Making a binary: {}'.format(f))
+            with open(f, 'wb') as _f:
+                pickle.dump(imageio.imread(img), _f)
 
     def __getitem__(self, idx):
         lr, hr, filename = self._load_file(idx)
@@ -167,18 +120,15 @@ class SRData(data.Dataset):
         f_hr = self.images_hr[idx]
         f_lr = self.images_lr[self.idx_scale][idx]
 
-        if self.args.ext.find('bin') >= 0:
-            filename = f_hr['name']
-            hr = f_hr['image']
-            lr = f_lr['image']
-        else:
-            filename, _ = os.path.splitext(os.path.basename(f_hr))
-            if self.args.ext == 'img' or self.benchmark:
-                hr = imageio.imread(f_hr)
-                lr = imageio.imread(f_lr)
-            elif self.args.ext.find('sep') >= 0:
-                with open(f_hr, 'rb') as _f: hr = pickle.load(_f)[0]['image']
-                with open(f_lr, 'rb') as _f: lr = pickle.load(_f)[0]['image']
+        filename, _ = os.path.splitext(os.path.basename(f_hr))
+        if self.args.ext == 'img' or self.benchmark:
+            hr = imageio.imread(f_hr)
+            lr = imageio.imread(f_lr)
+        elif self.args.ext.find('sep') >= 0:
+            with open(f_hr, 'rb') as _f:
+                hr = pickle.load(_f)
+            with open(f_lr, 'rb') as _f:
+                lr = pickle.load(_f)
 
         return lr, hr, filename
 

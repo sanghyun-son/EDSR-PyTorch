@@ -1,3 +1,7 @@
+**About PyTorch 1.0.0**
+  * We support PyTorch 1.0.0. If you prefer the previous versions of PyTorch, use legacy branches.
+  * ``--ext bin`` is not supported. Also, please erase your bin files with ``--ext sep-reset``. Once you successfully build those bin files, you can remove ``-reset`` from the argument.
+
 # EDSR-PyTorch
 ![](/figs/main.png)
 
@@ -27,19 +31,13 @@ We provide scripts for reproducing all the results from our paper. You can train
 
 ## Dependencies
 * Python 3.6
-* PyTorch >= 0.4.0
+* PyTorch >= 1.0.0
 * numpy
 * skimage
 * **imageio**
 * matplotlib
 * tqdm
-* cv2 >= 3.xx (Only if you use video input/output)
-
-**Recent updates**
-
-* Oct 18, 2018
-  * with ``--pre_train download``, pretrained models will be automatically downloaded from server.
-  * Supports video input/output (inference only). Try with ``--data_test video --dir_demo [video file directory]``.
+* cv2 >= 3.xx (Only if you want to use video input/output)
 
 ## Code
 Clone this repository into any place you want.
@@ -174,4 +172,8 @@ sh demo.sh
 * July 22, 2018
   * Thanks for recent commits that contains RDN and RCAN. Please see ``code/demo.sh`` to train/test those models.
   * Now the dataloader is much stable than the previous version. Please erase ``DIV2K/bin`` folder that is created before this commit. Also, please avoid to use ``--ext bin`` argument. Our code will automatically pre-decode png images before training. If you do not have enough spaces(~10GB) in your disk, we recommend ``--ext img``(But SLOW!).
+
+* Oct 18, 2018
+  * with ``--pre_train download``, pretrained models will be automatically downloaded from server.
+  * Supports video input/output (inference only). Try with ``--data_test video --dir_demo [video file directory]``.
 
