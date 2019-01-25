@@ -1,8 +1,14 @@
+# [Challenges for NTIRE 2019 is open!](http://www.vision.ee.ethz.ch/ntire19/)
+
+**The challenge winners will be awarded at the CVPR 2019 Workshop.**
+![](/figs/ntire2019.png)
+
+# EDSR-PyTorch
+
 **About PyTorch 1.0.0**
   * We support PyTorch 1.0.0. If you prefer the previous versions of PyTorch, use legacy branches.
   * ``--ext bin`` is not supported. Also, please erase your bin files with ``--ext sep-reset``. Once you successfully build those bin files, you can remove ``-reset`` from the argument.
 
-# EDSR-PyTorch
 ![](/figs/main.png)
 
 This repository is an official PyTorch implementation of the paper **"Enhanced Deep Residual Networks for Single Image Super-Resolution"** from **CVPRW 2017, 2nd NTIRE**.
