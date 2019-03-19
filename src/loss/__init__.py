@@ -137,7 +137,7 @@ class Loss(nn.modules.loss._Loss):
             **kwargs
         ))
         self.log = torch.load(os.path.join(apath, 'loss_log.pt'))
-        for l in self.loss_module:
+        for l in self.get_loss_module():
             if hasattr(l, 'scheduler'):
                 for _ in range(len(self.log)): l.scheduler.step()
 
