@@ -12,7 +12,7 @@ checkpoint = utility.checkpoint(args)
 
 def main():
     global model
-    if args.data_test == 'video':
+    if args.data_test == ['video']:
         from videotester import VideoTester
         model = model.Model(args, checkpoint)
         t = VideoTester(args, model, checkpoint)
