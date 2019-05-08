@@ -1,13 +1,7 @@
-# [Challenges for NTIRE 2019 is open!](http://www.vision.ee.ethz.ch/ntire19/)
-
-**The challenge winners will be awarded at the CVPR 2019 Workshop.**
-![](/figs/ntire2019.png)
-
 # EDSR-PyTorch
 
-**About PyTorch 1.0.0**
-  * We support PyTorch 1.0.0. If you prefer the previous versions of PyTorch, use legacy branches.
-  * ``--ext bin`` is not supported. Also, please erase your bin files with ``--ext sep-reset``. Once you successfully build those bin files, you can remove ``-reset`` from the argument.
+**About PyTorch 1.1.0**
+  * There have been minor changes with the 1.1.0 update. Now we support PyTorch 1.1.0 by default, and please use the legacy branch if you prefer older version.
 
 ![](/figs/main.png)
 

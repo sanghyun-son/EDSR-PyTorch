@@ -26,7 +26,6 @@ class Trainer():
         self.error_last = 1e8
 
     def train(self):
-        self.optimizer.schedule()
         self.loss.step()
         epoch = self.optimizer.get_last_epoch() + 1
         lr = self.optimizer.get_lr()
@@ -68,11 +67,12 @@ class Trainer():
 
         self.loss.end_log(len(self.loader_train))
         self.error_last = self.loss.log[-1, -1]
+        self.optimizer.schedule()
 
     def test(self):
         torch.set_grad_enabled(False)
 
-        epoch = self.optimizer.get_last_epoch() + 1
+        epoch = self.optimizer.get_last_epoch()
         self.ckp.write_log('\nEvaluation:')
         self.ckp.add_log(
             torch.zeros(1, len(self.loader_test), len(self.scale))
