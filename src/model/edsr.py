@@ -23,7 +23,11 @@ class EDSR(nn.Module):
         kernel_size = 3 
         scale = args.scale[0]
         act = nn.ReLU(True)
-        self.url = url['r{}f{}x{}'.format(n_resblocks, n_feats, scale)]
+        url_name = 'r{}f{}x{}'.format(n_resblocks, n_feats, scale)
+        if url_name in url:
+            self.url = url[url_name]
+        else:
+            self.url = None
         self.sub_mean = common.MeanShift(args.rgb_range)
         self.add_mean = common.MeanShift(args.rgb_range, sign=1)
 
