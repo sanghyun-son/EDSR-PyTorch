@@ -4,10 +4,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-def default_conv(in_channels, out_channels, kernel_size, bias=True):
+def default_conv(in_channels, out_channels, kernel_size, dilation_factor=1 bias=True):
     return nn.Conv2d(
         in_channels, out_channels, kernel_size,
-        padding=(kernel_size//2), bias=bias)
+        padding=(kernel_size//2)*dilation_factor, dilation=(dilation_factor,dilation_factor), bias=bias)
 
 class MeanShift(nn.Conv2d):
     def __init__(
