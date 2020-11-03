@@ -21,7 +21,7 @@ class Data:
             for d in args.data_train:
                 module_name = d if d.find('DIV2K-Q') < 0 else 'DIV2KJPEG'
                 m = import_module('data.' + module_name.lower())
-                datasets.append(getattr(m, module_name)(args, name=d))
+                datasets.append(getattr(m, module_name)(args))
 
             self.loader_train = dataloader.DataLoader(
                 MyConcatDataset(datasets),
@@ -35,11 +35,11 @@ class Data:
         for d in args.data_test:
             if d in ['Set5', 'Set14', 'B100', 'Urban100']:
                 m = import_module('data.benchmark')
-                testset = getattr(m, 'Benchmark')(args, train=False, name=d)
+                testset = getattr(m, 'Benchmark')(args, train=False)
             else:
                 module_name = d if d.find('DIV2K-Q') < 0 else 'DIV2KJPEG'
                 m = import_module('data.' + module_name.lower())
-                testset = getattr(m, module_name)(args, train=False, name=d)
+                testset = getattr(m, module_name)(args, train=False)
 
             self.loader_test.append(
                 dataloader.DataLoader(
