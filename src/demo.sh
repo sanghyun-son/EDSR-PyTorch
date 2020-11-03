@@ -3,10 +3,9 @@ source /usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda/etc/profile.d/conda
 conda activate DLIM_project
 
 # EDSR baseline model (x2) + JPEG augmentation
-python main.py --model EDSR --scale 2 --patch_size 96 --save edsr_baseline_x2 --reset
-#python main.py --model EDSR --scale 2 --patch_size 96 --save edsr_baseline_x2 --reset --data_test /usr/itetnas04/data-scratch-01/dlim_01hs20/data/zoomdata/super_resolution_aws/Test
 
-#python main.py --help
+python main.py --model EDSR --data_train DIV2KSUB --data_test  --scale 2 --patch_size 96 --save edsr_baseline_x2 --reset
+#python main.py --model EDSR --scale 2 --patch_size 96 --save edsr_baseline_x2 --reset --data_train DIV2K+DIV2K-Q75 --data_test DIV2K+DIV2K-Q75
 
 # EDSR baseline model (x3) - from EDSR baseline model (x2)
 #python main.py --model EDSR --scale 3 --patch_size 144 --save edsr_baseline_x3 --reset --pre_train [pre-trained EDSR_baseline_x2 model dir]
@@ -30,7 +29,7 @@ python main.py --model EDSR --scale 2 --patch_size 96 --save edsr_baseline_x2 --
 #python main.py --template MDSR --model MDSR --scale 2+3+4 --n_resblocks 80 --save MDSR --reset --save_models
 
 # Standard benchmarks (Ex. EDSR_baseline_x4)
-#python main.py --data_test Set5+Set14+B100+Urban100+DIV2K --data_range 801-900 --scale 4 --pre_train download --test_only --self_ensemble
+python main.py --data_test Set5 --data_range 801-900 --scale 4 --pre_train download --test_only --self_ensemble
 
 #python main.py --data_test Set5+Set14+B100+Urban100+DIV2K --data_range 801-900 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
 
