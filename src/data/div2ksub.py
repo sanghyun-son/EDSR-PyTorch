@@ -23,7 +23,7 @@ class DIV2KSUB(srdata.SRData):
         return list_hr, list_lr
 
     def _set_filesystem(self, dir_data):
-        self.apath = dir_data + '/super_resolution/DIV2K'
+        self.apath = dir_data + '/super_resolution_aws/DIV2K'
         self.dir_hr = os.path.join(self.apath, 'GT_sub')
         self.dir_lr = os.path.join(self.apath, 'GT_sub_bicLRx')
         self.ext = '.png'
