@@ -21,11 +21,12 @@ parser.add_argument('--seed', type=int, default=1,
 # Data specifications
 parser.add_argument('--dir_data', type=str, default='../../zoomdata',
                     help='dataset directory')
+parser.add_argument('--n_train', type =int, default= 32208)
 parser.add_argument('--dir_demo', type=str, default='../test',
                     help='demo image directory')
 parser.add_argument('--data_train', type=str, default='DIV2KSUB',
                     help='train dataset name')
-parser.add_argument('--data_test', type=str, default='DIV2K',
+parser.add_argument('--data_test', type=str, default='Set5',
                     help='test dataset name')  #not DIV2KSUB??
 parser.add_argument('--data_range', type=str, default='1-800/801-810',
                     help='train/test data range')
@@ -54,9 +55,9 @@ parser.add_argument('--pre_train', type=str, default='',
                     help='pre-trained model directory')
 parser.add_argument('--extend', type=str, default='.',
                     help='pre-trained model directory')
-parser.add_argument('--n_resblocks', type=int, default=16,
+parser.add_argument('--n_resblocks', type=int, default=8,
                     help='number of residual blocks')
-parser.add_argument('--n_feats', type=int, default=64,
+parser.add_argument('--n_feats', type=int, default=32,
                     help='number of feature maps')
 parser.add_argument('--res_scale', type=float, default=1,
                     help='residual scaling')
