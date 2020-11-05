@@ -26,7 +26,7 @@ parser.add_argument('--dir_demo', type=str, default='../test',
 parser.add_argument('--data_train', type=str, default='DIV2KSUB',
                     help='train dataset name')
 parser.add_argument('--data_test', type=str, default='DIV2K',
-                    help='test dataset name')  #not DIV2K??
+                    help='test dataset name')  #not DIV2KSUB??
 parser.add_argument('--data_range', type=str, default='1-800/801-810',
                     help='train/test data range')
 parser.add_argument('--ext', type=str, default='sep',

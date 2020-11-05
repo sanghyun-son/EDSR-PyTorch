@@ -13,7 +13,9 @@ class DIV2KSUB(srdata.SRData):
     def __init__(self, args, train=True):
         super(DIV2KSUB, self).__init__(args, train)
         self.repeat = 1 #round(args.test_every / (args.n_train / args.batch_size))
+
         self.n_train = args.epochs
+
         # embed()
     def _scan(self):
         list_hr = sorted(glob.glob(os.path.join(self.dir_hr, '*.png')))
@@ -25,7 +27,7 @@ class DIV2KSUB(srdata.SRData):
     def _set_filesystem(self, dir_data):
         self.apath = dir_data + '/super_resolution_aws/DIV2K'
         self.dir_hr = os.path.join(self.apath, 'GT_sub')
-        self.dir_lr = os.path.join(self.apath, 'GT_sub_bicLRx')
+        self.dir_lr = os.path.join(self.apath, 'GT_sub_bicLRx2')
         self.ext = '.png'
 
     def _name_hrbin(self):
@@ -44,12 +46,12 @@ class DIV2KSUB(srdata.SRData):
 
     def __len__(self):
         if self.train:
-            return self.n_train * self.repeat #len(self.images_hr) * self.repeat
+            return len(self.images_hr) * self.repeat #self.n_train * self.repeat
         else:
-            return self.n_train #len(self.images_hr)
+            return len(self.images_hr) #self.n_train
 
     def _get_index(self, idx):
         if self.train:
-            return idx % self.n_train #len(self.images_hr)
+            return idx % len(self.images_hr) #self.n_train
         else:
             return idx
