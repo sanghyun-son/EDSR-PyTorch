@@ -53,7 +53,7 @@ class SRData(data.Dataset):
             for i, ll in enumerate(list_lr):
                 for l in ll:
                     b = l.replace(self.apath, path_bin)
-                    b = b.replace(self.ext[1], '.')
+                    b = b.replace(self.ext[1], 'p')
                     self.images_lr[i].append(b)
                     self._check_and_load(args.ext, l, b, verbose=True) 
         if train:

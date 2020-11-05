@@ -1,0 +1,3591 @@
+Making model...
+Preparing loss function:
+1.000 * L1
+[Epoch 1]	Learning rate: 1.00e-4
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 1.15s
+
+[Epoch 2]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.88s
+
+[Epoch 3]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.94s
+
+[Epoch 4]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.89s
+
+[Epoch 5]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.25s
+
+Saving...
+Total: 0.91s
+
+[Epoch 6]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 1.06s
+
+[Epoch 7]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.91s
+
+[Epoch 8]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.91s
+
+[Epoch 9]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.91s
+
+[Epoch 10]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.95s
+
+[Epoch 11]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.90s
+
+[Epoch 12]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.88s
+
+[Epoch 13]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 14]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.94s
+
+[Epoch 15]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.34s
+
+Saving...
+Total: 0.97s
+
+[Epoch 16]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 17]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 18]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.89s
+
+[Epoch 19]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 20]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.85s
+
+[Epoch 21]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.93s
+
+[Epoch 22]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 23]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 24]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.83s
+
+[Epoch 25]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.87s
+
+[Epoch 26]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.92s
+
+[Epoch 27]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.33s
+
+Saving...
+Total: 0.92s
+
+[Epoch 28]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.94s
+
+[Epoch 29]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.92s
+
+[Epoch 30]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.90s
+
+[Epoch 31]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.84s
+
+[Epoch 32]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.90s
+
+[Epoch 33]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.84s
+
+[Epoch 34]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.99s
+
+[Epoch 35]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.93s
+
+[Epoch 36]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.95s
+
+[Epoch 37]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 38]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 1.01s
+
+[Epoch 39]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.89s
+
+[Epoch 40]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.91s
+
+[Epoch 41]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 42]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.86s
+
+[Epoch 43]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 1.00s
+
+[Epoch 44]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.33s
+
+Saving...
+Total: 0.91s
+
+[Epoch 45]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.83s
+
+[Epoch 46]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.89s
+
+[Epoch 47]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 48]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 49]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 50]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.25s
+
+Saving...
+Total: 0.84s
+
+[Epoch 51]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 52]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 53]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 54]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.94s
+
+[Epoch 55]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.91s
+
+[Epoch 56]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 57]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 58]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.90s
+
+[Epoch 59]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.84s
+
+[Epoch 60]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.85s
+
+[Epoch 61]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.85s
+
+[Epoch 62]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 63]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 64]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.93s
+
+[Epoch 65]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 1.00s
+
+[Epoch 66]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.85s
+
+[Epoch 67]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.92s
+
+[Epoch 68]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.94s
+
+[Epoch 69]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.94s
+
+[Epoch 70]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 1.00s
+
+[Epoch 71]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 72]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.85s
+
+[Epoch 73]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.89s
+
+[Epoch 74]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.84s
+
+[Epoch 75]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.84s
+
+[Epoch 76]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.93s
+
+[Epoch 77]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.87s
+
+[Epoch 78]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.91s
+
+[Epoch 79]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.87s
+
+[Epoch 80]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 1.03s
+
+[Epoch 81]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.88s
+
+[Epoch 82]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.89s
+
+[Epoch 83]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.90s
+
+[Epoch 84]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.96s
+
+[Epoch 85]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.97s
+
+[Epoch 86]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 87]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.93s
+
+[Epoch 88]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.83s
+
+[Epoch 89]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.94s
+
+[Epoch 90]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.83s
+
+[Epoch 91]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.25s
+
+Saving...
+Total: 0.78s
+
+[Epoch 92]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.90s
+
+[Epoch 93]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.84s
+
+[Epoch 94]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.83s
+
+[Epoch 95]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 96]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.83s
+
+[Epoch 97]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.89s
+
+[Epoch 98]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.93s
+
+[Epoch 99]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 100]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 101]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.84s
+
+[Epoch 102]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.85s
+
+[Epoch 103]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 104]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 105]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.83s
+
+[Epoch 106]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.90s
+
+[Epoch 107]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.26s
+
+Saving...
+Total: 0.83s
+
+[Epoch 108]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.92s
+
+[Epoch 109]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.92s
+
+[Epoch 110]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.34s
+
+Saving...
+Total: 0.91s
+
+[Epoch 111]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.87s
+
+[Epoch 112]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.85s
+
+[Epoch 113]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.87s
+
+[Epoch 114]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.83s
+
+[Epoch 115]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 116]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.90s
+
+[Epoch 117]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.82s
+
+[Epoch 118]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.86s
+
+[Epoch 119]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.94s
+
+[Epoch 120]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.94s
+
+[Epoch 121]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 122]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.86s
+
+[Epoch 123]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.33s
+
+Saving...
+Total: 0.89s
+
+[Epoch 124]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.90s
+
+[Epoch 125]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 126]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.33s
+
+Saving...
+Total: 0.90s
+
+[Epoch 127]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.82s
+
+[Epoch 128]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 129]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.87s
+
+[Epoch 130]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.87s
+
+[Epoch 131]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.95s
+
+[Epoch 132]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.90s
+
+[Epoch 133]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.90s
+
+[Epoch 134]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.83s
+
+[Epoch 135]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 136]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.84s
+
+[Epoch 137]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.83s
+
+[Epoch 138]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.85s
+
+[Epoch 139]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 140]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 141]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.89s
+
+[Epoch 142]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.91s
+
+[Epoch 143]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.33s
+
+Saving...
+Total: 0.93s
+
+[Epoch 144]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.91s
+
+[Epoch 145]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 146]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.93s
+
+[Epoch 147]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.90s
+
+[Epoch 148]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 149]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.84s
+
+[Epoch 150]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.89s
+
+[Epoch 151]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.85s
+
+[Epoch 152]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 153]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.94s
+
+[Epoch 154]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.92s
+
+[Epoch 155]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.90s
+
+[Epoch 156]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 1.00s
+
+[Epoch 157]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.94s
+
+[Epoch 158]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.93s
+
+[Epoch 159]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.95s
+
+[Epoch 160]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.89s
+
+[Epoch 161]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.91s
+
+[Epoch 162]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.95s
+
+[Epoch 163]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 164]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.93s
+
+[Epoch 165]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 166]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 167]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 168]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.24s
+
+Saving...
+Total: 0.87s
+
+[Epoch 169]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 170]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.90s
+
+[Epoch 171]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.88s
+
+[Epoch 172]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.85s
+
+[Epoch 173]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.26s
+
+Saving...
+Total: 0.83s
+
+[Epoch 174]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 175]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.94s
+
+[Epoch 176]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.95s
+
+[Epoch 177]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.93s
+
+[Epoch 178]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 179]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 180]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.92s
+
+[Epoch 181]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.91s
+
+[Epoch 182]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.87s
+
+[Epoch 183]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.90s
+
+[Epoch 184]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.34s
+
+Saving...
+Total: 0.92s
+
+[Epoch 185]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.86s
+
+[Epoch 186]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.94s
+
+[Epoch 187]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.93s
+
+[Epoch 188]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.90s
+
+[Epoch 189]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.98s
+
+[Epoch 190]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.88s
+
+[Epoch 191]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 192]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.91s
+
+[Epoch 193]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.26s
+
+Saving...
+Total: 0.88s
+
+[Epoch 194]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 195]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.88s
+
+[Epoch 196]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 197]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.98s
+
+[Epoch 198]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.25s
+
+Saving...
+Total: 0.83s
+
+[Epoch 199]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.92s
+
+[Epoch 200]	Learning rate: 1.00e-4
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.90s
+
+[Epoch 201]	Learning rate: 2.50e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 1.00s
+
+[Epoch 202]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 203]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.95s
+
+[Epoch 204]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.92s
+
+[Epoch 205]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.82s
+
+[Epoch 206]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.89s
+
+[Epoch 207]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 208]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.93s
+
+[Epoch 209]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 210]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.83s
+
+[Epoch 211]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 212]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 213]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 214]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.91s
+
+[Epoch 215]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.33s
+
+Saving...
+Total: 0.91s
+
+[Epoch 216]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 217]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.82s
+
+[Epoch 218]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.92s
+
+[Epoch 219]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.88s
+
+[Epoch 220]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.84s
+
+[Epoch 221]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 222]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 223]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.97s
+
+[Epoch 224]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.85s
+
+[Epoch 225]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 226]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 227]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.89s
+
+[Epoch 228]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.88s
+
+[Epoch 229]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.88s
+
+[Epoch 230]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.92s
+
+[Epoch 231]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 232]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 233]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.85s
+
+[Epoch 234]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.95s
+
+[Epoch 235]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 236]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.84s
+
+[Epoch 237]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.82s
+
+[Epoch 238]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.99s
+
+[Epoch 239]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.34s
+
+Saving...
+Total: 0.92s
+
+[Epoch 240]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 241]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.93s
+
+[Epoch 242]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 243]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.85s
+
+[Epoch 244]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.83s
+
+[Epoch 245]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 246]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.86s
+
+[Epoch 247]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.91s
+
+[Epoch 248]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 249]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.89s
+
+[Epoch 250]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.88s
+
+[Epoch 251]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.97s
+
+[Epoch 252]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.92s
+
+[Epoch 253]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.85s
+
+[Epoch 254]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.33s
+
+Saving...
+Total: 0.88s
+
+[Epoch 255]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.84s
+
+[Epoch 256]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.86s
+
+[Epoch 257]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.85s
+
+[Epoch 258]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.83s
+
+[Epoch 259]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.99s
+
+[Epoch 260]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.99s
+
+[Epoch 261]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.82s
+
+[Epoch 262]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.85s
+
+[Epoch 263]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.95s
+
+[Epoch 264]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.88s
+
+[Epoch 265]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.87s
+
+[Epoch 266]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.96s
+
+[Epoch 267]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.86s
+
+[Epoch 268]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 269]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.28s
+
+Saving...
+Total: 0.84s
+
+[Epoch 270]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.93s
+
+[Epoch 271]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 272]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.93s
+
+[Epoch 273]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 274]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.91s
+
+[Epoch 275]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.93s
+
+[Epoch 276]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.34s
+
+Saving...
+Total: 0.90s
+
+[Epoch 277]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.89s
+
+[Epoch 278]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.88s
+
+[Epoch 279]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.88s
+
+[Epoch 280]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 281]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.82s
+
+[Epoch 282]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.86s
+
+[Epoch 283]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.85s
+
+[Epoch 284]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.86s
+
+[Epoch 285]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.91s
+
+[Epoch 286]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.26s
+
+Saving...
+Total: 0.92s
+
+[Epoch 287]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.29s
+
+Saving...
+Total: 0.85s
+
+[Epoch 288]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.88s
+
+[Epoch 289]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.94s
+
+[Epoch 290]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.89s
+
+[Epoch 291]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.90s
+
+[Epoch 292]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.27s
+
+Saving...
+Total: 0.90s
+
+[Epoch 293]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.91s
+
+[Epoch 294]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.89s
+
+[Epoch 295]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.87s
+
+[Epoch 296]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.31s
+
+Saving...
+Total: 0.94s
+
+[Epoch 297]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.32s
+
+Saving...
+Total: 0.95s
+
+[Epoch 298]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s][DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.94s
+
+[Epoch 299]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+0it [00:00, ?it/s]
+Evaluation:
+0it [00:00, ?it/s]
+[DIV2K x2]	PSNR: nan (Best: nan @epoch 1)
+Forward: 0.30s
+
+Saving...
+Total: 0.88s
+

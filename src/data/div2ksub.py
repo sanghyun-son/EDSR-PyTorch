@@ -13,7 +13,7 @@ class DIV2KSUB(srdata.SRData):
     def __init__(self, args, train=True):
         super(DIV2KSUB, self).__init__(args, train)
         self.repeat = 1 #round(args.test_every / (args.n_train / args.batch_size))
-        self.n_train = args.n_train
+        self.n_train = args.epochs
         # embed()
     def _scan(self):
         list_hr = sorted(glob.glob(os.path.join(self.dir_hr, '*.png')))

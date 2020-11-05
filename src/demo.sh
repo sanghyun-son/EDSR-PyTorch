@@ -1,5 +1,5 @@
 #!/bin/bash
-source /usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda/etc/profile.d/conda.sh
+source /usr/itetnas04/data-scratch-01/dlim_04hs20/data/conda/etc/profile.d/conda.sh
 conda activate DLIM_project
 
 # EDSR baseline model (x2) + JPEG augmentation

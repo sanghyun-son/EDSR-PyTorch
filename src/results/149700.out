@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "main.py", line 33, in <module>
+    main()
+  File "main.py", line 22, in main
+    loader = data.Data(args)
+  File "/usr/itetnas04/data-scratch-01/dlim_04hs20/data/EDSR-PyTorch/src/data/__init__.py", line 24, in __init__
+    datasets.append(getattr(m, module_name)(args))
+  File "/usr/itetnas04/data-scratch-01/dlim_04hs20/data/EDSR-PyTorch/src/data/div2ksub.py", line 16, in __init__
+    self.n_train = args.n_train
+AttributeError: 'Namespace' object has no attribute 'n_train'
