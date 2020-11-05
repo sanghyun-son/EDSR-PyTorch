@@ -47,13 +47,13 @@ class SRData(data.Dataset):
             self.images_hr, self.images_lr = [], [[] for _ in self.scale]
             for h in list_hr:
                 b = h.replace(self.apath, path_bin)
-                b = b.replace(self.ext[0], '.')
+                b = b.replace(self.ext, '.pt')
                 self.images_hr.append(b)
                 self._check_and_load(args.ext, h, b, verbose=True) 
             for i, ll in enumerate(list_lr):
                 for l in ll:
                     b = l.replace(self.apath, path_bin)
-                    b = b.replace(self.ext[1], '.pt')
+                    b = b.replace(self.ext, '.pt')
                     self.images_lr[i].append(b)
                     self._check_and_load(args.ext, l, b, verbose=True) 
         if train:
