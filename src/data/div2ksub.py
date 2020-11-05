@@ -13,7 +13,6 @@ class DIV2KSUB(srdata.SRData):
     def __init__(self, args, train=True):
         super(DIV2KSUB, self).__init__(args, train)
         self.repeat = 1 #round(args.test_every / (args.n_train / args.batch_size))
-
         self.n_train = args.epochs
 
         # embed()
@@ -27,7 +26,7 @@ class DIV2KSUB(srdata.SRData):
     def _set_filesystem(self, dir_data):
         self.apath = dir_data + '/super_resolution_aws/DIV2K'
         self.dir_hr = os.path.join(self.apath, 'GT_sub')
-        self.dir_lr = os.path.join(self.apath, 'GT_sub_bicLRx2')
+        self.dir_lr = os.path.join(self.apath, 'GT_sub_bicLRx')
         self.ext = '.png'
 
     def _name_hrbin(self):
