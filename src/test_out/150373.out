@@ -1,0 +1,24 @@
+/scratch/slurm/spool/job150373/slurm_script: line 2: /usr/itetnas01/data-scratch-01/dlim_04hs20/data/conda/etc/profile.d/conda.sh: No such file or directory
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+Traceback (most recent call last):
+  File "main.py", line 1, in <module>
+    import torch
+ImportError: No module named torch

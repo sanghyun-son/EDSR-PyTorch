@@ -1,0 +1,52 @@
+Set5
+../../zoomdata <class 'str'>
+['Set5'] <class 'list'>
+../../zoomdata/super_resolution_aws/benchmark/Set5/HR
+../../zoomdata/super_resolution_aws/benchmark/Set5/LR_bicubic
+Making model...
+Preparing loss function:
+1.000 * L1
+[Epoch 1]	Learning rate: 1.00e-4
+/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+[1600/32208]	[L1: 20.4256]	2.0+8.8s
+[3200/32208]	[L1: 15.0374]	1.7+8.6s
+[4800/32208]	[L1: 12.6813]	1.7+8.2s
+[6400/32208]	[L1: 11.2705]	1.8+8.7s
+[8000/32208]	[L1: 10.3275]	1.8+8.4s
+[9600/32208]	[L1: 9.6246]	1.7+8.1s
+[11200/32208]	[L1: 9.0649]	1.7+8.7s
+[12800/32208]	[L1: 8.6423]	1.7+8.4s
+[14400/32208]	[L1: 8.2981]	1.7+8.1s
+[16000/32208]	[L1: 8.0107]	1.7+8.9s
+Traceback (most recent call last):
+  File "main.py", line 33, in <module>
+    main()
+  File "main.py", line 27, in main
+    t.train()
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/EDSR-PyTorch/src/trainer.py", line 42, in train
+    for batch, (lr, hr, _,) in enumerate(self.loader_train):
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 363, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 971, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1014, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/_utils.py", line 395, in reraise
+    raise self.exc_type(msg)
+EOFError: Caught EOFError in DataLoader worker process 3.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/utils/data/_utils/worker.py", line 185, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/utils/data/dataset.py", line 207, in __getitem__
+    return self.datasets[dataset_idx][sample_idx]
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/EDSR-PyTorch/src/data/srdata.py", line 101, in __getitem__
+    lr, hr, filename = self._load_file(idx)
+  File "/usr/itetnas04/data-scratch-01/dlim_01hs20/data/EDSR-PyTorch/src/data/srdata.py", line 131, in _load_file
+    hr = pickle.load(_f)
+EOFError: Ran out of input
+
