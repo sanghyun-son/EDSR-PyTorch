@@ -132,8 +132,10 @@ class SRData(data.Dataset):
             lr = imageio.imread(f_lr)
         elif self.args.ext.find('sep') >= 0:
             with open(f_hr, 'rb') as _f:
+                print(_f)
                 hr = pickle.load(_f)
             with open(f_lr, 'rb') as _f:
+                print(_f)
                 lr = pickle.load(_f)
 
         return lr, hr, filename
