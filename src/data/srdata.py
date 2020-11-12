@@ -37,14 +37,10 @@ class SRData(data.Dataset):
             )
             for s in self.scale:
                 os.makedirs(
-                    os.path.join(
-                        self.dir_lr.replace(self.apath, path_bin),
-                        'X{}'.format(s)
-                    ),
-                    exist_ok=True
+                    self.dir_lr.replace(self.apath, path_bin) + '{}'.format(s), exist_ok=True
                 )
-                print(s)
-                test = self.dir_lr.replace(self.apath, path_bin);
+
+                test =self.dir_lr.replace(self.apath, path_bin) + '{}'.format(s)
                 print(test)
             
             self.images_hr, self.images_lr = [], [[] for _ in self.scale]

@@ -18,7 +18,7 @@ class DIV2KSUB(srdata.SRData):
         # embed()
     def _scan(self):
         list_hr = sorted(glob.glob(os.path.join(self.dir_hr, '*.png')))
-        list_lr = [sorted(glob.glob(os.path.join(os.path.join(self.dir_lr, '{}'.format(s)), '*.png'))) for s in self.scale]
+        list_lr = [sorted(glob.glob(os.path.join(self.dir_lr + '{}'.format(s), '*.png'))) for s in self.scale]
         #for si, s in enumerate(self.scale):
 
         return list_hr, list_lr
