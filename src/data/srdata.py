@@ -43,6 +43,9 @@ class SRData(data.Dataset):
                     ),
                     exist_ok=True
                 )
+                print(s)
+                test = self.dir_lr.replace(self.apath, path_bin);
+                print(test)
             
             self.images_hr, self.images_lr = [], [[] for _ in self.scale]
             for h in list_hr:
