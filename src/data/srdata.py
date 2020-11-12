@@ -85,6 +85,7 @@ class SRData(data.Dataset):
 
     def _set_filesystem(self, dir_data):
         self.apath = os.path.join(dir_data, self.name)
+        print(self.apath)
         self.dir_hr = os.path.join(self.apath, 'HR')
         self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
         if self.input_large: self.dir_lr += 'L'
