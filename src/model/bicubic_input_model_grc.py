@@ -32,18 +32,16 @@ class three_layers(nn.Module):
 
         self.body = nn.Sequential(*m_body)
 
+    def bicubic(self,x, scale):
+
+        return x_interpolate
+
+
     def forward(self, x):
-        x = self.body(x)
+        x = bicubic(x, scale)
+
+        res = self.body(x)
+        res += x
+
 
         return x
-
-
-
-
-
-
-
-
-
-
-

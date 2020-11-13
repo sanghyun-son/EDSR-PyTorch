@@ -2,17 +2,17 @@ from model import common
 import torch.nn as nn
 
 def make_model(args, parent=False):
-    return three_layers(args)
+    return bicubic_input_model(args)
 
 
-class three_layers(nn.Module):
+class bicubic_input_model(nn.Module):
     def __init__(self, args, conv=common.default_conv):
-        super(three_layers, self).__init__()
+        super(bicubic_input_model, self).__init__()
 
         n_resblocks = args.n_resblocks
         n_feats = args.n_feats
         kernel_size = 3
-        scale = args.scale[0]
+        self.scale = args.scale[0]
         act = nn.ReLU(True)
 
         self.url = None
@@ -32,13 +32,19 @@ class three_layers(nn.Module):
 
         self.body = nn.Sequential(*m_body)
 
-    def bicubic(self,x, scale):
-        
-        return x_interpolate
-
-
     def forward(self, x):
-        x = bicubic(x, scale)
+        x = nn.functional.interpolate(scale_factor = self.scale, mode = 'bicubic')
         x = self.body(x)
 
         return x
+
+
+
+
+
+
+
+
+
+
+
