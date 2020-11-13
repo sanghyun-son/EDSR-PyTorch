@@ -30,6 +30,8 @@ class BICUBIC_INPUT_MODEL(nn.Module):
             m_body.append(basic_block(n_feats, n_feats, act))
         m_body.append((n_feats, args.n_colors, None))
 
+        print(m_body)
+
         self.body = nn.Sequential(*m_body)
 
     def forward(self, x):
