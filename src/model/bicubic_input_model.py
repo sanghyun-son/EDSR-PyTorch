@@ -35,7 +35,7 @@ class BICUBIC_INPUT_MODEL(nn.Module):
         self.body = nn.Sequential(*m_body)
 
     def forward(self, x):
-        x = nn.functional.interpolate(scale_factor = self.scale, mode = 'bicubic')
+        x = nn.functional.interpolate(input = x, scale_factor = self.scale, mode = 'bicubic')
         x = self.body(x)
 
         return x
