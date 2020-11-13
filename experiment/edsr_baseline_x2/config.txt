@@ -1,4 +1,4 @@
-2020-11-06-11:57:33
+2020-11-12-11:42:33
 
 debug: False
 template: .
@@ -7,7 +7,7 @@ cpu: False
 n_GPUs: 1
 seed: 1
 dir_data: ../../zoomdata
-n_train: 16108
+n_train: 32208
 dir_demo: ../test
 data_train: ['DIV2KSUB']
 data_test: ['Set5']
@@ -23,8 +23,8 @@ model: EDSR
 act: relu
 pre_train: 
 extend: .
-n_resblocks: 8
-n_feats: 32
+n_resblocks: 16
+n_feats: 64
 res_scale: 1
 shift_mean: True
 dilation: False

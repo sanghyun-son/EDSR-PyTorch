@@ -6467,4 +6467,120 @@ Total: 0.82s
 [16000/16108]	[L1: 3.6635]	1.6+0.0s
 
 Evaluation:
-100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  4.62it/s]
+100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  4.62it/s]100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  3.21it/s][ x2]	PSNR: 38.813 (Best: 38.841 @epoch 266)
+Forward: 0.31s
+
+Saving...
+Total: 0.78s
+
+[Epoch 295]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+  0%|                                                     | 0/1 [00:00<?, ?it/s][1600/16108]	[L1: 3.5856]	1.7+0.3s
+[3200/16108]	[L1: 3.6901]	1.6+0.0s
+[4800/16108]	[L1: 3.6720]	1.6+0.0s
+[6400/16108]	[L1: 3.6582]	1.6+0.0s
+[8000/16108]	[L1: 3.6824]	1.6+0.0s
+[9600/16108]	[L1: 3.6609]	1.6+0.0s
+[11200/16108]	[L1: 3.6665]	1.6+0.0s
+[12800/16108]	[L1: 3.6615]	1.6+0.0s
+[14400/16108]	[L1: 3.6635]	1.6+0.0s
+[16000/16108]	[L1: 3.6558]	1.6+0.0s
+
+Evaluation:
+100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  4.56it/s]100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  2.80it/s][ x2]	PSNR: 38.823 (Best: 38.841 @epoch 266)
+Forward: 0.36s
+
+Saving...
+Total: 0.80s
+
+[Epoch 296]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+  0%|                                                     | 0/1 [00:00<?, ?it/s][1600/16108]	[L1: 3.4925]	1.8+0.4s
+[3200/16108]	[L1: 3.5730]	1.6+0.0s
+[4800/16108]	[L1: 3.6469]	1.6+0.0s
+[6400/16108]	[L1: 3.5919]	1.6+0.0s
+[8000/16108]	[L1: 3.5937]	1.6+0.0s
+[9600/16108]	[L1: 3.6094]	1.6+0.0s
+[11200/16108]	[L1: 3.6126]	1.6+0.0s
+[12800/16108]	[L1: 3.6164]	1.6+0.0s
+[14400/16108]	[L1: 3.6347]	1.6+0.0s
+[16000/16108]	[L1: 3.6539]	1.6+0.0s
+
+Evaluation:
+100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  4.30it/s]100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  3.12it/s][ x2]	PSNR: 38.820 (Best: 38.841 @epoch 266)
+Forward: 0.32s
+
+Saving...
+Total: 1.00s
+
+[Epoch 297]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+  0%|                                                     | 0/1 [00:00<?, ?it/s][1600/16108]	[L1: 3.7139]	1.7+0.3s
+[3200/16108]	[L1: 3.7658]	1.6+0.0s
+[4800/16108]	[L1: 3.7636]	1.6+0.0s
+[6400/16108]	[L1: 3.7449]	1.6+0.0s
+[8000/16108]	[L1: 3.7142]	1.6+0.0s
+[9600/16108]	[L1: 3.6840]	1.6+0.0s
+[11200/16108]	[L1: 3.6784]	1.6+0.0s
+[12800/16108]	[L1: 3.6718]	1.6+0.0s
+[14400/16108]	[L1: 3.6514]	1.6+0.0s
+[16000/16108]	[L1: 3.6407]	1.6+0.0s
+
+Evaluation:
+100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  3.65it/s]100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  2.68it/s][ x2]	PSNR: 38.784 (Best: 38.841 @epoch 266)
+Forward: 0.37s
+
+Saving...
+Total: 0.83s
+
+[Epoch 298]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+  0%|                                                     | 0/1 [00:00<?, ?it/s][1600/16108]	[L1: 3.7214]	1.7+0.3s
+[3200/16108]	[L1: 3.6288]	1.6+0.0s
+[4800/16108]	[L1: 3.6059]	1.6+0.0s
+[6400/16108]	[L1: 3.6406]	1.6+0.0s
+[8000/16108]	[L1: 3.6363]	1.6+0.0s
+[9600/16108]	[L1: 3.6627]	1.6+0.0s
+[11200/16108]	[L1: 3.6599]	1.6+0.0s
+[12800/16108]	[L1: 3.6659]	1.6+0.0s
+[14400/16108]	[L1: 3.6631]	1.6+0.0s
+[16000/16108]	[L1: 3.6464]	1.6+0.0s
+
+Evaluation:
+100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  4.23it/s]100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  3.00it/s][ x2]	PSNR: 38.824 (Best: 38.841 @epoch 266)
+Forward: 0.33s
+
+Saving...
+Total: 0.95s
+
+[Epoch 299]	Learning rate: 5.00e-5
+
+/usr/itetnas04/data-scratch-01/dlim_01hs20/data/conda_envs/DLIM_project/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:395: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+  0%|                                                     | 0/1 [00:00<?, ?it/s][1600/16108]	[L1: 3.5172]	1.7+0.3s
+[3200/16108]	[L1: 3.5836]	1.6+0.0s
+[4800/16108]	[L1: 3.5936]	1.6+0.0s
+[6400/16108]	[L1: 3.6055]	1.6+0.0s
+[8000/16108]	[L1: 3.6030]	1.6+0.0s
+[9600/16108]	[L1: 3.6189]	1.6+0.0s
+[11200/16108]	[L1: 3.6291]	1.6+0.0s
+[12800/16108]	[L1: 3.6245]	1.6+0.0s
+[14400/16108]	[L1: 3.6309]	1.6+0.0s
+[16000/16108]	[L1: 3.6378]	1.6+0.0s
+
+Evaluation:
+100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  3.87it/s]100%|█████████████████████████████████████████████| 1/1 [00:00<00:00,  2.16it/s]
+[ x2]	PSNR: 38.822 (Best: 38.841 @epoch 266)
+Forward: 0.47s
+
+Saving...
+Total: 0.94s
+
