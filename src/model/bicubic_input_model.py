@@ -2,12 +2,12 @@ from model import common
 import torch.nn as nn
 
 def make_model(args, parent=False):
-    return bicubic_input_model(args)
+    return BICUBIC_INPUT_MODEL(args)
 
 
-class bicubic_input_model(nn.Module):
+class BICUBIC_INPUT_MODEL(nn.Module):
     def __init__(self, args, conv=common.default_conv):
-        super(bicubic_input_model, self).__init__()
+        super(BICUBIC_INPUT_MODEL, self).__init__()
 
         n_resblocks = args.n_resblocks
         n_feats = args.n_feats
