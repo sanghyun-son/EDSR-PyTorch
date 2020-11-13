@@ -84,6 +84,8 @@ parser.add_argument('--reduction', type=int, default=16,
                     help='number of feature maps reduction')
 
 # Training specifications
+parser.add_argument('--batch_norm', type=bool, default=True,
+                    help='do batch normalisation or not')
 parser.add_argument('--reset', action='store_true',
                     help='reset the training')
 parser.add_argument('--test_every', type=int, default=1000,
