@@ -28,7 +28,7 @@ class BICUBIC_INPUT_MODEL_GRC(nn.Module):
         m_body.append(basic_block(args.n_colors, n_feats, act))
         for _ in range(n_resblocks - 2):
             m_body.append(basic_block(n_feats, n_feats, act))
-        m_body.append((n_feats, args.n_colors, None))
+        m_body.append(basic_block(n_feats, args.n_colors, None))
 
         self.body = nn.Sequential(*m_body)
 
