@@ -39,4 +39,4 @@ class BICUBIC_INPUT_MODEL_GRC(nn.Module):
         res = self.body(x)
         res += x
 
-        return x
+        return res
