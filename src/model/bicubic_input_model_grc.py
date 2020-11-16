@@ -12,7 +12,7 @@ class BICUBIC_INPUT_MODEL_GRC(nn.Module):
         n_resblocks = args.n_resblocks
         n_feats = args.n_feats
         kernel_size = 3
-        scale = args.scale[0]
+        self.scale = args.scale[0]
         act = nn.ReLU(True)
 
         self.url = None
@@ -32,16 +32,11 @@ class BICUBIC_INPUT_MODEL_GRC(nn.Module):
 
         self.body = nn.Sequential(*m_body)
 
-    def bicubic(self,x, scale):
-
-        return x_interpolate
-
 
     def forward(self, x):
-        x = bicubic(x, scale)
+        x = nn.functional.interpolate(input = x, scale_factor = self.scale, mode = 'bicubic')
 
         res = self.body(x)
         res += x
-
 
         return x
