@@ -149,7 +149,7 @@ class checkpoint():
     def save_results(self, dataset, filename, save_list, scale):
         if self.args.save_results:
             filename = self.get_path(
-                'results-{}'.format(self.args.data_test),
+                'results-{}'.format(self.args.data_test[0]),
                 '{}_x{}_'.format(filename, scale)
             )
 
