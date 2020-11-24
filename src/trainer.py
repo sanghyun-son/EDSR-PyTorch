@@ -34,7 +34,7 @@ class Trainer():
             '[Epoch {}]\tLearning rate: {:.2e}'.format(epoch, Decimal(lr))
         )
         self.loss.start_log()
-        self.model.train()
+        self.model.train() #init to train mode
 
         timer_data, timer_model = utility.timer(), utility.timer()
         # TEMP
@@ -99,6 +99,7 @@ class Trainer():
                         save_list.extend([lr, hr])
 
                     if self.args.save_results:
+                        print(d.dataset.name)
                         self.ckp.save_results(d, filename[0], save_list, scale)
 
                 self.ckp.log[-1, idx_data, idx_scale] /= len(d)
