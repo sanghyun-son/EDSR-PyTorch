@@ -99,7 +99,7 @@ class Trainer():
                         save_list.extend([lr, hr])
 
                     if self.args.save_results:
-                        print(d.dataset.name)
+                        print(d.dataset.name, type(d.dataset.name))
                         self.ckp.save_results(d, filename[0], save_list, scale)
 
                 self.ckp.log[-1, idx_data, idx_scale] /= len(d)

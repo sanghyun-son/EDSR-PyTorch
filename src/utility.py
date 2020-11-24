@@ -151,7 +151,6 @@ class checkpoint():
                 'results-{}'.format(dataset.dataset.name),
                 '{}_x{}_'.format(filename, scale)
             )
-            print(filename)
 
             postfix = ('SR', 'LR', 'HR')
             for v, p in zip(save_list, postfix):
