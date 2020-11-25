@@ -19,8 +19,6 @@ class Benchmark(srdata.SRData):
         list_hr = []
         list_lr = []
         for s in self.scale:
-            print(self.dir_lr)
-            print(self.dir_hr)
             list_hr.append(sorted(glob.glob(self.dir_hr + '/*.png')))
             list_lr.append(sorted(glob.glob(self.dir_lr + '/X{}/*.png'.format(s))))
 
