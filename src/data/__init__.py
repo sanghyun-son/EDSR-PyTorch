@@ -41,6 +41,7 @@ class Data:
                 m = import_module('data.' + module_name.lower())
                 testset = getattr(m, module_name)(args, train=False)
 
+            print(testset)
             self.loader_test.append(
                 dataloader.DataLoader(
                     testset,
