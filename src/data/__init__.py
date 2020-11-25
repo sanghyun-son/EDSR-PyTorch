@@ -23,6 +23,10 @@ class Data:
                 m = import_module('data.' + module_name.lower())
                 datasets.append(getattr(m, module_name)(args))
 
+            for i in datasets:
+                print(i)
+                print("IN FIRST")
+
             self.loader_train = dataloader.DataLoader(
                 MyConcatDataset(datasets),
                 batch_size=args.batch_size,
@@ -41,6 +45,9 @@ class Data:
                 m = import_module('data.' + module_name.lower())
                 testset = getattr(m, module_name)(args, train=False)
 
+            for i in testset:
+                print(i)
+                print("IN LOOP")
 
             self.loader_test.append(
                 dataloader.DataLoader(
@@ -51,10 +58,3 @@ class Data:
                     num_workers=args.n_threads,
                 )
             )
-
-            for i in testset:
-                print(i)
-
-            for elem in self.loader_test:
-                print(elem)
-                print("IN LOOP")
