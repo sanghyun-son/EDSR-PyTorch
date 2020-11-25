@@ -53,4 +53,5 @@ class Data:
                 )
             )
 
-            print(self.loader_test)
+            for elem in self.loader_test:
+                print(elem)
