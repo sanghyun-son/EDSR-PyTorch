@@ -147,6 +147,7 @@ class checkpoint():
         for p in self.process: p.join()
 
     def save_results(self, dataset, filename, save_list, scale):
+        print(save_list)
         if self.args.save_results:
             filename = self.get_path(
                 'results-{}'.format(self.args.data_test[0]),
