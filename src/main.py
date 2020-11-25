@@ -21,6 +21,7 @@ def main():
         if checkpoint.ok:
             loader = data.Data(args)
             print(len(loader.loader_test))
+            print(len(loader.loader_train))
             print("IN MAIN")
             _model = model.Model(args, checkpoint)
             _loss = loss.Loss(args, checkpoint) if not args.test_only else None
