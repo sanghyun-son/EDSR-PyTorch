@@ -25,7 +25,7 @@ class Benchmark(srdata.SRData):
             print(len(list_hr))
             print(list_hr)
 
-        return list_hr, list_lr
+        return list_hr, list_lr  #here I have lists in a list [[...]]
 
     def _set_filesystem(self, dir_data):
 
