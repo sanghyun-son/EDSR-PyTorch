@@ -24,8 +24,9 @@ class Data:
                 datasets.append(getattr(m, module_name)(args))
 
             for i in datasets:
-                print(i)
-                print("IN FIRST")
+                for j in i:
+                    print(j)
+                    print("IN FIRST")
 
             self.loader_train = dataloader.DataLoader(
                 MyConcatDataset(datasets),
@@ -45,8 +46,11 @@ class Data:
                 m = import_module('data.' + module_name.lower())
                 testset = getattr(m, module_name)(args, train=False)
 
+            print(len(testset))
+            print(len(testset[0]))
+            print(len(testset[0][0]))
             for i in testset:
-                print(i)
+                print(len(i))
                 print("IN LOOP")
 
             self.loader_test.append(
