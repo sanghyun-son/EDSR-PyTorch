@@ -22,12 +22,12 @@ class Data:
                 module_name = d if d.find('DIV2K-Q') < 0 else 'DIV2KJPEG'
                 m = import_module('data.' + module_name.lower())
                 datasets.append(getattr(m, module_name)(args))
-
+            """
             for i in datasets:
                 for j in i:
                     print(j)
                     print("IN FIRST")
-
+            """
             self.loader_train = dataloader.DataLoader(
                 MyConcatDataset(datasets),
                 batch_size=args.batch_size,
