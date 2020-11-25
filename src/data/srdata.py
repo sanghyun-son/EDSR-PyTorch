@@ -29,7 +29,9 @@ class SRData(data.Dataset):
 
         list_hr, list_lr = self._scan()
         if args.ext.find('img') >= 0 or benchmark:
-            self.images_hr, self.images_lr = list_hr[0], list_lr[0]
+            self.images_hr, self.images_lr = list_hr, list_lr
+            print(self.images_hr)
+            print(self.images_lr)
         elif args.ext.find('sep') >= 0:
             os.makedirs(
                 self.dir_hr.replace(self.apath, path_bin),
@@ -122,6 +124,8 @@ class SRData(data.Dataset):
             f_hr = f_hr[0]
         if type(f_lr) is list:
             f_lr = f_lr[0]
+
+        print(f_lr)
 
         filename, _ = os.path.splitext(os.path.basename(f_hr))
         if self.args.ext == 'img' or self.benchmark:
