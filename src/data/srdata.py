@@ -111,7 +111,6 @@ class SRData(data.Dataset):
             return len(self.images_hr)
 
     def _get_index(self, idx):
-        print(len(self.images_hr))
         if self.train:
             return idx % len(self.images_hr)
         else:
