@@ -29,5 +29,5 @@ class Benchmark(srdata.SRData):
         self.apath = os.path.join(dir_data, 'super_resolution_aws/benchmark', self.args.data_test[0])
         self.dir_hr = os.path.join(self.apath, 'HR')
         self.dir_lr = os.path.join(self.apath, 'LR_bicubic')
-       
+
         self.ext = ('', '.png')
