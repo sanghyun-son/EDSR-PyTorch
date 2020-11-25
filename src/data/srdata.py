@@ -125,7 +125,6 @@ class SRData(data.Dataset):
         if type(f_lr) is list:
             f_lr = f_lr[0]
 
-        print(f_lr)
 
         filename, _ = os.path.splitext(os.path.basename(f_hr))
         if self.args.ext == 'img' or self.benchmark:

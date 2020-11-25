@@ -41,7 +41,8 @@ class Data:
                 m = import_module('data.' + module_name.lower())
                 testset = getattr(m, module_name)(args, train=False)
 
-            print(len(testset))
+            print(testset)
+
             self.loader_test.append(
                 dataloader.DataLoader(
                     testset,
@@ -51,3 +52,5 @@ class Data:
                     num_workers=args.n_threads,
                 )
             )
+
+            print(self.loader_test)
