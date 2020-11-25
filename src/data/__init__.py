@@ -49,10 +49,12 @@ class Data:
             print(len(testset))
             print(len(testset[0]))
             print(len(testset[0][0]))
+            print(len(testset[0][0][0]))
+            """
             for i in testset:
                 print(len(i))
                 print("IN LOOP")
-
+            """
             self.loader_test.append(
                 dataloader.DataLoader(
                     testset,
