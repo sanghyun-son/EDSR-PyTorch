@@ -87,8 +87,8 @@ class Trainer():
             for idx_scale, scale in enumerate(self.scale):
                 d.dataset.set_scale(idx_scale)
                 for lr, hr, filename in tqdm(d, ncols=80):
-                    print(filename)
-                    print(len(d))
+                    #print(filename)
+                    #print(len(d))
                     lr, hr = self.prepare(lr, hr)
                     sr = self.model(lr, idx_scale)
                     sr = utility.quantize(sr, self.args.rgb_range)
@@ -101,7 +101,7 @@ class Trainer():
                         save_list.extend([lr, hr])
 
                     if self.args.save_results:
-                        print(d.dataset.name, type(d.dataset.name))
+                        #print(d.dataset.name, type(d.dataset.name))
                         self.ckp.save_results(d, filename[0], save_list, scale)
 
                 self.ckp.log[-1, idx_data, idx_scale] /= len(d)
