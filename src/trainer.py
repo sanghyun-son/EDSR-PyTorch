@@ -74,7 +74,7 @@ class Trainer():
     def test(self):
         torch.set_grad_enabled(False)
 
-        print(len(self.loader_test.dataset))
+        print(self.loader_test.dataset)
 
         epoch = self.optimizer.get_last_epoch()
         self.ckp.write_log('\nEvaluation:')
@@ -86,12 +86,15 @@ class Trainer():
         timer_test = utility.timer()
         if self.args.save_results: self.ckp.begin_background()
         for idx_data, d in enumerate(self.loader_test):
+            print(d)
             for idx_scale, scale in enumerate(self.scale):
+                print(d.dataset.set_scale)
                 d.dataset.set_scale(idx_scale)
                 for lr, hr, filename in tqdm(d, ncols=80):
-                    #print(filename)
+                    print(filename)
                     #print(len(d))
                     lr, hr = self.prepare(lr, hr)
+                    print(lr)
                     sr = self.model(lr, idx_scale)
                     sr = utility.quantize(sr, self.args.rgb_range)
 
