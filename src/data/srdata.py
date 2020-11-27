@@ -30,10 +30,10 @@ class SRData(data.Dataset):
         list_hr, list_lr = self._scan()
         if args.ext.find('img') >= 0 or benchmark:
             self.images_hr, self.images_lr = list_hr, list_lr
-            print(self.images_hr)
-            print("test hr images")
-            print(self.images_lr)
-            print("test lr images")
+            #print(self.images_hr)
+            #print("test hr images")
+            #print(self.images_lr)
+            #print("test lr images")
 
         elif args.ext.find('sep') >= 0:
             os.makedirs(
@@ -110,7 +110,7 @@ class SRData(data.Dataset):
         if self.train:
             return len(self.images_hr) * self.repeat
         else:
-            return len(self.images_hr)
+            return len(self.images_hr[0])
 
     def _get_index(self, idx):
         if self.train:
