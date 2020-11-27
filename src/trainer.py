@@ -80,7 +80,7 @@ class Trainer():
             torch.zeros(1, len(self.loader_test), len(self.scale))
         )
         self.model.eval()
-        print(len(self.loader_test))
+        print(len(self.loader_test[0]))
         print("length loader_test")
         timer_test = utility.timer()
         if self.args.save_results: self.ckp.begin_background()
