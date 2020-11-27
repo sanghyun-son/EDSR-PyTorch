@@ -90,6 +90,7 @@ class Trainer():
                 d.dataset.set_scale(idx_scale)
                 for lr, hr, filename in tqdm(d, ncols=80):
                     print(filename)
+                    print("FILNAME IS HERE")
                     #print(len(d))
                     lr, hr = self.prepare(lr, hr)
                     print(lr)
