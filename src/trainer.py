@@ -74,6 +74,8 @@ class Trainer():
     def test(self):
         torch.set_grad_enabled(False)
 
+        print(len(self.loader_test.dataset))
+
         epoch = self.optimizer.get_last_epoch()
         self.ckp.write_log('\nEvaluation:')
         self.ckp.add_log(
