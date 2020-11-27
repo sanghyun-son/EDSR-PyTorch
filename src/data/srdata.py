@@ -30,8 +30,8 @@ class SRData(data.Dataset):
         list_hr, list_lr = self._scan()
         if args.ext.find('img') >= 0 or benchmark:
             self.images_hr, self.images_lr = list_hr, list_lr
-            print(self.images_hr)
-            print(self.images_lr)
+            #print(self.images_hr)
+            #print(self.images_lr)
         elif args.ext.find('sep') >= 0:
             os.makedirs(
                 self.dir_hr.replace(self.apath, path_bin),
