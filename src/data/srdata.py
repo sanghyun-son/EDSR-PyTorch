@@ -110,7 +110,7 @@ class SRData(data.Dataset):
         if self.train:
             return len(self.images_hr) * self.repeat
         else:
-            return len(self.images_hr[0])
+            return len(self.images_hr)
 
     def _get_index(self, idx):
         if self.train:

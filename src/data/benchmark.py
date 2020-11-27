@@ -26,7 +26,7 @@ class Benchmark(srdata.SRData):
             #print(list_hr)
             #print("HR test list")
 
-        return list_hr, list_lr  #here I have lists in a list [[...]]
+        return list_hr[0], list_lr  #here I have lists in a list [[...]]
 
     def _set_filesystem(self, dir_data):
 
