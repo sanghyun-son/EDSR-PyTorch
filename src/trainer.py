@@ -74,8 +74,6 @@ class Trainer():
     def test(self):
         torch.set_grad_enabled(False)
 
-        print(self.loader_test.dataset)
-
         epoch = self.optimizer.get_last_epoch()
         self.ckp.write_log('\nEvaluation:')
         self.ckp.add_log(
@@ -107,7 +105,7 @@ class Trainer():
 
                     if self.args.save_results:
                         #print(d.dataset.name, type(d.dataset.name))
-                        self.ckp.save_results(d, filename[0], save_list, scale)
+                        self.ckp.save_results(d, filename, save_list, scale)
 
                 self.ckp.log[-1, idx_data, idx_scale] /= len(d)
                 best = self.ckp.log.max(0)
