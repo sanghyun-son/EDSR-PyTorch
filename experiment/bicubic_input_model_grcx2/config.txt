@@ -1,0 +1,64 @@
+2020-11-24-17:13:11
+
+debug: False
+template: .
+n_threads: 6
+cpu: False
+n_GPUs: 1
+seed: 1
+dir_data: ../../zoomdata
+n_train: 32208
+dir_demo: ../test
+data_train: ['DIV2KSUB']
+data_test: ['Set5']
+data_range: 1-800/801-810
+ext: sep
+scale: [2]
+patch_size: 96
+rgb_range: 255
+n_colors: 3
+chop: False
+no_augment: False
+model: BICUBIC_INPUT_MODEL_GRC
+act: relu
+pre_train: 
+extend: .
+n_resblocks: 3
+n_feats: 64
+res_scale: 1
+shift_mean: True
+dilation: False
+precision: single
+G0: 64
+RDNkSize: 3
+RDNconfig: B
+n_resgroups: 10
+reduction: 16
+batch_norm: True
+reset: True
+test_every: 1000
+epochs: 300
+batch_size: 16
+split_batch: 1
+self_ensemble: False
+test_only: False
+gan_k: 1
+lr: 0.0001
+decay: 200
+gamma: 0.5
+optimizer: ADAM
+momentum: 0.9
+betas: (0.9, 0.999)
+epsilon: 1e-08
+weight_decay: 0
+gclip: 0
+loss: 1*L1
+skip_threshold: 100000000.0
+save: bicubic_input_model_grcx2
+load: 
+resume: 0
+save_models: False
+print_every: 100
+save_results: True
+save_gt: True
+

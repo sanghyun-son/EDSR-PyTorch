@@ -30,6 +30,7 @@ class SRData(data.Dataset):
         list_hr, list_lr = self._scan()
         if args.ext.find('img') >= 0 or benchmark:
             self.images_hr, self.images_lr = list_hr, list_lr
+
         elif args.ext.find('sep') >= 0:
             os.makedirs(
                 self.dir_hr.replace(self.apath, path_bin),
@@ -37,11 +38,7 @@ class SRData(data.Dataset):
             )
             for s in self.scale:
                 os.makedirs(
-                    os.path.join(
-                        self.dir_lr.replace(self.apath, path_bin),
-                        'X{}'.format(s)
-                    ),
-                    exist_ok=True
+                    self.dir_lr.replace(self.apath, path_bin) + '{}'.format(s), exist_ok=True
                 )
             
             self.images_hr, self.images_lr = [], [[] for _ in self.scale]
@@ -112,7 +109,6 @@ class SRData(data.Dataset):
             return len(self.images_hr)
 
     def _get_index(self, idx):
-        print(len(self.images_hr))
         if self.train:
             return idx % len(self.images_hr)
         else:
@@ -127,6 +123,7 @@ class SRData(data.Dataset):
             f_hr = f_hr[0]
         if type(f_lr) is list:
             f_lr = f_lr[0]
+
 
         filename, _ = os.path.splitext(os.path.basename(f_hr))
         if self.args.ext == 'img' or self.benchmark:
