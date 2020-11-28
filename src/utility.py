@@ -131,7 +131,6 @@ class checkpoint():
                 if not queue.empty():
                     filename, tensor = queue.get()
                     if filename is None: break
-                    #print(filename, type(filename))
                     imageio.imwrite(filename, tensor.numpy())
         
         self.process = [

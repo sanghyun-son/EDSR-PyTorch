@@ -84,7 +84,6 @@ class Trainer():
         timer_test = utility.timer()
         if self.args.save_results: self.ckp.begin_background()
         for idx_data, d in enumerate(self.loader_test):
-            print(d)
             for idx_scale, scale in enumerate(self.scale):
                 d.dataset.set_scale(idx_scale)
                 for lr, hr, filename in tqdm(d, ncols=80):
