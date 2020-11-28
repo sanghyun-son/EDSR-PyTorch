@@ -80,21 +80,15 @@ class Trainer():
             torch.zeros(1, len(self.loader_test), len(self.scale))
         )
         self.model.eval()
-        print(len(self.loader_test[0]))
-        print("length loader_test")
+
         timer_test = utility.timer()
         if self.args.save_results: self.ckp.begin_background()
         for idx_data, d in enumerate(self.loader_test):
             print(d)
             for idx_scale, scale in enumerate(self.scale):
-                #print(d.dataset.set_scale)
                 d.dataset.set_scale(idx_scale)
                 for lr, hr, filename in tqdm(d, ncols=80):
-                    print(filename)
-                    print("FILNAME IS HERE")
-                    #print(len(d))
                     lr, hr = self.prepare(lr, hr)
-                    #print(lr)
                     sr = self.model(lr, idx_scale)
                     sr = utility.quantize(sr, self.args.rgb_range)
 
@@ -106,7 +100,6 @@ class Trainer():
                         save_list.extend([lr, hr])
 
                     if self.args.save_results:
-                        #print(d.dataset.name, type(d.dataset.name))
                         self.ckp.save_results(d, filename, save_list, scale)
 
                 self.ckp.log[-1, idx_data, idx_scale] /= len(d)
