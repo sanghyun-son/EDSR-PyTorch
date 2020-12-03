@@ -123,18 +123,17 @@ class checkpoint():
             plt.savefig(self.get_path('test_{}.pdf'.format(d)))
             plt.close(fig)
 
+    def bg_target(queue):
+        while True:
+            if not queue.empty():
+                filename, tensor = queue.get()
+                if filename is None: break
+                imageio.imwrite(filename, tensor.numpy())
+
     def begin_background(self):
         self.queue = Queue()
-
-        def bg_target(queue):
-            while True:
-                if not queue.empty():
-                    filename, tensor = queue.get()
-                    if filename is None: break
-                    imageio.imwrite(filename, tensor.numpy())
-        
         self.process = [
-            Process(target=bg_target, args=(self.queue,)) \
+            Process(target=checkpoint.bg_target, args=(self.queue,)) \
             for _ in range(self.n_processes)
         ]
         
