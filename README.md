@@ -1,10 +1,10 @@
-# Installation
+## Installation
 Clone this repository into any place you want.
 ```bash
 git clone https://github.com/thstkdgus35/EDSR-PyTorch
 cd EDSR-PyTorch
 ```
-## Dependencies
+**Dependencies**
 * Python check version
 * PyTorch >= 1.0.0
 * numpy
@@ -13,6 +13,9 @@ cd EDSR-PyTorch
 * matplotlib
 * tqdm
 * cv2 >= 3.xx (Only if you want to use video input/output)
+
+## Dataset
+We used [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) to train our models and the wildely used benchmark datasets [Set5](), [Set14](), [B100]() and [Urban100]() to test the models. (still need to add the links)
 
 **About PyTorch 1.2.0**
   * Now the master branch supports PyTorch 1.2.0 by default.
