@@ -1,3 +1,19 @@
+# Installation
+Clone this repository into any place you want.
+```bash
+git clone https://github.com/thstkdgus35/EDSR-PyTorch
+cd EDSR-PyTorch
+```
+## Dependencies
+* Python check version
+* PyTorch >= 1.0.0
+* numpy
+* skimage
+* **imageio**
+* matplotlib
+* tqdm
+* cv2 >= 3.xx (Only if you want to use video input/output)
+
 **About PyTorch 1.2.0**
   * Now the master branch supports PyTorch 1.2.0 by default.
   * Due to the serious version problem (especially torch.utils.data.dataloader), MDSR functions are temporarily disabled. If you have to train/evaluate the MDSR model, please use legacy branches.
