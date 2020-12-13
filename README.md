@@ -7,7 +7,7 @@ git clone https://github.com/authierj/EDSR-PyTorch
 cd EDSR-PyTorch
 ```
 **Dependencies**
-* Python check version
+* Python 3.8.5
 * PyTorch >= 1.0.0
 * numpy
 * skimage
