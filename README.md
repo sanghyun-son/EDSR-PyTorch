@@ -1,7 +1,7 @@
 ## Installation
 Clone this repository into any place you want.
 ```bash
-git clone https://github.com/thstkdgus35/EDSR-PyTorch
+git clone https://github.com/authierj/EDSR-PyTorch
 cd EDSR-PyTorch
 ```
 **Dependencies**
