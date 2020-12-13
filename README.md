@@ -1,3 +1,5 @@
+# Code Documentation
+
 ## Installation
 Clone this repository into any place you want.
 ```bash
@@ -14,8 +16,34 @@ cd EDSR-PyTorch
 * tqdm
 * cv2 >= 3.xx (Only if you want to use video input/output)
 
-## Dataset
+## Datasets
 We used [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) to train our models and the wildely used benchmark datasets [Set5](), [Set14](), [B100]() and [Urban100]() to test the models. (still need to add the links)
+
+## Pre-trained models
+The models used for the experiments can be found in [experiment](/experiment) under <name_model>/model_best.pt
+
+## Instructions
+“““
+TODO
+“““
+
+# Project Documentation
+
+## Introduction
+
+"""
+TODO
+"""
+
+## Background
+
+## Method & experiment
+
+results in a table 
+original image and SR images of models
+
+## Conclusion
+
 
 **About PyTorch 1.2.0**
   * Now the master branch supports PyTorch 1.2.0 by default.
