@@ -84,7 +84,7 @@ results in a table
 | | task2 | CNN 8 layers | 36.722 dB | 32.475 dB | | 31.318 dB
 | | task3 | CNN  layers with grc | 37.432 dB | | | 31.809 dB
 | **SRCNN** | task4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
-| | task5 | batch normalisation |  dB | | | 31.929 dB
+| | task5 | batch normalisation | 37.636 dB | 33.175 dB | | 31.929 dB
 | | task6 | residual connections | results strange... dB | ... dB | ... dB | 32.014 dB |
 | | task7 | leakyReLU | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
 | | task7 | PreLU | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
@@ -94,7 +94,7 @@ results in a table
 | | task8 | batchsize 128 | 37.760 dB | 33.331 dB | | 32.023 dB |
 | | task9 | L2(mse) | 37.533 dB | 33.160 dB | | 31.902 dB |
 | | task10 | 8 | 30.119 dB | 28.830 dB | 26.311 dB | 32.215 dB |
-| | task11 | perceptual loss |  dB | dB | | dB |
+| | task11 | perceptual loss |  34.653 dB | 31.025 dB | | 29.958 dB |
 
 
 
