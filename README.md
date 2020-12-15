@@ -68,7 +68,7 @@ For the training of the networks we use HR images, which we degrade with a simpl
 
 **Networks with a bicubic interpolated input**
 
-[](/figs/basic_blocks.png)
+![](/figs/basic_blocks.png)
 
 The firsts SRCNN networks we implemented w
 
