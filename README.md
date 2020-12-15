@@ -65,6 +65,8 @@ results in a table
 | | 2 | task6 | 8 | results strange... dB | ... dB | ... dB | 32.014 dB |
 | | 2 | leakyReLU| 8 | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
 | | 2 | PreLU | 8 | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
+| | 2 | task10 | 8 | 30.119 dB | 28.830 dB | 26.311 dB | 32.215 dB |
+
 
 
 
