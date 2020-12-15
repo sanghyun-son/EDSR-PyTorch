@@ -73,50 +73,17 @@ For the training of the networks we use HR images, which we degrade with a simpl
 The firsts SRCNN networks we implemented were three layers CNN with blocks consisiting of a convolution followed by a ReLU activation function and the input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image. 
 
 
-"""
-TODO
-""
-
-**Upsampling block added at the end of the network**
-
-Comparaing the same 8 layers network with redisual connection, one with bicubic interpolated input images and the other with an upsampling block at the end of the network we clearly see ...
-
-**batch normalization** 
-Adding batch normalization to the network (maybe here a picture showing the actual structure of our network) we see the following differences with... 
-
-"""
-TODO
-"""
-
-**residual connection**
-
-image showing what a residual connection is
-
-**Leaky ReLU and PreLU**
-""
-TODO
-""
-
-**effect of deeper and wider network**
-""
-TODO
-""
-
-**L1 vs L2 loss function**
-""
-TODO
-""
 
 results in a table 
 
 | Model | Scale | File name (.pt) | number of layers | SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
 |  ---  |  ---  | ---       | ---        | ---  | ---        | ---  | ---        |
-| **Bicubic** | 2 | bicubic_input_model_x2 | 3 | 34.61 dB |
-| | 3 | bicubic_input_model_x3 | 3 | 30.92 dB |
-| | 4 | bicubic_input_model_x4 | 3 | 28.95 dB |
-| | 2 | bicubic_input_model_x2 | 8 | 35.03 dB |
-| | 2 | bicubic_input_model_grc_x2 | 8 | 31.26 dB |
-| **SRCNN** | 2 | srcnn_basic | 3.23 M | 34.63 dB |
+| **Bicubic** | 2 | task1 | 3 | 36.504 dB | 32.346 dB | | 31.212 dB
+| | 3 | task1 | 3 | 32.366 dB | 29.053 dB | | 28.186 dB
+| | 4 | task1 | 3 | 30.041 dB | 27.263 dB | | 26.682 dB
+| | 2 | task2 | 8 | 35.03 dB |
+| | 2 | task3(grc) | 8 | 31.26 dB |
+| **SRCNN** | 2 | task5 | 3.23 M | 34.63 dB |
 | | 2 | srcnn_basic | 7.95 M| 34.92 dB |
 | | 2 | srcnn_basic | | 30.94 dB |
 | | 2 | srcnn_basic | | 31.22 dB |
