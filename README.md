@@ -51,11 +51,10 @@ results in a table
 | Model | Scale | File name (.pt) | number of layers | ****PSNR** |
 |  ---  |  ---  | ---       | ---        | ---  |
 | **Bicubic** | 2 | bicubic_interpolation_x2 | 3 | 34.61 dB |
-| | | bicubic_interpolation_x2 | 8 | 35.03 dB |
-| | 3 | bicubic_interpolation_x3 | 3 M | 30.92 dB |
-| | | bicubic_interpolation_x3 | 8 | 31.26 dB |
+| | 3 | bicubic_interpolation_x3 | 3 | 30.92 dB |
 | | 4 | bicubic_interpolation | 3 | 28.95 dB |
-| | | bicubic_interpolation_x4 | 8 | 29.25 dB |
+| | | bicubic_interpolation_x2 | 8 | 35.03 dB |
+| | | bicubic_interpolation_grc_x2 | 8 | 31.26 dB |
 | **SRCNN** | 2 | MDSR_baseline | 3.23 M | 34.63 dB |
 | | | *MDSR | 7.95 M| 34.92 dB |
 | | 3 | MDSR_baseline | | 30.94 dB |
