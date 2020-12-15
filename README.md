@@ -73,6 +73,39 @@ For the training of the networks we use HR images, which we degrade with a simpl
 The firsts SRCNN networks we implemented were three layers CNN with blocks consisiting of a convolution followed by a ReLU activation function and the input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image. 
 
 
+"""
+TODO
+""
+
+**Upsampling block added at the end of the network**
+
+Comparaing the same 8 layers network with redisual connection, one with bicubic interpolated input images and the other with an upsampling block at the end of the network we clearly see ...
+
+**batch normalization** 
+Adding batch normalization to the network (maybe here a picture showing the actual structure of our network) we see the following differences with... 
+
+"""
+TODO
+"""
+
+**residual connection**
+
+image showing what a residual connection is
+
+**Leaky ReLU and PreLU**
+""
+TODO
+""
+
+**effect of deeper and wider network**
+""
+TODO
+""
+
+**L1 vs L2 loss function**
+""
+TODO
+""
 
 results in a table 
 
