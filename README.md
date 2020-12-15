@@ -48,19 +48,25 @@ For the training of the Network we use super resolution images, which we degrade
 
 results in a table 
 
-| Model | Scale | File name (.pt) | number of layers | ****PSNR** |
+| Model | Scale | File name (.pt) | number of layers | ****SET5 PSNR** | ****Set14 PSNR** | ***Urban100 PSNR**| **B100** |
 |  ---  |  ---  | ---       | ---        | ---  |
 | **Bicubic** | 2 | bicubic_input_model_x2 | 3 | 34.61 dB |
 | | 3 | bicubic_input_model_x3 | 3 | 30.92 dB |
 | | 4 | bicubic_input_model_x4 | 3 | 28.95 dB |
-| |2 | bicubic_input_model_x2 | 8 | 35.03 dB |
-| | 2| bicubic_input_model_grc_x2 | 8 | 31.26 dB |
+| | 2 | bicubic_input_model_x2 | 8 | 35.03 dB |
+| | 2 | bicubic_input_model_grc_x2 | 8 | 31.26 dB |
 | **SRCNN** | 2 | srcnn_basic | 3.23 M | 34.63 dB |
-| | 2| srcnn_basic | 7.95 M| 34.92 dB |
+| | 2 | srcnn_basic | 7.95 M| 34.92 dB |
 | | 2 | srcnn_basic | | 30.94 dB |
-| | 2| srcnn_basic | | 31.22 dB |
+| | 2 | srcnn_basic | | 31.22 dB |
 | | 2 | srcnn_basic | | 28.97 dB |
-| | 2| srcnn_basic | | 29.24 dB |
+| | 2 | srcnn_basic | | 29.24 dB |
+| | 2 | task4 | 8 | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
+| | 2 | task6 | 8 | results strange... dB | ... dB | ... dB | 32.014 dB |
+| | 2 | leakyReLU| 8 | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
+| | 2 | PreLU | 8 | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
+
+
 
 original image and SR images of models
 
