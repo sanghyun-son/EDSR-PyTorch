@@ -11,7 +11,7 @@ cd EDSR-PyTorch
 * PyTorch >= 1.0.0
 * numpy
 * skimage
-* **imageio**
+* imageio
 * matplotlib
 * tqdm
 * cv2 >= 3.xx (Only if you want to use video input/output)
