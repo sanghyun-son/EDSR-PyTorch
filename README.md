@@ -76,19 +76,25 @@ The firsts SRCNN networks we implemented were three layers CNN with blocks consi
 
 results in a table 
 
-| Model | task | description | number of layers | SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
-|  ---  |  ---  | ---       | ---        | ---  | ---        | ---  | ---        |
-| **Bicubic** | 2 | task1 scale 2 | 3 | 36.504 dB | 32.346 dB | | 31.212 dB
-| | 3 | task1 scale 3 | 3 | 32.366 dB | 29.053 dB | | 28.186 dB
-| | 4 | task1 scale 4 | 3 | 30.041 dB | 27.263 dB | | 26.682 dB
-| | 2 | task2 | 8 | 36.722 dB | 32.475 dB | | 31.318 dB
-| | 2 | task3(grc) | 8 | 37.432 dB | 
-| **SRCNN** | 2 | task5 | 8 | 34.63 dB |
-| | 2 | task4 | 8 | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
-| | 2 | task6 | 8 | results strange... dB | ... dB | ... dB | 32.014 dB |
-| | 2 | leakyReLU| 8 | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
-| | 2 | PreLU | 8 | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
-| | 2 | task10 | 8 | 30.119 dB | 28.830 dB | 26.311 dB | 32.215 dB |
+| Model | task | description |  SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
+|  ---  |  ---  | ---       | ---  | ---        | ---  | ---        |
+| **Bicubic** | task1 scale 2 | CNN 3 layers | 36.504 dB | 32.346 dB | | 31.212 dB
+| | task1 scale 3 | CNN 3 layers | 32.366 dB | 29.053 dB | | 28.186 dB
+| | task1 scale 4 | CNN 3 layers | 30.041 dB | 27.263 dB | | 26.682 dB
+| | task2 | CNN 8 layers | 36.722 dB | 32.475 dB | | 31.318 dB
+| | task3 | CNN  layers with grc | 37.432 dB | | | 31.809 dB
+| **SRCNN** | task4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
+| | task5 | batch normalisation |  dB | | | 31.929 dB
+| | task6 | 8 | results strange... dB | ... dB | ... dB | 32.014 dB |
+| | task7 | leakyReLU | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
+| | task7 | PreLU | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
+| | task8 | 16 layers |  dB | 28.830 dB | 26.311 dB | 32.215 dB |
+| | task8 | 32 layers |  dB | 28.830 dB | 26.311 dB | 32.215 dB |
+| | task8 | batchsize 96 | 37.712 dB | 33.273 dB | | 31.997 dB |
+| | task8 | batchsize 128 | 37.760 dB | 33.331 dB | | 32.023 dB |
+| | task9 | L2(mse) |  dB | 28.830 dB | 26.311 dB | 32.215 dB |
+| | task10 | 8 | 30.119 dB | 28.830 dB | 26.311 dB | 32.215 dB |
+| | task11 | 8 |  dB | 28.830 dB | 26.311 dB | 32.215 dB |
 
 
 
