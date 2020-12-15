@@ -48,7 +48,7 @@ For the training of the Network we use super resolution images, which we degrade
 
 results in a table 
 
-| Model | Scale | File name (.pt) | number of layers | ****SET5 PSNR** | ****Set14 PSNR** | ***Urban100 PSNR**| **B100** |
+| Model | Scale | File name (.pt) | number of layers | ****SET5 PSNR** | ****Set14 PSNR** | ****Urban100 PSNR**| ****B100** |
 |  ---  |  ---  | ---       | ---        | ---  |
 | **Bicubic** | 2 | bicubic_input_model_x2 | 3 | 34.61 dB |
 | | 3 | bicubic_input_model_x3 | 3 | 30.92 dB |
