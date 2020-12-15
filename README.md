@@ -39,9 +39,12 @@ Due to the rise of mobile devices like drones and smartphones camera sensors mus
 Our project is based on the [EDSR-PyTorrch](https://github.com/thstkdgus35/EDSR-PyTorch) repository which allready includes some Loss-functions, basic blocks, dataloaders and training and testing functions. In addition we use a [downsampling function](https://github.com/ofsoundof/dhp/blob/master/restoration/data/div2ksub.py) from an other repositry. We added some new simpler models to the repositry and embeded the downsampling function into the repositry with some minor changes.
 
 ## Background
-For the training of the Network we use super resolution images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data. Then we train our network to do the inverse process.
+
+There are two general aproaches for solving the super resolution problem. First you can interpolate your low resolution image using for example bicubic interpolation, and then run a convolutional neural network (CNN) on the interpolated images. Or you can add an upsampling block at the end of the CNN, which makes the network smaller and therefor faster. The EDSR model, which we also tested to see how the dataloaoding, training, testing, etc. works, uses the second approach. In this project both approches are tested, while using the first approach only for the simpler networks. 
 
 ## Method & experiment
+
+For the training of the Network we use super resolution images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data. Then we train our network to do the inverse process.
 
 results in a table 
 original image and SR images of models
