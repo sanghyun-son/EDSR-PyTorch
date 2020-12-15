@@ -47,6 +47,22 @@ There are two general aproaches for solving the super resolution problem. First 
 For the training of the Network we use super resolution images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data. Then we train our network to do the inverse process.
 
 results in a table 
+
+| Model | Scale | File name (.pt) | number of layers | ****PSNR** |
+|  ---  |  ---  | ---       | ---        | ---  |
+| **Bicubic** | 2 | bicubic_interpolation_x2 | 3 | 34.61 dB |
+| | | bicubic_interpolation_x2 | 8 | 35.03 dB |
+| | 3 | bicubic_interpolation_x3 | 3 M | 30.92 dB |
+| | | bicubic_interpolation_x3 | 8 | 31.26 dB |
+| | 4 | bicubic_interpolation | 3 | 28.95 dB |
+| | | bicubic_interpolation_x4 | 8 | 29.25 dB |
+| **SRCNN** | 2 | MDSR_baseline | 3.23 M | 34.63 dB |
+| | | *MDSR | 7.95 M| 34.92 dB |
+| | 3 | MDSR_baseline | | 30.94 dB |
+| | | *MDSR | | 31.22 dB |
+| | 4 | MDSR_baseline | | 28.97 dB |
+| | | *MDSR | | 29.24 dB |
+
 original image and SR images of models
 
 ## Conclusion
