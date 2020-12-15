@@ -62,7 +62,7 @@ There are two general aproaches for solving the super resolution problem. First 
 
 ## Method & experiment
 
-For the training of the Network we use super resolution images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data. Then we train our network to do the inverse process.
+For the training of the networks we use HR images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data (LR, HR). Then we train our network on a large datasets of images to try do the inverse process and reconstituing a HR image. In fact the network is trained to 
 
 results in a table 
 
