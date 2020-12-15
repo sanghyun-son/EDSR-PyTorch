@@ -50,17 +50,17 @@ results in a table
 
 | Model | Scale | File name (.pt) | number of layers | ****PSNR** |
 |  ---  |  ---  | ---       | ---        | ---  |
-| **Bicubic** | 2 | bicubic_interpolation_x2 | 3 | 34.61 dB |
-| | 3 | bicubic_interpolation_x3 | 3 | 30.92 dB |
-| | 4 | bicubic_interpolation_x4 | 3 | 28.95 dB |
-| |2 | bicubic_interpolation_x2 | 8 | 35.03 dB |
-| | 2| bicubic_interpolation_grc_x2 | 8 | 31.26 dB |
-| **SRCNN** | 2 | MDSR_baseline | 3.23 M | 34.63 dB |
-| | 2| *MDSR | 7.95 M| 34.92 dB |
-| | 2 | MDSR_baseline | | 30.94 dB |
-| | 2| *MDSR | | 31.22 dB |
-| | 2 | MDSR_baseline | | 28.97 dB |
-| | 2| *MDSR | | 29.24 dB |
+| **Bicubic** | 2 | bicubic_input_model_x2 | 3 | 34.61 dB |
+| | 3 | bicubic_input_model_x3 | 3 | 30.92 dB |
+| | 4 | bicubic_input_model_x4 | 3 | 28.95 dB |
+| |2 | bicubic_input_model_x2 | 8 | 35.03 dB |
+| | 2| bicubic_input_model_grc_x2 | 8 | 31.26 dB |
+| **SRCNN** | 2 | srcnn_basic | 3.23 M | 34.63 dB |
+| | 2| srcnn_basic | 7.95 M| 34.92 dB |
+| | 2 | srcnn_basic | | 30.94 dB |
+| | 2| srcnn_basic | | 31.22 dB |
+| | 2 | srcnn_basic | | 28.97 dB |
+| | 2| srcnn_basic | | 29.24 dB |
 
 original image and SR images of models
 
