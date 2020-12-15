@@ -17,15 +17,33 @@ cd EDSR-PyTorch
 * cv2 >= 3.xx (Only if you want to use video input/output)
 
 ## Datasets
-We used [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) to train our models and the wildely used benchmark datasets [Set5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html), [Set14](), [B100](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/) and [Urban100]() to test the models. (still need to add the links)
+We used the [DIV2K] dataset (https://data.vision.ee.ethz.ch/cvl/DIV2K/) to train our models and the wildely used benchmark datasets [Set5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html), [Set14](), [B100](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/) and [Urban100]() to test the models. (still need to add the links)
 
 ## Pre-trained models
 The models used for the experiments can be found in [experiment](/experiment) under <name_model>/model_best.pt
 
-## Instructions
-“““
-TODO
-“““
+## Demo
+You can test a SR resolution alogrithms with your images. Place your image in the ```test```folder. The network support .png and .jpeg files
+Run the following line in ```src```
+
+```bash
+python main.py --data_test Demo --scale 4 --pre_train ../experiment/task4x2/model/model_best.pt --test_only --save_results
+```
+You can find the results in ```experiment/test```
+
+If you want to train a network on the DIV2K dataset and test it on the Urban100 benchmark run the follwing lines in your terminal
+```bash
+cd src       # You are now in */EDSR-PyTorch/src
+python main.py --model <MODEL_NAME> --scale 2 --n_resblock 8 --save <...> --save_results --reset
+```
+If you wish it you can change the scale, 3 and 4 are mainly used, as well as the n_resblock to have deeper network, many other options are possible and are listed in ```option.py```
+
+To test the performance of a pre-trained network run the following lines in your terminal
+```bash
+cd src       # You are now in */EDSR-PyTorch/src
+python main.py --test_only --pre_train ../experiment/<name_network>/model/model_best.pt --data_test <benchmark dataset> --save <...> --save_results --reset
+```
+
 
 # Project Documentation
 
