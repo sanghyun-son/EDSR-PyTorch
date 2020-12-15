@@ -78,23 +78,23 @@ results in a table
 
 | Model | task | description |  SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
 |  ---  |  ---  | ---       | ---  | ---        | ---  | ---        |
-| **Bicubic** | task1 scale 2 | CNN 3 layers | 36.504 dB | 32.346 dB | | 31.212 dB
-| | task1 scale 3 | CNN 3 layers | 32.366 dB | 29.053 dB | | 28.186 dB
-| | task1 scale 4 | CNN 3 layers | 30.041 dB | 27.263 dB | | 26.682 dB
-| | task2 | CNN 8 layers | 36.722 dB | 32.475 dB | | 31.318 dB
-| | task3 | CNN  layers with grc | 37.432 dB | | | 31.809 dB
-| **SRCNN** | task4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
-| | task5 | batch normalisation | 37.636 dB | 33.175 dB | | 31.929 dB
-| | task6 | residual connections | results strange... dB | ... dB | ... dB | 32.014 dB |
-| | task7 | leakyReLU | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
-| | task7 | PreLU | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
-| | task8 | 16 layers | 37.686 dB | 33.256 dB | | 32.012 dB |
-| | task8 | 32 layers | 36.918 dB | 32.615 dB | | 31.478 dB |
-| | task8 | batchsize 96 | 37.712 dB | 33.273 dB | | 31.997 dB |
-| | task8 | batchsize 128 | 37.760 dB | 33.331 dB | | 32.023 dB |
-| | task9 | L2(mse) | 37.533 dB | 33.160 dB | | 31.902 dB |
-| | task10 | 8 | 30.119 dB | 28.830 dB | 26.311 dB | 32.215 dB |
-| | task11 | perceptual loss |  34.653 dB | 31.025 dB | | 29.958 dB |
+| **Bicubic** | 1 | 3 layers scale 2 | 36.504 dB | 32.346 dB | | 31.212 dB
+| | | 3 layers scale 3  | 32.366 dB | 29.053 dB | | 28.186 dB
+| | |  3 layers scale 4 | 30.041 dB | 27.263 dB | | 26.682 dB
+| | 2 | 3 layers with grc | 36.722 dB | 32.475 dB | | 31.318 dB
+| | 3 | 8 layers with grc | 37.432 dB | | | 31.809 dB
+| **SRCNN** | 4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
+| | 5 | batch normalisation | 37.636 dB | 33.175 dB | | 31.929 dB
+| | 6 | residual connections | results strange... dB | ... dB | ... dB | 32.014 dB |
+| | 7 | leakyReLU | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
+| | | PreLU | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
+| | 8 | 16 layers | 37.686 dB | 33.256 dB | | 32.012 dB |
+| | | 32 layers | 36.918 dB | 32.615 dB | | 31.478 dB |
+| | | batchsize 96 | 37.712 dB | 33.273 dB | | 31.997 dB |
+| | | batchsize 128 | 37.760 dB | 33.331 dB | | 32.023 dB |
+| | 9 | L2(mse) | 37.533 dB | 33.160 dB | | 31.902 dB |
+| | 10 | 8 | 30.119 dB | 28.830 dB | 26.311 dB | 32.215 dB |
+| | 11 | perceptual loss |  34.653 dB | 31.025 dB | | 29.958 dB |
 
 
 
