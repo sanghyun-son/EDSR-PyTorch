@@ -76,19 +76,14 @@ The firsts SRCNN networks we implemented were three layers CNN with blocks consi
 
 results in a table 
 
-| Model | Scale | File name (.pt) | number of layers | SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
+| Model | task | description | number of layers | SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
 |  ---  |  ---  | ---       | ---        | ---  | ---        | ---  | ---        |
-| **Bicubic** | 2 | task1 | 3 | 36.504 dB | 32.346 dB | | 31.212 dB
-| | 3 | task1 | 3 | 32.366 dB | 29.053 dB | | 28.186 dB
-| | 4 | task1 | 3 | 30.041 dB | 27.263 dB | | 26.682 dB
-| | 2 | task2 | 8 | 35.03 dB |
-| | 2 | task3(grc) | 8 | 31.26 dB |
-| **SRCNN** | 2 | task5 | 3.23 M | 34.63 dB |
-| | 2 | srcnn_basic | 7.95 M| 34.92 dB |
-| | 2 | srcnn_basic | | 30.94 dB |
-| | 2 | srcnn_basic | | 31.22 dB |
-| | 2 | srcnn_basic | | 28.97 dB |
-| | 2 | srcnn_basic | | 29.24 dB |
+| **Bicubic** | 2 | task1 scale 2 | 3 | 36.504 dB | 32.346 dB | | 31.212 dB
+| | 3 | task1 scale 3 | 3 | 32.366 dB | 29.053 dB | | 28.186 dB
+| | 4 | task1 scale 4 | 3 | 30.041 dB | 27.263 dB | | 26.682 dB
+| | 2 | task2 | 8 | 36.722 dB | 32.475 dB | | 31.318 dB
+| | 2 | task3(grc) | 8 | 37.432 dB | 
+| **SRCNN** | 2 | task5 | 8 | 34.63 dB |
 | | 2 | task4 | 8 | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
 | | 2 | task6 | 8 | results strange... dB | ... dB | ... dB | 32.014 dB |
 | | 2 | leakyReLU| 8 | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
