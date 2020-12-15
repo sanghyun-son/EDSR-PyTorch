@@ -70,7 +70,8 @@ For the training of the networks we use HR images, which we degrade with a simpl
 
 ![](/figs/basic_blocks.png)
 
-The firsts SRCNN networks we implemented w
+The firsts SRCNN networks we implemented were three layers CNN with blocks consisiting of a convolution followed by a ReLU activation function and the input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image. 
+
 
 
 results in a table 
