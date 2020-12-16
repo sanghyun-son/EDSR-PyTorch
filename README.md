@@ -56,7 +56,7 @@ Alternative:(On the other hand, also due to limited storage limitations, in remo
 
 ## Baseline
 
-Our project is based on the [EDSR-PyTorrch](https://github.com/thstkdgus35/EDSR-PyTorch) repository which allready includes Loss-functions, some basic blocks, dataloaders and training and testing functions. In addition we use a [downsampling function](https://github.com/ofsoundof/dhp/blob/master/restoration/data/div2ksub.py) -is from an other repositry. We added some new simpler models to the repository and embedded the downsampling function into the repository with some minor changes.
+Our project is based on the [EDSR-PyTorch](https://github.com/thstkdgus35/EDSR-PyTorch) repository which allready includes Loss-functions, some basic blocks, dataloaders and training and testing functions. In addition we use a [downsampling function](https://github.com/ofsoundof/dhp/blob/master/restoration/data/div2ksub.py) -is from an other repository. We added some new simpler models to the repository and embedded the downsampling function into the repository with some minor changes.
 
 ## Background
 
