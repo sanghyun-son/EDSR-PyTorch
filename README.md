@@ -117,7 +117,7 @@ The parameter 'a' in the PReLU activation is a learnable parameter for each feat
 
  **loss function: L1 vs L2 vs perceptual loss**
  
- ![](/figs/task9_comparison.png)
+ ![](/figs/task9_11_comparison.png)
  ""
  TODO
  ""
