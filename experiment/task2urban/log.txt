@@ -1,0 +1,23 @@
+BICUBIC_INPUT_MODEL_GRC(
+  (body): Sequential(
+    (0): BasicBlock(
+      (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU(inplace=True)
+    )
+    (1): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU(inplace=True)
+    )
+    (2): BasicBlock(
+      (0): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    )
+  )
+)
+
+Evaluation:
+[ x2]	PSNR: 29.536 (Best: 29.536 @epoch 1)
+Forward: 9.08s
+
+Saving...
+Total: 61.13s
+

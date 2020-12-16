@@ -1,0 +1,50 @@
+SRCNN_BASIC(
+  (head): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (body): Sequential(
+    (0): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU()
+    )
+    (1): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU()
+    )
+    (2): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU()
+    )
+    (3): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU()
+    )
+    (4): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU()
+    )
+    (5): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU()
+    )
+    (6): BasicBlock(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): ReLU()
+    )
+  )
+  (tail): Sequential(
+    (0): Upsampler(
+      (0): Conv2d(64, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): PixelShuffle(upscale_factor=2)
+    )
+    (1): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+)
+
+Evaluation:
+[ x2]	PSNR: 31.119 (Best: 31.119 @epoch 1)
+Forward: 9.92s
+
+Saving...
+Total: 63.00s
+
