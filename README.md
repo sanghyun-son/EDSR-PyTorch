@@ -87,7 +87,8 @@ We see that the global residual connection increase a little the performance of 
  
 From this point, all our networks add functionalities to the 8-layers SRCNN network with an upsampling block, thus we will always compare ou results with this network.
 
- **batch normalization and residual connection block** 
+ **batch normalization and residual connection block**
+ 
  In this part, we analyse the influence of batch normalization and residual blocks to the network.
  ![](/figs/task4_6_comparison.png)
  
