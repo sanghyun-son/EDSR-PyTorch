@@ -95,13 +95,13 @@ We see that the global residual connection increase a little the performance of 
  image showing what a residual connection is
 
  **Leaky ReLU and PreLU**
- Here we look at the effects of the activation function, as default activation function we used ReLU(x) = max(x,0) and we compare the performance of of RelU with LeakyReLU and PReLU. 
+ Here we look at the effects of the activation function, as default activation function we used ReLU(x) = max(x,0) and we compare the performance of of RelU with LeakyReLU and the parametric ReLu, PReLU. 
  
-![alt-text-1](/figs/relu.png) ![alt-text-2](/figs/leakyrelu.png)![alt-text-3](/figs/prelu.png)
+![alt-text-1](/figs/leakyrelu.png)![alt-text-2](/figs/prelu.png)
+
+The parameter 'a' in the PReLU activation is a learnable pararamter for each feature map. 
  
- ""
- TODO
- ""
+ ![](/figs/leakyvsprelu.png)
 
  **effect of deeper and wider network**
  ""
