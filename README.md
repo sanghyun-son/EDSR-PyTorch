@@ -90,6 +90,7 @@ From this point, all our networks add functionalities to the 8-layers SRCNN netw
  **batch normalization and residual connection block** 
  Adding batch normalization to the network (maybe here a picture showing the actual structure of our network) we see the following differences with... 
 
+![](/figs/task4_6_comparison.png)
  """
  TODO
  """
@@ -108,11 +109,15 @@ The parameter 'a' in the PReLU activation is a learnable parameter for each feat
  But we can still compare the performance of the networks and we clearly see that the results for leakyReLU and PReLU are better than for a classic ReLU activation function. However we would have expected the PReLU achieve better results than the leakyReLU due to the additional learing parameter 'a' but this does not seem to be the case.
 
  **effect of deeper and wider network**
+ 
+ ![](/figs/task8_comparison.png)
  ""
  TODO
  ""
 
  **L1 vs L2 loss function**
+ 
+ ![](/figs/task9_comparison.png)
  ""
  TODO
  ""
