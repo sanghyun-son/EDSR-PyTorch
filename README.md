@@ -100,7 +100,7 @@ Here we look at the effects of the activation function, as default activation fu
  
 ![alt-text-1](/figs/leakyrelu.png)![alt-text-2](/figs/prelu.png)
 
-The parameter 'a' in the PReLU activation is a learnable pararamter for each feature map. 
+The parameter 'a' in the PReLU activation is a learnable parameter for each feature map. 
  
  ![](/figs/leakyvsprelu.png)
  
