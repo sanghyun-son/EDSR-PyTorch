@@ -81,19 +81,21 @@ There are two general aproaches for solving the super resolution problem. First 
 For the training of the networks we use HR images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data (LR, HR). Then we train our network on a large datasets of images to try do the inverse process and reconstituing a HR image. In fact the network is trained to exctract high frequencies information from a low-frequency input.
 In the next lines we will look at the results of different networks on the benchmark datasets. Different techniques such as global residual connection, residual blocks or channel attention were used to try to improve the performance of the networks. We will also look at the importance of the network depth and width for the performance.
 
+We use 64 features map, activation-function ReLu, no batch normalitation, scaling factor 2 and a patchsize of 96 for all Networks unless stated different. We also tested some networks for other scales and patchsize combinations: (scale 3, patchsize 144) and (scale 4, patchsize 192). We show the results of these settings exemplary for the first task and omit them for the rest of the networks.
 
 **Networks with a bicubic interpolated input**
 
 ![](/figs/basic_blocks.png)
 
-In task 1 we implemented a 3 layers CNN network with 64 features map, all the networks in the follwing experiments will have 64 features maps unless stated otherwise.
-In task 2 we add a global residual connection (grc) to the network of task 1, the resulting looks like the one in the picture above.
-In task 3 we augment the depth of the network of task 2, we have now a 8 layers SRCNN
-The input of the network is a bicubic intepolated LR image, the image is interpolated to have the same number of pixels as the HR image.
+For tasks 1-3 the input of the network is a bicubic intepolated LR image, the image is interpolated to have the same number of pixels as the HR image.
+
+In task 1 we implemented a simple 3 layers CNN network.
+In task 2 we add a global residual connection (grc) to the network of task 1, the result looks like the one in the picture above.
+In task 3 we increase the depth of the network of task 2, we have now a 8 layers SRCNN
 
 ![](/figs/task1_3_comparison.png)
 
-We see that the global residual connection increase a little the performance of the network, but it is mainly the increase of the depth of the network that causes a ~1.5 dB increase in the peak signal to noise ratio (PSNR). 
+We see that the global residual connection increases a little the performance of the network, but it is mainly the increase of the depth of the network that causes a ~1.5 dB increase in the peak signal to noise ratio (PSNR). 
 
 
  **Upsampling block added at the end of the network**
