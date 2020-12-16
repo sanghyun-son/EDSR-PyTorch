@@ -1,11 +1,11 @@
 ## Contents
 1. [Installation](#installation)
-2. [Contribution](#contribution)
-3. [Methodology](#methodology)
-4. [Dependencies](#dependencies)
-5. [Image Classification](#image-classification)
-6. [Image Restoration](#image-restoration)
-7. [Results](#results)
+2. [Dependencies](#dependencies)
+3. [Datasets](#datasets)
+4. [Pre-trained models](#pre-trained models)
+5. [Demo](#demo)
+6. [Introduction](#introduction)
+7. [Baseline](#baseline)
 8. [Reference](#reference)
 9. [Acknowledgements](#acknowledgements)
 
