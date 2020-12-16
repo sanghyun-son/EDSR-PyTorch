@@ -1,3 +1,144 @@
+# Code Documentation
+
+## Installation
+Clone this repository into any place you want.
+```bash
+git clone https://github.com/authierj/EDSR-PyTorch
+cd EDSR-PyTorch
+```
+**Dependencies**
+* Python 3.8.5
+* PyTorch >= 1.0.0
+* numpy
+* skimage
+* imageio
+* matplotlib
+* tqdm
+* cv2 >= 3.xx (Only if you want to use video input/output)
+
+## Datasets
+We used the [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) dataset  to train our models and the wildely used benchmark datasets [Set5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html), [Set14](), [B100](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/) and [Urban100]() to test the models. (still need to add the links)
+
+## Pre-trained models
+The models used for the experiments can be found in [experiment](/experiment) under <name_model>/model_best.pt
+
+## Demo
+You can test a SR resolution alogrithms with your images. Place your image in the ```test```folder. The network support .png and .jpeg files
+Run the following line in ```src```
+
+```bash
+python main.py --data_test Demo --scale 4 --pre_train ../experiment/task4x2/model/model_best.pt --test_only --save_results
+```
+You can find the results in ```experiment/test```
+
+If you want to train a network on the DIV2K dataset and test it on the Urban100 benchmark run the follwing lines in your terminal
+```bash
+cd src       # You are now in */EDSR-PyTorch/src
+python main.py --model <MODEL_NAME> --scale 2 --n_resblock 8 --save <...> --save_results --reset
+```
+If you wish it you can change the scale, 3 and 4 are mainly used, as well as the n_resblock to have deeper network, many other options are possible and are listed in ```option.py```
+
+To test the performance of a pre-trained network run the following lines in your terminal
+```bash
+cd src       # You are now in */EDSR-PyTorch/src
+python main.py --test_only --pre_train ../experiment/<name_network>/model/model_best.pt --data_test <benchmark dataset> --save <...> --save_results --reset
+```
+
+
+# Project Documentation
+
+## Introduction
+
+Due to the rise of mobile devices like drones and smartphones camera sensors must be made smaller and more lightweight, this leads to a decrease in image resolution and quality. This where single image super resolution, which aims at recovering a high resolution (HR) images from the degraded low resolution (LR) images, comes in handy. In this work we look at the performance of super resolution convolutional networks (SRCNN) which are trained on a large dataset of pairwised LR and HR images and aims to minimize a loss function that gardes the performance of the super resolution (SR) images, the outputs of the network, compared to the HR images and then tested on different datasets. The resulting networks can then be used in mobile devices to increase the quality of the LR images.
+
+
+Alternative:(On the other hand, also due to limited storage limitations, in remote systems, or due to limited data transfer, images are being saved in a lower resolution format. But for further tasks on bigger computers which don’t have these issues we again want to work with higher resolution. This is where super resolution comes in handy. In contrary to many other processes image super resolution creates new data. That means it creates more outputs than it has inputs. In the downsampling process data is lost and the Super resolution network can’t make use of this data.)
+
+## Baseline
+
+Our project is based on the [EDSR-PyTorch](https://github.com/thstkdgus35/EDSR-PyTorch) repository which allready includes Loss-functions, some basic blocks, dataloaders and training and testing functions. In addition we use a [downsampling function](https://github.com/ofsoundof/dhp/blob/master/restoration/data/div2ksub.py) -is from an other repository. We added some new simpler models to the repository and embedded the downsampling function into the repository with some minor changes.
+
+## Background
+
+There are two general aproaches for solving the super resolution problem. First you can interpolate your low resolution image using for example bicubic interpolation, and then run a convolutional neural network (CNN) on the interpolated images. Or you can add an upsampling block at the end of the CNN, which makes the network smaller and therefore faster. The EDSR model, which we also tested to see how the dataloaoding, training, testing, etc. works, uses the second approach. In this project both approches are tested, while using the first approach only for the simpler networks.
+
+
+## Method & experiment
+
+For the training of the networks we use HR images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data (LR, HR). Then we train our network on a large datasets of images to try do the inverse process and reconstituing a HR image. In fact the network is trained to exctract high frequencies information from a low-frequency input.
+In the next lines we will look at the results of different networks on the benchmark datasets. Different techniques such as global residual connection, residual blocks or channel attention were used to try to improve the performance of the networks. We will also look at the importance of the network depth and width for the performance.
+
+**Networks with a bicubic interpolated input**
+
+![](/figs/basic_blocks.png)
+
+The first SRCNN network we implemented was a three layers CNN with layer consisiting of a convolution followed by a ReLU activation function. After that we added a global residual connection (grc) to the network, as in the image, and then augmented the number of layers from 3 to 8. The input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image.
+
+![](/figs/bird_comparison.png)
+
+We see that the global residual connection increase a little the performance of the network, but it is mainly the increase of the depth of the network that causes a ~1dB increase in the peak signal to noise ratio (PSNR). 
+
+
+ **Upsampling block added at the end of the network**
+
+ Comparaing the same 8 layers network with redisual connection, one with bicubic interpolated input images and the other with an upsampling block at the end of the network we clearly see ...
+
+ **batch normalization** 
+ Adding batch normalization to the network (maybe here a picture showing the actual structure of our network) we see the following differences with... 
+
+ """
+ TODO
+ """
+
+ **residual connection**
+
+ image showing what a residual connection is
+
+ **Leaky ReLU and PreLU**
+ ""
+ TODO
+ ""
+
+ **effect of deeper and wider network**
+ ""
+ TODO
+ ""
+
+ **L1 vs L2 loss function**
+ ""
+ TODO
+ ""
+
+results in a table 
+
+| Model | task | description |  SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
+|  ---  |  ---  | ---       | ---  | ---        | ---  | ---        |
+| **Bicubic** | 1 | 3 layers scale 2 | 36.504 dB | 32.346 dB | 29.275 dB | 31.212 dB
+| | | 3 layers scale 3  | 32.366 dB | 29.053 dB | 25.858 dB | 28.186 dB
+| | |  3 layers scale 4 | 30.041 dB | 27.263 dB | 24.126 dB | 26.682 dB
+| | 2 | 3 layers with grc | 36.722 dB | 32.475 dB | 29.536 dB | 31.318 dB
+| | 3 | 8 layers with grc | 37.432 dB | 33.049 dB | 30.752 dB | 31.809 dB
+| **SRCNN** | 4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
+| | 5 | batch normalisation | 37.636 dB | 33.175 dB | 31.119 dB | 31.929 dB
+| | 6 | residual connections | 37.629 dB | 33.208 dB | 31.083 dB |  31.938 dB |
+| | 7 | leakyReLU | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
+| | | PreLU | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
+| | 8 | 16 layers | 37.686 dB | 33.256 dB | 31.348 dB | 32.012 dB |
+| | | 32 layers | 36.918 dB | 32.615 dB | 29.682 dB | 31.478 dB |
+| | | batchsize 96 | 37.712 dB | 33.273 dB | 31.333 dB | 31.997 dB |
+| | | batchsize 128 | 37.760 dB | 33.331 dB | 31.478 dB | 32.023 dB |
+| | 9 | L2(mse) | 37.533 dB | 33.160 dB | 31.054 dB | 31.902 dB |
+| | 10 | channel attention | 30.119 dB | 28.830 dB | 26.311 dB | 32.215 dB |
+| | 11 | perceptual loss |  34.653 dB | 31.025 dB | 28.457 dB | 29.958 dB |
+
+
+
+
+original image and SR images of models
+
+## Conclusion
+
+
 **About PyTorch 1.2.0**
   * Now the master branch supports PyTorch 1.2.0 by default.
   * Due to the serious version problem (especially torch.utils.data.dataloader), MDSR functions are temporarily disabled. If you have to train/evaluate the MDSR model, please use legacy branches.
@@ -110,77 +251,3 @@ You can train EDSR and MDSR by yourself. All scripts are provided in the ``src/d
 cd src       # You are now in */EDSR-PyTorch/src
 sh demo.sh
 ```
-
-**Update log**
-* Jan 04, 2018
-  * Many parts are re-written. You cannot use previous scripts and models directly.
-  * Pre-trained MDSR is temporarily disabled.
-  * Training details are included.
-
-* Jan 09, 2018
-  * Missing files are included (```src/data/MyImage.py```).
-  * Some links are fixed.
-
-* Jan 16, 2018
-  * Memory efficient forward function is implemented.
-  * Add --chop_forward argument to your script to enable it.
-  * Basically, this function first split a large image to small patches. Those images are merged after super-resolution. I checked this function with 12GB memory, 4000 x 2000 input image in scale 4. (Therefore, the output will be 16000 x 8000.)
-
-* Feb 21, 2018
-  * Fixed the problem when loading pre-trained multi-GPU model.
-  * Added pre-trained scale 2 baseline model.
-  * This code now only saves the best-performing model by default. For MDSR, 'the best' can be ambiguous. Use --save_models argument to keep all the intermediate models.
-  * PyTorch 0.3.1 changed their implementation of DataLoader function. Therefore, I also changed my implementation of MSDataLoader. You can find it on feature/dataloader branch.
-
-* Feb 23, 2018
-  * Now PyTorch 0.3.1 is a default. Use legacy/0.3.0 branch if you use the old version.
-  * With a new ``src/data/DIV2K.py`` code, one can easily create new data class for super-resolution.
-  * New binary data pack. (Please remove the ``DIV2K_decoded`` folder from your dataset if you have.)
-  * With ``--ext bin``, this code will automatically generate and saves the binary data pack that corresponds to previous ``DIV2K_decoded``. (This requires huge RAM (~45GB, Swap can be used.), so please be careful.)
-  * If you cannot make the binary pack, use the default setting (``--ext img``).
-
-  * Fixed a bug that PSNR in the log and PSNR calculated from the saved images does not match.
-  * Now saved images have better quality! (PSNR is ~0.1dB higher than the original code.)
-  * Added performance comparison between Torch7 model and PyTorch models.
-
-* Mar 5, 2018
-  * All baseline models are uploaded.
-  * Now supports half-precision at test time. Use ``--precision half``  to enable it. This does not degrade the output images.
-
-* Mar 11, 2018
-  * Fixed some typos in the code and script.
-  * Now --ext img is default setting. Although we recommend you to use --ext bin when training, please use --ext img when you use --test_only.
-  * Skip_batch operation is implemented. Use --skip_threshold argument to skip the batch that you want to ignore. Although this function is not exactly the same with that of Torch7 version, it will work as you expected.
-
-* Mar 20, 2018
-  * Use ``--ext sep-reset`` to pre-decode large png files. Those decoded files will be saved to the same directory with DIV2K png files. After the first run, you can use ``--ext sep`` to save time.
-  * Now supports various benchmark datasets. For example, try ``--data_test Set5`` to test your model on the Set5 images.
-  * Changed the behavior of skip_batch.
-
-* Mar 29, 2018
-  * We now provide all models from our paper.
-  * We also provide ``MDSR_baseline_jpeg`` model that suppresses JPEG artifacts in the original low-resolution image. Please use it if you have any trouble.
-  * ``MyImage`` dataset is changed to ``Demo`` dataset. Also, it works more efficient than before.
-  * Some codes and script are re-written.
-
-* Apr 9, 2018
-  * VGG and Adversarial loss is implemented based on [SRGAN](http://openaccess.thecvf.com/content_cvpr_2017/papers/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.pdf). [WGAN](https://arxiv.org/abs/1701.07875) and [gradient penalty](https://arxiv.org/abs/1704.00028) are also implemented, but they are not tested yet.
-  * Many codes are refactored. If there exists a bug, please report it.
-  * [D-DBPN](https://arxiv.org/abs/1803.02735) is implemented. The default setting is D-DBPN-L.
-
-* Apr 26, 2018
-  * Compatible with PyTorch 0.4.0
-  * Please use the legacy/0.3.1 branch if you are using the old version of PyTorch.
-  * Minor bug fixes
-
-* July 22, 2018
-  * Thanks for recent commits that contains RDN and RCAN. Please see ``code/demo.sh`` to train/test those models.
-  * Now the dataloader is much stable than the previous version. Please erase ``DIV2K/bin`` folder that is created before this commit. Also, please avoid using ``--ext bin`` argument. Our code will automatically pre-decode png images before training. If you do not have enough spaces(~10GB) in your disk, we recommend ``--ext img``(But SLOW!).
-
-* Oct 18, 2018
-  * with ``--pre_train download``, pretrained models will be automatically downloaded from the server.
-  * Supports video input/output (inference only). Try with ``--data_test video --dir_demo [video file directory]``.
-
-* About PyTorch 1.0.0
-  * We support PyTorch 1.0.0. If you prefer the previous versions of PyTorch, use legacy branches.
-  * ``--ext bin`` is not supported. Also, please erase your bin files with ``--ext sep-reset``. Once you successfully build those bin files, you can remove ``-reset`` from the argument.
