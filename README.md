@@ -49,7 +49,7 @@ python main.py --test_only --pre_train ../experiment/<name_network>/model/model_
 
 ## Introduction
 
-Due to the rise of mobile devices like drones and smartphones, camera sensors must be made smaller and more lightweight. This leads to a decrease in image resolution and quality. This is where single image super resolution, which aims at recovering a high resolution (HR) images from the degraded low resolution (LR) images, comes in handy. In this work we look at the performance of super resolution convolutional networks (SRCNN) which are trained on a large dataset of paired LR and HR images and aims to minimize a loss function that gardes the performance of the super resolution (SR) images, the outputs of the network, compared to the HR images and then test them on different datasets. The resulting networks can then be used in mobile devices to increase the quality of the LR images.
+Due to the rise of mobile devices like drones and smartphones, camera sensors must be made smaller and more lightweight. This leads to a decrease in image resolution and quality. This is where single image super resolution, which aims at recovering a high resolution (HR) images from the degraded low resolution (LR) images, comes in handy. In this work we look at the performance of super resolution convolutional networks (SRCNN) which are trained on a large dataset of paired LR and HR images and aims to minimize a loss function that grades the performance of the super resolution (SR) images, the outputs of the network, compared to the HR images and then test them on different datasets. The resulting networks can then be used in mobile devices to increase the quality of the LR images.
 
 
 ## Baseline
