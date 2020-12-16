@@ -17,7 +17,7 @@ cd EDSR-PyTorch
 * cv2 >= 3.xx (Only if you want to use video input/output)
 
 ## Datasets
-We used the [DIV2K] dataset (https://data.vision.ee.ethz.ch/cvl/DIV2K/) to train our models and the wildely used benchmark datasets [Set5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html), [Set14](), [B100](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/) and [Urban100]() to test the models. (still need to add the links)
+We used the [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) dataset  to train our models and the wildely used benchmark datasets [Set5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html), [Set14](), [B100](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/) and [Urban100]() to test the models. (still need to add the links)
 
 ## Pre-trained models
 The models used for the experiments can be found in [experiment](/experiment) under <name_model>/model_best.pt
