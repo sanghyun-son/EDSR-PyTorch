@@ -95,7 +95,7 @@ From this point, all our networks add functionalities to the 8-layers SRCNN netw
  
  On the other hand, replacing our blocks constituted of a convolutional layer followed by an actctivation function by residual blocks described in the picture below increase the PSNR a little less than the batch normalization, but the  visual result is more satisfying for the human eye.
  
- ![](/figs/resblocks_v2.png)
+ ![](/figs/resblock_v2.png)
  
 
  **Leaky ReLU and PreLU**
