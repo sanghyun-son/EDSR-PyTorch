@@ -97,7 +97,7 @@ We see that the global residual connection increase a little the performance of 
  **Leaky ReLU and PreLU**
  Here we look at the effects of the activation function, as default activation function we used ReLU(x) = max(x,0) and we compare the performance of of RelU with LeakyReLU and PReLU. 
  
-
+![alt-text-1](relu.png) ![alt-text-2](leakyrelu.png)![alt-text-3](prelu.png)
  
  ""
  TODO
