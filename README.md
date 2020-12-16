@@ -117,17 +117,14 @@ LeakyReLU and PReLU are used to solve the problem of the "dying ReLU", due to th
  **effect of deeper and wider network **
  
  ![](/figs/task8_comparison.png)
- ""
- TODO
- ""
+The enlargement of the depth and with can improve the performance of the SRCNN significantly (See change from (8,64) to (16,64) and (8,96)). But for even bigger widths the performance stagnates (8,128). And for even bigger depth the performance gets even worse. This is probably due to overfitting to the training data as you can see in the figures below.
  ![](/figs/task8_32_64.PNG)
 
  **loss function: L1 vs L2 vs perceptual loss**
- 
+ Where L1 and L2 loss are pixelwise losses perceptual loss looks at the conservation of structures and therefor acts in the low frequency range. This is achieved with an additional CNN which extracts structures and is then applied to both the HR and SR images. The outputs are then compared.
  ![](/figs/task9_11_comparison.png)
- ""
- TODO
- ""
+ The L2 loss (or mean squared error (mse)) improves the performances significantly compared to the L1 loss. With perceptual loss the performance gets worse. This can be explained with the fact that the structures stay the same in the low resolution images even if they are only interpolated. In other words the perceptual loss looks more at the lower frequencies, where the goal of a SRCNN is to reproduce the high frequencies. Also noise majorly acts in the higher frequency range and therefore gets "ignored" by the perceptual loss.
+
 
 results in a table 
 
