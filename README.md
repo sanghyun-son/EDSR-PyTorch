@@ -84,8 +84,8 @@ results in a table
 | | 2 | 3 layers with grc | 36.722 dB | 32.475 dB | | 31.318 dB
 | | 3 | 8 layers with grc | 37.432 dB | | | 31.809 dB
 | **SRCNN** | 4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
-| | 5 | batch normalisation | 37.636 dB | 33.175 dB | | 31.929 dB
-| | 6 | residual connections | results strange... dB | ... dB | ... dB | 32.014 dB |
+| | 5 | batch normalisation | 37.636 dB | 33.175 dB | 31.119 dB | 31.929 dB
+| | 6 | residual connections | 37.629 dB | 33.208 dB | 31.083 dB |  31.938 dB |
 | | 7 | leakyReLU | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
 | | | PreLU | 27.652 dB | 26.728 dB | 24.922 dB | 31.944 dB |
 | | 8 | 16 layers | 37.686 dB | 33.256 dB | 31.348 dB | 32.012 dB |
