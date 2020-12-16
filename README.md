@@ -74,7 +74,7 @@ In the next lines we will look at the results of different networks on the bench
 
 The first SRCNN network we implemented was a three layers CNN with layer consisiting of a convolution followed by a ReLU activation function. After that we added a global residual connection (grc) to the network, as in the image, and then augmented the number of layers from 3 to 8. The input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image.
 
-![](/figs/birds_comparison.png)
+![](/figs/bird_comparison.png)
 
 In the figure above, we 
 
