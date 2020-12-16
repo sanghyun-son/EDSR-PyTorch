@@ -81,7 +81,7 @@ There are two general aproaches for solving the super resolution problem. First 
 For the training of the networks we use HR images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data (LR, HR). Then we train our network on a large datasets of images to try do the inverse process and reconstituing a HR image. In fact the network is trained to exctract high frequencies information from a low-frequency input.
 In the next lines we will look at the results of different networks on the benchmark datasets. Different techniques such as global residual connection, residual blocks or channel attention were used to try to improve the performance of the networks. We will also look at the importance of the network depth and width for the performance.
 
-We use 64 features map, activation-function ReLu, no batch normalitation, scaling factor 2 and a patchsize of 96 for all Networks unless stated different. We also tested some networks for other scales and patchsize combinations: (scale 3, patchsize 144) and (scale 4, patchsize 192). We show the results of these settings exemplary for the first task and omit them for the rest of the networks.
+We use 64 feature maps, activation-function ReLu, no batch normalitation, scaling factor 2 and a patchsize of 96 for all Networks unless stated different. We also tested some networks for other scales and patchsize combinations: (scale 3, patchsize 144) and (scale 4, patchsize 192). We show the results of these settings exemplary for the first task and omit them for the rest of the networks.
 
 **Networks with a bicubic interpolated input**
 
@@ -99,16 +99,13 @@ We see that the global residual connection increases a little the performance of
 
 
  **Upsampling block added at the end of the network**
-In task 4 we do not interpolate the LR input image, but instead we add an upsampling block at the end of the network of task 4.
+In task 4 we do not interpolate the LR input image, but instead we add an upsampling block at the end of the network of task 4. We still have 8 layers and a grc as in task 3.
  
- "TODO"
- 
- 
-From this point, all our networks add functionalities to the 8-layers SRCNN network of with an upsampling block, the one of task 4, thus we will always compare our results with this network.
+From this point, all our networks add functionalities to the 8-layers SRCNN network with an upsampling block, the one of task 4, thus we will always compare our results with this network.
 
  **batch normalization and residual connection block**
  
- In this part, we analyse the influence of batch normalization and residual blocks to the network.
+ In this part, we analyse the influence of batch normalization, which we added in task 5, and the use of residual blocks, in task 6, to the network.
  ![](/figs/task4_6_comparison.png)
  
  Adding batch normalization to the network, that mean normalizing the data of the batches after each convolutional layer we noticed a significant increase of the PSNR but the visual results are not a lot better. Indeed the benefit of batch normalization for SRCNN is not that clear yet. 
@@ -120,7 +117,7 @@ From this point, all our networks add functionalities to the 8-layers SRCNN netw
 
  **Leaky ReLU and PreLU**
  
-Here we look at the effects of the activation function, as default activation function we used ReLU(x) = max(x,0) and we compare the performance of of RelU with LeakyReLU and the parametric ReLu, PReLU. 
+In task 7 we look at the effects of the activation function, as default activation function we used ReLU(x) = max(x,0) and we compare the performance of of RelU with LeakyReLU and the parametric ReLu, PReLU. 
  
 ![alt-text-1](/figs/leakyrelu.png)![alt-text-2](/figs/prelu.png)
 
@@ -134,6 +131,8 @@ LeakyReLU and PReLU are used to solve the problem of the "dying ReLU", due to th
  But we can still compare the performance of the networks and we clearly see that the results for leakyReLU and PReLU are better than for a classic ReLU activation function. The visual result is better too, however we would have expected the PReLU achieve better results than the leakyReLU due to the additional learing parameter 'a' but this does not seem to be the case.
 
  **effect of deeper and wider network**
+ 
+ Next, in task8, we explore the effect of the network size on the performance. We separatly double and quadruple number of layers(depth) and the number of feature maps(width) of our network.
  
  ![](/figs/task8_comparison.png)
 The enlargement of the depth and with can improve the performance of the SRCNN significantly (See change from (8,64) to (16,64) and (8,96)). But for even bigger widths the performance stagnates (8,128). And for even bigger depth the performance gets even worse. This is probably due to overfitting to the training data as you can see in the figures below.
