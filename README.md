@@ -83,6 +83,7 @@ We see that the global residual connection increase a little the performance of 
 
  Comparing the same 8 layers network with residual connection, one with bicubic interpolated input images and the other with an upsampling block at the end of the network we clearly see ...
  
+ "TODO"
  
  
 From this point, all our networks add functionalities to the 8-layers SRCNN network with an upsampling block, thus we will always compare ou results with this network.
