@@ -122,7 +122,8 @@ The enlargement of the depth and with can improve the performance of the SRCNN s
  ![](/figs/task8_32_64.PNG)
 
  **loss functions: L1 vs L2 vs perceptual loss**
- Where L1 and L2 loss are pixelwise losses perceptual loss looks at the conservation of structures and therefor acts in the low frequency range. This is achieved with an additional CNN which extracts structures and is then applied to both the HR and SR images. The outputs are then compared.
+ 
+ Where L1 and L2 loss are pixelwise losses, perceptual loss looks at the conservation of structures and therefor acts in the low frequency range. This is achieved with an additional CNN which extracts structures and is then applied to both the HR and SR images. The outputs are then compared.
  ![](/figs/task9_11_comparison.png)
  The L2 loss (or mean squared error (mse)) improves the performances significantly compared to the L1 loss. With perceptual loss the performance gets worse. This can be explained with the fact that the structures stay the same in the low resolution images even if they are only interpolated. In other words the perceptual loss looks more at the lower frequencies, where the goal of a SRCNN is to reproduce the high frequencies. Also noise majorly acts in the higher frequency range and therefore gets "ignored" by the perceptual loss.
 
