@@ -82,17 +82,17 @@ We see that the global residual connection increase a little the performance of 
  **Upsampling block added at the end of the network**
 
  Comparaing the same 8 layers network with redisual connection, one with bicubic interpolated input images and the other with an upsampling block at the end of the network we clearly see ...
+ 
+ 
+ 
+From this point, all our networks add functionalities to the 8-layers SRCNN network with an upsampling block, thus we will always compare ou results with this network.
 
- **batch normalization** 
+ **batch normalization and residual connection block** 
  Adding batch normalization to the network (maybe here a picture showing the actual structure of our network) we see the following differences with... 
 
  """
  TODO
  """
-
- **residual connection**
-
- image showing what a residual connection is
 
  **Leaky ReLU and PreLU**
  
