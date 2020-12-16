@@ -23,7 +23,7 @@ We used the [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) dataset  to train
 The models used for the experiments can be found in [experiment](/experiment) under <name_model>/model_best.pt
 
 ## Demo
-You can test a SR resolution alogrithms with your images. Place your image in the ```test```folder. The network support .png and .jpeg files
+You can test the SR resolution alogrithms with your images. Place your image in the ```test```folder. The network supports .png and .jpeg files
 Run the following line in ```src```
 
 ```bash
@@ -36,7 +36,7 @@ If you want to train a network on the DIV2K dataset and test it on the Urban100 
 cd src       # You are now in */EDSR-PyTorch/src
 python main.py --model <MODEL_NAME> --scale 2 --n_resblock 8 --save <...> --save_results --reset
 ```
-If you wish it you can change the scale, 3 and 4 are mainly used, as well as the n_resblock to have deeper network, many other options are possible and are listed in ```option.py```
+If you wish you can change the scale, 3 and 4 are mainly used, as well as the n_resblock to have deeper network, many other options are possible and are listed in ```option.py```
 
 To test the performance of a pre-trained network run the following lines in your terminal
 ```bash
@@ -49,7 +49,7 @@ python main.py --test_only --pre_train ../experiment/<name_network>/model/model_
 
 ## Introduction
 
-Due to the rise of mobile devices like drones and smartphones camera sensors must be made smaller and more lightweight, this leads to a decrease in image resolution and quality. This where single image super resolution, which aims at recovering a high resolution (HR) images from the degraded low resolution (LR) images, comes in handy. In this work we look at the performance of super resolution convolutional networks (SRCNN) which are trained on a large dataset of pairwised LR and HR images and aims to minimize a loss function that gardes the performance of the super resolution (SR) images, the outputs of the network, compared to the HR images and then tested on different datasets. The resulting networks can then be used in mobile devices to increase the quality of the LR images.
+Due to the rise of mobile devices like drones and smartphones, camera sensors must be made smaller and more lightweight. This leads to a decrease in image resolution and quality. This is where single image super resolution, which aims at recovering a high resolution (HR) images from the degraded low resolution (LR) images, comes in handy. In this work we look at the performance of super resolution convolutional networks (SRCNN) which are trained on a large dataset of paired LR and HR images and aims to minimize a loss function that gardes the performance of the super resolution (SR) images, the outputs of the network, compared to the HR images and then test them on different datasets. The resulting networks can then be used in mobile devices to increase the quality of the LR images.
 
 
 ## Baseline
@@ -115,7 +115,7 @@ The parameter 'a' in the PReLU activation is a learnable parameter for each feat
  TODO
  ""
 
- **L1 vs L2 loss function**
+ **loss function: L1 vs L2 vs perceptual loss **
  
  ![](/figs/task9_comparison.png)
  ""
