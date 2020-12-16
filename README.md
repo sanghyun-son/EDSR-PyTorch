@@ -76,8 +76,7 @@ The first SRCNN network we implemented was a three layers CNN with layer consisi
 
 ![](/figs/bird_comparison.png)
 
-In the figure above, we 
-
+We see that the global residual connection increase a little the performance of the network, but it is mainly the increase of the depth of the network that causes a ~1dB increase in the peak signal to noise ratio (PSNR). 
 
 
  **Upsampling block added at the end of the network**
