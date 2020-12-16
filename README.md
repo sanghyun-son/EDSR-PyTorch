@@ -74,7 +74,7 @@ In the next lines we will look at the results of different networks on the bench
 
 The first SRCNN network we implemented was a three layers CNN with layer consisiting of a convolution followed by a ReLU activation function. After that we added a global residual connection (grc) to the network, as in the image, and then augmented the number of layers from 3 to 8. The input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image.
 
-![](/figs/bird_comparison.png)
+![](/figs/task1_3_comparison.png)
 
 We see that the global residual connection increase a little the performance of the network, but it is mainly the increase of the depth of the network that causes a ~1dB increase in the peak signal to noise ratio (PSNR). 
 
