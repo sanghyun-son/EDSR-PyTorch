@@ -60,17 +60,21 @@ Our project is based on the [EDSR-PyTorch](https://github.com/thstkdgus35/EDSR-P
 
 ## Background
 
-There are two general aproaches for solving the super resolution problem. First you can interpolate your low resolution image using for example bicubic interpolation, and then run a convolutional neural network (CNN) on the interpolated images. Or you can add an upsampling block at the end of the CNN, which makes the network smaller and therefor faster. The EDSR model, which we also tested to see how the dataloaoding, training, testing, etc. works, uses the second approach. In this project both approches are tested, while using the first approach only for the simpler networks. 
+There are two general aproaches for solving the super resolution problem. First you can interpolate your low resolution image using for example bicubic interpolation, and then run a convolutional neural network (CNN) on the interpolated images. Or you can add an upsampling block at the end of the CNN, which makes the network smaller and therefore faster. The EDSR model, which we also tested to see how the dataloaoding, training, testing, etc. works, uses the second approach. In this project both approches are tested, while using the first approach only for the simpler networks.
+
 
 ## Method & experiment
 
 For the training of the networks we use HR images, which we degrade with a simplified model including blurring, downsampling with bicubic interpolation and noise, to get paired training data (LR, HR). Then we train our network on a large datasets of images to try do the inverse process and reconstituing a HR image. In fact the network is trained to exctract high frequencies information from a low-frequency input.
+In the next lines we will look at the results of different networks on the benchmark datasets. Different techniques such as global residual connection, residual blocks or channel attention were used to try to improve the performance of the networks. We will also look at the importance of the network depth and width for the performance.
 
 **Networks with a bicubic interpolated input**
 
 ![](/figs/basic_blocks.png)
 
-The firsts SRCNN networks we implemented were three layers CNN with blocks consisiting of a convolution followed by a ReLU activation function and the input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image. 
+The first SRCNN network we implemented was a three layers CNN with layer consisiting of a convolution followed by a ReLU activation function. After that we added a global residual connection to the network, as in the image, and then augmented the number of layers from 3 to 8. The input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image.
+
+
 
 """
  TODO
