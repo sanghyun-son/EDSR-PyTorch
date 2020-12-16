@@ -72,7 +72,10 @@ In the next lines we will look at the results of different networks on the bench
 
 ![](/figs/basic_blocks.png)
 
-The first SRCNN network we implemented was a three layers CNN with layer consisiting of a convolution followed by a ReLU activation function. After that we added a global residual connection (grc) to the network, as in the image, and then augmented the number of layers from 3 to 8. The input of the network is a LR image interpolated with a bicubic interpolation to have to size of the HR image.
+In task 1 we implemented a 3 layers CNN network with 64 features map, all the networks in the follwing experiments will have 64 features maps unless stated otherwise.
+In task 2 we add a global residual connection (grc) to the network of task 1, the resulting looks like the one in the picture above.
+In task 3 we augment the depth of the network of task 2, we have now a 8 layers SRCNN
+The input of the network is a bicubic intepolated LR image, the image is interpolated to have the same number of pixels as the HR image.
 
 ![](/figs/task1_3_comparison.png)
 
@@ -80,13 +83,12 @@ We see that the global residual connection increase a little the performance of 
 
 
  **Upsampling block added at the end of the network**
-
- Comparing the same 8 layers network with residual connection, one with bicubic interpolated input images and the other with an upsampling block at the end of the network we clearly see ...
+In task 4 we do not interpolate the LR input image, but instead we add an upsampling block at the end of the network of task 4.
  
  "TODO"
  
  
-From this point, all our networks add functionalities to the 8-layers SRCNN network with an upsampling block, thus we will always compare ou results with this network.
+From this point, all our networks add functionalities to the 8-layers SRCNN network of with an upsampling block, the one of task 4, thus we will always compare our results with this network.
 
  **batch normalization and residual connection block**
  
