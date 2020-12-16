@@ -126,7 +126,7 @@ results in a table
 | | |  3 layers scale 4 | 30.041 dB | 27.263 dB | 24.126 dB | 26.682 dB
 | | 2 | 3 layers with grc | 36.722 dB | 32.475 dB | 29.536 dB | 31.318 dB
 | | 3 | 8 layers with grc | 37.432 dB | 33.049 dB | 30.752 dB | 31.809 dB
-| **SRCNN** | 4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
+| **SRCNN** | 4 | upsampling | 37.335 dB | 32.933 dB | 30.383 dB | 31.697 dB |
 | | 5 | batch normalisation | 37.636 dB | 33.175 dB | 31.119 dB | 31.929 dB
 | | 6 | residual connections | 37.629 dB | 33.208 dB | 31.083 dB |  31.938 dB |
 | | 7 | leakyReLU | 28.151 dB | 26.931 dB | 25.078 dB | 31.945 dB |
