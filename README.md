@@ -49,14 +49,14 @@ python main.py --test_only --pre_train ../experiment/<name_network>/model/model_
 
 ## Introduction
 
-Due to the rise of mobile devices like drones and smartphones camera sensors must be made smaller and more lightweight, this leads to a decrease in image resolution and quality. This where single image super resolution which aims at recovering a high resolution (HR) images from the degraded low resolution (LR) images comes in handy. In this work we look at the performance of super resolution convolutional networks (SRCNN) which are trained on a large dataset of pairwised LR and HR images and aims to minimize a loss function that gardes the performance of the super resolution (SR) images, the outputs of the network, compared to the HR images and then tested on different datasets. The resulting networks can then be used in mobile devices to increase the quality of the LR images.
+Due to the rise of mobile devices like drones and smartphones camera sensors must be made smaller and more lightweight, this leads to a decrease in image resolution and quality. This where single image super resolution, which aims at recovering a high resolution (HR) images from the degraded low resolution (LR) images, comes in handy. In this work we look at the performance of super resolution convolutional networks (SRCNN) which are trained on a large dataset of pairwised LR and HR images and aims to minimize a loss function that gardes the performance of the super resolution (SR) images, the outputs of the network, compared to the HR images and then tested on different datasets. The resulting networks can then be used in mobile devices to increase the quality of the LR images.
 
 
 Alternative:(On the other hand, also due to limited storage limitations, in remote systems, or due to limited data transfer, images are being saved in a lower resolution format. But for further tasks on bigger computers which don’t have these issues we again want to work with higher resolution. This is where super resolution comes in handy. In contrary to many other processes image super resolution creates new data. That means it creates more outputs than it has inputs. In the downsampling process data is lost and the Super resolution network can’t make use of this data.)
 
 ## Baseline
 
-Our project is based on the [EDSR-PyTorrch](https://github.com/thstkdgus35/EDSR-PyTorch) repository which allready includes some Loss-functions, basic blocks, dataloaders and training and testing functions. In addition we use a [downsampling function](https://github.com/ofsoundof/dhp/blob/master/restoration/data/div2ksub.py) from an other repositry. We added some new simpler models to the repositry and embeded the downsampling function into the repositry with some minor changes.
+Our project is based on the [EDSR-PyTorrch](https://github.com/thstkdgus35/EDSR-PyTorch) repository which allready includes Loss-functions, some basic blocks, dataloaders and training and testing functions. In addition we use a [downsampling function](https://github.com/ofsoundof/dhp/blob/master/restoration/data/div2ksub.py) -is from an other repositry. We added some new simpler models to the repository and embedded the downsampling function into the repository with some minor changes.
 
 ## Background
 
