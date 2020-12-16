@@ -36,7 +36,7 @@ If you want to train a network on the DIV2K dataset and test it on the Urban100 
 cd src       # You are now in */EDSR-PyTorch/src
 python main.py --model <MODEL_NAME> --scale 2 --n_resblock 8 --data_test Urban100 --save <...> --save_results --reset
 ```
-If you wish you can change the scale, 3 and 4 are mainly used, as well as the n_resblock to have deeper network, many other options are possible and are listed in ```option.py```
+If you wish you can change the scale,the scales 2, 3 and 4 are mainly used, as well as the n_resblock to have deeper network, many other options are possible and are listed in ```option.py```
 
 To test the performance of a pre-trained network run the following lines in your terminal
 ```bash
