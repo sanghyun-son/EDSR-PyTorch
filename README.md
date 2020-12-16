@@ -113,11 +113,11 @@ results in a table
 
 | Model | task | description |  SET5 PSNR | Set14 PSNR | Urban100 PSNR | B100 PSNR |
 |  ---  |  ---  | ---       | ---  | ---        | ---  | ---        |
-| **Bicubic** | 1 | 3 layers scale 2 | 36.504 dB | 32.346 dB | | 31.212 dB
-| | | 3 layers scale 3  | 32.366 dB | 29.053 dB | | 28.186 dB
-| | |  3 layers scale 4 | 30.041 dB | 27.263 dB | | 26.682 dB
-| | 2 | 3 layers with grc | 36.722 dB | 32.475 dB | | 31.318 dB
-| | 3 | 8 layers with grc | 37.432 dB | | | 31.809 dB
+| **Bicubic** | 1 | 3 layers scale 2 | 36.504 dB | 32.346 dB | 29.275 dB | 31.212 dB
+| | | 3 layers scale 3  | 32.366 dB | 29.053 dB | 25.858 dB | 28.186 dB
+| | |  3 layers scale 4 | 30.041 dB | 27.263 dB | 24.126 dB | 26.682 dB
+| | 2 | 3 layers with grc | 36.722 dB | 32.475 dB | 29.536 dB | 31.318 dB
+| | 3 | 8 layers with grc | 37.432 dB | 33.049 dB | 30.752 dB | 31.809 dB
 | **SRCNN** | 4 | upsampling | 26.896 dB | 25.964 dB | 24.243 dB | 31.941 dB |
 | | 5 | batch normalisation | 37.636 dB | 33.175 dB | 31.119 dB | 31.929 dB
 | | 6 | residual connections | 37.629 dB | 33.208 dB | 31.083 dB |  31.938 dB |
