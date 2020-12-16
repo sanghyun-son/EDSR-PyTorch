@@ -105,7 +105,7 @@ The parameter 'a' in the PReLU activation is a learnable pararamter for each fea
  ![](/figs/leakyvsprelu.png)
  
  First of all, notice that the results here are not as good as in the others experiments. This can be easily explained, due to an unfortunate error the patch size in this experiment is 196 and not 96 as in the other experiment, thus the quality of the SR image is worse.
- But we can still compare the performance of the networks and we clearly see that 
+ But we can still compare the performance of the networks and we clearly see that the results for leakyReLU and PReLU are better than for a classic ReLU activation function. However we would have expected the PReLU achieve better results than the leakyReLU due to the additional learing parameter 'a' but this does not seem to be the case.
 
  **effect of deeper and wider network**
  ""
