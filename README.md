@@ -104,14 +104,16 @@ Here we look at the effects of the activation function, as default activation fu
  
 ![alt-text-1](/figs/leakyrelu.png)![alt-text-2](/figs/prelu.png)
 
-The parameter 'a' in the PReLU activation is a learnable parameter for each feature map. 
+The parameter 'a' in the PReLU activation is a learnable parameter for each feature map.
+LeakyReLU and PReLU are used to solve the problem of the "dying ReLU", due to the zero value and thus zero slope of the negative side of ReLU so once a neuron gets negative it "dies" and does not contribute anymore to the imporvement of the network. LeakyReLU and PReLU try to solve this problem by having a small positiv gradient on the negative side and thus they will not "kill" neurons.
  
  ![](/figs/leakyvsprelu.png)
  
- First of all, notice that the results here are not as good as in the others experiments. This can be easily explained, due to an unfortunate error the patch size in this experiment is 196 and not 96 as in the other experiment, thus the quality of the SR image is worse.
- But we can still compare the performance of the networks and we clearly see that the results for leakyReLU and PReLU are better than for a classic ReLU activation function. However we would have expected the PReLU achieve better results than the leakyReLU due to the additional learing parameter 'a' but this does not seem to be the case.
+ First of all, notice that the results here are not as good as in the others experiments. This can be easily explained, due to an unfortunate error the patch size in this experiment is 196 and not 96 as in the other experiment, thus the parameters of the network are not updated as often as usual resulting in a less optimized network and therefore results not as good as in the other experiments.
+ 
+ But we can still compare the performance of the networks and we clearly see that the results for leakyReLU and PReLU are better than for a classic ReLU activation function. The visual result is better too, however we would have expected the PReLU achieve better results than the leakyReLU due to the additional learing parameter 'a' but this does not seem to be the case.
 
- ** effect of deeper and wider network **
+ **effect of deeper and wider network **
  
  ![](/figs/task8_comparison.png)
  ""
