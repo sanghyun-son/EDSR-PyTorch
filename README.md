@@ -76,6 +76,8 @@ The first SRCNN network we implemented was a three layers CNN with layer consisi
 
 ![](/figs/birds_comparison.png)
 
+In the figure above, we 
+
 
 
  **Upsampling block added at the end of the network**
