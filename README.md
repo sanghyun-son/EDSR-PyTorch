@@ -88,12 +88,15 @@ We see that the global residual connection increase a little the performance of 
 From this point, all our networks add functionalities to the 8-layers SRCNN network with an upsampling block, thus we will always compare ou results with this network.
 
  **batch normalization and residual connection block** 
- Adding batch normalization to the network (maybe here a picture showing the actual structure of our network) we see the following differences with... 
-
-![](/figs/task4_6_comparison.png)
- """
- TODO
- """
+ In this part, we analyse the influence of batch normalization and residual blocks to the network.
+ ![](/figs/task4_6_comparison.png)
+ 
+ Adding batch normalization to the network, that mean normalizing the data of the batches after each convolutional layer we noticed a significant increase of the PSNR but the visual results are not a lot better. Indeed the benefit of batch normalization for SRCNN is not that clear yet. 
+ 
+ On the other hand, replacing our blocks constituted of a convolutional layer followed by an actctivation function by residual blocks described in the picture below increase the PSNR a little less than the batch normalization, but the  visual result is more satisfying for the human eye.
+ 
+ ![](/figs/resblocks_v2.png)
+ 
 
  **Leaky ReLU and PreLU**
  
