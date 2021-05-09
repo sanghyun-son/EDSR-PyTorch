@@ -1,8 +1,17 @@
+## BEWARE: This fork contains changes used during SpainAI 2021 Computer Vision Hackathon by @hcordobes
+
+Changes:
+ * Chabonnier cost function as `L1C`
+ * Code for SSIM scoring (for validation purposes)
+ * Force directory name to `DIV2K` and `data_test` name to admit `spainai`
+ * Entries in demo.sh to match the hackathon targets
+ * Some commented hacks
+
+# EDSR-PyTorch
+
 **About PyTorch 1.2.0**
   * Now the master branch supports PyTorch 1.2.0 by default.
   * Due to the serious version problem (especially torch.utils.data.dataloader), MDSR functions are temporarily disabled. If you have to train/evaluate the MDSR model, please use legacy branches.
-
-# EDSR-PyTorch
 
 **About PyTorch 1.1.0**
   * There have been minor changes with the 1.1.0 update. Now we support PyTorch 1.1.0 by default, and please use the legacy branch if you prefer older version.
