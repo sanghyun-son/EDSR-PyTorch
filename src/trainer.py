@@ -93,6 +93,7 @@ class Trainer():
 
                     save_list = [sr]
                     self.ckp.log[-1, idx_data, idx_scale] += utility.calc_psnr(
+#                    self.ckp.log[-1, idx_data, idx_scale] += utility.calc_ssim(
                         sr, hr, scale, self.args.rgb_range, dataset=d
                     )
                     if self.args.save_gt:
