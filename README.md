@@ -4,8 +4,8 @@ Changes:
  * Chabonnier cost function as `L1C`
  * Code for SSIM scoring (for validation purposes)
  * Force directory name to `DIV2K` and `data_test` name to admit `spainai`
- * Entries in demo.sh to match the hackathon targets
- * Some commented hacks
+ * Entries in [demo.sh](src/demo.sh) to match the hackathon targets
+ * Some commented changes used to test other approaches
 
 # EDSR-PyTorch
 
