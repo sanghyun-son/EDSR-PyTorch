@@ -18,7 +18,16 @@ class Model(nn.Module):
         self.chop = args.chop
         self.precision = args.precision
         self.cpu = args.cpu
-        self.device = torch.device('cpu' if args.cpu else 'cuda')
+        if self.cpu:
+            self.device = torch.device('cpu')
+        else:
+            if torch.backends.mps.is_available():
+                self.device = torch.device('mps')
+            elif torch.cuda.is_available():
+                self.device = torch.device('cuda')
+            else:
+                self.device = torch.device('cpu')
+
         self.n_GPUs = args.n_GPUs
         self.save_models = args.save_models
 
@@ -74,6 +83,8 @@ class Model(nn.Module):
         kwargs = {}
         if cpu:
             kwargs = {'map_location': lambda storage, loc: storage}
+        else:
+            kwargs = {'map_location': self.device}
 
         if resume == -1:
             load_from = torch.load(
