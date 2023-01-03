@@ -144,8 +144,9 @@ class SRData(data.Dataset):
             )
             if not self.args.no_augment: lr, hr = common.augment(lr, hr)
         else:
-            ih, iw = lr.shape[:2]
-            hr = hr[0:ih * scale, 0:iw * scale]
+            ih, iw = lr[0]['image'].shape[:2]
+            lr=lr[0]['image']
+            hr = hr[0]['image'][0:ih * scale, 0:iw * scale]
 
         return lr, hr
 
