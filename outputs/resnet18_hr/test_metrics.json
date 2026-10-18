@@ -1,0 +1,74 @@
+{
+  "device": "mps",
+  "best_epoch": 13,
+  "best_val_loss": 0.025855237245559694,
+  "training_seconds": 240.28967905044556,
+  "checkpoint": "../outputs/resnet18_hr/best_resnet18_hr.pt",
+  "results": [
+    {
+      "dataset": "x1",
+      "split": "val",
+      "samples": 210,
+      "loss": 0.025855237245559694,
+      "accuracy": 1.0,
+      "accuracy_percent": 100.0
+    },
+    {
+      "dataset": "x2",
+      "split": "val",
+      "samples": 210,
+      "loss": 0.08002695661215554,
+      "accuracy": 0.9619047619047619,
+      "accuracy_percent": 96.19047619047619
+    },
+    {
+      "dataset": "x3",
+      "split": "val",
+      "samples": 210,
+      "loss": 0.21872531651031404,
+      "accuracy": 0.919047619047619,
+      "accuracy_percent": 91.9047619047619
+    },
+    {
+      "dataset": "x4",
+      "split": "val",
+      "samples": 210,
+      "loss": 0.4539345264434814,
+      "accuracy": 0.8809523809523809,
+      "accuracy_percent": 88.09523809523809
+    },
+    {
+      "dataset": "x1",
+      "split": "test",
+      "samples": 420,
+      "loss": 0.08976969967285792,
+      "accuracy": 0.9666666666666667,
+      "accuracy_percent": 96.66666666666667
+    },
+    {
+      "dataset": "x2",
+      "split": "test",
+      "samples": 420,
+      "loss": 0.15111534432286308,
+      "accuracy": 0.9571428571428572,
+      "accuracy_percent": 95.71428571428572
+    },
+    {
+      "dataset": "x3",
+      "split": "test",
+      "samples": 420,
+      "loss": 0.29713134261823837,
+      "accuracy": 0.9023809523809524,
+      "accuracy_percent": 90.23809523809524
+    },
+    {
+      "dataset": "x4",
+      "split": "test",
+      "samples": 420,
+      "loss": 0.5347366463570368,
+      "accuracy": 0.8214285714285714,
+      "accuracy_percent": 82.14285714285714
+    }
+  ],
+  "note": "The same HR-trained classifier is evaluated on x1 test images and bicubic-upsampled x2/x3/x4 test images. This measures sensitivity to downsampling followed by bicubic interpolation; it does not evaluate EDSR-generated images."
+}
