@@ -432,9 +432,9 @@ def main():
 
     # Keep experiment checkpoints/logs separate.
     experiment_name = (
-        f"light_weight_semantic_x{args.scale}"
+        f"light_weight_semantic_x{args.scale}_{args.seed}"
         if args.semantic_loss
-        else f"light_weight_x{args.scale}"
+        else f"light_weight_x{args.scale}_{args.seed}"
     )
 
     if args.output_dir is None:
@@ -749,9 +749,9 @@ def main():
     # Note: running a second experiment at the same scale will replace
     # images saved by the first experiment in this shared image folder.
     experiment_name = (
-        f"light_weight_semantic_x{args.scale}"
+        f"light_weight_semantic_x{args.scale}_{args.seed}"
         if args.semantic_loss
-        else f"light_weight_x{args.scale}"
+        else f"light_weight_x{args.scale}_{args.seed}"
     )
 
     image_root = args.data_dir / experiment_name
