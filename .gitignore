@@ -70,3 +70,4 @@ data/
 test/
 scripts/
 script/
+/weights/
