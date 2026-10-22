@@ -1,0 +1,11 @@
+{
+  "model": "edsr_eca",
+  "n_resblocks": 16,
+  "n_feats": 64,
+  "eca_kernel": 3,
+  "scale": 4,
+  "sparse_test": false,
+  "trainable_params": 1517619,
+  "cpu_latency_ms_64x64": 40.452033300243784,
+  "cpu_threads": 4
+}
