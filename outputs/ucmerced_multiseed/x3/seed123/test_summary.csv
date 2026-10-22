@@ -1,0 +1,3 @@
+method,test_mean_psnr_db,test_mean_ssim,num_test_images
+bicubic,27.21831119788195,0.7769667486390087,420
+edsr_x3,29.30721135978903,0.8435332923613861,420

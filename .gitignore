@@ -68,3 +68,7 @@ target/
 # Datasets
 data/
 test/
+scripts/
+script/
+/weights/
+dataset/
