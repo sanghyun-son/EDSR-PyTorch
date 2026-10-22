@@ -1,5 +1,14 @@
 # Lightweight EDSR with Semantic Guidance for Remote Sensing Images
 
+## Environment setup
+
+```bash
+conda env create -f environment.yml
+conda activate <env-name>   # the name is set in environment.yml
+```
+
+## Overview
+
 Super-resolution experiments on the UC Merced Land Use dataset at ×2, ×3 and ×4. The project compares three models:
 
 | Model | Residual blocks | Feature channels | Training loss |
